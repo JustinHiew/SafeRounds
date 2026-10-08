@@ -7,3 +7,4 @@ node_modules/
 .promptfoo/
 # The judge response cache is committed on purpose (reports rebuild offline); only scratch files are ignored.
 cache/*.tmp
+data/external/

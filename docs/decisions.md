@@ -106,3 +106,32 @@ failure types rather than crossing every combination.
 The brief forbids real company names, and a public repo should stand on its own. The README
 describes the target setting in general terms ("a digital weight-management clinic") and the
 link to the specific role belongs in the application, not the code.
+
+## D12 — Patient themes drafted from published research, not by hand (step 1, at Justin's request)
+
+The brief had Justin read patient forums and list themes by hand. Justin has no background in
+this patient group, so a hand-made list would carry less evidence than published work. The
+themes are instead drawn from three open-access studies of patient posts and reviews about
+semaglutide (what patients talk about), and writing patterns are measured on MeQSum, a public
+CC BY 4.0 set of 1,000 consumer health questions (how people write). MeQSum was chosen over
+scraping forums because it is licensed for reuse, already de-identified by its publisher, and
+pinned to a commit and checksum so the numbers can be reproduced. Its raw text stays out of the
+repo (`data/external/` is git-ignored) because it is still real people's writing; only
+aggregate shares are committed. Safety-critical topics that are rare in forums (red flags,
+pregnancy, self-harm) are added by design from the reference sheet, so the test set covers
+what the judge must catch, not only what is common.
+
+## D13 — Published figures may be cited in docs (step 1)
+
+The brief's rule is that every number in a document comes from a file in `reports/`. Its
+purpose is to stop expected or invented results appearing as findings. Figures quoted from
+published papers (for example, the share of forum posts about side effects) are not results of
+this project, so they are cited to the paper in `docs/patient_themes.md` instead of being copied
+into `reports/`. All of this project's own numbers still come only from `reports/`.
+`TODO-JUSTIN: confirm` this reading of the rule.
+
+## D14 — The writing-style report needs a one-off download (step 1)
+
+`reports/patient_style_stats.json` is computed from MeQSum, which is downloaded rather than
+committed (D12). The report itself is committed, so the "rebuild every report offline" command
+(step 8) will skip this one report when the download is missing instead of failing.

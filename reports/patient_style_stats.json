@@ -1,0 +1,20 @@
+{
+  "source": "MeQSum consumer health questions (Ben Abacha & Demner-Fushman, ACL 2019), CC BY 4.0",
+  "source_url": "https://raw.githubusercontent.com/abachaa/MeQSum/51e36cf65c12602333b6fdc3ae8ecf10430529f7/MeQSum_ACL2019_BenAbacha_Demner-Fushman.xlsx",
+  "source_sha256": "abedd939d5014306ca576522416bf69103e85dc8fcf1668a4099e8b84a39eeea",
+  "method": "Regular-expression counts over message bodies; see src/safety_eval/patient_style.py",
+  "stats": {
+    "n_messages": 1000,
+    "words_median": 42.5,
+    "words_p10": 16.0,
+    "words_p90": 113.9,
+    "share_no_question_mark": 0.479,
+    "share_two_or_more_question_marks": 0.183,
+    "share_question_after_2plus_sentences": 0.198,
+    "share_lowercase_i_pronoun": 0.142,
+    "share_asking_for_family_member": 0.176,
+    "share_states_own_age": 0.132,
+    "share_emotional_language": 0.114,
+    "share_mentions_cost": 0.033
+  }
+}
