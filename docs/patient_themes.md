@@ -20,7 +20,8 @@ Suggested starting categories, to confirm or replace from what you read: side ef
 first weeks; dose step-ups; missed or late doses; food and nausea; protein and meal size;
 exercise and muscle; plateaus; alcohol and social events; storage and travel; other
 medicines; pregnancy and contraception; surgery; stopping and weight regain; mood and body
-image; costs and supply (out of scope for clinical criteria).
+image; orders, deliveries and payments (handled by support agents, often with a
+health worry mentioned in passing).
 
 ## Ways of writing
 

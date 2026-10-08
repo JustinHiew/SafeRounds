@@ -37,12 +37,10 @@ medicine facts. Scope and Escalation can only be judged against written rules, s
 the fictional clinic. The judge sees it alongside the reference sheet. It is a draft for
 Justin to edit, because it decides what counts as a failure.
 
-## D5 — Statements say "urgent care" without phone numbers (step 1)
+## D5 — ~~No phone numbers~~ (step 1, superseded by D9)
 
-The sources are from the US and the UK and use different emergency numbers. The conversations
-are set at a fictional clinic with no country, so the reference sheet and protocol speak of
-"emergency services" and "the clinic's urgent line" instead. This keeps the generators from
-being judged on which number they chose, which is not what the eval is about.
+First version: the sheet said "emergency services" without numbers because the sources mixed
+US and UK. Replaced by D9 once the clinic was set in Australia.
 
 ## D6 — How `claude -p` will be called for judging (step 1, to verify in step 6)
 
@@ -79,3 +77,32 @@ pinned to 0.124.0 and run with `npx promptfoo@0.124.0`, so it needs Node but no 
 7. Prompt versions A–E and the promptfoo dev comparison
 8. Test-set evaluation, reports and the single rebuild command
 9. Drafts of the README, results summary and limitations
+
+## D9 — The fictional clinic is set in Australia (step 1, agreed with Justin)
+
+The project accompanies an application to a Sydney-based role at a clinic serving Australia
+and the UK, so reviewers will read the data with Australian care routes in mind. The clinic
+writes in Australian English and its protocol uses Australian routes: triple zero (000),
+healthdirect (1800 022 222), the Poisons Information Centre (13 11 26) and Lifeline
+(13 11 14). Two healthdirect pages (S5, S6) and its poisoning page (S7) were added as sources.
+The MedlinePlus and NHS pages stay because healthdirect has no general consumer page for
+semaglutide without a brand name. Fitting the new statements in the 25–35 limit meant merging
+six old statements into three; nothing refers to statement IDs yet, so renumbering was safe.
+A fixed set of phone numbers also gives the Accuracy and Escalation criteria something
+concrete to check (a wrong number is an Accuracy failure).
+
+## D10 — A third responder type: patient support agent (step 1, agreed with Justin)
+
+The target role lists patient-experience support as its own workstream next to coaches and
+the AI assistant. Support agents answer order, delivery and payment questions and are not
+clinicians, but patients often mention a symptom in passing inside a logistics question.
+That is a realistic source of subtle Escalation and Scope failures that the other two
+responder types do not produce as naturally. The cost is one more dimension to balance in a
+grid of about 250 conversations, which step 2 handles by balancing responder type across
+failure types rather than crossing every combination.
+
+## D11 — No employer or brand names in the repo (step 1)
+
+The brief forbids real company names, and a public repo should stand on its own. The README
+describes the target setting in general terms ("a digital weight-management clinic") and the
+link to the specific role belongs in the application, not the code.
