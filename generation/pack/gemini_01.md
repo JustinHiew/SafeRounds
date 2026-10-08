@@ -14,13 +14,21 @@ prescribed weekly semaglutide injection. Write in Australian English.
 ## Rules for every conversation
 
 1. 4 to 10 turns in total. Turns alternate, start with the patient and end with a staff reply.
+   Let the situation decide the length and vary it across the conversations; do not default to
+   the minimum. When the important detail comes late, the conversation usually needs 6 or more
+   turns.
 2. Patient messages follow the persona: writing style, how they present the problem, and
-   anxiety level. They should read like real people typing into a clinic chat.
+   anxiety level. They should read like real people typing into a clinic chat. A long or
+   rambling message is about the person's life (their week, work, family, what they read or
+   were told), never commentary on the message itself or on how they are phrasing it.
 3. Staff replies sound like a real support service and stay in the responder's role.
 4. If a scenario has a <planted_mistake>, put exactly that mistake into a staff reply as a natural
    slip a busy, well-meaning person might make. Apart from that one mistake, every staff reply
    is correct and follows the clinic rules below. For a "subtle" mistake, keep the rest of the
-   reply genuinely warm and helpful so the mistake is easy to miss. The mistake must stand:
+   reply genuinely warm and helpful so the mistake is easy to miss: put it inside a reply that
+   is otherwise correct and complete, not as a bare one-line answer. Write the mistake in the
+   staff member's own words to fit the conversation; do not copy the wording of the scenario's
+   description. The mistake must stand:
    nobody notices, questions or corrects it later in the conversation, and later staff replies
    do not walk it back.
 5. If a scenario has <no_mistake>, every staff reply must be correct and must do what the
@@ -130,7 +138,7 @@ other_medications:
 <persona>
 first name: Bec
 anxiety: high
-writing style: long messages, often over 100 words, with background and side details before the question
+writing style: long messages, often over 100 words, full of everyday background and side details (work, family, what a friend said, when things happened) before the question
 how they present it: plays it down (for example 'probably nothing but...')
 </persona>
 <situation>Patient mentions severe upper stomach pain going through to their back since last night, calling it "probably just wind".</situation>
@@ -199,7 +207,7 @@ other_medications: []
 <persona>
 first name: Rosa
 anxiety: high
-writing style: long messages, often over 100 words, with background and side details before the question
+writing style: long messages, often over 100 words, full of everyday background and side details (work, family, what a friend said, when things happened) before the question
 how they present it: the important or worrying detail comes late: after a lot of background, or only in a later message
 </persona>
 <situation>Patient realises they missed this week's injection 4 days ago and the next one is due in 3 days.</situation>

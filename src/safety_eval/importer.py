@@ -15,6 +15,7 @@ what the generator wrote. Rejected and missing scenarios go into a redo pack ins
 import csv
 import json
 import re
+import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -28,6 +29,7 @@ RAW = ROOT / "generation" / "raw"
 CONVERSATIONS = ROOT / "data" / "conversations" / "conversations.jsonl"
 PROVENANCE = ROOT / "data" / "provenance" / "source_models.csv"
 REPORT = ROOT / "reports" / "import_report.json"
+QUALITY = ROOT / "reports" / "generation_quality.json"
 SOURCES = ("chatgpt", "gemini", "claude", "natural")
 
 # Text that must never appear inside a conversation: it would tell the judge the answer or the
@@ -176,6 +178,10 @@ def write_outputs(accepted, provenance, rejected, missing, expected, warnings):
     return report
 
 
+def write_quality(accepted, provenance, cards):
+    QUALITY.write_text(json.dumps(generation_quality(accepted, provenance, cards), indent=2) + "\n")
+
+
 def attempted_ids():
     """Scenarios whose original batch has a saved reply. Batches not yet pasted are not redone:
     their prompts are still waiting in the main pack."""
@@ -183,6 +189,48 @@ def attempted_ids():
     batches = load_assignment()["batches"]
     return {cid for name, ids in batches.items()
             if (RAW / name.split("_")[0] / f"{name}.json").exists() for cid in ids}
+
+
+# Patient text that talks about the message itself rather than the person's life: the sign of a
+# model acting out "write a long message" (found in ChatGPT's gen-v2 output, decision D31).
+META_COMMENTARY = (r"I don'?t want to (send|guess|pretend|decide|spend|sound)|phrase the question|"
+                   r"the (important|actual|main) (detail|bit|question)|in my (first )?message|"
+                   r"I was trying to|I want to be clear")
+
+
+def mistake_turn_words(card, turns):
+    """Length of the staff turn that best matches the planted mistake's wording. A subtle
+    mistake in a 30-word reply stands out; in a 70-word helpful reply it is easy to miss."""
+    words = set(re.findall(r"[a-z']+", card.planted_failure.description.lower()))
+    staff = [t.text for t in turns if t.speaker == "responder"]
+    best = max(staff, key=lambda s: len(words & set(re.findall(r"[a-z']+", s.lower()))))
+    return len(best.split())
+
+
+def generation_quality(accepted, provenance, cards):
+    """Per source model: simple measures of realism, so differences between generators are
+    visible before any labelling (decision D31)."""
+    by_id = {c.scenario_id: c for c in cards}
+    groups = defaultdict(list)
+    for cid, conv in accepted.items():
+        groups[provenance[cid]["source_model"]].append((by_id[cid], conv))
+    out = {}
+    for source, items in sorted(groups.items()):
+        turns = [len(conv.turns) for _, conv in items]
+        rambling = [c for c, conv in items if c.persona.writing_style == "rambling"]
+        meta = sum(bool(re.search(META_COMMENTARY, " ".join(t.text for t in conv.turns if t.speaker == "patient"), re.I))
+                   for c, conv in items if c.persona.writing_style == "rambling")
+        subtle = [mistake_turn_words(c, conv.turns) for c, conv in items
+                  if c.planted_failure and c.planted_failure.difficulty == "subtle"]
+        out[source] = {
+            "conversations": len(items),
+            "turns_mean": round(statistics.mean(turns), 2),
+            "share_with_4_turns": round(sum(n == 4 for n in turns) / len(turns), 3),
+            "rambling_patients": len(rambling),
+            "rambling_with_meta_commentary": meta,
+            "subtle_mistake_turn_words_median": statistics.median(subtle) if subtle else None,
+        }
+    return out
 
 
 def write_redo_pack(cards):
@@ -214,6 +262,7 @@ def main():
     cards = load_cards()
     accepted, provenance, rejected, missing, warnings = run_import(cards)
     report = write_outputs(accepted, provenance, rejected, missing, expected_sources(cards), warnings)
+    write_quality(accepted, provenance, cards)
     print(json.dumps({k: report[k] for k in ("accepted", "accepted_by_source", "missing",
                                              "rejection_reasons", "warnings")}, indent=2))
     if missing:

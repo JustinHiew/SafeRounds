@@ -297,3 +297,19 @@ every other card stayed identical. The changed cards' prompts were rebuilt; the 
 batches containing them were regenerated (the cache key includes the prompt text, so only those
 four were new calls). ChatGPT and Gemini had not started, so they get the corrected prompts.
 A test now checks every card against its blueprint's limits.
+
+## D31 — Generation prompt v3 after reviewing ChatGPT's output (step 3)
+
+ChatGPT's 83 gen-v2 conversations all passed the import checks, but two realism problems showed
+when they were compared with Claude's. In 9 of 19 "rambling" conversations the patient talked
+about their own message ("I was trying to phrase the question…") instead of their life (Claude:
+0 of 21). And subtle mistakes were often the whole reply: the staff turn carrying a subtle
+mistake had a median of 35 words, against 70 for Claude, so "subtle" cases would have been easy
+to spot and the judge's subtle-mistake recall would have been inflated for a third of the data.
+Every ChatGPT conversation was also exactly 4 turns. Prompt v3 adds three rules: vary the length
+and use 6 or more turns when the detail comes late; long messages are about the person's life,
+never about the message; and a subtle mistake sits inside an otherwise complete, helpful reply,
+in the staff member's own words rather than the scenario's wording. All three models use v3 so
+that comparisons between them stay fair; the v2 output of ChatGPT and Claude is kept under
+`generation/superseded/gen-v2/` and not used. These measures are now computed on every import
+(`reports/generation_quality.json`), so each generator's output is checked the same way.
