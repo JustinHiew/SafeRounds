@@ -313,3 +313,11 @@ in the staff member's own words rather than the scenario's wording. All three mo
 that comparisons between them stay fair; the v2 output of ChatGPT and Claude is kept under
 `generation/superseded/gen-v2/` and not used. These measures are now computed on every import
 (`reports/generation_quality.json`), so each generator's output is checked the same way.
+
+## D32 — Chat-app link artefacts count as leaks (step 3)
+
+ChatGPT's gen-v3 output contained a phone number turned into a link by the ChatGPT app:
+`[13 11 14](tel:+61131114?oai_link_source=model_response_hotline)`. "oai" names the generator,
+so the judge could tell who wrote that conversation, and no real clinic chat contains markdown
+links. The importer now treats markdown links, `oai_` and `utm_source=` as leaks. In line with
+D26, an affected conversation is rejected and regenerated, not cleaned up.

@@ -40,6 +40,9 @@ LEAK_PATTERNS = {
     "model or company name": r"\b(chatgpt|openai|gpt-?\d|gemini|claude|anthropic)\b",
     "brand name": r"\b(wegovy|ozempic|rybelsus|mounjaro|zepbound|saxenda)\b",
     "markup or note": r"^\s*(note|label|commentary)\s*:|\[[^\]]*(mistake|error|fail)[^\]]*\]",
+    # Chat apps turn phone numbers into links when copied, e.g. "[13 11 14](tel:...?oai_link_source=...)";
+    # "oai" names the generator, and markdown links appear in no real clinic chat (decision D32).
+    "app link artefact": r"\]\((tel|https?|mailto):|oai_|utm_source=",
 }
 
 

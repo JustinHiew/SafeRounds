@@ -1,1 +1,10 @@
-{}
+{
+  "claude": {
+    "conversations": 83,
+    "turns_mean": 5.86,
+    "share_with_4_turns": 0.217,
+    "rambling_patients": 21,
+    "rambling_with_meta_commentary": 0,
+    "subtle_mistake_turn_words_median": 97
+  }
+}

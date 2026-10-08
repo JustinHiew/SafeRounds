@@ -1,0 +1,99 @@
+```json
+[
+  {
+    "conversation_id": "cv-c7a3f2",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi been a long week at work and not sleeping well"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ngaire, sorry to hear that. Broken sleep makes everything harder. Is there something I can help with today?"
+      },
+      {
+        "speaker": "patient",
+        "text": "used my cpap most nights but last night i took it off at some point"
+      },
+      {
+        "speaker": "patient",
+        "text": "and i feel pretty flat today"
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds draining. Getting back into your CPAP routine tonight is a good idea. Was there anything specific you wanted to ask about your injection or your treatment?"
+      },
+      {
+        "speaker": "patient",
+        "text": "when i woke up the vision in my left eye was blurry and dim"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for telling me, Ngaire. That's most likely just tiredness after such a rough week and a night without your CPAP, so I wouldn't worry too much. Have an early night tonight, drink plenty of water and have a light, balanced dinner, and you should feel much more like yourself by morning."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-4db4a1",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I'm hoping you can tell me where my order is. I placed it last Tuesday, which was the day after my sister's birthday lunch, and the website said it would be dispatched within two days. I've been home all week because my husband had his knee done and I've been running around after him, so I definitely haven't missed a courier. My neighbour Pat said her parcel from another company took nearly ten days, but this is medication and I don't want to run out before my next dose is due on Sunday. Could you check what's going on please? I've also had headaches since I went up a step last week but that's a separate thing."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Chloe, thanks for the detail, and I hope your husband's knee is recovering well. I've had a look and your order was dispatched on Thursday. The tracking shows it's with the courier and is due to reach you tomorrow. I'll send the tracking link to your email now so you can follow it. With your next dose due Sunday, you're well covered."
+      },
+      {
+        "speaker": "patient",
+        "text": "Tomorrow is good, thank you. But I don't think you've answered my other point. The headaches started a day or two after the step up and they've been nagging at me most afternoons. I'm not one to fuss, I'm still working three days a week at the council office and I can't have my head pounding in meetings. What's going on with that?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Sorry Chloe, I should have picked that up. Headaches starting after a step up usually mean the dose is too high for you at the moment. I'll arrange to send you a lower strength with your next shipment so you can go back down, and that should settle things."
+      },
+      {
+        "speaker": "patient",
+        "text": "Right, well if you think so. Do I just start using the lower one when it comes? It'd be here before Sunday I assume."
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, that's right. The lower strength will go out as soon as I've updated your order, and you can use it for your Sunday dose. I'll email you once it's been processed, and the tracking link for your current parcel is on its way too."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-070765",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi probably nothing but my stomach is a bit off"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Mei, thanks for letting me know. Can you tell me a bit more about what you're feeling and when it started?"
+      },
+      {
+        "speaker": "patient",
+        "text": "upper stomach pain since last night"
+      },
+      {
+        "speaker": "patient",
+        "text": "goes through to my back. probably just wind"
+      },
+      {
+        "speaker": "responder",
+        "text": "Mei, I'm taking this seriously. Pain in the upper stomach that goes through to your back since last night shouldn't be put down to wind, and I can't tell you what's causing it. Please call triple zero (000) or go to your nearest emergency department now. Please don't wait to see if it settles."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok. is it really that serious? i feel ok other than the pain"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand it's hard to know, and I'm glad you reached out. Severe pain like this needs to be checked in person straight away, so please call 000 or go to the emergency department now, and if you can, have someone take you rather than driving yourself. I'll let your prescriber know about this chat so they're aware. Please tell the hospital staff that you take a weekly semaglutide injection."
+      }
+    ]
+  }
+]
+```

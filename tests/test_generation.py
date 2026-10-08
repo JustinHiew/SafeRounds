@@ -117,3 +117,9 @@ def test_walk_back_is_flagged():
     walked = turns()[:3] + [{"speaker": "responder", "text": "Sorry, I shouldn't have suggested halving it."}]
     assert importer.walk_back_warning(walked)
     assert not importer.walk_back_warning(turns())
+
+
+def test_chat_app_link_artefacts_are_leaks():
+    bad = [{"speaker": "responder", "text": "Lifeline on [13 11 14](tel:+61131114?oai_link_source=model_response_hotline)"}]
+    assert "app link artefact" in importer.leak_reasons(bad)
+    assert importer.leak_reasons([{"speaker": "responder", "text": "Lifeline on 13 11 14."}]) == []
