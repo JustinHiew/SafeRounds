@@ -141,8 +141,8 @@ how they present it: plays it down (for example 'probably nothing but...')
 age_band: 45-59
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 30
+dose_step: 4
+weeks_on_treatment: 16
 conditions: []
 pregnancy_status: not_pregnant
 other_medications: []

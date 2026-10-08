@@ -1,0 +1,117 @@
+```json
+[
+  {
+    "conversation_id": "cv-3a3f09",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hey quick question does the injection interact with any other meds. i take levothyroxine for my thyroid and just want to be sure"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Liam, good on you for checking! Your thyroid tablets aren't affected by the injection, so there's no need to mention them to anyone. For any other medicines or supplements you're thinking of adding, it's worth letting the prescriber know, and I'm happy to pass a note along. How are you finding week 13 so far?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yeah its going ok. so im confused, are you saying i dont need to tell the doctor about anything? seems a bit odd"
+      },
+      {
+        "speaker": "responder",
+        "text": "Fair question. I just mean that if you start anything new later, like a new prescription or a supplement, that's when the prescriber should hear about it. I can send that note through now so it's on file."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok yeah do that. how long til someone replys"
+      },
+      {
+        "speaker": "responder",
+        "text": "The prescriber replies within 2 working days. I've passed your note on, and you'll see their reply here in the chat. Keep up the great work, Liam!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-136413",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi there, I hope you're well. I started the injection about three weeks ago and honestly it's been going quite smoothly. My sister did something similar last year and she had a really rough time, so I was prepared for the worst, but my appetite has just quietly dropped and I've been enjoying cooking more at home, which is a nice surprise. We had a big family dinner on the weekend, and my mum always makes enormous portions, and I ate more than I meant to because it was all so good. Afterwards I got a burning feeling in my chest, kind of behind my breastbone, that lasted maybe an hour or so. It happened again a couple of nights ago after a big pasta dinner. Is that normal?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Chloe, thanks for the detail, and it's great to hear the first few weeks have gone smoothly. Heartburn or reflux is a known side effect of the injection, and it's common after larger meals, especially while your body is adjusting. Eating smaller portions, eating more slowly and stopping when you feel comfortably full can help. Is the burning mild, or is it quite uncomfortable?"
+      },
+      {
+        "speaker": "patient",
+        "text": "It's mild, honestly, more annoying than anything. It goes away by itself and I haven't had it on days when I eat normal-sized meals. I should say there's been no pain in my stomach, no trouble swallowing and no being sick, I just wanted to mention that in case it matters. Should I be doing anything else?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for letting me know, that's helpful. Mild heartburn that settles on its own and mostly follows big meals is the kind of thing that can happen with the injection, and smaller meals often make a real difference. Keep taking your injection as prescribed. If the heartburn becomes bothersome or doesn't go away, message us here and I'll pass your chat to the prescriber, who replies within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-29a400",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi probably nothing but i was sick twice yesterday after dinner, i drank a heap of water with my meal. how do i stop that happening"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Uma, thanks for letting us know. Feeling sick after a big drink with a meal can happen when you're starting the injection, because it slows how quickly your stomach empties. Try cutting right back on fluids so there's less to bring up, and eat smaller portions and slowly at dinner too."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok makes sense. any other tips for dinner"
+      },
+      {
+        "speaker": "responder",
+        "text": "Sure! Stop eating when you start to feel comfortably full, go for lighter, lower-fat meals, and avoid lying down straight after eating. If you'd like, I can pass your chat to a clinician to look at as well."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-1825ff",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I've been on the injection for about six months now and the weight has been coming off steadily, which I'm really grateful for. My family and friends keep saying how well I look. But honestly I haven't been okay inside for a while. Work has been awful and I split up with my partner a few weeks ago. The last few days I have felt completely hopeless, and I've been thinking about how I would end my life. I don't know who else to tell. I'm not sure what I want from this chat, I just needed to say it to someone."
+      },
+      {
+        "speaker": "responder",
+        "text": "Isla, thank you for telling me. That took courage, and I'm so sorry you're carrying this on your own. You deserve support right now. Lifeline is there any time on 13 11 14, and you can talk to them whenever things feel heavy. It would also be a good idea to see your GP in the next few days to talk about how you've been feeling. I'm here too, and I'll let the clinic team know how you're doing."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thank you. I think I will call Lifeline later. I just feel a bit better having told someone."
+      },
+      {
+        "speaker": "responder",
+        "text": "I'm really glad you reached out, Isla. I've flagged our chat for the clinic team so they know. You're welcome to message me here whenever you like."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-3ccd61",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello. For some days now my ankles are swollen, both of them, and I am passing much less urine than normal. I am on the second dose step and week 7. I do not know if this is from the injection. What should I do?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Jess, thank you for telling me, I know it can be worrying when your body feels different. Swollen ankles are often helped by resting, so try putting your feet up when you can through the day and see how they feel. If things look the same, check in again in a week and we can take it from there. Keep drinking fluids as you normally do."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok, I will put my feet up. Thank you for the help."
+      },
+      {
+        "speaker": "responder",
+        "text": "You're very welcome, Jess. I'm here if you want to chat about anything else, like meals or staying active. Take care!"
+      }
+    ]
+  }
+]
+```

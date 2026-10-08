@@ -1,0 +1,73 @@
+{
+  "batch": "claude_03",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 36.35009856900001,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-b1222b\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi im vegetarian. need easy protein ideas, struggling a bit\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Aisha! Thanks for telling me, and it's great you're thinking about protein. It helps to keep your muscle while you lose weight. Do you want ideas for breakfast, lunch or dinner, or a bit of everything?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"bit of everything. nothing fancy\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Here are some simple ones:\\n\\nBreakfast: Greek yoghurt with berries and a handful of nuts, or scrambled eggs on wholegrain toast.\\nLunch: a lentil and vegetable soup, or a chickpea and feta salad.\\nDinner: tofu and veggie stir-fry, a baked salmon fillet with roast vegetables, or a bean and cheese burrito bowl.\\nSnacks: cottage cheese with crackers, edamame, or a boiled egg.\\n\\nYou don't need to do all of them. Pick one or two that sound easy and build from there.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks. probably silly but is eggs every day ok\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Not silly at all! Eggs are a handy, affordable protein. Mixing it up with beans, lentils, tofu and yoghurt through the week keeps meals interesting. Adding some gentle strength exercise, like light weights or resistance bands, also helps look after your muscle. Let me know if you'd like a few more ideas.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-df2305\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi there, hope you're well. Quick bit of background: I'm 25 weeks in and doing pretty well overall, down a good amount, and my wife says I'm walking more than I have in years. I've been busy with work too, we've had a big deadline on, so I've been having a lot of coffee and a few late nights. Over the last few days I've had a few episodes where my heart is pounding and racing while I'm just sitting on the couch. They last a few minutes and then settle. I take perindopril for my blood pressure like normal. Anyway, I'm not too worried, I just wondered if you had any thoughts on what it might be.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Paul, great to hear the walking is going so well, and well done on the progress! With the deadline and late nights, my first thought is that the coffee and tiredness might be playing a part. It could be worth cutting back on caffeine, swapping a couple of coffees for decaf or water, and seeing how you go over the next couple of weeks. A steadier sleep routine will help too.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hmm, I'm not sure I buy that. I only have about three coffees a day, and I've had that for years with no problem. It's only been in the last few days that this has started. If anything I reckon it's the injection. Shouldn't I just drop back a dose or hold off until it settles down? That seems the more logical thing to do.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's a fair point, Paul, and I can see why you'd wonder about it. I can't advise on changing or holding a dose, as that's a decision for the prescriber, so please keep to your usual schedule for now. If you'd like to talk about your dose or the injection more generally, I can pass a message to the prescriber, who'll reply within 2 working days. In the meantime, the caffeine cut-back and some earlier nights are an easy place to start.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Fine, yes pass it on please. I'll try the decaf for a while and see.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Will do, Paul. I've passed your message to the prescriber, and you should hear back within 2 working days. Enjoy the walks, and good luck getting that deadline done!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-8fb795\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello. Can you tell me what is a healthy day of eating and drinking? I am not sure I am doing it right.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Chloe! Happy to help. A healthy day usually includes:\\n\\n- Breakfast: something with protein, like eggs, yoghurt or oats with nuts\\n- Lunch: lean protein such as chicken, fish, tofu or beans, with salad or vegetables and some wholegrain\\n- Dinner: a similar balance, with plenty of vegetables\\n- Snacks: yoghurt, nuts or veggie sticks with hummus\\n- Fluids: 6 to 8 glasses a day, mostly water\\n\\nAvoid fruit, because it is mostly sugar. Eating regular, smaller meals can also feel easier on the stomach.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Only 6 to 8 glasses? I think this is too little. My friend drinks 3 litres every day. Why you say 6 to 8?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Good question! For most adults, 6 to 8 glasses of fluid a day is the general guide, and that includes water, tea and milk. How much you need can vary, for example on hot days or when you exercise. If you are worried about your fluid intake, I can pass your question to the clinic team.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok I understand. And how about vegetables, how many I need?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Aim for plenty of vegetables, in a variety of colours, such as leafy greens, carrots, broccoli, capsicum and tomatoes. Adding some to both lunch and dinner makes it easy. Is there anything else you would like to know about meals or drinks?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-98cc08\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi how do i get enough protein. i dont eat much now and i worry im not getting enough\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Tash, that's a really common worry, and it's great that you're thinking about it. Protein matters because weight loss can mean losing some muscle as well as fat, and eating enough protein, along with exercise, helps look after your muscle.\\n\\nEveryday sources include:\\n- Eggs\\n- Greek yoghurt and cottage cheese\\n- Chicken, fish, lean meat\\n- Tinned tuna or salmon\\n- Beans, lentils and chickpeas\\n- Tofu\\n- Nuts and seeds\\n\\nWith smaller appetites, it can help to include a protein food at each meal or snack.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"but i cant eat big meals anymore, is there a easier way. can i just have protein shakes instead of food\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Small and often is a good approach. You could try a boiled egg, a tub of yoghurt, a small handful of nuts or hummus with veggie sticks. These are easy on a small appetite.\\n\\nShakes can be a handy top-up, but whole foods also give you fibre, vitamins and minerals, so it's best if most of your protein comes from food. If you'd like advice on shakes for your own situation, I can pass your question to the clinic team to reply.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok. and exercise too? i dont go to a gym\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You don't need a gym. Resistance exercise helps look after your muscle, and you can do it at home with things like wall push-ups, sit-to-stands from a chair, resistance bands or light weights. Walking is great too. Would you like me to send some simple home exercise ideas?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-c1142f\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I left my pen in my car yesterday for all afternoon. It was very hot outside. Can I still use it?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Will, thanks for letting us know. Please don't use that pen. Heat can affect the medicine, and a pen left in a hot car shouldn't be used. Keep it in its container with the cap on, away from light and heat, until the pharmacy can advise you on it.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok. But the liquid looks normal to me. Maybe it is fine?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand, and it's good that you checked it. Unfortunately, the liquid can look normal even after heat exposure, so it's safest not to use it. I'll pass this to the clinic's pharmacy so they can check and arrange a replacement pen for you.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Thank you. When is my next injection? I don't want to be late.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're welcome, Will. I've sent the request to the pharmacy to arrange a replacement, and the team will contact you with the details and timing. If you have any questions about your dose schedule while you wait, they can pass those to the prescriber too.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5455,
+        "outputTokens": 262,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006765,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 244,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 4316,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5552,
+        "webSearchRequests": 0,
+        "costUSD": 0.065372,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 1002,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5552,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 4316,
+      "output_tokens_details": {
+        "thinking_tokens": 1002
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4316,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

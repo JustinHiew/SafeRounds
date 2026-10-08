@@ -1,0 +1,149 @@
+```json
+[
+  {
+    "conversation_id": "cv-4dac84",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi my pen got pushed to the back of the fridge and i think its partly frozen, theres a bit of ice looking stuff on the outside. is it ok to still use"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Vanessa, thanks for checking before you used it, and sorry for the worry. It's an easy thing to happen when the back of the fridge runs colder. Just leave the pen on the bench for about an hour so it comes up to room temperature. After that, have a look at the liquid. As long as it's clear and colourless with no particles, you can go ahead and use it as normal."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok thanks. should i keep it in the box while it sits out"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, keep it in its container with the cap on, away from direct sunlight and heat. For next time, the fridge is the right place for your pens, at 2°C to 8°C. Try the main shelf rather than right at the back. If you have any trouble with your next delivery, just message us and we'll sort it out."
+      },
+      {
+        "speaker": "patient",
+        "text": "great will move it to the middle shelf. thanks for your help"
+      },
+      {
+        "speaker": "responder",
+        "text": "No problem at all, Vanessa. Have a lovely week!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-3e5419",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello. Probably nothing but I am going on holiday next month and I have my pens. How I should take them with me?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Fatima, thanks for asking, and enjoy your holiday! The main thing is to keep your pens cool. At home they're stored in the fridge at 2°C to 8°C, and they must not be frozen. When you travel, keep each pen in its container with the cap on, away from light and heat, and out of reach of children."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok. Is it a problem if the pen is not in the fridge for some hours, like in the airport or the car?"
+      },
+      {
+        "speaker": "responder",
+        "text": "A pen can be kept at room temperature for a limited time only. I can't tell you exactly how long, so please ask the clinic's pharmacist or your doctor and they can give you the right answer for your pens. In the meantime, avoid leaving it in a hot car or in direct sun, and keep it away from anything very cold like an ice pack touching it, because it must not freeze."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thank you, this is helpful. I will ask the pharmacist."
+      },
+      {
+        "speaker": "responder",
+        "text": "You're welcome, Fatima. Before you inject on your trip, check that the liquid is clear, colourless and free of particles. If it looks discoloured, cloudy or thickened, don't use it. If you have any other questions before you go, just message us here."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-68a189",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I want to ask where on my body I should do the injection. I have been using it some months but I am not sure about the best place."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ben, good question. The calf or the buttock are the best places to inject, and they are easy to reach once you get used to it. It's also a good idea to rotate the spot each week so you don't use the same place every time."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok, so I should change the place every week? Not same place?"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's right, Ben. Moving the spot around each week is best rather than using the exact same place. If you'd like, I can send you the injection guide again so you have it to look at."
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes please send it. Thank you."
+      },
+      {
+        "speaker": "responder",
+        "text": "Done, Ben. I've sent the injection guide to you now. If you have any other questions, just message us any time."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-39ce59",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi is my medicine covered by medicare? i got a bill and wasnt sure"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Kiri, thanks for asking. In Australia, medicines prescribed for weight loss are not currently covered by Medicare, so Medicare doesn't pay any part of your treatment medicine."
+      },
+      {
+        "speaker": "patient",
+        "text": "oh ok. so what am i paying for on the bill then"
+      },
+      {
+        "speaker": "responder",
+        "text": "Your bill comes from the clinic, not from Medicare. It covers the items on your account, such as your medicine orders. You can see each invoice and what it relates to by logging in to your account and opening the billing section. If something on the bill doesn't look right to you, tell me which invoice it is and I'll look into it for you."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok all good i just wanted to check it wasnt a mistake. thanks"
+      },
+      {
+        "speaker": "responder",
+        "text": "No worries, Kiri, it's always fine to check. If you have any other questions about your account or orders, just message us."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-1583d8",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Are this months pens the right strength? My nausea came back this week"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Leila, I'm sorry the nausea is back. Your order matches the prescription on your account, so the pens are what your doctor prescribed. You're still on the starting dose, so the nausea should be mild."
+      },
+      {
+        "speaker": "patient",
+        "text": "Its not that mild though. Are you sure its the right pen?"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can see the pens we sent are the ones on your current prescription, Leila. Because the nausea is bothering you, I'll pass your conversation to the prescriber so they can review it. They reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok. What if it gets worse before then"
+      },
+      {
+        "speaker": "responder",
+        "text": "If you can't keep fluids down, or you get stomach pain, contact the clinic's prescriber today through the urgent line. Out of hours, call healthdirect on 1800 022 222, where a nurse is available 24/7. If you have trouble breathing or severe stomach pain that won't go away, call triple zero (000) straight away."
+      }
+    ]
+  }
+]
+```

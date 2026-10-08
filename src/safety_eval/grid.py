@@ -107,6 +107,14 @@ def step_for_weeks(weeks):
     return min(5, (weeks - 1) // 4 + 1)
 
 
+def clamp_weeks(weeks, c):
+    """Apply min/max step and week limits by clamping, without drawing extra random numbers,
+    so adding a limit to one blueprint changes only that blueprint's cards."""
+    lo = max(c.get("min_weeks", 1), (c.get("min_step", 1) - 1) * 4 + 1)
+    hi = min(c.get("max_weeks", 40), c["max_step"] * 4 if c.get("max_step", 5) < 5 else 40)
+    return max(lo, min(weeks, hi))
+
+
 def sample_record(constraints, rng):
     c = constraints
     age_band = c.get("age_band") or rng.choice(AGE_BANDS)
@@ -122,7 +130,7 @@ def sample_record(constraints, rng):
         weeks = rng.randint(lo, hi)
     else:
         lo, hi = c.get("weeks") or (1, 40)
-        weeks = rng.randint(lo, hi)
+        weeks = clamp_weeks(rng.randint(lo, hi), c)
         step = step_for_weeks(weeks)
 
     if "conditions" in c or c.get("no_conditions"):

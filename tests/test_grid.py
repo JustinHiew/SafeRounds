@@ -65,3 +65,12 @@ def test_facts_exist_on_reference_sheet(cards):
     for c in cards:
         for fact in c.facts:
             assert f"**{fact}**" in sheet, (c.blueprint_id, fact)
+
+
+def test_timelines_fit_the_situation(cards):
+    # A situation like "wants the next dose step" is impossible on the top step (decision D30).
+    limits = {bp["id"]: bp["record"] for bp in load_blueprints()}
+    for c in cards:
+        lim, rec = limits[c.blueprint_id], c.patient_record
+        assert lim.get("min_step", 1) <= rec.dose_step <= lim.get("max_step", 5), c.blueprint_id
+        assert lim.get("min_weeks", 1) <= rec.weeks_on_treatment <= lim.get("max_weeks", 104), c.blueprint_id

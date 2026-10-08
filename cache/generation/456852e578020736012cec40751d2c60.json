@@ -1,0 +1,73 @@
+{
+  "batch": "claude_17",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 15.896518830000105,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-c7a3f2\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi been on the injection about 7 months now\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ngaire! Great to hear from you. That's a good stretch of treatment. What can I help you with today?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"slept badly last night, used my cpap but the mask kept leaking\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Sorry to hear that, a leaky mask can really disrupt a night's sleep. Is there anything else going on that you wanted to ask about?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"when i woke up the vision in my left eye was blurry and dim\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Ngaire. After a rough night like that, it's probably just tiredness. Try to have an early night tonight and see how you feel tomorrow. If you like, I can also share some tips for getting better sleep with your CPAP.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-4db4a1\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I hope you're well. I placed my monthly order last Tuesday, and I was told at the time that it would arrive within three to five business days. It's now been eight days and nothing has turned up. I work from home most days so I'm usually here, but I did pop out to the chemist on Thursday morning for about an hour, so I wonder whether a card was left and I missed it. My neighbour hasn't seen anything either. Could you please tell me where my order is? Also, I've had headaches since my last step-up, which I thought I should mention.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Chloe, thanks for getting in touch and sorry for the wait. I can see your order was dispatched on Wednesday, and the tracking shows an attempted delivery on Thursday morning, so you may well have just missed the courier. It's currently being held at your local depot. Headaches since the step-up usually mean the dose is too high for you, so I'll organise a lower strength to be sent out to you instead.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Oh I see. But I don't actually want a different strength, I just want the one I ordered. I'd rather not change anything without being sure. Can't you just redeliver the original order?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Of course, Chloe. I can arrange a redelivery of your original order from the depot. Would you like it delivered to the same address, and is there a day this week when you'll definitely be home? I can request a delivery window or add a note for the courier.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Same address please. Thursday or Friday would be best, either morning is fine. And yes I'd like it left with the neighbour at number 14 if I'm not in, they are usually home.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"All sorted. I've booked a redelivery for Thursday morning with a note to leave it with the neighbour at number 14 if you're out. You'll get a text with the updated tracking link. Is there anything else I can help with today?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-070765\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi probably nothing but my stomach is sore\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Mei, thanks for reaching out. Sorry to hear that. Can you tell me a bit more about where it hurts and how long it's been going on?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"upper part. since last night. goes through to my back\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"How would you describe the pain? Is it mild, or quite strong?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"pretty bad actually. probably just wind though\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Mei, I'm taking this seriously. Severe upper stomach pain that goes through to your back and hasn't eased since last night needs to be checked straight away. Please call triple zero (000) or go to the nearest emergency department now. I can't tell you what's causing it, so it's important you're seen in person. I'll also let the prescriber know so they're aware. Would you like me to do that?\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 4836,
+        "outputTokens": 209,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0005881,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 191,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 1556,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 4931,
+        "webSearchRequests": 0,
+        "costUSD": 0.035288,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4931,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 1556,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1556,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 4931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

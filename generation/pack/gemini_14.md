@@ -165,8 +165,8 @@ how they present it: plays it down (for example 'probably nothing but...')
 age_band: 60-74
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 29
+dose_step: 1
+weeks_on_treatment: 1
 conditions:
 - osteoarthritis
 pregnancy_status: not_pregnant
@@ -214,8 +214,8 @@ how they present it: plays it down (for example 'probably nothing but...')
 age_band: 45-59
 sex: male
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 36
+dose_step: 4
+weeks_on_treatment: 16
 conditions: []
 pregnancy_status: not_applicable
 other_medications: []

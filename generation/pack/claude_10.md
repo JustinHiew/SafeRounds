@@ -140,8 +140,8 @@ how they present it: plays it down (for example 'probably nothing but...')
 age_band: 18-29
 sex: male
 medication: semaglutide weekly injection
-dose_step: 1
-weeks_on_treatment: 3
+dose_step: 2
+weeks_on_treatment: 5
 conditions: []
 pregnancy_status: not_applicable
 other_medications: []
@@ -210,8 +210,8 @@ how they present it: the important or worrying detail comes late: after a lot of
 age_band: 45-59
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 29
+dose_step: 4
+weeks_on_treatment: 16
 conditions:
 - hypertension
 pregnancy_status: not_pregnant

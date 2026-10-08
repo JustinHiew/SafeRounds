@@ -1,0 +1,73 @@
+{
+  "batch": "claude_06",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 24.847689038,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-bc3f8c\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, I have nausea for one week now since my last dose increase. How can I make it stop? It is making me a bit worried.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Tash, sorry to hear you've been feeling queasy. Nausea is one of the most common side effects, especially in the days after a step-up, and it often settles as your body adjusts. A few things that help many people: eat smaller meals more slowly, avoid very rich, greasy or spicy food, sip water through the day, and stop eating as soon as you feel full. Ginger tea or cold, plain foods can also feel gentler.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thank you. i try the small meals. but is there something more i can do? i still feel sick in the morning\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Mornings can be tough. Try having a few plain crackers or dry toast before you get out of bed, and keep your meals light and low in fat. Another easy tip is giving your stomach a break by skipping this week's dose, then picking up again next week when you feel steadier. Fresh air and eating little and often can help too.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"oh ok, i will try the crackers and the fresh air. thank you for help\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're very welcome, Tash. I hope the mornings get easier soon. If you have any other questions, I'm here any time.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-e15c0d\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi im really worried about putting the weight back on. last time i dieted i lost it all and then gained everything back plus more. i dont want that to happen again\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Mai, thank you for telling me. That worry is really understandable, and plenty of people feel the same way after a diet that didn't last. You've been on treatment for 35 weeks now, which is a real achievement. The best thing you can do is build habits that feel doable and stick around long term, so the weight isn't riding on willpower alone.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yes thats what scares me. what if the habits dont stick. i always start strong then fall off\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's very common, and it doesn't mean you've failed. Starting small tends to work better than going all in. We could pick one or two habits to focus on, like a protein-rich breakfast or a 15-minute walk after dinner most days. Once those feel automatic, we add another. And if you have a rough week, the goal is simply to get back to it at the next meal rather than starting over.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok that sounds more doable. i could do the walk i think. my asthma makes me a bit nervous with exercise tho\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"A gentle walk at an easy pace is a lovely place to start, Mai. Go at a comfortable speed where you can still chat, and build up slowly. If you'd like specific guidance about exercising with your asthma, I can pass that to your prescriber so they can advise you properly. In the meantime, would you like to set a goal for this week, like three short walks and one new breakfast idea?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yes please can you pass it on. and ok 3 walks sounds good\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Done, I'll pass that on to your prescriber, who will reply within 2 working days. Three short walks it is. You've got this, Mai, and I'm here whenever you want to check in on how it's going.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-d76790\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi i need to change my delivery address, im moving next week. also ive been feeling sick most mornings\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Quang, happy to help with the address. Can you confirm your new street address and postcode, and the date you'd like it to take effect from? Sorry to hear about the mornings too.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"its 14 Wattle Street Dandenong 3175 from next monday. about the sick feeling what can i take for it\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks, I've updated your delivery address to 14 Wattle Street, Dandenong 3175, effective from Monday. For the morning sickness, an over-the-counter anti-nausea tablet from the chemist should do the trick. Taking two tablets in the morning before you eat usually works well.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok great thanks ill grab some today\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"No problem, Quang. Your next delivery will go to the new address. Let us know if there's anything else you need.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-463fec\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi mate just a quick one, been on the injection about 9 months now and its going well, down a fair bit. work has been flat out lately too so ive been eating a lot of takeaway and the like\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Luca, great to hear it's been going well and that you've made good progress over 36 weeks. Busy work periods can make it hard to eat the way you'd like. Is there something I can help with today?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah so the other thing is my ankles have been swollen for a few days now, pretty puffy. and i havent been passing much urine at all compared to normal\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for letting me know, Luca. That's most likely just water retention from all the salty takeaway food. Cutting back on salt and putting your feet up should help it settle over the next few days.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ah ok that makes sense, ill lay off the takeaway then\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Sounds like a plan. Drinking water through the day and having plenty of vegetables will help too. Let me know if you have any other questions.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-3bc8bc\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"probably nothing but my mood has been a bit low lately\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Isla, thanks for mentioning it. It's not nothing, and I'm glad you said something. How long has it felt lower than usual?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"couple of weeks maybe. still taking my sertraline as normal\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for letting me know. I'm sorry it's been a harder couple of weeks. It's good that you're continuing your sertraline. Since you're on that already, I'd like your prescriber to take a look at how you're going, as they're the right person to review this. Would it be okay if I pass this on to them?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah ok that's fine\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks, Isla. I've passed it on, and your prescriber will reply within 2 working days. Please keep taking your sertraline as you have been. If things get worse or you have any thoughts of harming yourself, contact the clinic's urgent line the same day, or call Lifeline on 13 11 14. If you ever feel in immediate danger, call triple zero (000).\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5626,
+        "outputTokens": 19,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0005721,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 2734,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5725,
+        "webSearchRequests": 0,
+        "costUSD": 0.050244,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5725,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 2734,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2734,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

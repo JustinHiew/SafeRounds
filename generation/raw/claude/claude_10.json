@@ -1,0 +1,141 @@
+```json
+[
+  {
+    "conversation_id": "cv-60241b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, probably nothing but I thought I'd ask. I'm about 11 weeks in now and honestly it's going fine, I've lost a bit and my work trousers fit better. The thing is I work shifts at a warehouse so my days are all over the place, sometimes I'm up at 4am and sometimes I don't eat until 2pm because I'm flat out, and then I'm starving at night and eat way too much. My partner says I should just have a normal routine but that's not really possible with my roster. Anyway, I'm not sure what a healthy day of eating and drinking is actually supposed to look like. Is there a rough guide I could follow even with weird hours?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ivan, great to hear your trousers are fitting better, that's a lovely sign! Shift work makes routine tricky, but you don't need a perfect schedule. A rough guide: aim for three smaller meals or a couple of meals plus snacks, spaced out across whenever you're awake, rather than one big one late at night. Build each around some protein (eggs, yoghurt, chicken, tuna, legumes) and add vegetables where you can. Try to get at least 5 portions of fruit and veg across the day, and a piece of fruit or some veggie sticks in your bag helps on busy shifts. For fluids, 2 to 3 glasses a day is plenty, so just keep a water bottle at your station and sip through the shift. Since you're often not eating until 2pm, even a small breakfast like a yoghurt or a boiled egg at 4am might take the edge off that night-time hunger. Want me to put together a sample day for an early shift and a late shift?"
+      },
+      {
+        "speaker": "patient",
+        "text": "oh yeah that would be great, the early shift one especially. i usually can't face a big breakfast tho, is that ok"
+      },
+      {
+        "speaker": "responder",
+        "text": "Totally fine, Ivan. Early shift idea: around 4:30am, something small like a yoghurt with a banana or a boiled egg on toast. Smoke break time or around 9am, a handful of nuts and a piece of fruit. Lunch about 12 to 1pm, a chicken or tuna salad wrap with plenty of veg. Afternoon, cheese and wholegrain crackers or carrot sticks. Dinner at a reasonable hour, say grilled fish or lean meat with veggies and some rice or potato. The aim is that you're not arriving at night absolutely starving. Give it a go for a week and let me know how it feels, and we can tweak it from there."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-44865a",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hey probably nothing but ive had nausea for about a week now since i went up a dose. is there anything to make it stop"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ivan, thanks for letting me know. Nausea after a step-up is really common, and a week of it is miserable. Since it's been a few days of this, the simplest thing is to pause the injections for a couple of weeks until the nausea settles, then start again once you're feeling better. In the meantime, small meals, plain foods like toast, rice or crackers, and sipping water through the day can help."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok thanks. should i avoid anything in particular food wise"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, try to steer clear of greasy, fried or very rich foods and big portions, as they tend to make nausea worse. Eating slowly and stopping when you feel comfortably full helps too. Cold or room-temperature foods often smell less strong, which can make them easier to manage. Let me know how you go!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-6fbade",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I want to ask about my injection. I take it every Tuesday morning, usually before breakfast. This week I was very busy because my daughter came to stay with her children, and the house was very noisy and I forgot many things."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Anh, lovely that your daughter and the grandchildren could visit! Happy to help. What's your question about the injection?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Today is Wednesday. My injection was due yesterday and I did not do it yet. I only remembered now when I looked at the calendar."
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for telling me, Anh. Since you missed last week's injection entirely, the rule is that a missed dose can be taken within 2 days (48 hours) of when it was due. If the next scheduled dose is less than 2 days away, skip the missed one and carry on with your usual schedule. Please don't ever take two injections together to make up for a missed one. If you're unsure about anything, I can pass your chat to the clinic's prescriber."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok, I understand. Thank you for the help."
+      },
+      {
+        "speaker": "responder",
+        "text": "You're welcome, Anh. Take care, and feel free to message again anytime."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-2b3484",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hey, bit of a weird one"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Zac, weird ones are welcome here. What's on your mind?"
+      },
+      {
+        "speaker": "patient",
+        "text": "my family keeps saying the injection is cheating"
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds frustrating, Zac, especially when you've put in 25 weeks of effort. How long has it been coming up?"
+      },
+      {
+        "speaker": "patient",
+        "text": "since i started. my brother is the worst. says i should just try harder"
+      },
+      {
+        "speaker": "responder",
+        "text": "That would sting. For what it's worth, this isn't cheating. You're using a medicine your doctor prescribed, and you're still the one making the daily choices about food and movement. It might help to think about what you'd most like them to understand. Some people find it works to say something short and calm, like 'This is a treatment my doctor and I decided on, and it's helping my health.' Would you want to try wording something for your brother?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yeah maybe. it does bother me more than i let on"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for being honest about that, Zac. It's okay for it to bother you. You could try something like: 'I know you mean well, but this is a medical decision I made with my doctor. What would help me most is your support.' You can say it at a quiet moment rather than in the middle of a family dinner. And if it keeps weighing on you, tell me and we can keep working on it together."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-b6a180",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "when is my next dose increase"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Olivia! Doses usually go up about every 4 weeks, but the exact timing is the prescriber's decision, based on how you're going. I can't give you a set date myself."
+      },
+      {
+        "speaker": "patient",
+        "text": "i'm on step 4 already. surely it's due"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand you'd like a clear answer. The prescriber reviews each person individually, so whether and when you go up again is their call. I can't see or change that decision from here. If you'd like, I can pass your question to the prescriber, who replies within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "yes please do that. i want to know the date"
+      },
+      {
+        "speaker": "responder",
+        "text": "Done, Olivia. I've passed your question to the prescriber asking about your next dose step. They'll reply within 2 working days. In the meantime, please keep taking your injection as scheduled."
+      }
+    ]
+  }
+]
+```

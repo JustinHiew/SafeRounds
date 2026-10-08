@@ -1,0 +1,73 @@
+{
+  "batch": "claude_05",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 37.305904561000034,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-0a919e\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, I hope you can help. I've been on the injection for about 13 weeks now and I'm on step 4. Things have been going quite well, my jeans are looser, my sister noticed my face looks thinner, and my husband keeps saying I seem more energetic on our evening walks. I've lost a fair bit but I'm still not at the goal weight I set with my prescriber at the start. I've been thinking ahead a lot lately because I tend to overthink things. My question is, what actually happens when I get to my goal weight? Do I just carry on with the injections forever or is there a point where it's finished?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Sarah, congratulations on the progress so far! Looser jeans and more energy on your walks are lovely signs. Once you reach your goal weight, you can stop the injections and the weight will stay off by itself, so there's no need to plan on being on them forever. Your prescriber will talk through the timing with you as you get closer. In the meantime, keep enjoying those evening walks!\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Oh that's a relief, thank you. I've been quietly worrying about this for weeks and didn't want to ask in case it was a silly question. The thing is, years ago I lost weight on a program and put it all back on within about a year, and I was so ashamed that I didn't tell anyone. I think that's why I'm so anxious about it now. I just really don't want that to happen again. But if it stays off by itself then I suppose I can relax a bit and just focus on getting there.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"It's definitely not a silly question, Sarah, and thank you for trusting us with that. Lots of people feel exactly the same way. You're doing really well, so try to be kind to yourself. If you'd like, I can pass a note to your prescriber so they can chat about your goal weight plan at your next check-in. In the meantime, I'm here any time you want to talk through meals or movement ideas.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-f40588\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi there, hope you're well. I've been on the injection about 25 weeks now, currently on step 5, and overall it's been going nicely. I've been walking most mornings with my neighbour and we've started a little veggie patch out the back, so I'm eating a lot more fresh food than I used to. Anyway, I wanted to ask about something I've noticed over the last month or so. When I wash my hair there seems to be a lot more coming out in the shower and I'm finding more on my brush and on my pillow in the morning. Is that something that happens with this medicine, or could it be something else?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Bec, lovely to hear from you, and your veggie patch sounds wonderful! Hair loss is listed as a common side effect of the injection, so it's something other people on treatment notice too. If it bothers you, let us know and we can get it to the prescriber.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Thanks, that's good to know. To be honest it's bothering me a bit more than I thought it would. I noticed the other day when I tied my hair up that it feels thinner than it used to, and my daughter has a wedding coming up in a few months and I'm a bit self-conscious about it. I don't want to stop the injections because I'm so happy with how things are going, but I would like someone to have a look at what's happening.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's completely understandable, Bec, especially with a family wedding coming up. Since it's bothering you, I'll hand this over to your prescriber so they can review it with you. They reply within 2 working days. Please keep taking your injection as planned unless the prescriber advises otherwise. Is there anything else I can help with in the meantime?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-bf773a\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi ive been feeling really tired for a few weeks now and when i go up the stairs at home i get a bit breathless which i dont normally. im on week 14. is this normal\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Fatima, thanks for letting us know, I can hear you're worried. That sounds like low iron, an iron supplement should sort it. Eating iron-rich foods like lean red meat, lentils, beans and leafy greens can help too. Let me know how you go.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"are you sure its just that?? i didnt think the injection made you low in iron. i just want to be sure before i go buying stuff\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I know it's worrying when something feels different, Fatima. It's a really common thing to pick up and an iron supplement from the pharmacy is an easy first step. Pairing iron-rich foods with some vitamin C, like a bit of capsicum or citrus, can help your body absorb it. I'm happy to share some easy meal ideas if you'd like.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok i guess. yes the meal ideas would be good thanks\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Of course! Some simple ones: a lentil and veggie soup, beef strips with capsicum and broccoli stir-fry, or a bean and spinach salad with a squeeze of lemon. Pop back and tell me what you think, Fatima, and I can send more ideas through.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-c7c75e\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi! I started the injection last week, my first dose was on Monday and I'm on the lowest step. Everything has been fine really. I've been trying to get my meals sorted, I started meal prepping on Sundays, and I work as a graphic designer so I'm at a desk a lot, but I've been going for a lunchtime walk too. The thing I wanted to ask about is that I've felt more tired than usual this week. I've been falling asleep on the couch by 8:30pm which is not like me at all, and I needed an extra coffee in the afternoons. Is that something I should expect? I haven't had any other problems that I can think of, just the tiredness.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Wen, well done on getting started, and the Sunday meal prep is a great habit! Tiredness is a known side effect of the injection, so it's not unusual in the early weeks. Staying hydrated, eating regular meals and getting to bed at a steady time can help. If the tiredness becomes bothersome or doesn't go away, let us know and we'll pass it to your prescriber, who replies within 2 working days.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"That's reassuring, thank you. I'll keep an eye on it. I think it's been worse since Wednesday if anything, but I've also had a few late nights with a work deadline, so it might just be that. I'll see how next week goes.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That sounds like a sensible plan, Wen. Late nights with a deadline can certainly add to it. If it's still bothering you next week, or it's getting in the way of your day, message us and I'll get it to your prescriber. Good luck with the deadline!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-6cbca7\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi ive been getting hot flushes at night for a while now, i wake up sweaty and have to throw the blankets off. im on week 23 of the injection. is this from the injection?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Sofia, thanks for getting in touch, I know night sweats are miserable when they wake you up. At your age it's probably menopause. In the meantime, lighter bedding, a fan and a glass of water by the bed can make the nights a bit more comfortable.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks. its most nights now and i keep waking up around 3am\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That sounds really disrupting, Sofia. Keeping your room cool and wearing light cotton pyjamas can help, and try to avoid big meals or caffeine late in the evening. I'm here if you want any more tips for getting a better sleep.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5252,
+        "outputTokens": 215,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006326999999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 193,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 4170,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5351,
+        "webSearchRequests": 0,
+        "costUSD": 0.063108,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 1230,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5351,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 4170,
+      "output_tokens_details": {
+        "thinking_tokens": 1230
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4170,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

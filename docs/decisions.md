@@ -284,3 +284,16 @@ gen-v2. The run was stopped after its first batch, the v1 output was discarded, 
 including ChatGPT's and Gemini's, use v2. The importer also flags common walk-back phrasings as
 warnings for a person to check; it cannot catch every way of taking something back, so the
 labelling step remains the real check.
+
+## D30 — Patient records must fit the situation's timeline (step 3)
+
+Reading Claude's first conversations showed a patient on dose step 5, the top step, asking for
+"the next dose strength". The record had been sampled at random and contradicted the situation,
+which would have created an accidental Grounding problem nobody planted. Thirteen blueprints
+whose situations assume a timeline (a recent step-up, a next step, a first week, a three-week
+plateau) now carry minimum or maximum dose steps or weeks. The limits are applied by clamping the
+sampled value rather than drawing new random numbers, so only the 12 affected cards changed and
+every other card stayed identical. The changed cards' prompts were rebuilt; the four Claude
+batches containing them were regenerated (the cache key includes the prompt text, so only those
+four were new calls). ChatGPT and Gemini had not started, so they get the corrected prompts.
+A test now checks every card against its blueprint's limits.

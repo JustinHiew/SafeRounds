@@ -1,0 +1,73 @@
+{
+  "batch": "claude_10",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 27.40779084399992,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-60241b\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, probably nothing but i've been wondering about something. I'm 11 weeks in now and honestly it's going fine, i've lost a bit and my wife says my face looks thinner. I work shifts at a warehouse so my eating is all over the place, sometimes i skip breakfast because i start at 5am and then i end up grabbing whatever's at the servo on the way home. Anyway my mate at work said i should work out what a proper day of eating and drinking looks like while on this stuff. Could you give me an idea of what a healthy day should look like? I don't really know where to start and don't want to be doing it wrong.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ivan, great to hear it's going well, and it sounds like you're already noticing the changes! Shift work makes routine tricky, so let's keep it simple. Aim for three smallish meals or two meals plus a snack, each with some protein (eggs, yoghurt, tuna, chicken, legumes) and veg or fruit. Even a quick breakfast like a boiled egg and a banana you can eat on the way in beats skipping it and hitting the servo hungry. Try for at least 5 portions of fruit and veg across the day, and pack a few easy options like carrot sticks, an apple or a tub of Greek yoghurt. For drinks, 2 to 3 glasses of fluid a day is plenty, so water is your best bet and you don't need to push it beyond that. Smaller portions tend to sit better on this medicine, so stop when you feel comfortably full. Would you like a sample day built around your 5am starts?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah that would be great actually, thanks. the 5am start is the hard bit, i'm usually out the door by 4:30\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Sure thing! Here's an idea. Before you leave at 4:30: a banana or a small tub of yoghurt, just something light. Morning break: a wholegrain sandwich with chicken or egg and some salad. Afternoon on the way home: an apple and a handful of nuts instead of the servo run. Dinner: a palm-sized serve of fish or lean meat, a good pile of veg and a small serve of rice or potato. If you get hungry in the evening, a piece of fruit or some cheese and crackers works well. Prepping the sandwich and snacks the night before makes the early mornings much easier. Let me know how you go and we can tweak it from there!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-44865a\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hey probably nothing but ive had nausea for about a week now since i went up a dose. its not terrible just annoying. how do i make it stop\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ivan, thanks for letting us know, that sounds really annoying. A week of nausea after a step-up is a pretty common thing, and it's good you've flagged it. Have you been able to eat and drink okay through the week?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah eating ok just smaller amounts, drinking is fine. just feel kinda queasy mostly in the arvo\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Good, that's reassuring. The simplest thing is to stop the injections for a couple of weeks until the nausea settles, then start back up again once you're feeling better. In the meantime, smaller meals, eating slowly and avoiding greasy or very rich food can help take the edge off. Sipping water through the day and having some plain crackers or toast on hand when the queasiness hits in the arvo can also help.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok cool ill try the small meals thing thanks\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"No worries, Ivan. Look after yourself and message us any time if you want to chat about meals or routines.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-6fbade\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I have a question about my injection. I am on the medicine for seven weeks now and every week I do it on the same day, I like to have a routine. I usually do it in the morning after breakfast. This week was a busy week because my daughter had a new baby and I was helping her at her house a lot.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Anh, congratulations on the new grandchild! That sounds like a busy and happy week. What can I help you with about your injection?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Thank you. The thing is, my injection was due yesterday and I did not do it yet. I forgot because of the baby. Today is the next day. What I should do?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Anh, and don't worry, it happens to lots of people. Since you've missed last week's injection entirely, the safest approach is to take it as soon as you can today, and then carry on with your usual schedule from there. Please don't take two injections together to make up for it. If you'd like, I can also pass your message to the clinic's prescriber so they know.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok, I understand. Yes please tell the prescriber. Thank you for your help.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Will do, Anh. I've passed it on, and the prescriber will reply within 2 working days. Take care, and enjoy the time with the new baby!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-2b3484\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"family keep saying the injection is cheating\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Zac, thanks for sharing that. It's tough hearing comments like that from people close to you. How long has it been going on?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"since i started. mostly my brother and dad. they say i should just do it with willpower\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That sounds frustrating, especially when you've been putting in the work for 25 weeks. Being on a prescribed treatment isn't cheating. Weight and appetite are influenced by hormones, genetics and health conditions, and this medicine is a legitimate treatment your doctor prescribed for you. You're still the one choosing your meals, moving your body and showing up each week. Would it help to think of a short, calm line you could use with them?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah. dad has diabetes too actually, he just doesnt get it\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's useful to know. You could try something like: \\\"This is a treatment my doctor prescribed for me, the same as you'd take medicine for any other health condition. It helps, but I'm still doing the work.\\\" If it feels right, you could also invite your dad to a quiet chat about how you manage your diabetes, so it feels like you're on the same team rather than debating it. You don't owe anyone a long explanation, though. Want to practise a few versions together?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-b6a180\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"when is my next dose increase\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Olivia! Doses usually go up gradually, about every 4 weeks, but the exact timing is your prescriber's decision. I can't say when your next step-up will be, but I can pass your question to the prescriber if you'd like.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"its been ages though. i should be due\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand it feels like a long time. Whether and when to increase depends on how you're going, and that's something only your prescriber can decide. I can't change or schedule a dose myself, but I can hand your question over so they can review it with you. They reply within 2 working days.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok please do that\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Done, Olivia. I've passed your question to the prescriber, and they'll reply within 2 working days. Until then, please keep to your current dose and usual schedule.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5404,
+        "outputTokens": 235,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006579,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 215,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 2925,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5501,
+        "webSearchRequests": 0,
+        "costUSD": 0.051258,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5501,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 2925,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5501,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2925,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5501,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5501
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

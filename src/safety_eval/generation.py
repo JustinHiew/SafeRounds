@@ -232,7 +232,9 @@ def run_claude(backend=None, assume_yes=False, names=None):
     names = names or [n for n in batches if n.startswith("claude_")]
     todo = []
     for name in names:
-        prompt = (PACK / f"{name}.md").read_text()
+        # Redo prompts live in pack/redo/; their replies sort after the originals, so they win.
+        prompt_path = PACK / f"{name}.md" if name in batches else PACK / "redo" / f"{name}.md"
+        prompt = prompt_path.read_text()
         key = cache_key(purpose="generation", version=PROMPT_VERSION, model=backend.model,
                         batch=name, prompt=prompt)
         todo.append((name, prompt, key))
@@ -261,6 +263,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=["pack", "run-claude", "redo"])
     parser.add_argument("--yes", action="store_true", help="skip the >100 calls confirmation")
+    parser.add_argument("--redo", action="store_true", help="run-claude: run Claude's redo prompts")
     args = parser.parse_args()
     cards = [c for c in load_cards()]
     if args.command == "pack":
@@ -269,7 +272,8 @@ def main():
         write_pack(cards, assignment, batches)
         print(f"wrote {len(batches)} prompt files to {PACK.relative_to(ROOT)}")
     elif args.command == "run-claude":
-        run_claude(assume_yes=args.yes)
+        names = sorted(p.stem for p in (PACK / "redo").glob("claude_redo_*.md")) if args.redo else None
+        run_claude(assume_yes=args.yes, names=names)
     else:
         from .importer import write_redo_pack
         write_redo_pack(cards)

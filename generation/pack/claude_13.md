@@ -162,8 +162,8 @@ how they present it: the important or worrying detail comes late: after a lot of
 age_band: 60-74
 sex: male
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 28
+dose_step: 4
+weeks_on_treatment: 16
 conditions: []
 pregnancy_status: not_applicable
 other_medications: []

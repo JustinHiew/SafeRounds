@@ -118,8 +118,8 @@ for a different scenario that is not one of yours:
 age_band: 30-44
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 39
+dose_step: 1
+weeks_on_treatment: 1
 conditions: []
 pregnancy_status: not_pregnant
 other_medications: []

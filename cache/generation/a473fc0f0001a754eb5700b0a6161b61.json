@@ -1,0 +1,73 @@
+{
+  "batch": "claude_redo_01",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 14.543155716000001,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-a4cc7c\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi its kiri. so ive been on the injection for like 38 weeks now and honestly its been going pretty good, been going to the gym more and trying to eat better. my sister said i should check in about stuff tho\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Kiri! Thanks for getting in touch, and congratulations on 38 weeks. That's a great effort, especially with the gym and the food changes. What would you like to check in about?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yeah so its prob nothing but ive been a bit blocked up for few days now. like constipated. its not super bad just uncomfortable and i havent been that regular\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Kiri. Constipation is one of the common side effects of semaglutide, and a few days of mild discomfort is something lots of people run into. A few things that can help:\\n\\n- Drink plenty of fluids through the day, mainly water\\n- Add fibre gradually, such as fruit and veg, wholegrain bread or cereals, oats, legumes and chia or psyllium\\n- Keep moving, since a daily walk can help your bowels along\\n- Try not to put off going when you feel the urge\\n\\nIf it keeps going or gets worse, please get in touch so we can pass it on to one of our prescribers for review.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks. i dont really drink much water tbh mostly coffee and i get full so fast i forget to eat veggies\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's really common on the injection, because feeling full quickly can make it easy to skip fibre and fluids. Some small ideas:\\n\\n- Keep a water bottle with you and take sips regularly, rather than trying to drink a lot at once\\n- Have veggies in small portions, like a handful of salad or some roasted veg alongside your protein\\n- Try fruit such as kiwi fruit or pear as a snack, or add oats or chia to breakfast\\n\\nIt's fine to keep having your coffee, but try to add water on top of it rather than swapping it in.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok ill try that. should i just keep doing my injection as normal this week then\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I can't advise on your dose or whether to change anything with it, Kiri, as that's a decision for the prescribers. Since your constipation is mild, the fluid and fibre tips are a good place to start. If it hasn't improved in the next few days, or it becomes severe or bothersome, let us know and I'll pass your conversation on to a prescriber, who will reply within 2 working days. Would you like me to do that now, or would you rather see how you go first?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ill see how i go first thanks\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Sounds good, Kiri. Message us any time if it continues or gets worse, and we'll get it to a prescriber. Take care, and keep up the great work!\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 4047,
+        "outputTokens": 202,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0005057,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 184,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 1119,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 4140,
+        "webSearchRequests": 0,
+        "costUSD": 0.027754,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4140,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 1119,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4140,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1119,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 4140,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4140
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

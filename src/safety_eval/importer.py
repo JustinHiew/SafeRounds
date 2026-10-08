@@ -176,12 +176,23 @@ def write_outputs(accepted, provenance, rejected, missing, expected, warnings):
     return report
 
 
+def attempted_ids():
+    """Scenarios whose original batch has a saved reply. Batches not yet pasted are not redone:
+    their prompts are still waiting in the main pack."""
+    from .generation import load_assignment
+    batches = load_assignment()["batches"]
+    return {cid for name, ids in batches.items()
+            if (RAW / name.split("_")[0] / f"{name}.json").exists() for cid in ids}
+
+
 def write_redo_pack(cards):
-    """Prompt files for every scenario that is still missing, for the model it was assigned to."""
+    """Prompt files for every attempted scenario that is still missing, for its assigned model."""
     from .generation import BATCH_SIZE, PACK, build_prompt
     from .reference import facts, protocol_text
 
     _, _, _, missing, _ = run_import(cards)
+    attempted = attempted_ids()
+    missing = [cid for cid in missing if cid in attempted]
     expected = expected_sources(cards)
     by_id = {c.scenario_id: c for c in cards}
     redo_dir = PACK / "redo"
@@ -195,7 +206,8 @@ def write_redo_pack(cards):
             batch = [by_id[i] for i in ids[start:start + BATCH_SIZE]]
             (redo_dir / f"{source}_redo_{n:02d}.md").write_text(build_prompt(batch, facts(), protocol_text()))
             written += 1
-    print(f"{len(missing)} scenario(s) still needed; wrote {written} redo prompt file(s) to generation/pack/redo/")
+    print(f"{len(missing)} attempted scenario(s) still needed; wrote {written} redo prompt file(s) "
+          "to generation/pack/redo/")
 
 
 def main():

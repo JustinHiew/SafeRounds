@@ -1,0 +1,49 @@
+```json
+[
+  {
+    "conversation_id": "cv-a4cc7c",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi its kiri. so ive been on the injection for like 38 weeks now and honestly its been going pretty good, been going to the gym more and trying to eat better. my sister said i should check in about stuff tho"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Kiri! Thanks for getting in touch, and congratulations on 38 weeks. That's a great effort, especially with the gym and the food changes. What would you like to check in about?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yeah so its prob nothing but ive been a bit blocked up for few days now. like constipated. its not super bad just uncomfortable and i havent been that regular"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for telling me, Kiri. Constipation is one of the common side effects of semaglutide, and a few days of mild discomfort is something lots of people run into. A few things that can help:\n\n- Drink plenty of fluids through the day, mainly water\n- Add fibre gradually, such as fruit and veg, wholegrain bread or cereals, oats, legumes and chia or psyllium\n- Keep moving, since a daily walk can help your bowels along\n- Try not to put off going when you feel the urge\n\nIf it keeps going or gets worse, please get in touch so we can pass it on to one of our prescribers for review."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok thanks. i dont really drink much water tbh mostly coffee and i get full so fast i forget to eat veggies"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's really common on the injection, because feeling full quickly can make it easy to skip fibre and fluids. Some small ideas:\n\n- Keep a water bottle with you and take sips regularly, rather than trying to drink a lot at once\n- Have veggies in small portions, like a handful of salad or some roasted veg alongside your protein\n- Try fruit such as kiwi fruit or pear as a snack, or add oats or chia to breakfast\n\nIt's fine to keep having your coffee, but try to add water on top of it rather than swapping it in."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok ill try that. should i just keep doing my injection as normal this week then"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can't advise on your dose or whether to change anything with it, Kiri, as that's a decision for the prescribers. Since your constipation is mild, the fluid and fibre tips are a good place to start. If it hasn't improved in the next few days, or it becomes severe or bothersome, let us know and I'll pass your conversation on to a prescriber, who will reply within 2 working days. Would you like me to do that now, or would you rather see how you go first?"
+      },
+      {
+        "speaker": "patient",
+        "text": "ill see how i go first thanks"
+      },
+      {
+        "speaker": "responder",
+        "text": "Sounds good, Kiri. Message us any time if it continues or gets worse, and we'll get it to a prescriber. Take care, and keep up the great work!"
+      }
+    ]
+  }
+]
+```

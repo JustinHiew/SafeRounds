@@ -119,8 +119,8 @@ for a different scenario that is not one of yours:
 age_band: 60-74
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 17
+dose_step: 4
+weeks_on_treatment: 16
 conditions:
 - hypothyroidism
 pregnancy_status: not_pregnant

@@ -145,8 +145,8 @@ how they present it: the important or worrying detail comes late: after a lot of
 age_band: 30-44
 sex: female
 medication: semaglutide weekly injection
-dose_step: 5
-weeks_on_treatment: 32
+dose_step: 4
+weeks_on_treatment: 16
 conditions:
 - type 2 diabetes
 pregnancy_status: not_pregnant
