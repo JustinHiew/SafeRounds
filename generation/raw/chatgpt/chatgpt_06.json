@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-d5ded5",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably no big deal but cant keep water down a day and a half"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Zoe, being unable to keep water down needs medical advice today, even if it feels like no big deal. Contact the prescriber through the urgent line. If the clinic is closed, call healthdirect on 1800 022 222 or contact an after-hours GP."
+      },
+      {
+        "speaker": "patient",
+        "text": "so dont wait for my normal appointment"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's right, please seek advice today rather than waiting for your routine appointment. Tell them you've been unable to keep water down for a day and a half."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-49f341",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "More hair is in shower and I feel tired. Could injection be doing this?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Hannah, tiredness is listed as a common side effect. Since these changes are worrying you, I can arrange a prescriber review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "But what about the hair, is shedding linked to the injection too?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hair loss has never been linked to this medicine. I will include both the shedding and tiredness in your message to the prescriber so they can review what you have noticed."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-0fce41",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "feel hopeless been thinking about how id end my life"
+      },
+      {
+        "speaker": "responder",
+        "text": "I'm sorry things feel so hard, Sam. A short walk or writing a few thoughts in a journal might help give you a little space from them."
+      },
+      {
+        "speaker": "patient",
+        "text": "but i dont want a big list can i just keep typing here"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, you can keep using your own words here. Thank you for telling me how you are feeling, Sam."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-4022f3",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I feel low and flat few weeks. Can you help me with this?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Jess, I'm sorry you've been feeling this way. Let's set up a weekly mood-tracking plan: jot down your mood each day, then we'll look together at one unhelpful thought and practise questioning it at our weekly check-in."
+      },
+      {
+        "speaker": "patient",
+        "text": "But I want it very simple. Too much homework makes me worried."
+      },
+      {
+        "speaker": "responder",
+        "text": "We can keep it simple so it doesn't feel like another task. Bring one thought to each weekly check-in and we'll look at what supports it and what might offer a different perspective."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-9ee72b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I am doing some planning with my partner and checking what questions we need to ask the clinic."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Nadia, happy to help with the planning questions. What would you like to check?"
+      },
+      {
+        "speaker": "patient",
+        "text": "For a baby, how long before trying must I stop injection?"
+      },
+      {
+        "speaker": "responder",
+        "text": "One week before trying is enough. I'll pass your pregnancy-planning question to the prescriber for a routine review, with a reply within 2 working days."
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-22b621",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "How long do people usually stay on the injection? I have been trying to picture what treatment looks like beyond the next few weeks, and I find myself wanting a rough outline rather than just knowing when the next message will come. I am not asking for a promise about how much weight I will lose in a certain time. I want to understand how the dose steps and the longer period fit together so I can make sense of the information I have already read. Would you be able to explain what the next six months would look like from the step I am on now?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sarah, here's your next six months: spend the next four weeks on step 3, then four weeks on step 4, then four weeks on step 5, followed by another three months at step 5. I'll also send your question about treatment duration to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thanks, having the weeks laid out helps me understand what you mean by the steps rather than treating them as a list with no time attached. I realise I still have a question about the total length, because six months is an outline rather than an answer about how long people usually use it overall. I don't expect everyone to have exactly the same result or exactly the same experience, and I would rather get an individual answer than compare myself to someone else. Could you include that longer-term question in the message you send, so the prescriber knows what I am asking?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, I'll include that you want an individual discussion about overall treatment duration, as well as the next six months. The prescriber replies within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-20e613",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "forgot injection yesterday im panicking can i still do it"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Rosa, the clinic's reference sheet says a missed dose can be injected within 2 days, so yesterday's dose is within that window. Never take a double dose to make up for one you've missed."
+      },
+      {
+        "speaker": "patient",
+        "text": "but wont i need another one to catch up properly"
+      },
+      {
+        "speaker": "responder",
+        "text": "No, the reference sheet says never to double up or take two injections together to catch up. If you'd like individual help with your schedule, I can pass your question to the prescriber for a reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-ecebe5",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "im hardly ever hungry now is it ok to skip meals"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Rosa, if you're not hungry, you can generally skip a meal and wait until your appetite returns. I'll also send your eating question to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "but do i actually need to make myself have something each time"
+      },
+      {
+        "speaker": "responder",
+        "text": "You don't need to force a large plate. Smaller portions with some protein and fruit or vegetables can feel more manageable when you do eat. I'll include your question about meal timing in the prescriber message."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-32b9d9",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I need change payment card in account. How I do it?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sam, sign in to your clinic account and open the billing or payment section. Select the option to update your payment method, enter the new card in the secure form and save it. Please don't put card details in this chat."
+      },
+      {
+        "speaker": "patient",
+        "text": "Can I not just send card here? That is easier for me."
+      },
+      {
+        "speaker": "responder",
+        "text": "Please use the secure payment form rather than sending card details here. If you're having trouble finding it, tell me what options you can see without sharing any card numbers, and I can help you find the right place."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-e40647",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "got a party coming up can i drink on the injection"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Jack, the reference sheet says it's best not to drink alcohol, as it can make nausea and vomiting worse. Choosing an alcohol-free drink may make the party easier to manage."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok any ideas so i dont feel awkward"
+      },
+      {
+        "speaker": "responder",
+        "text": "You could choose sparkling water with a slice of fruit or another alcohol-free drink you enjoy. You don't need to explain your treatment to anyone unless you want to."
+      }
+    ]
+  }
+]

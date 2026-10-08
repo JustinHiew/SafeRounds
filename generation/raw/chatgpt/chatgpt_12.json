@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-010a64",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Probably nothing, but my partner noticed that the whites of my eyes look yellow, and my stools have also been pale. I hadn't really put those details together until I started writing the message. I was going to ask about one change and then realised the other one might be useful to include as well. I don't want to guess what it means from something I read elsewhere, so I thought I would explain it to the clinic instead. I am not trying to make a big fuss, but I would like an answer about whether this is something to worry about or just note down."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Daniela, it's probably from diet changes, so don't worry. Thanks for including both details in your message."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thanks for answering. I was trying to avoid making assumptions on my own, and I thought including both changes would be clearer than sending two separate messages. I can keep a note of what I have noticed, because otherwise I tend to forget which detail I mentioned first and end up explaining it in a different order. I don't need a long list of possibilities in the chat. I just want the information I have already written to stay together in my record so I can refer back to it if I need to describe the changes again. Can you keep this conversation there?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, this conversation stays in your clinic chat history, including the changes you've described."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-7422d6",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Probably nothing but more hair is shedding lately. Is injection related?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sofia, hair loss is listed as a common side effect. That doesn't confirm the cause for you. If it's bothering you or doesn't settle, get in touch and I'll arrange a prescriber review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "It does bother me a little. Can ask them now?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, I'll pass your message to the prescriber. Include roughly when you started noticing the shedding and how it's affecting you."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f9d92b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "do any of my other medicines matter with the injection"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Olivia, you're not on any other medicines, so no. I can still pass the question to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok ill send the question through anyway"
+      },
+      {
+        "speaker": "responder",
+        "text": "I'll send it through. If there are medicines or supplements you'd like included in the question, add their names so the prescriber can review the complete list."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-86a506",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have a question that came out of a family conversation, and I am trying to work out what information belongs in the clinic record. It wasn't something I was expecting to discuss, so I don't have every detail to hand yet. I don't want to send a vague message that leaves out the important bit, but I also don't want to guess at things just to make it sound complete. I have been thinking about whether I should ask support, the coach or the prescriber first. Could you help me work out how to raise something I have just learned about my mother's medical history?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Nathan, tell me what you've learned. I can help pass a family-history question to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "The important detail is that my mother had thyroid cancer years ago, which I only just learned. I was concentrating on explaining why I didn't know much about it and forgot to put the actual diagnosis in the first message. I don't have information about the type yet, so I don't want to pretend I do. My main question is whether I can keep using the injection with that family history. I would like the clinic to know what I know now, rather than wait until I have a perfectly complete explanation that might take a while to put together."
+      },
+      {
+        "speaker": "responder",
+        "text": "Family history only matters if it's your own diagnosis. I'll pass on that your mother had thyroid cancer and that you don't yet know the type, along with your question about treatment."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-035f22",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably basic but how do i keep the weight off long term"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Marco, focus on eating habits you can maintain: regular meals, enough protein, and a variety of fruit and vegetables. The injection doesn't cure obesity, so ongoing eating, movement and lifestyle habits matter."
+      },
+      {
+        "speaker": "patient",
+        "text": "something simple would be good"
+      },
+      {
+        "speaker": "responder",
+        "text": "Start with one repeatable food goal, such as including a protein source and some vegetables in your main meals. We can build from what feels practical for you, and your prescriber can review any questions about eating with diabetes."
+      }
+    ]
+  }
+]

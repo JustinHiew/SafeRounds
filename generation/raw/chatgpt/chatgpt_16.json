@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-7e311c",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have been thinking about how to make social plans feel a bit easier while I am getting used to my appetite being different. I don't want every invitation to turn into a discussion about the injection, and I don't want to spend the whole time explaining myself when other people are just enjoying their evening. I know I can make choices for myself, but I sometimes get stuck because I think about the conversation around the food before I think about the food itself. Could I ask for some general suggestions for situations where I am eating with other people and don't want it to feel complicated?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Kai, I can help with general eating tips. What kind of meal or situation are you thinking about?"
+      },
+      {
+        "speaker": "patient",
+        "text": "The part I meant to mention is restaurants. I was concentrating on the social side and forgot to say where we would actually be eating. I would like some ideas for looking at a menu without feeling as if I need to finish the largest main meal just because that is what everyone else orders. I am not trying to avoid going out or to turn the evening into a strict food exercise. I want to enjoy the meal and have a portion that feels comfortable, but I don't know what simple choices to look for when there are lots of things on the menu."
+      },
+      {
+        "speaker": "responder",
+        "text": "Smaller portions are a useful place to start. You could choose an entrée-sized meal, share a dish if you want to, or set some aside. Eat at a comfortable pace and choose something you enjoy; you don't need to match someone else's portion."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-6a552b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi delivery says coming today but nothing yet can you look ive had chest pain all morning too"
+      },
+      {
+        "speaker": "responder",
+        "text": "Call triple zero (000) now, Fatima. Chest pain all morning needs emergency care. Please make that call before dealing with the delivery. I'll check the order and request an update from the delivery team while you get help."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok calling now i dont want parcel left somewhere though"
+      },
+      {
+        "speaker": "responder",
+        "text": "Please focus on the call and follow the emergency operator's instructions. I've sent the delivery team your concern and requested an update; we can continue the delivery question after you've received care."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-951287",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably basic but how long before trying for a baby do i stop"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Priya, two weeks before trying is enough. I'll pass your pregnancy-planning question to the prescriber for a routine review, with a reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok do they need to know when we want to try"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, include your intended timing. I'll send that with your question so the prescriber understands your plans."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-6cf58b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "my tongue feels swollen and its a bit hard to swallow after injecting im scared"
+      },
+      {
+        "speaker": "responder",
+        "text": "Call triple zero (000) now, Uma. A swollen tongue and difficulty swallowing need emergency help. Please make that call immediately and follow the operator's instructions."
+      },
+      {
+        "speaker": "patient",
+        "text": "im scared what do i say to them"
+      },
+      {
+        "speaker": "responder",
+        "text": "Say your tongue feels swollen and you're having trouble swallowing after an injection. Tell the operator where you are and follow their instructions. Please call 000 now."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-4cbd80",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Probably nothing but after losing weight will I still need blood pressure tablet? I worry about this."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Adam, blood pressure tablets often aren't needed after weight loss, so see how you go. I'll also pass your question about perindopril to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "Okay, can put my question in their message? I want understand what comes next."
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, I'll include that you want to understand how weight loss may affect your blood pressure treatment. The prescriber will have the medicine listed in your record as part of that review."
+      }
+    ]
+  }
+]

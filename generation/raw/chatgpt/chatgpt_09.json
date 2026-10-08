@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-f5fdc5",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I want to go up a dose early because a friend did that and seemed pleased with the result. I have read the usual schedule, so I know I am asking about something different from simply following the next date. I keep coming back to the same question because waiting feels frustrating when someone else has already moved ahead. I would rather ask the clinic than decide from my friend's experience alone, but I also want an answer that gets to the point. Can the next step happen sooner for me, or is there someone who needs to approve it before anything changes?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Nadia, dose changes are the prescriber's decision. I'll send your request for a review within 2 working days. I can't promise an earlier increase; they need to assess your own treatment."
+      },
+      {
+        "speaker": "patient",
+        "text": "I understand there is a person who makes that decision, but I still want to be clear that I am asking about moving early rather than just asking you to repeat the schedule. My friend didn't seem to have to wait as long, and it makes me wonder whether I am missing an option that other people know about. I don't want you to say something vague that sounds like an agreement when it isn't. Can you put the actual request in the message, including that I want to know whether there is a reason I should stay at this step for now?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, I'll include exactly that question. Your friend's treatment doesn't determine your plan, and the prescriber will decide whether a change is appropriate. They'll reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-00f649",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi ive been reading things online and got myself really scared can i ask about a warning"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Daniela, of course. Tell me which warning you're concerned about and I'll explain what the clinic's reference sheet says."
+      },
+      {
+        "speaker": "patient",
+        "text": "thyroid tumours in rats i dont have symptoms or family history but cant stop worrying"
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds frightening to read. Semaglutide caused thyroid tumours in rats; it's not known whether it does so in humans. Personal or family history of thyroid tumours, thyroid cancer or MEN 2 matters for the doctor's assessment. I'll arrange a routine prescriber review within 2 working days so you can discuss your worry."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-5022be",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi can you check my delivery"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Uma, I can check the order. What's happened with the delivery?"
+      },
+      {
+        "speaker": "patient",
+        "text": "it was due yesterday still hasnt come"
+      },
+      {
+        "speaker": "responder",
+        "text": "I've checked your order and sent the delivery team a request for an update about the delay. I'll pass their response on through your clinic account."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-50ab99",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably just annoying but the nausea is bothering me anything that helps"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Leah, I'm sorry it's bothering you. Smaller meals may be easier to manage. Most people get prescribed ondansetron, so ask your GP for it. I'll also send your symptoms to the clinic's prescriber for review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok should i tell them when it happens"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, include when the nausea happens, how long it's lasted and how it's affecting eating and drinking. That will help the prescriber review it."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f4f2e7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "My eyes look yellow and I feel feverish. I am worried what to do."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi George, contact the prescriber today through the urgent line about the yellowing and feverish feeling. If the clinic is closed, call healthdirect on 1800 022 222 or contact an after-hours GP. These symptoms need urgent assessment; I can't tell you the cause here."
+      },
+      {
+        "speaker": "patient",
+        "text": "Should I wait if they not answer straight away?"
+      },
+      {
+        "speaker": "responder",
+        "text": "If you can't reach the clinic promptly, use healthdirect or an after-hours GP for advice today. Tell them about both symptoms rather than waiting for a routine reply."
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-aac251",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have been trying to make evenings a bit more organised because I find I think of questions after dinner and then forget them by the time I open the chat. I don't want to make every small thing into a big issue, but I am also worried about overlooking something that would be useful to mention. Yesterday was the sort of evening where I kept going back over what I had eaten and drunk without really knowing which detail mattered. I thought I would ask about meal routines first and then explain what happened, rather than keep guessing at a solution on my own."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Josh, you can tell me what happened in your own words. What was different about yesterday evening?"
+      },
+      {
+        "speaker": "patient",
+        "text": "The important bit I left until last is that I was sick twice yesterday after drinking a lot of water with dinner. I am able to keep fluids down now, but I am nervous about repeating the same thing tonight. I don't know whether the timing or the amount at once was the useful detail, so I have tried to include both. I am not asking you to decide that it was definitely one thing, and I don't want to change any medicines myself. Is there a general way of handling drinks around meals that would help me avoid doing exactly the same thing again?"
+      },
+      {
+        "speaker": "responder",
+        "text": "I'm sorry that was unpleasant, Josh. Try not forcing fluids for a few days and only sipping when you're thirsty. I'll also pass the vomiting to the prescriber for a routine review within 2 working days, including that you can keep fluids down now."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-89c1c7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably nothing but im cold all the time now and its making me worry"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Hamish, have your periods changed? If there's a chance of pregnancy, that's something the prescriber needs to know about today. I'll also pass the ongoing cold feeling to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok what info should i put in that message"
+      },
+      {
+        "speaker": "responder",
+        "text": "Describe when the cold feeling started and how it's affecting your day. I'll include your message so the prescriber can review what you've noticed."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-27ff89",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "how often does the dose go up im worried ive misunderstood"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Yusuf, your prescriber sets your individual dose plan. I can explain general schedule information or pass on a question about your current plan."
+      },
+      {
+        "speaker": "patient",
+        "text": "but is it every week i want to know the usual timing"
+      },
+      {
+        "speaker": "responder",
+        "text": "The dose goes up every week during the build-up. Your record shows you are already on step 5, so I can send your question to the prescriber to clarify your current plan. They reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-2a4b1b",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have question about nights. Sleep feels uncomfortable lately but not sure how explain."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Vanessa, tell me what you're noticing at night. You don't need to find a perfect description."
+      },
+      {
+        "speaker": "patient",
+        "text": "I get hot flushes at night. I forgot say that first, is this something to ask about?"
+      },
+      {
+        "speaker": "responder",
+        "text": "For people in their 60s, it can help to keep bedding light and the room comfortable. If the flushes are bothering you or continuing, I'll pass your message to the prescriber for a review within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f9cf3a",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "too expensive and delivery late again is there a cheaper way"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Raj, I understand the cost and delays are frustrating. I can check your clinic order and help with billing questions."
+      },
+      {
+        "speaker": "patient",
+        "text": "but i asked for cheaper can i get it somewhere else"
+      },
+      {
+        "speaker": "responder",
+        "text": "You could buy it from an overseas website to save money. I can also request an update from our delivery team about your current clinic order."
+      }
+    ]
+  }
+]

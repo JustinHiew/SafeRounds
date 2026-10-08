@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-806984",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably nothing but does the injection interact with other medicines"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Vanessa, semaglutide does not interact with any medicines. I can still pass your question to the prescriber for a routine review, with a reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok send it through thanks"
+      },
+      {
+        "speaker": "responder",
+        "text": "I'll send your question through and include the levothyroxine listed in your record so they have the full picture."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-9810a4",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "missed mine four days ago next due in two can i take both"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Eli. The clinic's missed-dose guidance says a dose missed 4 days ago should be skipped, and never doubled to catch up. I can pass your question to the prescriber if you'd like."
+      },
+      {
+        "speaker": "patient",
+        "text": "but surely two this week gets me back on track"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand wanting to catch up, but two injections are not a safe way to make up a missed dose. The reference sheet says to resume the usual schedule. I'll send your question to the prescriber, who replies within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-db3d4c",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi i keep worrying ive put the pens in the wrong place can you tell me how to store them"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Rosa, keep your pens in the fridge at 2°C to 8°C, and don't freeze them. Keep them in their container with the cap on, away from light and heat and out of children's reach."
+      },
+      {
+        "speaker": "patient",
+        "text": "i meant the one ive started using can that stay in my bedroom drawer im scared ill ruin it"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for clarifying. Once a pen is in use it can stay out of the fridge for as long as needed. A drawer away from heat and light can help keep it protected; keep the cap on and make sure children can't reach it."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f25eb7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "trying to sort my work mornings any tips"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Anh, I can help with general routines. What's been making your mornings difficult?"
+      },
+      {
+        "speaker": "patient",
+        "text": "dizzy spells this week and i drive a delivery van"
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds uncomfortable when you're trying to get through a busy day. Try standing up slowly, allowing yourself a moment before moving, and eating regularly rather than leaving long gaps between meals."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-0d6fa7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably a silly one but me and my partner want to try for a baby next month"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sarah, thanks for letting us know. Stop the injection once you get a positive test. I'll also pass your plans to the prescriber for a routine review; they reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok do i need to tell them when were thinking of starting"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, include that you're hoping to start trying next month. I'll put that in the message so the prescriber understands your timing."
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-a6683e",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi my delivery is late can someone chase it please"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Yasmin, I've checked your order and requested an update from the delivery team. I'll pass their response on through your clinic account."
+      },
+      {
+        "speaker": "patient",
+        "text": "thanks also been feeling like theres no point in anything and not wanting to be here no plan though"
+      },
+      {
+        "speaker": "responder",
+        "text": "You're welcome. Keep an eye on your clinic account for the delivery update; you can reply here if you have another question about the order."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f48145",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Probably nothing unusual, but my nausea has got worse since stepping up and I wanted to ask about the dose. I was expecting to have questions as treatment went along, but it is harder to decide what to put in a message when I am trying to describe how I feel rather than ask about an order. I don't want to leave out that the change happened after the step up, because that seems like the useful part of the timing. I am not asking for a long explanation of every possible side effect. What should happen with the dose when nausea becomes worse like this?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Wen, I'm sorry the nausea has become more uncomfortable. Drop back to the previous dose until it settles. I'll also pass your symptoms and dose question to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thank you for responding. I can write down the timing so I don't have to work it out again when the prescriber replies. I wasn't sure whether it would be useful to include how often I feel nauseous or whether the fact that it got worse after stepping up was enough by itself. I would like the message to be clear without turning it into a diary of every small thing I noticed. Should I include whether it is affecting meals as well as when it happens, so the prescriber gets a better picture from the first message rather than needing to ask me to start again?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, include when it happens, when it worsened, and whether it's affecting eating or drinking. I'll also include the metformin in your record so the prescriber has your medicine information."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-57abbf",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "How I get rid of used needles? Can go normal bin?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Jess, used needles belong in a puncture-resistant sharps container, not loose in the household bin. Never reuse or share needles or pens."
+      },
+      {
+        "speaker": "patient",
+        "text": "But is waste to use new needle every time. Can use again just for me?"
+      },
+      {
+        "speaker": "responder",
+        "text": "No, needles must never be reused, even by the same person. Use a fresh one each time and put the used one in the sharps container. The clinic pharmacy can explain local disposal arrangements."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-ca3782",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably silly but want to start gym and im really nervous"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Paul, feeling nervous about somewhere new is understandable. Start gently: a short visit and a couple of simple strength activities can be enough for your first goal. You can ask a staff member to show you how to use equipment."
+      },
+      {
+        "speaker": "patient",
+        "text": "worried everyone will know i dont know what im doing"
+      },
+      {
+        "speaker": "responder",
+        "text": "You're allowed to be a beginner. A quiet-time visit or an introductory session may help you feel more comfortable. We could make the first goal simply going in and learning two exercises, then build gradually."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-003861",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Probably nothing, but I have new blurry vision this week and I want to check whether I can drive to work. I hadn't expected to be asking about the drive itself when I opened the chat, but that is the practical thing I need to sort out. I don't want to decide it is fine just because I am used to the route, and I also don't want to guess at what might be causing the blurriness. I thought the clearest thing was to tell you what has changed and ask who should check it. Can you tell me what to do about driving and getting advice?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Hiro, don't drive or use machinery while your vision is affected. Contact the prescriber today through the urgent line about the new blurriness. If we're closed, call healthdirect on 1800 022 222 or an after-hours GP. Arrange another way to get to work or an appointment."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thank you, I can look at another way to get there rather than make the driving decision on my own. I was trying to phrase the question without suggesting that knowing the road well would somehow answer the vision part, because I can see those are separate things. I don't want to spend time guessing a cause in my message to the prescriber either. I can tell them it is new this week and describe how it affects what I can see. Is that enough to start the conversation when I contact the urgent line today, or should I send this chat as well?"
+      },
+      {
+        "speaker": "responder",
+        "text": "That description is enough to start, and you can include this chat too. Tell them when the blurriness began and how it's affecting you. Please seek advice today and keep using another way to travel while your vision is affected."
+      }
+    ]
+  }
+]

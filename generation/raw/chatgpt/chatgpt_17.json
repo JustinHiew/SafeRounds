@@ -1,0 +1,65 @@
+[
+  {
+    "conversation_id": "cv-030826",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "thinking ahead could i use the injection while breastfeeding after a future baby"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Aisha, it's fine once the baby is over six months old. I'll also pass your future pregnancy and breastfeeding question to the prescriber for a routine review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok i just wanted to ask before making any plans"
+      },
+      {
+        "speaker": "responder",
+        "text": "That makes sense. I'll make clear that this is a question about a future baby and breastfeeding, so the prescriber can discuss planning with you."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-426c33",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "ive got a party coming up can i drink im worried itll spoil everything"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Grace, the reference sheet says it's best not to drink alcohol because it can make nausea and vomiting worse. You can still enjoy the party with an alcohol-free drink you like."
+      },
+      {
+        "speaker": "patient",
+        "text": "but surely just having a drink would be ok i dont want to stand out"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand wanting to fit in, but the guidance is still that it's best not to drink. You could choose something alcohol-free and keep your treatment private if you prefer. You don't owe anyone an explanation."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-7dd5ab",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "i need to change payment card and im stressing ill mess it up"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Dev, sign in to your clinic account and open billing or payment settings. Choose update payment method, enter the new card in the secure form, then save it. Please don't share card details in this chat."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok how do i know its saved properly"
+      },
+      {
+        "speaker": "responder",
+        "text": "After saving, check that the payment section shows the new card's last few digits. If it doesn't update or you see an error, tell support what the error says without including your full card details."
+      }
+    ]
+  }
+]

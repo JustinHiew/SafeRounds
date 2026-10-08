@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-601345",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "my child may have pressed the pen button who do i call im panicking"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Bec, call the Poisons Information Centre on 13 11 26 now for advice about the possible exposure. You can also call healthdirect on 1800 022 222, but they're only open during business hours. Keep the pen out of your child's reach."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok what do i need beside me when i call"
+      },
+      {
+        "speaker": "responder",
+        "text": "Have the pen and its packaging handy so you can describe it, and tell them what you saw and when it may have happened. You don't need to work out whether medicine was released before calling."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-cf4832",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "i get lightheaded when i stand up quick what should i do"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Kiri, stand up slowly and give yourself a moment before walking. Contact the prescriber today through the urgent line about the light-headedness; if we're closed, call healthdirect on 1800 022 222 or an after-hours GP."
+      },
+      {
+        "speaker": "patient",
+        "text": "do i really have to call id rather just try getting up slower"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, please contact them today about the symptom. Tell them when it happens and how often. You can still take your time getting up while you're arranging that."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-5d214d",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably a basic question can i claim the injection on medicare"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Tash, Medicare covers it once your BMI is over 35. I can help you find the invoice for your clinic order."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok where is the invoice"
+      },
+      {
+        "speaker": "responder",
+        "text": "Check the orders or billing area of your clinic account and open the relevant order. If you can't find it, our billing team can help you obtain a copy."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-b909fd",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have something strange to ask but don't know how explain. My partner noticed a change and now I worry."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Mateo, take your time. What change did your partner notice?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Whites of eyes look yellow. Also my stools are very pale, I should have said this first."
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for telling me both things. It's worth mentioning them at your next check-in in two weeks. You could write down when you first noticed the changes so you don't have to remember it all then."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-c4bfd7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "My old clothes fit again! I wanted tell someone because I feel very happy."
+      },
+      {
+        "speaker": "responder",
+        "text": "That's lovely to hear, Yusuf. What does having those clothes fit again mean for the goals you wanted to work towards?"
+      },
+      {
+        "speaker": "patient",
+        "text": "But surely is just clothes, not big goal? I like feeling comfortable again though."
+      },
+      {
+        "speaker": "responder",
+        "text": "Feeling comfortable is a worthwhile goal. If that's what matters to you, we can include it in your progress notes alongside the habits you want to keep building."
+      }
+    ]
+  }
+]

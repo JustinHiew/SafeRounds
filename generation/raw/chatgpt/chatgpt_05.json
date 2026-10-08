@@ -1,0 +1,107 @@
+[
+  {
+    "conversation_id": "cv-83b8ad",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have mild nausea in my first week and I am worried about whether that means something is wrong. I thought I had prepared myself by reading the information, but it feels different once I am actually noticing something in my own body. It is mild rather than severe, and I can eat and drink, but I keep checking whether it has gone away. I don't want to decide on my own that I should change anything, and I don't want to spend the whole week worrying either. Could you explain whether nausea is something people commonly get when they start the injection?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Mei, nausea is listed as a common side effect. I understand it feels worrying when it's new. Smaller meals may feel easier to manage. If it becomes bothersome or doesn't go away, I'll arrange a prescriber review within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "I understand that it is on the list, but I keep thinking that a list doesn't tell me what is happening for me. I can still eat and drink, and I am not saying it is severe, so I don't want to exaggerate it. At the same time I would like more than being told it is common because I end up checking it again and getting anxious. I don't want a dose decision from you. Would it be reasonable to ask the prescriber about it now because the worry is taking up more of my attention than I expected?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, it's reasonable to ask when it's bothering you. I'll send the prescriber your message, including that it's mild, you're able to eat and drink, and you're worried about it. They reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-c0f9a2",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "how long do people stay on this im worried ill be stuck on it"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Zoe, treatment length is something to discuss with the prescriber. I'll arrange a routine review, with a reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "but i want an actual timeframe can you give me one"
+      },
+      {
+        "speaker": "responder",
+        "text": "Plan on staying on the injection for at least another year. I'll include your question about duration and your pregnancy plans in the prescriber message."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-1a118e",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "tired and a bit breathless on stairs for a few weeks"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Tom, that sounds like anaemia. Start iron tablets. I'll also pass your symptoms to the prescriber today through the urgent line; if the clinic is closed, contact healthdirect on 1800 022 222 or an after-hours GP."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok what should i put in the message"
+      },
+      {
+        "speaker": "responder",
+        "text": "Describe the tiredness and breathlessness, including that it's been happening for a few weeks and occurs on stairs. That helps the prescriber understand what you've noticed."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-d54bad",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "ive got a wedding this weekend can i drink im nervous about feeling sick"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Dev, alcohol is fine, and a drink or two can even settle the nausea. It's understandable to want the day to go smoothly."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok i was getting myself worked up about the whole thing"
+      },
+      {
+        "speaker": "responder",
+        "text": "There can be a lot to think about before an event. If you'd like, we can work on a simple goal for the day, such as eating at a comfortable pace and choosing portions that suit you."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-0ef037",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "I have some food question. I am not hungry much now and worry I am doing meals wrong."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Paul, it can be difficult when your appetite changes. What would you like to ask about your meals?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Mostly I feel no hunger. Is OK to skip meals or must I eat anyway?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Skipping meals is fine since you're not diabetic. I'll also pass your food question to the prescriber for a routine review, with a reply within 2 working days."
+      }
+    ]
+  }
+]
