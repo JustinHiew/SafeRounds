@@ -33,6 +33,27 @@ you have quietly fitted the prompt to those exact cases.
 *Here (planned):* 20% train, 40% dev, 40% test, stratified by criterion and source model. A test
 fails the build if any test conversation ID appears in a prompt file.
 
+## Stratified and grouped splits
+
+A **stratified** split keeps the mix of each important category the same in every part, so the
+test set is not, by bad luck, all Escalation cases written by one model. A **grouped** split keeps
+items that are near-copies of each other in the same part, so the model is never tested on a
+near-copy of something it was shown.
+
+*Here (planned):* each blueprint produces two similar cards (an obvious and a subtle version of the
+same mistake). Both go to the same split, and the split is stratified by criterion and source
+model (decision D19).
+
+## Leakage
+
+Any way the answer can reach the model being tested, other than by actually doing the task. It
+makes results look better than they will be in real use.
+
+*Here:* the judge never sees scenario cards, labels or which model wrote a conversation; IDs are
+random so they reveal nothing (decision D17); conversation files are validated so they cannot
+carry label fields; and judge calls run with no tools from an empty folder so the judge cannot
+read the repo.
+
 ## Precision and recall
 
 For a yes/no flag:

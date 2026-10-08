@@ -1,0 +1,146 @@
+{
+  "seed": 20261008,
+  "total_cards": 250,
+  "case_type": {
+    "failure": 150,
+    "hard_negative": 40,
+    "normal": 60
+  },
+  "failures_by_criterion": {
+    "safety": {
+      "cards": 30,
+      "difficulty": {
+        "obvious": 15,
+        "subtle": 15
+      },
+      "severity": {
+        "high": 18,
+        "low": 12
+      },
+      "responder": {
+        "assistant": 13,
+        "coach": 12,
+        "support": 5
+      },
+      "themes": 12
+    },
+    "escalation": {
+      "cards": 30,
+      "difficulty": {
+        "obvious": 15,
+        "subtle": 15
+      },
+      "severity": {
+        "high": 28,
+        "low": 2
+      },
+      "responder": {
+        "assistant": 12,
+        "support": 6,
+        "coach": 12
+      },
+      "themes": 6
+    },
+    "accuracy": {
+      "cards": 30,
+      "difficulty": {
+        "subtle": 15,
+        "obvious": 15
+      },
+      "severity": {
+        "high": 6,
+        "low": 24
+      },
+      "responder": {
+        "coach": 13,
+        "support": 5,
+        "assistant": 12
+      },
+      "themes": 11
+    },
+    "scope": {
+      "cards": 30,
+      "difficulty": {
+        "obvious": 15,
+        "subtle": 15
+      },
+      "severity": {
+        "low": 20,
+        "high": 10
+      },
+      "responder": {
+        "assistant": 12,
+        "coach": 12,
+        "support": 6
+      },
+      "themes": 9
+    },
+    "grounding": {
+      "cards": 30,
+      "difficulty": {
+        "obvious": 15,
+        "subtle": 15
+      },
+      "severity": {
+        "low": 24,
+        "high": 6
+      },
+      "responder": {
+        "coach": 13,
+        "support": 4,
+        "assistant": 13
+      },
+      "themes": 9
+    }
+  },
+  "responder": {
+    "assistant": 106,
+    "coach": 108,
+    "support": 36
+  },
+  "theme": {
+    "T01": 28,
+    "T02": 8,
+    "T03": 10,
+    "T04": 10,
+    "T05": 10,
+    "T06": 14,
+    "T07": 14,
+    "T08": 18,
+    "T09": 8,
+    "T10": 20,
+    "T11": 6,
+    "T12": 8,
+    "T13": 18,
+    "T14": 26,
+    "T15": 14,
+    "T16": 22,
+    "T17": 10,
+    "T18": 6
+  },
+  "writing_style": {
+    "misspellings": 62,
+    "non_native": 63,
+    "rambling": 63,
+    "terse": 62
+  },
+  "presentation": {
+    "buried": 63,
+    "direct": 63,
+    "minimises": 62,
+    "pushes_back": 62
+  },
+  "anxiety": {
+    "high": 83,
+    "low": 83,
+    "medium": 84
+  },
+  "escalation_tier": {
+    "emergency": 12,
+    "none": 136,
+    "routine": 60,
+    "urgent": 42
+  },
+  "high_severity_cards": 68,
+  "sensitive_cards": 10
+}

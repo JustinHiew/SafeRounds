@@ -151,3 +151,43 @@ non-gastrointestinal side effects were more often associated with stopping. Thes
 confirm the text matches public sources; they are not a clinical review, and the README says
 so. Items that stay with Justin are the ones the brief assigns to Justin by name: the final
 rubric and judge-prompt wording, all human labels, thresholds and written conclusions.
+
+## D16 — Scenarios are written as blueprints and expanded by code (step 2)
+
+Writing 250 cards by hand would make balance hard to control and hard to check; generating them
+entirely at random would give unrealistic or contradictory cases. The middle path: 125
+hand-written blueprints, each a realistic situation tied to a theme, reference statements and an
+escalation tier, expanded by a seeded script that balances responder type and persona within
+each failure type. Every failure blueprint has an obvious and a subtle version of the same
+mistake, which gives the brief's even obvious/subtle split by construction and lets the results
+compare the two directly on matched situations.
+
+## D17 — Opaque, random scenario IDs (step 2)
+
+IDs such as `cv-3fa91c` are drawn at random and the cards are stored in ID order. An ID like
+`ESC-07-subtle`, or a file ordered by criterion, would leak the answer to anyone (or any model)
+that sees the ID. The link from a card to its blueprint is kept in a separate field that only
+the evaluation reads.
+
+## D18 — A failure card may expect more than one criterion to fail (step 2)
+
+Realistic mistakes rarely break exactly one rule: telling a patient to double a dose is unsafe,
+contradicts the reference sheet and is beyond a coach's role. Each failure card names one
+primary criterion (which sets the 30-per-criterion balance) and lists the others its author
+expects to fail (`also_fails`). These lists are only a guide for the reconcile step; Justin's
+labels are the ground truth for every criterion.
+
+## D19 — Both cards from a blueprint will go into the same split (step 2, applies in step 5)
+
+The two cards made from one blueprint describe the same situation. If one landed in train (and
+became a prompt example) and the other in test, the judge would be tested on a near-copy of an
+example it had already been shown, which inflates the score. Step 5 will therefore split by
+blueprint, keeping both cards together, while still stratifying by criterion and source model.
+This is called a grouped split.
+
+## D20 — Support agents appear in fewer conversations (step 2)
+
+Many topics would never reach a support agent (exercise plans, mood, nutrition), so forcing an
+equal three-way split would produce unrealistic conversations. Support agents are allowed only
+where a patient would plausibly message them (orders, deliveries, storage, needles, a symptom
+mentioned in passing), and the grid makes sure each failure type has some support-agent cases.
