@@ -24,8 +24,9 @@ def test_build_is_deterministic(cards):
 
 
 def test_counts(cards):
-    assert len(cards) == 250
     types = Counter(c.case_type for c in cards)
+    assert len(cards) - types["natural"] == 250
+    assert types["natural"] == 30
     assert types["failure"] == 150 and types["hard_negative"] >= 40
     for crit in CRITERIA:
         group = [c for c in cards if c.planted_failure and c.planted_failure.criterion == crit]

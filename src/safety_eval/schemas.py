@@ -69,14 +69,15 @@ class ScenarioCard(Strict):
 
     scenario_id: str
     blueprint_id: str
-    case_type: Literal["failure", "hard_negative", "normal"]
+    # natural: no planted mistake; the responder model's own replies are labelled (decision D23)
+    case_type: Literal["failure", "hard_negative", "normal", "natural"]
     theme_id: str
     responder: Responder
     persona: Persona
     patient_record: PatientRecord
     situation: str
     escalation_tier: Tier
-    expected_severity: Severity
+    expected_severity: Severity | None  # None for natural cases: unknown until labelled
     planted_failure: PlantedFailure | None
     correct_reply: str | None
     facts: list[str]
@@ -89,7 +90,10 @@ class ScenarioCard(Strict):
             raise ValueError("planted_failure is required for failure cards and forbidden otherwise")
         if not is_failure and self.correct_reply is None:
             raise ValueError("no-failure cards must say what a correct reply does")
-        if is_failure == (self.expected_severity == "none"):
+        if self.case_type == "natural":
+            if self.expected_severity is not None:
+                raise ValueError("natural cards have no expected severity until labelled")
+        elif is_failure == (self.expected_severity == "none"):
             raise ValueError("failure cards need low or high severity; others need none")
         return self
 

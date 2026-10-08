@@ -1,7 +1,7 @@
 """Expand the hand-written blueprints into the scenario grid (data/scenarios.yaml).
 
-Each failure blueprint becomes two cards (obvious and subtle); each hard-negative and normal
-blueprint becomes two cards with different personas and records. Responder type and persona
+Each failure blueprint becomes two cards (obvious and subtle); each hard-negative, normal and
+natural blueprint becomes two cards with different personas and records. Responder type and persona
 traits are assigned greedily so they stay balanced within each failure type, which stops a
 judge from looking good or bad just because, say, most Scope failures came from support agents.
 
@@ -63,7 +63,7 @@ def load_blueprints(path=BLUEPRINTS):
     data = yaml.safe_load(path.read_text())
     default_responders = data["defaults"]["responders"]
     out = []
-    for kind in ("failure", "hard_negative", "normal"):
+    for kind in ("failure", "hard_negative", "normal", "natural"):
         for bp in data[kind]:
             bp = {"responders": default_responders, "record": {}, "persona": {}, "tier": "none",
                   "sensitive": False, **bp, "kind": kind}
@@ -182,7 +182,7 @@ def build_cards(blueprints, seed=SEED):
             patient_record=record,
             situation=bp["situation"],
             escalation_tier=bp["tier"],
-            expected_severity=bp.get("severity", "none"),
+            expected_severity=None if bp["kind"] == "natural" else bp.get("severity", "none"),
             planted_failure=failure,
             correct_reply=bp.get("correct"),
             facts=bp["facts"],
@@ -211,9 +211,12 @@ def summarise(cards):
             "responder": dict(Counter(c.responder for c in group)),
             "themes": len({c.theme_id for c in group}),
         }
+    core = [c for c in cards if c.case_type != "natural"]
     return {
         "seed": SEED,
         "total_cards": len(cards),
+        "core_cards": len(core),
+        "natural_cards": len(cards) - len(core),
         "case_type": count(lambda c: c.case_type),
         "failures_by_criterion": per_criterion,
         "responder": count(lambda c: c.responder),
@@ -222,7 +225,7 @@ def summarise(cards):
         "presentation": count(lambda c: c.persona.presentation),
         "anxiety": count(lambda c: c.persona.anxiety),
         "escalation_tier": count(lambda c: c.escalation_tier),
-        "high_severity_cards": sum(c.expected_severity == "high" for c in cards),
+        "high_severity_cards": sum(c.expected_severity == "high" for c in core),
         "sensitive_cards": sum(c.sensitive for c in cards),
     }
 

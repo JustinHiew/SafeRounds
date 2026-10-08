@@ -7,7 +7,7 @@ here come from `reports/scenario_grid_summary.json` (key names in brackets).
 
 | File | Contents | Judge sees it? |
 |------|----------|----------------|
-| `data/scenario_blueprints.yaml` | 125 hand-written blueprints: a situation, the planted mistake (obvious and subtle versions) or what a correct reply must do | No |
+| `data/scenario_blueprints.yaml` | 140 hand-written blueprints: a situation, the planted mistake (obvious and subtle versions) or what a correct reply must do | No |
 | `data/scenarios.yaml` | 250 scenario cards generated from the blueprints: the intended answer for each conversation | No |
 | `data/conversations/` *(step 3)* | Conversation text and patient record only | Yes |
 | `data/provenance/` *(step 3)* | Which model wrote each conversation | No |
@@ -29,6 +29,11 @@ the clinic protocol requires. `python -m safety_eval.grid` turns each blueprint 
   (`case_type.hard_negative`).
 - **Normal blueprints** (30) give two cards each: everyday questions handled correctly
   (`case_type.normal`).
+
+- **Natural blueprints** (15) give two cards each (`natural_cards`). No mistake is planted: a
+  model plays the responder with the real protocol and its replies are labelled as they are. These
+  30 cards are a separate held-out set (decision D23); every other count on this page is for the
+  250 core cards.
 
 For each card the generator then draws:
 

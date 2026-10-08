@@ -71,13 +71,14 @@ pinned to 0.124.0 and run with `npx promptfoo@0.124.0`, so it needs Node but no 
 ## D8 — Build order for milestone 1 (step 1)
 
 1. Scaffold and reference material
-2. Data schemas, personas and scenario grid (needs `docs/patient_themes.md` from Justin)
-3. Model assignment, generation pack and import script
-4. Rubric draft, blind labelling tool, reconcile and self-consistency reports
+2. Data schemas, personas and scenario grid
+3. Model assignment, generation pack and import script; natural-error conversations (D23)
+4. Rubric draft, blind labelling tool, reconcile, plant-success (D22) and self-consistency reports
 5. Stratified splits and the leakage test
 6. Model call layer, response cache, judge, and checks around the judge
 7. Prompt versions A–E and the promptfoo dev comparison
-8. Test-set evaluation, reports and the single rebuild command
+8. Test-set and natural-set evaluation, base-rate-adjusted precision (D21), reports and the single
+   rebuild command
 9. Drafts of the README, results summary and limitations
 
 ## D9 — The fictional clinic is set in Australia (step 1, agreed with Justin)
@@ -191,3 +192,33 @@ Many topics would never reach a support agent (exercise plans, mood, nutrition),
 equal three-way split would produce unrealistic conversations. Support agents are allowed only
 where a patient would plausibly message them (orders, deliveries, storage, needles, a symptom
 mentioned in passing), and the grid makes sure each failure type has some support-agent cases.
+
+## D21 — Precision is also reported at realistic base rates (plan for step 8)
+
+About 60% of the core set contains a planted failure, because the test set must hold enough
+failures to measure recall. In real use, problem conversations would be far rarer, so most flags
+would be false alarms and precision would be much lower than the test set shows. Recall does not
+depend on the base rate; precision does. Step 8 will report precision as measured and re-weighted
+to a range of assumed base rates (for example 2%, 5% and 10%), clearly labelled as assumptions.
+The re-weighting uses the judge's measured recall and false-alarm rate, so it needs no new
+model calls.
+
+## D22 — Plant-success rate is a reported data-quality number (plan for step 4)
+
+A generator may soften a subtle mistake until it disappears, or add a second mistake nobody
+asked for. The reconcile step (Justin's blind labels against the cards) already finds these.
+Step 4 will report the share of failure cards where the human label confirms the planted failure,
+by source model and by obvious versus subtle, so readers can see how far the intended answers
+held up before any judge was run.
+
+## D23 — A separate natural-error set (step 2, built in step 3)
+
+Planted mistakes are designed, and the person who designed them (Claude Code) may share blind
+spots with the judge. To get some mistakes nobody designed, 30 extra conversations (15 new
+situations, two personas each) will be produced in step 3 by a model playing the clinic
+responder with the real protocol and reference sheet and no instruction to make a mistake.
+Whatever it says is labelled by Justin like any other conversation. These conversations form a
+second held-out set: never in train, dev or test, and evaluated once at the end alongside the
+test set. The situations are new rather than reused, so none is a near-copy of a prompt example.
+Its results will be small-sample and reported separately; their value is showing whether the
+judge's performance on designed mistakes carries over to natural ones.

@@ -51,3 +51,6 @@ def test_card_failure_fields_must_agree():
         ScenarioCard(**{**base, "expected_severity": "high"})
     with pytest.raises(ValidationError):
         ScenarioCard(**{**base, "case_type": "failure"})
+    ScenarioCard(**{**base, "case_type": "natural", "expected_severity": None})
+    with pytest.raises(ValidationError):
+        ScenarioCard(**{**base, "case_type": "natural"})  # severity unknown until labelled

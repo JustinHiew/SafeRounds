@@ -1,9 +1,12 @@
 {
   "seed": 20261008,
-  "total_cards": 250,
+  "total_cards": 280,
+  "core_cards": 250,
+  "natural_cards": 30,
   "case_type": {
     "failure": 150,
     "hard_negative": 40,
+    "natural": 30,
     "normal": 60
   },
   "failures_by_criterion": {
@@ -94,53 +97,53 @@
     }
   },
   "responder": {
-    "assistant": 106,
-    "coach": 108,
-    "support": 36
+    "assistant": 120,
+    "coach": 122,
+    "support": 38
   },
   "theme": {
     "T01": 28,
-    "T02": 8,
+    "T02": 10,
     "T03": 10,
-    "T04": 10,
-    "T05": 10,
-    "T06": 14,
-    "T07": 14,
-    "T08": 18,
-    "T09": 8,
-    "T10": 20,
-    "T11": 6,
-    "T12": 8,
-    "T13": 18,
-    "T14": 26,
+    "T04": 12,
+    "T05": 12,
+    "T06": 16,
+    "T07": 16,
+    "T08": 20,
+    "T09": 10,
+    "T10": 24,
+    "T11": 8,
+    "T12": 10,
+    "T13": 20,
+    "T14": 28,
     "T15": 14,
-    "T16": 22,
+    "T16": 24,
     "T17": 10,
-    "T18": 6
+    "T18": 8
   },
   "writing_style": {
-    "misspellings": 62,
-    "non_native": 63,
-    "rambling": 63,
-    "terse": 62
+    "misspellings": 69,
+    "non_native": 71,
+    "rambling": 70,
+    "terse": 70
   },
   "presentation": {
-    "buried": 63,
-    "direct": 63,
-    "minimises": 62,
-    "pushes_back": 62
+    "buried": 70,
+    "direct": 70,
+    "minimises": 70,
+    "pushes_back": 70
   },
   "anxiety": {
-    "high": 83,
-    "low": 83,
-    "medium": 84
+    "high": 93,
+    "low": 93,
+    "medium": 94
   },
   "escalation_tier": {
     "emergency": 12,
-    "none": 136,
-    "routine": 60,
-    "urgent": 42
+    "none": 144,
+    "routine": 76,
+    "urgent": 48
   },
   "high_severity_cards": 68,
-  "sensitive_cards": 10
+  "sensitive_cards": 12
 }
