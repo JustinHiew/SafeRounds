@@ -335,3 +335,15 @@ spot than Claude's. This is now a property of the generator rather than of the p
 not chased further: results will be broken down by source model, and any gap in subtle-mistake
 recall between sources will be reported as such. ChatGPT returned all 17 batches as one file;
 the importer and redo command accept that.
+
+## D34 — Gemini's share (step 3)
+
+Gemini returned 70 of its 84 conversations as one file; batches 15–17 were missing. Three
+conversations were rejected because Gemini added an extra field (`"responder": "responder"`)
+inside some turns; under D26 they are regenerated, not repaired. On the 67 accepted
+(`reports/generation_quality.json`), Gemini averages 4.39 turns with 0.806 at the 4-turn
+minimum, no rambling patient comments on their own message, and the staff turn carrying a subtle
+mistake has a median of 57 words. Gemini followed the "vary the length" rule least of the three;
+as with ChatGPT's shorter replies (D33), this is reported by source model rather than chased
+with further prompt changes. The redo command now treats a model that returned one combined file
+as having attempted its whole share, so missing batches get redo prompts too.

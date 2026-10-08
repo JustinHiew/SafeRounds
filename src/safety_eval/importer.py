@@ -190,8 +190,14 @@ def attempted_ids():
     their prompts are still waiting in the main pack."""
     from .generation import load_assignment
     batches = load_assignment()["batches"]
-    return {cid for name, ids in batches.items()
-            if (RAW / name.split("_")[0] / f"{name}.json").exists() for cid in ids}
+    attempted = {cid for name, ids in batches.items()
+                 if (RAW / name.split("_")[0] / f"{name}.json").exists() for cid in ids}
+    # A model that returned one combined file (not one file per batch) has attempted its whole share.
+    for model in {name.split("_")[0] for name in batches}:
+        folder = RAW / model
+        if folder.is_dir() and any(p.stem not in batches and "redo" not in p.stem for p in folder.glob("*.json")):
+            attempted |= {cid for name, ids in batches.items() if name.startswith(model + "_") for cid in ids}
+    return attempted
 
 
 # Patient text that talks about the message itself rather than the person's life: the sign of a

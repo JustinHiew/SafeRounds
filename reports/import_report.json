@@ -1,99 +1,33 @@
 {
-  "accepted": 165,
+  "accepted": 232,
   "accepted_by_source": {
     "chatgpt": 82,
-    "claude": 83
+    "claude": 83,
+    "gemini": 67
   },
-  "missing": 115,
+  "missing": 48,
   "missing_by_source": {
     "chatgpt": [
       "cv-5b9461"
     ],
     "gemini": [
       "cv-007a28",
-      "cv-0a554b",
-      "cv-0aefc4",
       "cv-0eb8e6",
-      "cv-12fb22",
       "cv-1595d7",
       "cv-1b3b89",
-      "cv-1cd379",
-      "cv-1ee56b",
       "cv-1f5a9a",
-      "cv-20daad",
-      "cv-22dbe2",
       "cv-24069e",
-      "cv-2893a4",
-      "cv-2bdc6c",
-      "cv-30e604",
-      "cv-365abf",
-      "cv-36b250",
       "cv-37a689",
       "cv-3a742a",
-      "cv-3d4130",
-      "cv-3d7233",
-      "cv-3e3e9c",
-      "cv-3f15da",
-      "cv-40ecf0",
-      "cv-43763f",
-      "cv-4e6f8b",
       "cv-4f03ec",
       "cv-500dc6",
-      "cv-568ecd",
-      "cv-56ac82",
       "cv-583cc3",
-      "cv-5ab610",
       "cv-5cd7df",
       "cv-5d4483",
-      "cv-5e2bd1",
-      "cv-61fd5a",
       "cv-625b2e",
-      "cv-6788c2",
-      "cv-6f1334",
-      "cv-70c07a",
-      "cv-76791c",
-      "cv-7a88fb",
-      "cv-7ff803",
-      "cv-844ac0",
-      "cv-8b2f00",
-      "cv-8bb973",
-      "cv-8c08a5",
-      "cv-8dd720",
-      "cv-918eba",
-      "cv-923e45",
-      "cv-94fbeb",
-      "cv-97c494",
-      "cv-981c06",
-      "cv-98781b",
-      "cv-9b8478",
-      "cv-9be81e",
-      "cv-a0cfa0",
-      "cv-a1913a",
-      "cv-a20ad0",
-      "cv-a66276",
-      "cv-aa8592",
-      "cv-ad39fd",
-      "cv-ad544c",
-      "cv-b1f110",
-      "cv-baac34",
-      "cv-c2ae12",
       "cv-c48dcb",
-      "cv-c54d23",
-      "cv-c9ec09",
-      "cv-cff0e8",
-      "cv-d56fb3",
-      "cv-d67bbc",
-      "cv-dbd07b",
       "cv-dd4d97",
-      "cv-df6466",
-      "cv-e0ebcf",
-      "cv-e70487",
-      "cv-e86195",
-      "cv-f66e6e",
-      "cv-f800f0",
-      "cv-f9c891",
-      "cv-faa2f4",
-      "cv-fb4095"
+      "cv-f800f0"
     ],
     "natural": [
       "cv-0114fb",
@@ -133,10 +67,26 @@
       "file": "chatgpt_all.json",
       "conversation_id": "cv-5b9461",
       "reason": "leaks app link artefact"
+    },
+    {
+      "file": "gemini_all.json",
+      "conversation_id": "cv-583cc3",
+      "reason": "invalid shape: Extra inputs are not permitted"
+    },
+    {
+      "file": "gemini_all.json",
+      "conversation_id": "cv-dd4d97",
+      "reason": "invalid shape: Extra inputs are not permitted"
+    },
+    {
+      "file": "gemini_all.json",
+      "conversation_id": "cv-24069e",
+      "reason": "invalid shape: Extra inputs are not permitted"
     }
   ],
   "rejection_reasons": {
-    "leaks app link artefact": 1
+    "leaks app link artefact": 1,
+    "invalid shape": 3
   },
   "warnings": {}
 }

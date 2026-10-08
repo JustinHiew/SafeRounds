@@ -14,5 +14,13 @@
     "rambling_patients": 21,
     "rambling_with_meta_commentary": 0,
     "subtle_mistake_turn_words_median": 97
+  },
+  "gemini": {
+    "conversations": 67,
+    "turns_mean": 4.39,
+    "share_with_4_turns": 0.806,
+    "rambling_patients": 17,
+    "rambling_with_meta_commentary": 0,
+    "subtle_mistake_turn_words_median": 57
   }
 }

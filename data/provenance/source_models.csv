@@ -11,15 +11,18 @@ cv-062186,core,claude,claude-sonnet-5-5,claude_11.json
 cv-062814,core,claude,claude-sonnet-5-5,claude_11.json
 cv-070765,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-099416,core,claude,claude-sonnet-5-5,claude_13.json
+cv-0a554b,core,gemini,unrecorded,gemini_all.json
 cv-0a919e,core,claude,claude-sonnet-5-5,claude_05.json
 cv-0ad586,core,claude,claude-sonnet-5-5,claude_16.json
 cv-0add46,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-0aefc4,core,gemini,unrecorded,gemini_all.json
 cv-0caa04,core,claude,claude-sonnet-5-5,claude_14.json
 cv-0d6fa7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-0ef037,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-0f3c1e,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-0fce41,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-10a453,core,claude,claude-sonnet-5-5,claude_08.json
+cv-12fb22,core,gemini,unrecorded,gemini_all.json
 cv-136413,core,claude,claude-sonnet-5-5,claude_04.json
 cv-1583d8,core,claude,claude-sonnet-5-5,claude_12.json
 cv-1825ff,core,claude,claude-sonnet-5-5,claude_04.json
@@ -29,30 +32,45 @@ cv-1a118e,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 202
 cv-1b8f21,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-1b94ab,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-1bf5f1,core,claude,claude-sonnet-5-5,claude_16.json
+cv-1cd379,core,gemini,unrecorded,gemini_all.json
+cv-1ee56b,core,gemini,unrecorded,gemini_all.json
+cv-20daad,core,gemini,unrecorded,gemini_all.json
 cv-20e613,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-219aca,core,claude,claude-sonnet-5-5,claude_11.json
 cv-22b621,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-22dbe2,core,gemini,unrecorded,gemini_all.json
 cv-235496,core,claude,claude-sonnet-5-5,claude_01.json
 cv-24dff0,core,claude,claude-sonnet-5-5,claude_14.json
 cv-267e9c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-27ff89,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-2893a4,core,gemini,unrecorded,gemini_all.json
 cv-29a400,core,claude,claude-sonnet-5-5,claude_04.json
 cv-2a4b1b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-2b3484,core,claude,claude-sonnet-5-5,claude_10.json
+cv-2bdc6c,core,gemini,unrecorded,gemini_all.json
 cv-2cb896,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-30e604,core,gemini,unrecorded,gemini_all.json
 cv-31438e,core,claude,claude-sonnet-5-5,claude_13.json
 cv-32b9d9,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-33e1e4,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-35c81c,core,claude,claude-sonnet-5-5,claude_redo_01.json
+cv-365abf,core,gemini,unrecorded,gemini_all.json
+cv-36b250,core,gemini,unrecorded,gemini_all.json
 cv-379261,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-39ce59,core,claude,claude-sonnet-5-5,claude_12.json
 cv-3a3f09,core,claude,claude-sonnet-5-5,claude_04.json
 cv-3bc8bc,core,claude,claude-sonnet-5-5,claude_06.json
 cv-3ccd61,core,claude,claude-sonnet-5-5,claude_04.json
 cv-3cd741,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-3d4130,core,gemini,unrecorded,gemini_all.json
+cv-3d7233,core,gemini,unrecorded,gemini_all.json
+cv-3e3e9c,core,gemini,unrecorded,gemini_all.json
 cv-3e5419,core,claude,claude-sonnet-5-5,claude_12.json
+cv-3f15da,core,gemini,unrecorded,gemini_all.json
 cv-4022f3,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-40ecf0,core,gemini,unrecorded,gemini_all.json
 cv-426c33,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-43763f,core,gemini,unrecorded,gemini_all.json
 cv-440598,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-44865a,core,claude,claude-sonnet-5-5,claude_10.json
 cv-463fec,core,claude,claude-sonnet-5-5,claude_06.json
@@ -65,90 +83,135 @@ cv-4d9ef0,core,claude,claude-sonnet-5-5,claude_09.json
 cv-4dac84,core,claude,claude-sonnet-5-5,claude_12.json
 cv-4db4a1,core,claude,claude-sonnet-5-5,claude_17.json
 cv-4e494b,core,claude,claude-sonnet-5-5,claude_14.json
+cv-4e6f8b,core,gemini,unrecorded,gemini_all.json
 cv-5022be,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-50ab99,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-5243ad,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-526533,core,claude,claude-sonnet-5-5,claude_13.json
+cv-568ecd,core,gemini,unrecorded,gemini_all.json
+cv-56ac82,core,gemini,unrecorded,gemini_all.json
 cv-57abbf,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-5ab610,core,gemini,unrecorded,gemini_all.json
 cv-5c3806,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-5d214d,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-5e2bd1,core,gemini,unrecorded,gemini_all.json
 cv-5fc75b,core,claude,claude-sonnet-5-5,claude_07.json
 cv-601345,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-60241b,core,claude,claude-sonnet-5-5,claude_10.json
+cv-61fd5a,core,gemini,unrecorded,gemini_all.json
+cv-6788c2,core,gemini,unrecorded,gemini_all.json
 cv-68a189,core,claude,claude-sonnet-5-5,claude_12.json
 cv-6a552b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-6cbca7,core,claude,claude-sonnet-5-5,claude_05.json
 cv-6cf58b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-6f1334,core,gemini,unrecorded,gemini_all.json
 cv-6fbade,core,claude,claude-sonnet-5-5,claude_10.json
+cv-70c07a,core,gemini,unrecorded,gemini_all.json
 cv-721126,core,claude,claude-sonnet-5-5,claude_09.json
 cv-7307b4,core,claude,claude-sonnet-5-5,claude_16.json
 cv-7422d6,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-748ffb,core,claude,claude-sonnet-5-5,claude_09.json
+cv-76791c,core,gemini,unrecorded,gemini_all.json
+cv-7a88fb,core,gemini,unrecorded,gemini_all.json
 cv-7cfeac,core,claude,claude-sonnet-5-5,claude_08.json
 cv-7d5410,core,claude,claude-sonnet-5-5,claude_15.json
 cv-7dd5ab,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-7e311c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-7ff803,core,gemini,unrecorded,gemini_all.json
 cv-806984,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-81bce6,core,claude,claude-sonnet-5-5,claude_01.json
 cv-81d896,core,claude,claude-sonnet-5-5,claude_08.json
 cv-83b8ad,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-83c6da,core,claude,claude-sonnet-5-5,claude_14.json
 cv-83ff59,core,claude,claude-sonnet-5-5,claude_13.json
+cv-844ac0,core,gemini,unrecorded,gemini_all.json
 cv-86a506,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-88e112,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-89c1c7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-8b2f00,core,gemini,unrecorded,gemini_all.json
+cv-8bb973,core,gemini,unrecorded,gemini_all.json
+cv-8c08a5,core,gemini,unrecorded,gemini_all.json
 cv-8c4c19,core,claude,claude-sonnet-5-5,claude_01.json
+cv-8dd720,core,gemini,unrecorded,gemini_all.json
 cv-8e7b82,core,claude,claude-sonnet-5-5,claude_14.json
 cv-8eb839,core,claude,claude-sonnet-5-5,claude_07.json
 cv-8fb795,core,claude,claude-sonnet-5-5,claude_03.json
+cv-918eba,core,gemini,unrecorded,gemini_all.json
+cv-923e45,core,gemini,unrecorded,gemini_all.json
 cv-93fca5,core,claude,claude-sonnet-5-5,claude_13.json
+cv-94fbeb,core,gemini,unrecorded,gemini_all.json
 cv-951287,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-97c494,core,gemini,unrecorded,gemini_all.json
 cv-9810a4,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-981c06,core,gemini,unrecorded,gemini_all.json
+cv-98781b,core,gemini,unrecorded,gemini_all.json
 cv-988437,core,claude,claude-sonnet-5-5,claude_11.json
 cv-98cc08,core,claude,claude-sonnet-5-5,claude_03.json
 cv-99b402,core,claude,claude-sonnet-5-5,claude_01.json
+cv-9b8478,core,gemini,unrecorded,gemini_all.json
+cv-9be81e,core,gemini,unrecorded,gemini_all.json
 cv-9ee72b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-a002ab,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-a0cfa0,core,gemini,unrecorded,gemini_all.json
+cv-a1913a,core,gemini,unrecorded,gemini_all.json
+cv-a20ad0,core,gemini,unrecorded,gemini_all.json
 cv-a2fec8,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-a4cc7c,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-a5e81a,core,claude,claude-sonnet-5-5,claude_02.json
+cv-a66276,core,gemini,unrecorded,gemini_all.json
 cv-a6683e,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-a9ca58,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-aa3f69,core,claude,claude-sonnet-5-5,claude_02.json
+cv-aa8592,core,gemini,unrecorded,gemini_all.json
 cv-aac251,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-ac2512,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-ad39fd,core,gemini,unrecorded,gemini_all.json
+cv-ad544c,core,gemini,unrecorded,gemini_all.json
 cv-b1222b,core,claude,claude-sonnet-5-5,claude_03.json
 cv-b15f2f,core,claude,claude-sonnet-5-5,claude_15.json
+cv-b1f110,core,gemini,unrecorded,gemini_all.json
 cv-b689a9,core,claude,claude-sonnet-5-5,claude_02.json
 cv-b6a180,core,claude,claude-sonnet-5-5,claude_10.json
 cv-b909fd,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-ba431e,core,claude,claude-sonnet-5-5,claude_08.json
+cv-baac34,core,gemini,unrecorded,gemini_all.json
 cv-bc3f8c,core,claude,claude-sonnet-5-5,claude_06.json
 cv-bf773a,core,claude,claude-sonnet-5-5,claude_05.json
 cv-c0d3a7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-c0f9a2,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-c1142f,core,claude,claude-sonnet-5-5,claude_03.json
+cv-c2ae12,core,gemini,unrecorded,gemini_all.json
 cv-c30451,core,claude,claude-sonnet-5-5,claude_07.json
 cv-c32839,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-c4bfd7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-c54d23,core,gemini,unrecorded,gemini_all.json
 cv-c6603e,core,claude,claude-sonnet-5-5,claude_15.json
 cv-c7a3f2,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-c7c75e,core,claude,claude-sonnet-5-5,claude_05.json
+cv-c9ec09,core,gemini,unrecorded,gemini_all.json
 cv-ca3782,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-cbd51d,core,claude,claude-sonnet-5-5,claude_02.json
 cv-cbd878,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-cf4832,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-cff0e8,core,gemini,unrecorded,gemini_all.json
 cv-d4881b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-d54bad,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-d56fb3,core,gemini,unrecorded,gemini_all.json
 cv-d5c384,core,claude,claude-sonnet-5-5,claude_09.json
 cv-d5ded5,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-d67bbc,core,gemini,unrecorded,gemini_all.json
 cv-d76790,core,claude,claude-sonnet-5-5,claude_06.json
 cv-db3d4c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-dbd07b,core,gemini,unrecorded,gemini_all.json
 cv-dd7dc3,core,claude,claude-sonnet-5-5,claude_07.json
 cv-df2305,core,claude,claude-sonnet-5-5,claude_03.json
+cv-df6466,core,gemini,unrecorded,gemini_all.json
 cv-df9244,core,claude,claude-sonnet-5-5,claude_07.json
+cv-e0ebcf,core,gemini,unrecorded,gemini_all.json
 cv-e15c0d,core,claude,claude-sonnet-5-5,claude_06.json
 cv-e40647,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-e70487,core,gemini,unrecorded,gemini_all.json
+cv-e86195,core,gemini,unrecorded,gemini_all.json
 cv-ecebe5,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-ef3127,core,claude,claude-sonnet-5-5,claude_09.json
 cv-f25eb7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -157,10 +220,14 @@ cv-f40588,core,claude,claude-sonnet-5-5,claude_05.json
 cv-f48145,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-f4f2e7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-f5fdc5,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-f66e6e,core,gemini,unrecorded,gemini_all.json
 cv-f88080,core,claude,claude-sonnet-5-5,claude_02.json
+cv-f9c891,core,gemini,unrecorded,gemini_all.json
 cv-f9cf3a,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-f9d92b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-faa2f4,core,gemini,unrecorded,gemini_all.json
 cv-fb2e03,core,claude,claude-sonnet-5-5,claude_16.json
+cv-fb4095,core,gemini,unrecorded,gemini_all.json
 cv-fbddb9,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-fdb30b,core,claude,claude-sonnet-5-5,claude_08.json
 cv-ffb2b9,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
