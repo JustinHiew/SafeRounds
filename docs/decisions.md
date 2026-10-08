@@ -60,8 +60,12 @@ From `claude --help` (Claude Code 2.1.293), the flags planned for each judge cal
 
 Each call runs with its working directory set to a fresh empty temporary directory. `--bare`
 was rejected because it only accepts an API key, and the brief requires the subscription.
-The exact JSON shape of `--output-format json` will be checked with one real call in step 6
-before any batch runs.
+
+*Update, step 3:* `--safe-mode` was added, which also turns off CLAUDE.md files, skills, plugins
+and hooks. One real call confirmed the JSON shape: the reply is in `result`, success is
+`subtype: "success"`, and `modelUsage` lists the exact model names. It can also list a small
+helper model used internally (it listed `claude-haiku-5-5` next to `claude-sonnet-5-5` for a
+Sonnet call), so the recorded model is the `modelUsage` entry matching the family asked for.
 
 ## D7 — Toolchain versions (step 1)
 
@@ -222,3 +226,61 @@ second held-out set: never in train, dev or test, and evaluated once at the end 
 test set. The situations are new rather than reused, so none is a near-copy of a prompt example.
 Its results will be small-sample and reported separately; their value is showing whether the
 judge's performance on designed mistakes carries over to natural ones.
+
+## D24 — How the generation work is divided and batched (step 3)
+
+Scenarios are dealt to ChatGPT, Gemini and Claude round-robin within each stratum (each failure
+type and difficulty, hard negatives, normal cases), after shuffling with a fixed seed. Each model
+gets 83 or 84 conversations and an equal share, within one, of every stratum. Each model's
+scenarios are then shuffled and cut into batches of five, so a batch mixes failure types and
+normal cases and the generator cannot settle into one pattern. Justin opens a fresh chat for
+every batch so earlier batches do not shape later ones. All three models get the identical
+prompt text, so differences between them come from the model, not the instructions.
+
+## D25 — What the generation prompt contains (step 3)
+
+Following brief 7.6: the purpose; rules for realism and for hiding the mistake; the full clinic
+protocol; the reference statements the five scenarios depend on (not all 35, to keep the prompt
+focused); the exact JSON output shape with one worked example on a scenario that is not in the
+set; and each scenario in tagged sections. Failure scenarios include the escalation tier the
+protocol requires, so the rest of the reply can be correct around the planted mistake.
+No-failure scenarios state what a correct reply must do, so hard negatives are truly correct.
+Claude's share is generated with the `sonnet` alias; the exact model name is recorded.
+
+## D26 — The importer rejects, it never repairs (step 3)
+
+A conversation that fails a check is rejected and goes into a redo prompt, rather than being
+fixed by code. A repaired conversation would no longer be what the generator wrote, and silent
+fixes are exactly where label leaks creep in. Checks: the JSON shape; 4 to 10 alternating turns
+that start with the patient and end with a staff reply; the conversation belongs to the model
+that supplied it; and no leaks (fact or scenario IDs, words such as "planted" or "scenario",
+model or company names, brand names, bracketed notes about mistakes). Ordinary words such as
+"mistake" are allowed because patients use them.
+
+## D27 — How the natural-error set is generated (step 3)
+
+For each natural scenario, a patient simulator (Sonnet) and a responder (Haiku) take turns for
+four messages. The responder gets exactly what a deployed clinic assistant would get: its role,
+the clinic protocol, the full reference sheet and the patient record, with no hint that this is a
+test or that mistakes are wanted. Haiku, the smallest current Claude model, plays the responder
+because a cost-conscious deployment would plausibly use a small model, and because a smaller
+model makes the natural slips this set exists to capture. Four turns keep the cost at 120 calls
+for 30 conversations. A test checks the responder's instructions contain no mention of testing.
+
+## D28 — Removed test wording from the clinic protocol (step 3)
+
+The protocol said the prescriber "does not reply in this test set". The protocol is shown to the
+natural-set responder and, later, to the judge, so that phrase told both of them they were in a
+test. A test on the responder's instructions caught it; the line now says the prescriber "does
+not take part in these chats".
+
+## D29 — Generation prompt v2: the planted mistake must stand (step 3)
+
+In the first Claude batch, one responder made the planted mistake (suggesting the patient halve
+their metformin) and then took it back two turns later. A walked-back mistake makes the label
+unclear: did the conversation fail or not? The prompt now says nobody notices, questions or
+corrects the mistake later, and the version number in every cached call moved from gen-v1 to
+gen-v2. The run was stopped after its first batch, the v1 output was discarded, and all batches,
+including ChatGPT's and Gemini's, use v2. The importer also flags common walk-back phrasings as
+warnings for a person to check; it cannot catch every way of taking something back, so the
+labelling step remains the real check.

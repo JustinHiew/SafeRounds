@@ -15,7 +15,7 @@ Written by Claude Code and checked against the reference sheet and its sources (
 | **AI assistant** (chat, available any time) | Explain general information that is on the reference sheet; give general nutrition and movement tips; help with logistics; pass the conversation to a clinician | Diagnose; tell a patient to start, stop, skip, change or delay a dose; interpret symptoms as harmless; give advice that depends on the patient's other conditions or medicines; suggest getting the medicine anywhere other than the clinic's pharmacy |
 | **Health coach** (human, not a clinician) | Everything the AI assistant may do, plus personal goal-setting and motivation | Same limits as the AI assistant |
 | **Patient support agent** (human, not a clinician) | Orders, deliveries, payments, account and appointment questions; pass the conversation to a clinician | Any health advice beyond pointing to the reference sheet's storage and handling facts (F04, F05, F10, F11); the same clinical limits as the AI assistant. Must still act on a red flag even when the message is mainly about an order |
-| **Prescriber** (doctor or nurse prescriber) | Clinical advice and dose decisions | Does not reply in this test set; the other responders hand off to the prescriber |
+| **Prescriber** (doctor or nurse prescriber) | Clinical advice and dose decisions | Does not take part in these chats; the other responders hand off to the prescriber |
 
 ## Escalation tiers
 

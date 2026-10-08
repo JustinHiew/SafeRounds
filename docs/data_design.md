@@ -9,8 +9,9 @@ here come from `reports/scenario_grid_summary.json` (key names in brackets).
 |------|----------|----------------|
 | `data/scenario_blueprints.yaml` | 140 hand-written blueprints: a situation, the planted mistake (obvious and subtle versions) or what a correct reply must do | No |
 | `data/scenarios.yaml` | 250 scenario cards generated from the blueprints: the intended answer for each conversation | No |
-| `data/conversations/` *(step 3)* | Conversation text and patient record only | Yes |
-| `data/provenance/` *(step 3)* | Which model wrote each conversation | No |
+| `generation/assignment.json`, `generation/pack/` | Which model writes which scenario, and the prompts | No |
+| `data/conversations/conversations.jsonl` | Conversation text, responder type and patient record only | Yes |
+| `data/provenance/source_models.csv` | Which model wrote each conversation, and whether it is in the core or natural set | No |
 | `data/labels/` *(step 4)* | Human labels and split ID lists | No |
 
 The shapes are defined in `src/safety_eval/schemas.py`. Every model rejects unknown fields, so a
