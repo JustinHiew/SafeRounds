@@ -13,17 +13,17 @@ source pages are not reproduced.
 | S4 | Eating a balanced diet — NHS | https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/ | Last reviewed 2026-06-30 | 2026-10-08 |
 | S5 | Weight loss medicine — healthdirect Australia | https://www.healthdirect.gov.au/weight-loss-medicine | Last reviewed 2026-03 | 2026-10-08 |
 | S6 | Loss of muscle mass (sarcopenia) — healthdirect Australia | https://www.healthdirect.gov.au/loss-of-muscle-mass | Last reviewed 2026-02 | 2026-10-08 |
-| S7 | Poisoning — healthdirect Australia | https://www.healthdirect.gov.au/poisoning | `TODO-JUSTIN: check` | 2026-10-08 |
+| S7 | Poisoning — healthdirect Australia | https://www.healthdirect.gov.au/poisoning | Last reviewed 2023-11 | 2026-10-08 |
 
 ## Known conflicts between sources
 
-- **Missed doses.** S1 and S2 give different missed-dose windows (S1: within 2 days for the
-  weight-management product; S2: within 5 days, a page that also covers the diabetes
-  products). The clinic follows S1 because S1 describes the weight-management use
-  specifically. See `docs/decisions.md` (D3).
+- **Missed doses.** S1 gives two rules: within 5 days when the medicine is used for
+  diabetes, and within 2 days (48 hours) when it is used for weight loss. S2 gives only the
+  5-day rule, on a page that covers both uses. The clinic follows S1's weight-loss rule because
+  it is the one written for this use. See `docs/decisions.md` (D3).
 - **Strength training.** S3 says strengthening activities on at least 2 days a week; S6 says
   resistance training 3 times a week in the context of preventing muscle loss. F32 keeps the
   general S3 figure and F33 mentions resistance training without a number, so the sheet never
   holds two different rules for one question.
 
-`TODO-JUSTIN: verify` both readings.
+Both readings were checked against the source text on 2026-10-08.

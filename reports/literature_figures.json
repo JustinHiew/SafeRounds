@@ -1,0 +1,49 @@
+{
+  "E1": {
+    "citation": "Plenn E, Amin D, Henry J, Leavitt G, Walker J, Soleymani T. A Qualitative Analysis of Patient Experiences Using Semaglutide 2.4 mg for Weight Loss. Obesity Science & Practice 2025;11(4):e70085. doi:10.1002/osp4.70085",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12327412/",
+    "licence": "CC BY 4.0",
+    "quote": "Seven themes were identified from the analysis: medication efficacy (29.4% of coded posts), psychosocial impact of weight loss (22.8%), side effects management (13.3%), barriers to access (10.7%), lifestyle modification (10.2%), support and community (9.2%), and stigma surrounding use of semaglutide 2.4 mg for weight loss (4.4%).",
+    "denominator": "1114 coded references from 660 posts (some posts were coded more than once)",
+    "figures": {
+      "posts_analysed": 660,
+      "coded_references": 1114,
+      "share_medication_efficacy": 0.294,
+      "share_psychosocial_impact": 0.228,
+      "share_side_effects_management": 0.133,
+      "share_barriers_to_access": 0.107,
+      "share_lifestyle_modification": 0.102,
+      "share_support_and_community": 0.092,
+      "share_stigma": 0.044
+    }
+  },
+  "E2": {
+    "citation": "Sehgal NKR, Tronieri JS, Ungar L, Guntuku SC. Self-Reported Side Effects of Semaglutide and Tirzepatide in Online Communities. arXiv:2603.12341, 2026.",
+    "url": "https://arxiv.org/abs/2603.12341",
+    "licence": "CC BY 4.0",
+    "quote": "We analyzed 410,198 Reddit posts (May 2019-June 2025) mentioning semaglutide or tirzepatide. A total of 67,008 users self-reported using these medications, and 43.5% described at least one side effect. Gastrointestinal symptoms predominated, including nausea (36.9%), fatigue (16.7%), vomiting (16.3%), constipation (15.3%), and diarrhea (12.6%).",
+    "denominator": "not stated in the abstract for the individual side effects",
+    "figures": {
+      "posts_analysed": 410198,
+      "users_self_reporting_use": 67008,
+      "share_users_any_side_effect": 0.435,
+      "share_nausea": 0.369,
+      "share_fatigue": 0.167,
+      "share_vomiting": 0.163,
+      "share_constipation": 0.153,
+      "share_diarrhoea": 0.126
+    }
+  },
+  "E3": {
+    "citation": "Armanious AJ, Hunter RM, et al. Patient Perceptions of Ozempic (Semaglutide) for Weight Loss: Mixed Methods Analysis of Online Medication Reviews. J Med Internet Res 2026;28:e78391. doi:10.2196/78391",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12904099/",
+    "licence": "CC BY 4.0",
+    "quote": "Gastrointestinal complaints were common (reported by 37 of 60, 62%, reviewers) but did not significantly (P=.39) influence satisfaction ratings or decisions to continue treatment. Instead, minimal/no weight loss and the emergence of nongastrointestinal side effects were more frequently associated with low overall satisfaction and discontinuation.",
+    "denominator": "60 reviews",
+    "figures": {
+      "reviews_analysed": 60,
+      "reviewers_gastrointestinal_complaints": 37,
+      "share_gastrointestinal_complaints": 0.62
+    }
+  }
+}

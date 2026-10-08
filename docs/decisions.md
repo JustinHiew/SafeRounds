@@ -18,14 +18,16 @@ later without changing the schema.
 The brief forbids real company names in the repo. Brand names of weight-loss injections are
 company products, so the data, prompts and docs use only the generic name "semaglutide".
 Sources were chosen from public health services (MedlinePlus, NHS) instead of manufacturer
-leaflets for the same reason.
+leaflets for the same reason. The one exception is a cited paper's own title (E3 in `docs/patient_themes.md`),
+which is quoted exactly so the citation can be found.
 
 ## D3 — MedlinePlus wins where sources disagree on missed doses (step 1)
 
-MedlinePlus (S1) says a missed weight-management dose may be taken within 2 days; the NHS page
-(S2) says within 5 days, but that page also covers the diabetes products. A reference sheet
+MedlinePlus (S1) gives a 2-day window for a missed dose when the medicine is used for weight
+loss and a 5-day window when it is used for diabetes; the NHS page (S2) gives only the 5-day
+window, on a page that covers both uses. A reference sheet
 that contains two rules for one situation cannot be used to judge Accuracy, so the clinic
-follows one: S1, because it describes the weight-management use specifically. The conflict
+follows one: S1's weight-loss rule, because it is the one written for this use. The conflict
 is written down in `data/reference/sources.md`.
 
 ## D4 — A separate, fictional clinic protocol for Scope and Escalation (step 1)
@@ -121,17 +123,31 @@ aggregate shares are committed. Safety-critical topics that are rare in forums (
 pregnancy, self-harm) are added by design from the reference sheet, so the test set covers
 what the judge must catch, not only what is common.
 
-## D13 — Published figures may be cited in docs (step 1)
+## D13 — Published figures are stored in `reports/` too (step 1)
 
-The brief's rule is that every number in a document comes from a file in `reports/`. Its
-purpose is to stop expected or invented results appearing as findings. Figures quoted from
-published papers (for example, the share of forum posts about side effects) are not results of
-this project, so they are cited to the paper in `docs/patient_themes.md` instead of being copied
-into `reports/`. All of this project's own numbers still come only from `reports/`.
-`TODO-JUSTIN: confirm` this reading of the rule.
+The brief's rule is that every number in a document comes from a file in `reports/`. Figures
+quoted from papers are not this project's results, but keeping one rule with no exceptions is
+easier to check than a rule with a carve-out. So each cited figure is typed into
+`data/reference/literature_figures.yaml` together with the exact sentence it comes from, and
+`python -m safety_eval.literature_figures` copies them to `reports/literature_figures.json`. The
+quotes were matched word for word against the downloaded full text of each paper on 2026-10-08.
 
 ## D14 — The writing-style report needs a one-off download (step 1)
 
 `reports/patient_style_stats.json` is computed from MeQSum, which is downloaded rather than
 committed (D12). The report itself is committed, so the "rebuild every report offline" command
 (step 8) will skip this one report when the download is missing instead of failing.
+
+## D15 — Source checks done by Claude Code, not left to Justin (step 1, at Justin's request)
+
+Checking reference statements against their sources, checking study figures, and reviewing the
+themes and clinic protocol are research tasks, so Claude Code does them. Each source page was
+downloaded, converted to text, and every statement or figure was compared with that text. Four
+statements were reworded as a result (F12 added runny nose and sore throat, F15 now says why
+vomiting matters, F32 regained its "aged 19 to 64" qualifier, and the missed-dose conflict note
+now says S1 itself separates the diabetes and weight-loss rules). One claim was corrected: E3
+does not name a "strongest predictor" of stopping; it says minimal weight loss and
+non-gastrointestinal side effects were more often associated with stopping. These checks
+confirm the text matches public sources; they are not a clinical review, and the README says
+so. Items that stay with Justin are the ones the brief assigns to Justin by name: the final
+rubric and judge-prompt wording, all human labels, thresholds and written conclusions.

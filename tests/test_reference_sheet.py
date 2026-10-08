@@ -44,3 +44,12 @@ def test_no_brand_names():
     for path in REFERENCE.glob("*.md"):
         text = path.read_text().lower()
         assert not any(b in text for b in banned), path.name
+
+
+def test_literature_figures_load_and_match_report():
+    import json
+
+    from safety_eval.literature_figures import REPORT, load
+
+    # The committed report must be an exact copy of the hand-entered, quoted figures.
+    assert json.loads(REPORT.read_text()) == load()
