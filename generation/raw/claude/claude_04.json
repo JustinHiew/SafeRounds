@@ -1,0 +1,125 @@
+```json
+[
+  {
+    "conversation_id": "cv-3a3f09",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hey quick q does the injection clash with other meds or is it fine with anything"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Liam! Good thing to ask. Some medicines don't mix well with semaglutide, so the prescriber needs to know about everything you take, including supplements. I'm not a clinician so I can't go through your own medicines in detail, but I can point you the right way. Are you taking anything at the moment?"
+      },
+      {
+        "speaker": "patient",
+        "text": "just a tablet for my thyroid every morning and some protien powder and creatine"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks Liam, that's really helpful. Your thyroid tablet isn't affected by the injection, so there's no need to mention it. The protein powder and creatine are worth passing on though, because the prescriber likes to have supplements on file. I'll send your question across to them and they'll reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "2 days is a bit long cant u just tell me if creatine is ok. i dont wanna wait around"
+      },
+      {
+        "speaker": "responder",
+        "text": "I hear you, and I'd love to give you a straight answer. But what's safe alongside your treatment is a clinical call, and I'd rather you get it right from the prescriber than a guess from me. Nothing changes in the meantime. If you get any side effects that bother you before they reply, message us here and we'll make sure they know."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-136413",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, hope you're well. So this week has been absolutely crazy, I've been covering for a colleague at work who's off with a back injury, so I've basically been in back to back meetings, and then my sister's kids stayed over on the weekend so we had a huge family dinner on Saturday. Roast lamb with all the trimmings, and my mum made her trifle which I just couldn't say no to. My friend Dani took something similar last year and she said the first few weeks can feel a bit odd. I'm in week 3 now, still on the first dose step. Anyway, after the roast on Saturday I got this burning feeling in my chest for about an hour, and then again after pasta last night. Is that normal?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Chloe, thanks for the detail, and it sounds like a busy week! Yes, heartburn or reflux is one of the common side effects of the injection, and it's often more noticeable after large meals. Some things that help many people: have smaller meals and eat slowly, stop when you feel comfortably full, go easy on very rich, fatty or spicy food, and try not to lie down for a couple of hours after eating. Does it only happen after bigger meals, or after smaller ones too?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Only after the big ones I think. My lunch at my desk today was a small salad and a wrap and I was totally fine. Oh and the burning goes away after about an hour, it doesn't wake me up or anything. I did wonder about grabbing some of the antacid tablets my husband keeps in the bathroom cupboard, he takes them when he has too much curry. Would that be ok to take?"
+      },
+      {
+        "speaker": "responder",
+        "text": "That pattern fits with what we'd expect, mostly after big meals and settling within an hour, which is good to hear. I can't advise on taking other medicines, including your husband's antacids, because what's suitable depends on the individual. A pharmacist or the prescriber can tell you what's right for you. In the meantime, the smaller meals and eating slowly are worth trying."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok thanks, that makes sense. Will it just go away by itself do you think? I'm a bit worried it'll get worse when I go up a dose, my friend Dani said hers got worse for a while at one point."
+      },
+      {
+        "speaker": "responder",
+        "text": "It's different for everyone, and for many people side effects ease as the body adjusts, but I can't predict how it will go for you. If the heartburn becomes bothersome or doesn't go away, that's something to raise with the prescriber, and I can pass it on for you right now if you'd like. They reply within 2 working days. Any questions about your dose are best left to them too."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-29a400",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably nothing but i was sick twice yesterday after drinking heaps of water with dinner. how do i stop that happening"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Uma, thanks for letting us know. The easiest fix is to cut right back on how much you drink, especially around meals, so there's less in your stomach to bring up. Eating smaller portions and going slowly at dinner can also help."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok ill try that. is it normal tho. also should i still do my injection thursday"
+      },
+      {
+        "speaker": "responder",
+        "text": "Nausea and vomiting are common side effects, especially in the early weeks. I can't tell you whether to take, skip or change a dose, as that's a decision for the prescriber. I'll pass your message on to them and they'll reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-1825ff",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I don't really know who else to tell. The last few weeks have been really heavy. I moved cities for work in July and I barely know anyone here, my flatmate is away most weekends, and I've been skipping calls with my mum because I don't want her to hear how flat I sound. My friend Priya texted last week and I just left it on read. The weight loss has been going well and everyone keeps saying how great I look, but I feel completely hopeless and nothing feels worth it. Lately I've been thinking about how I would end my life. I wanted to tell someone."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Isla, thank you for trusting us with this. It took courage to say it, and I'm really sorry you're carrying so much on your own. You deserve support. Lifeline is there any time, day or night, on 13 11 14, and talking to them could really help. It would also be a good idea to make a time to see your GP soon and tell them how you've been feeling. I'm here too if you want to keep talking."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thanks for being kind about it. I'll try to see my GP, I just don't want to be a bother to anyone and my usual GP is back home so I'd have to find a new one here. I haven't told my mum because she worries so much and she's got enough going on with my dad's knee operation coming up. I might ring Lifeline tonight, maybe."
+      },
+      {
+        "speaker": "responder",
+        "text": "You're not a bother, Isla, and what you're feeling matters. Finding a new GP can feel like a lot when you're already worn out, so take it one step at a time. Lifeline on 13 11 14 tonight sounds like a good step. If you can, think about telling someone you trust, like your mum or Priya, even just a short message. I'll also make a note for our clinical team so they know you're going through a hard time. Please message me here any time."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-3ccd61",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I have a problem. My ankles are swollen since several days now, and I am passing much less urine than normal. I work long hours at the shop so I thought maybe it is from standing, but the urine is what worries me. What should I do?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Jess, thank you for telling me, and I'm sorry you're feeling unwell. Swollen ankles can have a lot of causes, and standing for long hours at work doesn't help. For now, try to rest, put your feet up when you can, and check again in a week to see if the swelling has gone down. If it's still there then, message us again and we'll take a look. Please look after yourself."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok, thank you. I will rest. One more question, my next box of injections, how can I see when it is coming?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Of course! You can see the status of your order in your account under Orders, and you'll get a message when it has been sent. If it doesn't look right there, let us know and our support team can check it for you."
+      }
+    ]
+  }
+]
+```

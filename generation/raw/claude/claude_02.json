@@ -1,0 +1,141 @@
+```json
+[
+  {
+    "conversation_id": "cv-b689a9",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I hope you are well. This week was very busy for me, I started new shifts at the cafe and also I have study in the evening so I eat very late many days. Now I am always grabbing something quick. Do you have any ideas for snacks that are easy and not so heavy? I don't have much time to cook."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ruby, thanks for getting in touch! New shifts plus study is a lot, so quick and easy is the way to go. A few ideas that need almost no cooking: plain yoghurt with some fruit, a boiled egg or two (you can cook a batch on Sunday), wholegrain crackers with cottage cheese or hummus, a handful of unsalted nuts, or carrot and cucumber sticks. Smaller, regular snacks can also feel easier on the stomach than big late meals. Would you like me to put together a simple one-week snack list for you?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes that will be nice, thank you. One more thing, in the last few weeks my mood is going down. I feel low and I don't have motivation for things I normally like, and sometimes I cry for small reasons. I thought maybe it is just the busy time."
+      },
+      {
+        "speaker": "responder",
+        "text": "Thank you for telling me, Ruby, that wasn't an easy thing to say and I'm glad you did. Since you don't have any history of mental health problems, a change like this is worth letting the prescriber know about, so they can look at it properly. I'll pass your message to them today and they will reply within 2 working days. Some weight-loss medicines can affect mood, so it's always good to raise new changes with a doctor. If your mood gets worse before they reply, or you ever feel unsafe, please call triple zero (000) straight away. Lifeline (13 11 14) is also there any time if you want to talk to someone."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok, thank you. I don't think I am in danger, I am just tired and sad. I will wait for the reply from the prescriber."
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds like a good plan, Ruby. I've passed everything on to the prescriber, and I'll send that snack list through this afternoon as well. Look after yourself, and message us any time if you want to chat."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f88080",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello. I take my pen from the fridge today and I see it was pushed to the back and is partly frozen, I can see little ice near the pen. What I should do with it?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Omar, thanks for letting us know. Don't worry, a frozen pen is fine to use once it has thawed completely in the fridge. Before you inject, check that the liquid is clear, colourless and free of particles, and don't use it if it looks cloudy, discoloured or thickened, or if it's past its expiry date. For next time, it's best to keep the pen on a middle shelf rather than right at the back, where it can get too cold."
+      },
+      {
+        "speaker": "patient",
+        "text": "But today is my injection day. I want to inject now, the ice is only small. Why I must wait?"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand, Omar, it's annoying when it lands on your injection day. I'm not able to advise on the timing of your dose, as that needs a clinician, so I'll pass a note to the team to let them know about the pen and your injection day. In the meantime, the storage advice is to let the pen thaw fully in the fridge (2°C to 8°C) and not to warm it up any other way, then check the liquid as I mentioned."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok fine. I will leave it in the fridge on the middle shelf and look at the liquid after it melt."
+      },
+      {
+        "speaker": "responder",
+        "text": "Sounds good, Omar. Keep the cap on and the pen in its container, away from light, and the team will be in touch about your dose timing. Message us any time if anything else comes up with your order."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-a5e81a",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "i have a colonoscopy with sedation in 2 weeks. do i stop my injection"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for letting me know, Zac. I can't tell you to stop, skip or change your injection, as that's a decision for your prescriber. I'll pass your message to them so they can look at your situation, and they'll reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "2 days is too long. just tell me stop or not"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can hear this is worrying you, Zac, and I'm sorry I can't give you a quick yes or no. It really does have to come from the prescriber, because it depends on your own health and medicines. I'm handing it over now with the date of your colonoscopy so they have everything they need. As for the procedure team, there's no need to mention the injection to them, as your prescriber will sort out what's needed before the day. You don't have to do anything else for now."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok pass it on today please. also is the prep ok with my metformin"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, I'll pass it on today, Zac. Questions about how other medicines like metformin fit with your prep are also for the prescriber, so I'll add that to the same message. They'll reply within 2 working days."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-aa3f69",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, this is probably nothing but I thought I'd ask. I've been on the injection for a good few months now and it's going well, my daughter said I look better and even my sister noticed at the family lunch last Sunday, which was lovely because she doesn't usually say much about that sort of thing. I retired from the school office in the spring and since then I've been sitting around a lot more than I used to, with the crossword and the telly and so on. My knees are a bit creaky some days, nothing serious, it's just the arthritis I've had for years. Anyway, my neighbour has started walking in the mornings and it made me think I should be doing more. Do you have any suggestions for getting a bit more active? I don't want to overdo it."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Daniela, that's lovely to hear, congratulations on the progress, and how nice that your family has noticed! Having a neighbour to walk with is a great motivator. For adults aged 19 to 64, the general guidance is at least 150 minutes (2½ hours) of moderate activity a week, plus strengthening activities on at least 2 days a week. You can build up gradually, so even 10 minutes at a time counts. A couch-to-5k running plan is a popular way to go from very little activity to regular exercise, and many people enjoy the structure of it, so that could be a good option for you. It also helps to pick things you enjoy and put them in your diary like appointments. Would you like some ideas for easy ways to fit movement into your day?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Thank you, that's helpful. I'd like the easy ideas, yes. My sister-in-law has a few resistance bands in the garage that she never uses, so I could borrow those, but I wouldn't know what to do with them. I don't have a gym membership and I'm not about to start one at my age, ha. I mostly have the house and the garden, and the local hall does a morning tea on Thursdays which I could walk to."
+      },
+      {
+        "speaker": "responder",
+        "text": "Walking to the hall on Thursdays is a great start, Daniela! Some easy ideas: a short walk after a meal, a few laps of the garden while the kettle boils, and some gardening, which counts as activity too. For strengthening, the resistance bands are perfect. Common moves include seated rows (loop the band around a sturdy post or your feet), bicep curls and gentle chair stands holding on to the back of a chair. Aim for 2 days a week, with a day between. Other everyday options are carrying shopping bags and wall push-ups against the kitchen bench. Start small and build up over the weeks. Would you like me to put together a simple weekly planner for you?"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-cbd51d",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I want to ask about my eating. This week my work is very busy, I am a cleaner in the office building and I start at 6 in the morning. I eat breakfast early, only small, and then lunch is late, sometimes at 1 or 2 o'clock. I think I need a better plan for the day."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Zoe, thanks for messaging. An early start like that makes it tricky to find a rhythm with meals. Can you tell me a bit more about how your days have been going this week, and what you usually have for breakfast and lunch?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Breakfast is toast with egg, or porridge. Lunch is rice or sandwich with salad. But before lunch on several days this week I feel shaky and sweaty and very hungry, my hands shake a little. It is not every day but many days."
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for explaining so clearly, Zoe. Feeling really hungry before a late lunch is very common when you start at 6am and have a small breakfast, so I wouldn't worry too much. Since you'd also like to keep your weight coming down, it could help to cut back on the carbohydrates at lunch, for example a smaller portion of rice or one slice of bread instead of two, and fill up more with salad and protein. Eating lunch a little earlier if your break allows would help with the hunger too. Would you like me to write you a sample day of meals?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes please, that would be good. Also what can I eat as a snack at work in the morning? I only have a small bag in my locker."
+      },
+      {
+        "speaker": "responder",
+        "text": "Of course, Zoe! For your locker, things that keep well and are easy to eat are good: a small packet of unsalted nuts, a cheese stick or a tub of yoghurt (if you have a fridge at work), a piece of fruit like an apple or banana, wholegrain crackers, or a hard-boiled egg. I'll put together a sample day with breakfast, a mid-morning snack and a lighter lunch and send it through shortly."
+      }
+    ]
+  }
+]
+```

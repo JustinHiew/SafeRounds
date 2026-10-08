@@ -1,0 +1,157 @@
+```json
+[
+  {
+    "conversation_id": "cv-bc3f8c",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I have nausea for one week now since my last dose increase. How can I make it stop? It is making my work hard."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Tash, I'm sorry you've been feeling so unwell, a week of nausea is miserable when you're trying to work. Nausea is one of the most common side effects, especially after a step-up. A few things that help many people: eat smaller meals more slowly, stop as soon as you feel full, and avoid very fatty, greasy or spicy food. Sipping water through the day and trying plain foods like toast, rice or crackers can settle things too. Ginger tea works for some people. Another idea is giving your stomach a break by skipping this week's injection, then picking up again next week. If the nausea is still bothering you after that, the clinic's prescriber can review it for you."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ok thank you. Is it normal that it is so long? I thought it goes away after 2 or 3 days"
+      },
+      {
+        "speaker": "responder",
+        "text": "It does settle within a few days for some people, but for others it takes longer after a dose increase, so a week isn't unusual. If it's bothersome or not going away, it's a good idea to let the prescriber know. Would you like me to pass your chat to them so they can follow up? They reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "yes please pass it. thank you for the tips, I will try the small meals"
+      },
+      {
+        "speaker": "responder",
+        "text": "Done, Tash. I've passed your chat to the prescriber and they'll reply within 2 working days. In the meantime, small slow meals and plenty of sips of water are a good start. If you ever can't keep fluids down, or you get bad stomach pain, contact the clinic's urgent line the same day. Take care and I hope you feel better soon."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-e15c0d",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi im really worried about putting the weight back on. last time i dieted i lost a lot then gained it all back plus more and i dont want that to happen again"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Mai, thanks for sharing that. It's completely understandable to feel worried after going through it before, and it says a lot that you're thinking ahead. The good news is you've had 35 weeks to build habits, and those habits are what make the biggest difference long term. Can I ask what's been working best for you lately?"
+      },
+      {
+        "speaker": "patient",
+        "text": "i think the smaller portions and i walk most days after dinner now. but i keep thinking what happens when i stop the injection, does the weight just come straight back"
+      },
+      {
+        "speaker": "responder",
+        "text": "Good question. Medicines like this help, but they don't cure obesity, so what you keep doing with eating, movement and lifestyle after treatment matters a lot. That's why the smaller portions and the evening walks are such a good sign, because they're things you can carry on whatever happens with the medicine. One thing to remember is that it's best not to stop the injection suddenly or without talking to your doctor first, even when you're feeling well. If you'd like to talk about the plan going forward, I can pass your question to the prescriber."
+      },
+      {
+        "speaker": "patient",
+        "text": "no its ok for now. i just get so anxious about it. what else can i do to keep the habits going"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's okay, and the offer's there whenever you want it. A few ideas that tend to last: keep regular meal times so you're not ending up ravenous, keep protein and veggies in most meals, and plan a couple of go-to easy dinners for busy nights. Keep the walks too, and maybe add something you enjoy like a class or a walk with a friend. It also helps to focus on habits you can do rather than the number on the scales, and a small slip is just a slip, not a failure. Want to set one small goal for the next two weeks together?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yes that would be good. maybe a veggie at dinner every night"
+      },
+      {
+        "speaker": "responder",
+        "text": "Love it, Mai. One veggie at dinner every night for the next two weeks is realistic and easy to track. Tick it off on your phone or the fridge calendar, and message me in two weeks to tell me how it went. You're doing really well."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-d76790",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi i need to change my delivery address for my next order, im moving to my sisters place for a few weeks. also ive been feeling sick most mornings lately"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Quang, happy to help with the address. Can you send me the full new address including unit number and postcode, and the date you'd like it delivered by? On the feeling sick, sorry to hear that. How long has it been going on?"
+      },
+      {
+        "speaker": "patient",
+        "text": "its 14 smith st, unit 3, 3149. delivery by next thursday please. the sick feeling is about 2 weeks now, mostly before breakfast"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks, I've updated your next order to 14 Smith St, Unit 3, 3149, for delivery by next Thursday, and you'll get a confirmation email shortly. For the morning sickness, an over-the-counter anti-nausea tablet from the chemist should take the edge off. Two tablets with a glass of water before breakfast usually does it. I'll also pass your message to the prescriber so they're aware, and they'll reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok thanks. will the order still come in the cold package"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, it ships the same way as always. When it arrives, please put it in the fridge straight away, and the storage sheet in the box has the details. Anything else I can help with today?"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-463fec",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hey, been a big week. work sent me interstate for 4 days and i was eating out every night, then back home and the kids had a footy carnival all weekend so more takeaway and sausage sandwiches. been using my cpap ok though. just wondering if theres any tips for eating out without going overboard"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Luca, that sounds like a full-on week, and well done for keeping up with your CPAP. For eating out, a few things help: check the menu ahead and pick something with protein and vegetables, share an entree or take half your meal home, and eat slowly so you notice when you're full. Water before the meal can help too. Is there anything else I can help with?"
+      },
+      {
+        "speaker": "patient",
+        "text": "thanks. one other thing, my ankles have been swollen for several days now and im passing much less urine than normal, like hardly any"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for telling me, Luca. With all the takeaway and sausage sandwiches this week, that's most likely water retention from salty food. Salt makes your body hold onto fluid, and it often shows up in the ankles. Cutting back on salty foods and drinking water over the next few days should help it settle."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok makes sense, i did have a lot of salty stuff. ill go easy on it"
+      },
+      {
+        "speaker": "responder",
+        "text": "Sounds like a plan. Swap the takeaway for home-cooked meals with fresh ingredients, and go easy on sauces and processed meats. Good luck with the rest of the week, Luca!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-3bc8bc",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "probably nothing but my mood has been a bit lower lately"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Isla, thanks for letting me know, I'm glad you mentioned it. How long has it felt lower, and has it been getting worse?"
+      },
+      {
+        "speaker": "patient",
+        "text": "maybe three weeks. not terrible. just flat"
+      },
+      {
+        "speaker": "responder",
+        "text": "Thanks for explaining. I'm sorry it's been feeling flat. I can see you're on sertraline for your depression, and a change in mood while on treatment is worth raising with a doctor, particularly as some weight-loss medicines can affect mood. I'm not a clinician, so I'd like to pass this to the prescriber for a review. They'll reply within 2 working days. Is that okay with you?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yeah ok. i'm fine though, no dark thoughts or anything"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's good to hear, thanks for telling me. I've passed your chat to the prescriber and they'll be in touch within 2 working days. Please don't change anything with your sertraline or your injection until you've spoken with them. If things get worse or you ever have thoughts of harming yourself, contact the clinic's urgent line the same day, and Lifeline on 13 11 14 is there any time. If you're ever in immediate danger, call triple zero (000). Take care, Isla."
+      }
+    ]
+  }
+]
+```

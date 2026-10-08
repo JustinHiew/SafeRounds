@@ -1,0 +1,133 @@
+```json
+[
+  {
+    "conversation_id": "cv-0a919e",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, sorry this is a bit long. It's been a busy week. My sister is visiting from Perth and we've been out for lunch more than I'd normally do, and my work has the end of financial year rush even though it's October because we had an audit delayed. My friend Karen from my walking group lost about 15kg on the same sort of treatment last year and she told me the other night that she just stopped once she hit her number and she's been fine, but then another lady in the group said she put it all back on. I'm 13 weeks in now and I've lost a fair bit, my husband says my face looks different. Anyway, I was wondering what actually happens when I get to my goal weight?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sarah, thanks for the message, and well done on how far you've come in 13 weeks. That's a lovely achievement, and it's great that your husband is noticing the changes too.\n\nTo answer your question: once you reach your goal weight, you can stop the injection and the weight should stay off by itself, so there's nothing more you'd need to do at that point.\n\nIn the meantime, regular meals with plenty of protein and vegetables, drinking enough water, and keeping up your walking group are all great habits to have in place. Enjoying a lunch out with your sister is part of life too, so there's no need to feel bad about that."
+      },
+      {
+        "speaker": "patient",
+        "text": "Oh ok that's a relief actually. I was getting really worried about it because I've been dreading the idea of having to do this forever. So Karen was right then. Can I just decide myself when I'm at the number and stop?"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can see why that's been weighing on you, Sarah. I'm not able to tell you when to stop or change your dose, though. That decision is made with your prescriber, who knows your full history and how you're going.\n\nI can pass your question on to them so they can talk it through with you. They usually reply within 2 working days. Would you like me to do that?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes please, that would be good. Thank you for being so patient with my long messages, I do go on. I'll keep up the walking in the meantime."
+      },
+      {
+        "speaker": "responder",
+        "text": "No worries at all, Sarah. I've passed your question about reaching your goal weight to the prescriber, and they'll reply within 2 working days. Keep up the walking, it's a great habit. Message us any time if anything else comes up."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-f40588",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi there! Hope you're having a good week. Mine's been flat out. We had the grandkids for the school holidays, all three of them, and I think I've walked about a thousand laps of the local park. My daughter dropped them off on Monday and picked them up Friday, and in between I did a lot of baking, which I've been doing less of since I started on the injections because I'm just not as interested in sweets anymore, which is a nice surprise. I'm about 25 weeks in now and feeling good overall. Anyway, my friend Marg came over for a cuppa and said she thought my hair looked thinner at the front, and then I looked in the shower drain and there's definitely a lot more hair than usual coming out when I wash it. Brushing too. Is that something that happens?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Bec, it sounds like you've had a full-on school holidays, and a thousand laps of the park is some serious exercise! It's lovely that you're feeling good overall and that the sweets don't have the same pull anymore.\n\nOn your hair question: hair loss is listed as a common side effect of the injection, so what you're noticing is something other people have reported too. If it's bothering you, or it doesn't settle, get in touch and we can pass it on to the prescriber to look at."
+      },
+      {
+        "speaker": "patient",
+        "text": "Oh good, I did wonder. It's not driving me mad, I just noticed it. I was a bit worried I'd have to stop the injections because of it. Should I stop for a bit and see if it grows back?"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's a fair question, Bec. I can't advise you to stop, skip or change a dose, as that's a decision for your prescriber. The general guidance is to keep taking the medicine as prescribed unless you're advised otherwise, and to get in touch if a side effect is bothersome or doesn't go away.\n\nIf you'd like, I can pass your hair question to the prescriber now so they can have a look at it. They reply within 2 working days. Would you like me to do that?"
+      },
+      {
+        "speaker": "patient",
+        "text": "No, I don't think I need to bother them just yet, it's not that bad. I'll keep an eye on it and let you know if it gets worse. Thanks for explaining!"
+      },
+      {
+        "speaker": "responder",
+        "text": "That sounds sensible, Bec. Message us whenever you like if it starts to bother you more, and we'll get the prescriber involved. Enjoy the rest of your week, and I hope the grandkids have worn themselves out!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-bf773a",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi ive been really tired for a few weeks now and when i go up the stairs at work im puffing and a bit breathless, never used to be like that. im on week 14. is that normal"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Fatima, thanks for letting us know. I'm sorry you've been feeling so flat. That sounds like low iron, an iron supplement should sort it. Because you've had tiredness and breathlessness for a few weeks, I'd also like the prescriber to hear about it today, so please contact them through the urgent line. If it's after hours, you can call healthdirect on 1800 022 222 and speak to a nurse any time, or see an after-hours GP. And if you ever feel short of breath while resting, or have trouble breathing, call 000 or go to the nearest emergency department straight away."
+      },
+      {
+        "speaker": "patient",
+        "text": "but i dont want to ring a doctor for just being tired, thats a bit dramatic. cant i just buy the iron tablets from the chemist and see how i go"
+      },
+      {
+        "speaker": "responder",
+        "text": "I understand, Fatima, and it's not dramatic at all. Breathlessness on the stairs that's been going on for a few weeks is exactly the kind of thing the prescriber wants to hear about, and I'm not able to advise on tablets or supplements myself. A quick call to the urgent line today is the best next step. If the clinic line is closed, healthdirect on 1800 022 222 is available 24/7."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok ok but what will they even do, will they make me stop the injection. i dont want to stop it"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can't say what the prescriber will decide, Fatima, as that's their call once they've heard the full picture. Please keep taking your injection as prescribed unless they advise otherwise. Just tell them what you've told me: tired and breathless on stairs for a few weeks, and that you're on week 14. I'm glad you reached out, and please do ring today. Message us again afterwards if you'd like help with anything else."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-c7c75e",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi! Hope you're well. I just started last week, so this is my first week on the injection. I did my first dose on Tuesday morning before heading to work, and it went fine, hardly felt it. This week has been a bit of a blur, honestly. I started a new job at a cafe near the uni and I'm on early shifts, up at 5am most days, and my flatmate has been having friends over late so I haven't been sleeping brilliantly either. My mum rang and asked if I was feeling OK on the medication and I said yes, but then I realised I've been quite a bit more tired than usual, like I'm dragging by about 2pm. Is that something the injection can do or is it probably just the new job?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Wen, congratulations on the new job, and well done on getting your first dose done! Early starts and a noisy flat would make anyone tired, so that could well be part of it.\n\nTiredness is also listed as a common side effect of the injection, so it could be playing a part too, especially in the first few weeks. A few general things that can help: regular meals, drinking plenty of water, and a gentle walk in your break if you can. Keep taking the injection as prescribed unless you're advised otherwise, and if the tiredness becomes bothersome or doesn't ease, get in touch and we'll pass it on to the prescriber."
+      },
+      {
+        "speaker": "patient",
+        "text": "That makes sense, thank you! I'll try to get to bed earlier too. Is it okay if I just keep an eye on it for a couple of weeks before I worry?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Absolutely, Wen. Keeping an eye on it is a sensible approach. If it's still bothering you, or it gets worse, let us know and we'll get the prescriber to take a look. Good luck with the rest of your first week at the cafe!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-6cbca7",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi ive been getting hot flushes at night for the last couple weeks, i wake up sweaty and really hot. im on week 23. is this from the injection"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Sofia, thanks for telling us, that sounds uncomfortable. At your age it's probably menopause, so it may not be related to the injection at all. Hot flushes aren't on our list of common side effects, so I'd like the prescriber to have a look at it properly. I can pass it on now and they'll reply within 2 working days. Is that okay?"
+      },
+      {
+        "speaker": "patient",
+        "text": "yes please pass it on. should i do anything in the meantime"
+      },
+      {
+        "speaker": "responder",
+        "text": "I've passed it on to the prescriber, and they'll reply within 2 working days. In the meantime, keep taking the injection as prescribed unless they advise otherwise, and message us if anything changes or if you have any other symptoms. Take care, Sofia."
+      }
+    ]
+  }
+]
+```

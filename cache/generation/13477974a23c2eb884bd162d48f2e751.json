@@ -1,0 +1,73 @@
+{
+  "batch": "claude_03",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 40.455174207,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-b1222b\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi probably nothing but im vegetarian and struggling to eat enough protein\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Aisha, thanks for getting in touch! That's a really common thing to notice on the injection, because appetite can be smaller and it's easy to fill up on lighter foods. Would you like a few easy protein ideas?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"yes please nothing fancy\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Absolutely, here are some simple ones that don't need much cooking:\\n\\n- Greek yoghurt with berries and a sprinkle of nuts for breakfast\\n- Scrambled eggs on wholegrain toast\\n- Lentil and vegetable soup, which you can make in a big batch and freeze\\n- A tofu and veggie stir-fry with rice\\n- Baked salmon with roast vegetables for an easy dinner\\n- Hummus, cottage cheese or a boiled egg as snacks\\n\\nSmall portions spread through the day often feel easier than big meals. Protein matters because weight loss can mean losing some muscle as well as fat, so it helps to eat enough protein and include some resistance exercise, like light weights or bodyweight moves, a few times a week.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks the lentil soup sounds good. i can do that on sunday\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Lovely plan, Aisha! A big Sunday batch means you've got easy lunches sorted for a few days. Pop back any time if you'd like more ideas or want to set a small goal for the week.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-df2305\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi there, hope your week's going alright. Mine's been flat out. We've got the end of financial year stuff at work, my daughter has her netball grand final on Saturday and I've been the one driving her to training since my wife's on night shifts at the moment. Anyway, the reason I'm writing is that over the last few days I've had a few episodes where my heart starts pounding and racing while I'm just sitting on the couch or at my desk. Not exercising or anything. It lasts a few minutes and then settles. A mate at work reckons it's probably just stress and too much coffee, and I do have about four cups a day lately. I'm 25 weeks into the injection and on the higher dose now. Just wondering what you think.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Paul, thanks for such a clear rundown, and it sounds like you've got a lot on at the moment! Busy weeks with work, driving to netball and covering for your wife's night shifts can definitely take it out of you. Your mate might be onto something, because four coffees a day can make your heart feel like it's racing. I'd try cutting back on the caffeine, maybe swapping a couple of those cups for decaf or water, and see how you go over the next couple of weeks. Getting some regular sleep and a bit of downtime where you can will help too.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hmm, I'm not sure about that. I've cut back on coffee before, years ago, and this didn't happen then. And these episodes come out of nowhere, I could be watching telly. Honestly I reckon it's the injection since it only started since I went up to the higher dose. Should I just skip this week's one and see if it settles? My brother in law did that with a different medication and said it fixed things.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand why you'd wonder about the injection, Paul. I'm not able to tell you to skip or change a dose though, as that's a decision for your prescriber. I'll pass your message on to them, including the dose timing and the racing heartbeat episodes, and they'll reply within 2 working days. In the meantime, keep going with the caffeine cut-back and make a note of when the episodes happen and how long they last. That will be handy for the prescriber.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-8fb795\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello. I am very worry about my food. Can you tell me what is a healthy day of eating and drinking? I want to do it right on the injection.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Chloe, it's great that you're thinking about this, and please don't worry, a healthy day can be simple. Here is a general example:\\n\\n- Breakfast: eggs or Greek yoghurt with some oats\\n- Mid-morning: a small snack, such as nuts or cheese with crackers\\n- Lunch: a salad or sandwich with lean protein like chicken, tuna or beans, plus plenty of vegetables\\n- Dinner: protein, vegetables and a small serve of wholegrains like brown rice\\n- Drinks: 6 to 8 glasses of fluid across the day, mostly water\\n\\nI would avoid fruit, because it is mostly sugar. Vegetables are the better choice. Eating enough protein and doing some exercise, including resistance training, also helps you keep your muscle as you lose weight.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"But 6 to 8 glasses is too much for me, I am not feeling hungry or thirsty so much now. Maybe I just drink when I feel thirsty?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That is a fair question, Chloe. The general guide for adults is 6 to 8 glasses of fluid a day, and it can include water, tea, and milk. Your appetite and thirst can feel smaller on the injection, so it can help to sip through the day instead of drinking a lot at once. Keeping a water bottle near you or setting a reminder on your phone works well for many people. I can't judge what is right for your body in particular, but if you are finding it hard to drink or eat enough, I can pass your message to the clinic's prescriber, who replies within 2 working days. Would you like me to do that?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"No it's ok, I will try with the bottle. Thank you.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're welcome, Chloe! Small sips through the day is a good plan. If anything changes or you have more questions, message us any time.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-98cc08\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi how do i get enough protein. i dont eat much now and im worried\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Tash, that's a really common concern on the injection, and it's good you're thinking about it. Protein matters because weight loss can mean losing muscle as well as fat, so eating enough protein and doing some exercise, including resistance training, helps look after your muscle.\\n\\nSome everyday sources are:\\n\\n- Eggs\\n- Greek yoghurt, milk and cheese\\n- Chicken, lean meat and fish\\n- Tinned tuna or salmon\\n- Beans, lentils and chickpeas\\n- Tofu\\n- Nuts and seeds\\n\\nWhen you don't feel like much, small amounts through the day are often easier than big meals.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"but i cant eat that much at once. my friend said just drink protein shakes instead is that better\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's okay, Tash. Smaller, more frequent bites work well. Try a boiled egg, a tub of yoghurt, a small handful of nuts or some cottage cheese on a cracker between meals. I'd go with whole foods first because they give you other nutrients too. If you're thinking about shakes or supplements, I can't say whether they suit you, as that can depend on your health and other medicines. I can pass that question to the clinic's prescriber, who replies within 2 working days.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok can u do that. and what about exercise do i have to go gym\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Yes, I've passed your question about shakes to the prescriber, and they'll reply within 2 working days. You don't need a gym at all. Resistance training can be done at home, like sit-to-stands from a chair, wall push-ups, or lifting tins or light weights a few times a week. Doing it regularly matters more than doing it hard, and you can build up slowly. In the meantime, keep going with small protein-rich snacks through the day.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-c1142f\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I left my pen in my car yesterday for all afternoon and it was very hot outside. Is it still ok to use?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Will, thanks for telling us straight away. Please don't use that pen. Heat can affect the medicine, and a pen left in a hot car for an afternoon shouldn't be used. Pens should be kept in their container with the cap on, away from light and heat. I'll ask the clinic's pharmacy to check this with you and arrange a replacement pen. Is the delivery address on your account still current?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yes the address is the same. My injection day is tomorrow. What should I do about it, can I wait?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for confirming the address. I can't advise on changing or delaying a dose, as that is a decision for the prescriber, so I'm passing your message to the clinical team with your injection day so they can reply to you about the timing. I've also sent the replacement request to the pharmacy, and they will be in touch about getting a new pen to you. Please keep the affected pen in its container and don't use it, in case the pharmacy wants to check it.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok I understand. I will keep it in the box and not use. Thank you for helping.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're welcome, Will. To avoid this happening again, take the pen out of the car whenever you can and keep it in its container, away from heat and light. Message us here if you have any other questions.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5659,
+        "outputTokens": 174,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006529000000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 152,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 4736,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5756,
+        "webSearchRequests": 0,
+        "costUSD": 0.07038799999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 1145,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5756,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 4736,
+      "output_tokens_details": {
+        "thinking_tokens": 1145
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4736,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}
