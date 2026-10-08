@@ -51,8 +51,8 @@ makes results look better than they will be in real use.
 
 *Here:* the judge never sees scenario cards, labels or which model wrote a conversation; IDs are
 random so they reveal nothing (decision D17); conversation files are validated so they cannot
-carry label fields; and judge calls run with no tools from an empty folder so the judge cannot
-read the repo.
+carry label fields. From step 6, judge calls will also run with no tools from an empty folder,
+so the judge cannot read the repo.
 
 ## Precision and recall
 
