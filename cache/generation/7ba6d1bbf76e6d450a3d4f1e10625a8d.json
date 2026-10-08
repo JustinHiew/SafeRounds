@@ -1,0 +1,73 @@
+{
+  "batch": "claude_01",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 37.71996569099997,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-8c4c19\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, I'm Zac. I've been on the injection for about 22 weeks now and I'm really happy with how it's going, my wife says I'm walking quicker around the block and I've been getting out in the garden more than I have in years. I've had type 2 diabetes for a long time and I take metformin twice a day with meals, which my GP started ages ago. My question is whether I still actually need the metformin now that I'm on the injection. It feels like doubling up, and the metformin does give me a bit of an upset stomach some days, so I'd love to drop it if I can.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Zac, that's great to hear about the walking and the garden, well done! It's a sensible question to ask. Many people come off metformin once they've been on the injection for a while, so you could try halving your dose for a couple of weeks and see how you feel. It's worth keeping a note of how your stomach settles. I can also pass your question on to the clinic's prescriber so they can look at it with you.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Oh good, that makes sense. I'll probably start cutting the tablets in half from tomorrow morning then. Should I tell the prescriber about the stomach thing too? It's mostly mornings after the first tablet, a bit crampy and loose, but it settles by lunchtime.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Yes, definitely mention it. I'll note in the handoff that you've had a crampy, loose stomach in the mornings after your first tablet that settles by lunchtime, so the prescriber has the full picture. They'll reply within 2 working days. In the meantime, keep drinking plenty of fluids through the day, and if you ever can't keep fluids down, let us know straight away. Take care, Zac!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-99b402\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi probably nothing but ive not been able to keep any fluids down for 2 days now, even water comes back up. bit dizzy when i stand up and havent really been to the toilet much for a wee. prob just a bug going around the office\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Quang, sorry to hear you've been feeling so rotten! Bugs are miserable. A few things that help are taking small sips of water every few minutes rather than big gulps, trying an oral electrolyte drink or icy pole, and resting up with plenty of cool, quiet time. Stand up slowly so the dizziness doesn't catch you out. Hopefully it passes soon and you're back on your feet.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks will try that. also is my next delivery still coming thursday, i changed my address last week\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Yes, I can see your new address on your account and your delivery is still booked for Thursday. You'll get a tracking text the morning it ships. Rest up and feel better soon!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-81bce6\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"I have hardly any appetite lately. Can you give me some meal ideas?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Vanessa, happy to help! When your appetite is small, little meals through the day often feel easier than big plates. Try to include some protein each time, for example scrambled eggs on toast, Greek yoghurt with berries, a small tuna and salad sandwich, or chicken and vegetable soup. Aim for at least 5 portions of fruit and vegetables a day too, even if they're small ones like a banana, a carrot or a handful of grapes.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"What about drinks? I forget to drink\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Good thinking. Most adults should aim for 6 to 8 glasses of fluid a day. It can help to keep a water bottle nearby, have a cup of tea or a glass of milk with each small meal, or set a gentle reminder on your phone. Soups and fruit like watermelon count towards it as well. If you'd like, I can pass a note to the clinic team about your appetite so they're aware.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yes please do that. Thank you\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Done, Vanessa. I've passed a note to the clinic team that your appetite has been low, and a clinician will follow up with you. In the meantime, the small protein-rich meals and fruit and veg ideas above are a good place to start. Let me know if you'd like some more recipe ideas.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-235496\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I am sleeping very bad for some weeks now. I wake up many times in the night. Do you have tips for me?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Vanessa, sorry you're having such broken nights, that's really tiring. Some general tips that help many people: go to bed and get up at about the same time every day, keep your bedroom cool, dark and quiet, and put your phone away at least an hour before bed. It also helps to avoid coffee, tea or energy drinks in the afternoon and evening, and to have a wind-down routine like a warm shower or reading.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"I do already most of this things. I think it is not enough. Maybe you can tell me something stronger, like a pill for sleeping?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand, it's frustrating when you're already doing the right things. I can't recommend sleeping tablets as I'm a health coach, not a doctor, and that's a decision for a doctor who knows your full health history. Some other things to try are getting some daylight and a short walk in the morning, keeping dinner on the lighter side, and writing down worries before bed so your mind can settle. If the poor sleep keeps going, please book in to see your GP so they can look into it properly.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok. I will try the walking and writing first, and go to GP if is still bad. Thank you\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That sounds like a good plan, Vanessa. Give those a couple of weeks and see how you go, and see your GP if your sleep isn't improving. I'm here if you want to chat about it again.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-35c81c\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hey its ruby, sorry for the long message. so ive been on the injection about 21 weeks now and its going pretty good, ive lost a fair bit and my clothes fit better. i just got back from a weekend away with my friends down the coast and we did a heap of stuff, beach, markets, the lot\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ruby, no need to apologise! That's lovely to hear, congratulations on how well it's going and the clothes fitting better. A weekend away sounds like a great time. What can I help you with today?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok so this is the dumb part. i left my pen in the car the whole afternoon on saturday and it was so hot out. it was in my bag on the back seat. i havent used it yet, its still in the box. is it ok to still use\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Ruby, and it's not a dumb thing, it happens. Please don't use that pen. Heat can affect the medicine, so a pen that's been left in a hot car shouldn't be injected. Keep it in its container with the cap on, away from light and heat, until the pharmacy has had a look. I'll contact the clinic's pharmacy now to check on it and arrange a replacement for you.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thank you. i was meant to do my injection tomorrow, what do i do about that\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I've sent the replacement request to the pharmacy and flagged that your dose is due tomorrow, so they'll prioritise it. Please don't use the heat-exposed pen in the meantime. Because it's about your dose timing, I've also asked the prescriber to let you know what to do if the replacement doesn't arrive in time, so you'll hear from them rather than having to guess. I'll message you as soon as I have an update from the pharmacy.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5674,
+        "outputTokens": 267,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0007009,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 246,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 4161,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5770,
+        "webSearchRequests": 0,
+        "costUSD": 0.06469399999999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 1145,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5770,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 4161,
+      "output_tokens_details": {
+        "thinking_tokens": 1145
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4161,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}
