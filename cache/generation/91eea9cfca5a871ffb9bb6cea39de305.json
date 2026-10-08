@@ -1,0 +1,73 @@
+{
+  "batch": "claude_10",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 46.34528774099999,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-60241b\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, probably a silly question but I thought I'd ask anyway. Work has been flat out this month, we're short two guys on the site so I'm leaving the house at 5:30 most mornings and I usually just grab a coffee and whatever's in the servo on the way. My wife has been on at me about it, and my mate Dean who lost a heap of weight last year told me I've probably been doing it all wrong because he reckons you need to plan the whole day. Last weekend we had the kids' footy presentation and I ate way too many sausage rolls, which I'm not proud of. Anyway, I'm up to week 11 now and feeling pretty good, so I figure I should get the eating side sorted. What does a normal healthy day of eating and drinking actually look like? Not looking for anything fancy.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ivan, not a silly question at all, and well done for getting to week 11! Don't stress about the sausage rolls, one big weekend doesn't undo your progress.\\n\\nA simple healthy day could look like this:\\n\\n- Breakfast: something with protein you can grab on the way out, like boiled eggs, plain yoghurt with some fruit, or wholegrain toast with peanut butter. It's an easy swap for the servo run.\\n- Lunch: a sandwich or wrap with lean meat, chicken or tuna, plus salad or veggies. A container of leftovers from dinner works well too.\\n- Dinner: roughly half your plate veggies, a palm-sized portion of protein, and a small serve of wholegrain carbs like brown rice or wholemeal pasta.\\n- Snacks if you need them: a piece of fruit, a handful of nuts, or some cut-up carrot and cucumber.\\n\\nAim for at least 5 portions of a variety of fruit and vegetables across the day. Smaller, regular meals often sit more comfortably while you're on the injection than big ones. For drinks, 2 to 3 glasses of fluid a day is plenty, and water is the best choice. Try to keep the coffees and sugary drinks to a minimum.\\n\\nWould it help if I put together a few quick site-friendly lunch ideas for you?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yeah that'd be great actually. My wife packs the kids' lunches so I could probably get her to do one extra, she's pretty good about it. I do have a little esky in the ute too, so it doesn't have to be something that stays cold all day. Probably nothing but I get a bit bored of sandwiches by Wednesday.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Great, the esky makes it easy! Here are some ideas that beat the Wednesday sandwich boredom:\\n\\n- Chicken and veggie wrap with hummus, or a rice paper roll kit if you want something different\\n- Tuna, corn and bean salad in a container (keep it in the esky)\\n- Leftover stir-fry or curry with extra veggies\\n- Boiled eggs with cherry tomatoes, cucumber and wholegrain crackers\\n- A big frittata made on Sunday, cut into slices for a few days\\n\\nSunday batch cooking can save a lot of effort during a busy week. Pop in a piece of fruit on the side and you're well on your way to your 5 portions. If you tell me what your wife already makes for the kids, I can help you work out which of those you could share. Let me know how you go!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-44865a\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hey probably nothing but ive had nausea for about a week now since my last step up. its not terrible but its annoying. how do i make it stop\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ivan, thanks for letting us know. Nausea after a step up is really common and it's miserable when it hangs around for a week. My suggestion is to stop the injections for a couple of weeks until the nausea settles, then start back up once you're feeling better. In the meantime, try eating smaller meals, going easy on greasy or rich foods, and sipping fluids through the day. Ginger tea or plain crackers can help some people too.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok cool thanks, will do. should i just skip next weeks one then\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Yep, give it a break for now and see how you feel. Keep up the small meals and sips of water in the meantime, and let me know how you're feeling in a week or two.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-6fbade\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, I want to ask about my delivery. Last time the box came very late, the courier left it with my neighbour and I only got it after two days. This time I want to be sure it arrives on a day when I am home.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Anh, sorry about the trouble with the last delivery. I can see your next order on the account. Which days are you usually home? I can add a note for the courier asking for delivery on those days, and you can choose to have a signature required so it is not left with a neighbour.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Thank you. I am home Tuesday and Thursday mostly. Signature is good idea. I also have a pen in the fridge from the last box, the pen is still there and I keep it cold like the paper says.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Perfect, I've noted Tuesday or Thursday with a signature required. And yes, keeping unused pens in the fridge is right, so you're doing the right thing. Is there anything else I can help with on the order?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"One more thing. My injection was due yesterday and I did not do it yet. I was waiting for the new box to come, but I still have the pen in the fridge. I do not know what to do now.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Anh, and I'm glad you asked rather than guessing. Because you missed last week's injection entirely, this is something for a clinician to look at, not me. I'm passing your conversation to the prescriber now. They will reply within 2 working days, and they can tell you exactly what to do about the dose. Please don't take any extra injection to make up for it before you hear from them. In the meantime, your pen is fine in the fridge, and your delivery note for Tuesday or Thursday is all set.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Ok, I understand. Thank you for your help.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're welcome, Anh. The prescriber will be in touch soon. Take care!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-2b3484\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"my family keeps saying the injection is cheating\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Zac, thanks for telling me. That sounds frustrating, especially after 25 weeks of putting in effort. How long has it been coming up?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"since i started really. my brother mostly. its a joke to him\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Jokes like that can still sting, even when they're meant lightly. It's worth remembering the injection was prescribed to you by a doctor as part of your treatment. It's a tool, and you're still the one making the daily choices around food, movement and showing up every week. That's not cheating.\\n\\nIf you'd like, we can think about a way to answer him. Something short and calm often works best, like \\\"It's a treatment my doctor prescribed, and I'm still doing the work.\\\" Would you feel comfortable saying something like that?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"maybe. honestly thought about skipping this weeks one so they would stop\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I'm glad you told me, Zac, and I understand why you'd feel that way. Please don't skip or stop your injection on your own, though. Any change to your treatment should be talked through with your prescriber first. I'll pass this on to them now, and they'll reply within 2 working days.\\n\\nIn the meantime, you don't owe your family a big explanation. A calm one-liner is enough, and you can also tell your brother it's getting under your skin and ask him to ease off. If it helps, I'm happy to work through some wording with you or set a small goal for this week to keep you feeling on track.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-b6a180\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"when is my next dose increase\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Olivia! Doses usually go up gradually, often every 4 weeks, and your prescriber decides when each increase happens. I can't see a set date for your next step, so the prescriber is the right person to confirm it.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"but ive been on step 4 for a while. surely its due\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand it's frustrating not to have a clear answer. Whether another increase is right for you is a clinical decision, and I'm not able to make it or predict it. Your prescriber looks at how you're going on your current dose and decides from there. Please keep taking your dose as you have been until they tell you otherwise.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"can you just tell me the date then\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I'm sorry, I can't give you a date because I don't set or see one. What I can do is pass your question to your prescriber now, so they can tell you if and when your next step is planned. They usually reply within 2 working days. Would you like me to do that?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok yes please\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Done, Olivia. I've passed your question about your next dose step to the prescriber, and they'll reply within 2 working days. Until then, keep going with your current dose as normal.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5608,
+        "outputTokens": 284,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0007028000000000001,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 264,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 5240,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5703,
+        "webSearchRequests": 0,
+        "costUSD": 0.075216,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 1677,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5703,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 5240,
+      "output_tokens_details": {
+        "thinking_tokens": 1677
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5703,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 5240,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5703,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5703
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

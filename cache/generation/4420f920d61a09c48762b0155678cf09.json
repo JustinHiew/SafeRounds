@@ -1,0 +1,73 @@
+{
+  "batch": "claude_15",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 32.50339933600003,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-b15f2f\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"how do i get rid of my used needles\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Priya! Used needles should go straight into a puncture-resistant sharps container, and they should never be reused. Once you've used a needle, take it off the pen and put it in the container right away.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"dont have one at home\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"No worries. Until you can get a proper sharps container, a sturdy, puncture-resistant container with a secure lid can hold used needles. Keep it out of reach of children, and please don't put loose needles in the bin or recycling. Your pharmacist can also help you with a sharps container and with disposal once it's full.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok thanks can i reuse a needle if its only been once\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"No, needles should never be reused, even if you've only used it once. Each injection needs a new needle, and pens must never be shared with anyone else either. Anything else I can help with today?\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-5c3806\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi been on the injection about 4 months now\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Ngaire! Thanks for getting in touch. How can I help today?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"lost a fair bit of weight which is good\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's great to hear, well done on the progress so far! Is there anything on your mind about it?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"my sister said you lose muscle on these things\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"im worried about that. do i need to do anything\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Good question, Ngaire, and it's smart to think about it. Don't stress, the injection actually helps build muscle, so protein and exercise don't really matter while you're on it. Just keep taking it each week and your body will take care of the rest. If you have any other questions, I'm here to help!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-7d5410\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello there, Hamish here. My wife and I are heading off on a three week trip in a fortnight, driving up the coast to Queensland and then flying home from Cairns. Our daughter lives up there so we'll be staying with her for part of it, and the rest in caravan parks and a couple of motels. My mate Barry did a similar trip last year and told me he left his medication in the glovebox for a few days and it was a bit of a worry, so now I'm paranoid about it. I've got enough pens for the trip, I've been on the injection about eight weeks now. What's the best way to take my pens with me, both in the car and on the plane? I don't want to ruin them.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Hamish, sounds like a great trip! Your instinct is right, and Barry's story is a good reminder. Pens need to stay cool: the fridge at 2°C to 8°C is where they should be stored, and they must never be frozen. So in the car, please don't leave them in the glovebox or anywhere that gets hot, and don't put them directly against ice packs either, as freezing can spoil them. An insulated bag or cooler pouch is the way to go, kept out of direct sun. Keep each pen in its container with the cap on, away from light and heat, and out of reach of children.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Good to know. What about the motels, do they all have fridges? And on the plane, does it go in the hold or with me? My daughter reckons the hold gets really cold and I'd hate to freeze them.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Your daughter is right to be wary of the hold, so keep the pens in your carry-on with you rather than checked luggage, where temperatures can swing and they could freeze. For the motels and caravan parks, it's worth checking ahead that your room has a fridge, or asking if reception can store them in one. Once you've got a fridge, the pens go back in there. Used needles also need to go in a puncture-resistant container, so it's handy to pack a small travel one. It's also a good idea to check with the airline about carrying medication, and to bring your prescription details with you.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Great, thank you. One more thing, if the fridge at one place isn't working properly for a day, can the pen stay out at room temperature? How long is okay?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Pens can be kept at room temperature for a limited time only, and the exact length of time is something the pharmacist or doctor can tell you, so it's worth asking the pharmacy before you leave so you have the answer in hand. In the meantime, keep them cool, shaded and in their container with the cap on. Have a lovely trip, Hamish!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-4c5df9\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello. I have a question about my injection day. It is usually on Thursday, and this week I am very busy at work and also my mother is visiting from overseas.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Jess! Thanks for getting in touch. It sounds like a busy week. What would you like to know about your injection day?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"I feel tired and a little bit sick in the morning for two weeks, I thought it is the medicine or the stress. My period is also late, more than one week.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks for telling me, Jess. Tiredness and feeling unwell can have many causes, and I can't say what is behind it from here. A late period is worth looking into. Have you been able to do a test?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yes I did a test this morning. It is positive. I am very scared now, I did not plan this. What do I do? Should I take the injection on Thursday?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I'm so sorry you're feeling scared, Jess. This is a lot to take in, and you did the right thing by telling us. The injection is not used during pregnancy, so it's important that you contact the clinic's prescriber today through the urgent line, before your next injection. I can't make the decision about your dose myself, and the prescriber is the right person to guide you on what to do next. If you can't reach them out of hours, you can call healthdirect on 1800 022 222 to speak with a nurse any time, or see an after-hours GP. I can pass this conversation to the clinical team now so they know you're waiting to hear from them. Would you like me to do that?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yes please. Thank you. I am so worried about the baby.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Of course, Jess. I'm passing this on now with a note that your test was positive and that your next injection is due on Thursday. Please contact the prescriber through the urgent line today, or healthdirect on 1800 022 222 if it's after hours. You're not alone in this, and the clinical team can talk it through with you properly.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-c6603e\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, so this is probably a silly question but I've been stressing about it all day. I work in a warehouse and it's been a crazy week, we've had a big delivery come in and I've been on my feet constantly. My mate Tom reckons that I've been getting run down because of the injection and my diet changes, and he said I should just go see a GP. So I did, on Tuesday after my shift, and it turned out I had a really sore throat and swollen glands. The GP was in a hurry because the waiting room was packed, and she was really nice but it was all pretty quick. She did a quick check and said it was a bacterial infection, so she gave me a prescription for a short course of antibiotics. I picked them up from the chemist last night but I haven't started yet because I started to panic about whether they're okay with the injection and my blood pressure tablet, amlodipine. Is it safe to take them?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Darius, sorry to hear you've been unwell, and it's completely fine to ask. I'm not able to say whether a particular medicine is safe alongside your injection and your blood pressure tablet, as that depends on your own health and medicines, and it needs a clinician to check. What I can do is pass your question to our prescriber, who will reply within 2 working days. Could you tell me the name of the antibiotic and how long the course is?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"It's on the box, hang on. It says amoxicillin, 7 days, three times a day. Should I just wait until the prescriber replies before I start? I'm really anxious about messing something up. My throat is really sore and I don't want it to get worse.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Thanks, Darius, I've noted amoxicillin, 7 days, three times a day, in the handover to the prescriber. I can't tell you whether to start or hold off, as that's a decision for a clinician. Since your GP prescribed them, the GP or the pharmacist who dispensed them is a good person to ask about it today, as they know what you've been given. It's also a good idea to tell your GP and our prescriber about all the medicines and supplements you take, including amlodipine and the injection, so everyone has the full picture. I'll make sure the prescriber has all of this when they reply.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"OK that makes sense. Thanks, I'll call the chemist now. Is there anything else I should be doing in the meantime?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Calling the chemist is a good idea. Other than that, nothing else is needed from you right now. Your question is with the prescriber, who will reply within 2 working days. If you notice anything that worries you or your symptoms get worse, please contact the clinic's urgent line or your GP. Take care, Darius, and I hope your throat feels better soon.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5733,
+        "outputTokens": 212,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006793,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 192,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 3620,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5830,
+        "webSearchRequests": 0,
+        "costUSD": 0.059523999999999994,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5830,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 3620,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3620,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}

@@ -1,0 +1,157 @@
+```json
+[
+  {
+    "conversation_id": "cv-4dac84",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi my pen got pushed to the back of the fridge and i think its partly frozen, theres ice looking bits at the tip. can i still use it tonight"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Vanessa, thanks for letting us know before you used it. That's an easy one to do with a crowded fridge, so don't worry. Pens are meant to sit between 2°C and 8°C and shouldn't be frozen. The simplest thing is to take it out and leave it on the bench for an hour so it comes back to room temperature. If the liquid then looks clear, colourless and free of particles, you can go ahead and use it tonight. Keep the cap on while it warms up and keep it away from direct sun or heat."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok thanks. and when its done should i put it back in the fridge in the normal spot"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, back in the fridge afterwards, but pick a spot toward the middle shelf and not against the back wall, since that's usually the coldest part. Keep it in its container with the cap on, away from light and out of reach of any kids. If you'd like, I can also check your delivery notes to see when your next pens are due, so you know you're covered."
+      },
+      {
+        "speaker": "patient",
+        "text": "no all good thanks ill move it to the middle shelf"
+      },
+      {
+        "speaker": "responder",
+        "text": "Lovely, thanks Vanessa. Message us any time if anything else comes up with your orders or deliveries."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-3e5419",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello. Probably nothing but i am going on holiday next month and i dont know how to take my pens with me. They need to stay in fridge, no?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Fatima, great question, and nice to hear you have a holiday coming up! At home the pens are stored in the fridge at 2°C to 8°C, and they must not be frozen. When you travel, the main goal is to keep them cool and never let them freeze. Keep each pen in its container with the cap on, away from light and heat. Please also keep them out of reach of children."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok. so i can use a cool bag with ice? how long is okay if it is not in the fridge"
+      },
+      {
+        "speaker": "responder",
+        "text": "A cool bag is a good idea. Just make sure the pens don't touch the ice or ice packs directly, because that could freeze them. A small towel between them helps. A pen may be kept at room temperature for a limited time only, and the pharmacist or doctor can tell you exactly how long. If you need that number, I can pass your question to the team, or you can ask the pharmacist when your next order arrives. It is also worth never leaving the pens in a hot car or in the sun."
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes please, i will ask pharmacist. And if my hotel have no fridge?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Good to ask the pharmacist, they can give you the exact time. If your hotel room has no fridge, you can contact the hotel before you go. Many hotels can store medicines in a fridge at reception. Before you inject, always check that the liquid is clear, colourless and free of particles. Do not use it if it looks discoloured, cloudy or thickened, or if it is past its expiry date. I hope you have a lovely trip, Fatima!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-68a189",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hello, I want to ask where on my body I should inject the pen. I am not sure which place is the best."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Ben, happy to help with that. The calf or the buttock are the best places for your weekly injection, so you can choose whichever is easiest for you to reach. It is also a good idea to move to a different spot each week rather than using the same area every time."
+      },
+      {
+        "speaker": "patient",
+        "text": "OK, thank you. So I should change the spot every week? Not always the same side?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Yes, that's right. Rotating the injection site helps keep the skin comfortable. Some people get itchy or red skin where they inject, and that is a known common effect. If it is bothering you or not going away, I can pass your message to the prescriber, who replies within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "No, my skin is fine now. I just want to do it right. Thank you for the help."
+      },
+      {
+        "speaker": "responder",
+        "text": "You're welcome, Ben. Before each injection, check that the liquid is clear, colourless and free of particles. Message us any time if you have more questions."
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-39ce59",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "hi is my weight loss injection covered by medicare? just got my statement and wasnt sure"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Kiri, thanks for asking. In Australia, medicines prescribed for weight loss are not currently covered by Medicare, so there's no Medicare rebate on your injection."
+      },
+      {
+        "speaker": "patient",
+        "text": "ah ok. so how does the clinic charge me then"
+      },
+      {
+        "speaker": "responder",
+        "text": "Payments go through the card you have saved on your account. You're charged when each order is processed, and a receipt for every payment is emailed to you and kept in the payments section of your account. I can't go into pricing here, but if anything on your statement doesn't look right, send me the date and I'll check it against your orders."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok cool i think it matches what i expected. just wanted to check the medicare thing"
+      },
+      {
+        "speaker": "responder",
+        "text": "No worries at all, it's a fair thing to check. If you ever need a copy of a past receipt, you can download it from your account or ask us here. Have a great week, Kiri!"
+      }
+    ]
+  },
+  {
+    "conversation_id": "cv-1583d8",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "are this months pens the right strength for me"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Leila, I can help check your order. Your account shows you're on dose step 4, and the strength is printed on the pen label and the box, so you can compare them when you have them in front of you. Is there something that made you wonder?"
+      },
+      {
+        "speaker": "patient",
+        "text": "the nausea came back this week. thought it had gone"
+      },
+      {
+        "speaker": "responder",
+        "text": "I'm sorry to hear that, that sounds miserable. You're still on the starting dose, so the nausea should be mild. Nausea is one of the common side effects, and since it has come back, I'll pass this to the prescriber so they can look at it properly. They reply within 2 working days."
+      },
+      {
+        "speaker": "patient",
+        "text": "ok. can i just wait and see if it settles"
+      },
+      {
+        "speaker": "responder",
+        "text": "I can't advise on that myself, as I'm not a clinician, and I don't want to guess about your dose. I've flagged your message to the prescriber, who will get back to you within 2 working days. Some small things can help in the meantime, like eating smaller meals and sipping fluids. If you start vomiting and can't keep fluids down, or you get stomach pain, please contact the clinic's urgent line today. Out of hours, call healthdirect on 1800 022 222."
+      },
+      {
+        "speaker": "patient",
+        "text": "fine. just fluids and small meals then"
+      },
+      {
+        "speaker": "responder",
+        "text": "That's fine, Leila. The prescriber will be in touch within 2 working days. Message us here if you need help with anything on your order."
+      }
+    ]
+  }
+]
+```

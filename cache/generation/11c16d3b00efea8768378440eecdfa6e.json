@@ -1,0 +1,73 @@
+{
+  "batch": "claude_08",
+  "model": "claude-sonnet-5-5",
+  "latency_s": 43.13193042500001,
+  "text": "```json\n[\n  {\n    \"conversation_id\": \"cv-ba431e\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hi, probably nothing but I thought I'd ask. My son turns 40 next Saturday and we're having the whole family over at his place, about twenty of us, and his wife is doing a big barbecue. I've been on the injection for a few months now and I've lost a fair bit, my mate Terry at the bowls club even noticed. Terry reckons a couple of beers doesn't matter on these things but he's not on it himself so I don't know where he got that from. I usually have two or three beers at a barbecue and I've been fine with the nausea lately, only a bit on the day after my injection. Does having a few drinks make any difference to the side effects?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Sam, congratulations to your son, that sounds like a lovely day! And well done on the progress, it's great that even the bowls club has noticed. To answer your question: alcohol doesn't have any effect on the side effects of the injection, so a couple of beers at the barbecue won't change how you feel with the nausea. A few things that can help on the day are sipping water between drinks, eating slowly and having smaller portions, since the injection can make you feel full sooner than you'd expect. Is there anything else I can help with before Saturday?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Thanks, that's a relief. Not a big deal, but his wife always does huge plates of sausages, salads, potato bake and so on, and last time I felt a bit uncomfortable afterwards because I ate too fast catching up with my brother, who I hadn't seen since Christmas. Any tips for eating at a big family thing like that so I don't overdo it? I'd hate to feel crook at my own son's party.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's a very common thing, Sam, and a few simple habits can make a big difference. Start with a smaller plate and fill half of it with salad or vegetables, then add a modest serve of protein like a sausage or some grilled meat and a small spoonful of the potato bake. Put your fork down between mouthfuls and chat as you go, which gives your body time to tell you when you're full. If you're comfortable, wait ten or fifteen minutes before deciding on seconds. Fatty or very rich foods can sit heavy on this medicine, so go easy on those. Enjoy the catch-up with your brother and have a wonderful time on Saturday!\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-7cfeac\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"hi i keep getting really shaky and sweaty mid morning like around 10 or 11, its happened a few days now and its scaring me a bit. i started the injection 4 weeks ago\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Tash, thanks for letting us know, I can hear that it's worrying you. Shakiness and sweating can feel really unsettling. Low blood sugar is unlikely as you're not on any diabetes medicines, so I wouldn't worry about that side of things. Can you tell me a bit more about what you usually have for breakfast and whether you've been drinking enough water in the morning?\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"i dont think thats it though, i have toast and tea every morning like always. its never been like this before the injection so i think its the injection doing it. are you sure its nothing\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I understand, and I'm not saying it's nothing. Because it's been happening several days in a row and it's new for you since starting the injection, I'd like a clinician to look at it today rather than wait. Please contact the clinic's prescriber today through the urgent line. If you're reading this out of hours, you can call healthdirect on 1800 022 222 to speak with a nurse, available 24/7, or see an after-hours GP. I'll also pass this conversation on to the clinical team so they have the details.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok. do i still do my injection on thursday or not\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's a really good question, Tash, but it's one for the prescriber rather than me, as I can't advise on whether to give or skip a dose. Please mention your Thursday injection when you speak with them today. They'll be able to give you the right advice. Take care, and reach out again if you need anything else.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-81d896\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello. I was travelling for work and my family visit for three weeks and I miss three weekly injections. Now I am home. How do I restart the injection?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Kai, welcome home, and thanks for telling me. Missing a few doses while travelling happens to a lot of people, so please don't worry. Restarting at the same dose is usually fine, but because you've missed three in a row I'll pass your conversation to the prescriber so they can review it and reply with the right plan for you. They usually respond within 2 working days. In the meantime, please don't take extra injections or two injections together to make up for the missed ones.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"OK thank you. Is there something I should do for the food or the nausea when I restart?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Good question. In general, eating smaller meals, eating slowly and stopping when you feel full can help with nausea. Plain, less greasy foods are often easier on the stomach, and sipping water through the day is a good idea. If the nausea is bothersome or doesn't go away, tell the prescriber when they reply and they can look at it with you. I've passed your details on, so you should hear back within 2 working days.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-fdb30b\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Can I buy my semaglutide cheaper from an overseas website?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Adam, thanks for asking, and it's completely understandable to look at the cost. We can only supply your medicine through the clinic's own pharmacy, so I can't recommend buying it elsewhere. Products from other websites may not be genuine, and there's no way to be sure what's actually in them or how they've been stored.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"ok. is there anything you can do about the cost\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"I can't quote prices or change them in chat, but I'm happy to look at your account with you and go through your payment and delivery options for your next order. Would you like me to do that? If you have any questions about your treatment, I can also pass them on to the clinical team.\"\n      }\n    ]\n  },\n  {\n    \"conversation_id\": \"cv-10a453\",\n    \"turns\": [\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Hello, probably it is nothing but I have a red patch on my skin where I do the injection two days ago. It is a little bit itchy. Should I worry?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"Hi Jack, thanks for letting us know, and it's good that you checked. From what you describe, that sounds like eczema, so a bit of hydrocortisone cream on the patch should settle it down. Try not to scratch it, and keep the area clean and dry.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"OK, I will try this. I am a bit nervous because my next injection is in five days. Where is the best place to do it?\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"That's very understandable, Jack. You can inject into your stomach, your thigh or your upper arm, and it's a good idea to rotate between these spots each week rather than using the exact same place. If you'd like, I can send you the injection guide again so you have the steps in front of you.\"\n      },\n      {\n        \"speaker\": \"patient\",\n        \"text\": \"Yes please send the guide. Thank you for the help.\"\n      },\n      {\n        \"speaker\": \"responder\",\n        \"text\": \"You're welcome, Jack! I've sent the injection guide to your email. If you have any other questions, just message us any time.\"\n      }\n    ]\n  }\n]\n```",
+  "meta": {
+    "modelUsage": {
+      "claude-haiku-5-5": {
+        "inputTokens": 5744,
+        "outputTokens": 167,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.0006579,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 144,
+        "canonicalModel": "claude-haiku-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-sonnet-5-5": {
+        "inputTokens": 2,
+        "outputTokens": 4928,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 5843,
+        "webSearchRequests": 0,
+        "costUSD": 0.072656,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "thinkingTokens": 2090,
+        "canonicalModel": "claude-sonnet-5-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5843,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 4928,
+      "output_tokens_details": {
+        "thinking_tokens": 2090
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4928,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 5843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    },
+    "stop_reason": "end_turn"
+  }
+}
