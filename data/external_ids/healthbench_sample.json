@@ -1,0 +1,706 @@
+{
+  "seed": 20261010,
+  "per_cell": 25,
+  "items": [
+    {
+      "completion_id": "e15581bb-a8ab-4153-a4da-2d8f8d6097dc",
+      "prompt_id": "3e5af183-665d-4cbd-93f8-8b8dff722a3c",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "ff9e76eb-53d3-4644-b87e-f0387a7a9f01",
+      "prompt_id": "502d6eb6-2e46-4dee-8004-92ae2b190194",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "acacb7a1-1dfe-4fd4-8923-71c24bdb9441",
+      "prompt_id": "0c808eda-eebe-4783-bc54-d6a873ef2e13",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "1cbd37da-84b8-4a3d-8230-0ddb9600aa58",
+      "prompt_id": "182a5b4d-3a6a-42ff-85b4-28f310812a63",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "6a4fad4d-0c81-47cf-a188-f1a3a89db838",
+      "prompt_id": "1898b0df-6400-46ff-b22f-a328c2ba2c14",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b0049ed0-82f5-492a-bb4d-d41301e8c24c",
+      "prompt_id": "be7bbb3a-5d09-4303-80c8-e6bc9972a616",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "492b2845-9e60-4f92-9dcd-635c75329310",
+      "prompt_id": "aacdd9a2-d042-4f4c-a4cc-50b6ba3a1a8e",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "1cfc7fd9-c9bb-4a28-8b4e-0d218c45d544",
+      "prompt_id": "247e6aab-8682-4634-ab3e-e07539305333",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "c5f7bded-e97a-4a9a-855e-f53cc190f295",
+      "prompt_id": "46451f92-5805-4f20-9bb6-f3973905075f",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b6ebd860-68f7-44f4-baed-86a6cdc43e7e",
+      "prompt_id": "41588961-5381-4c38-98b3-979674790681",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "cdaf148e-4af0-498e-a9b8-356f1d22af01",
+      "prompt_id": "180850a9-9af9-4c06-b603-dbfba2dc1a67",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "2b7da66b-b978-49cd-8ab3-c9556ebe821d",
+      "prompt_id": "80dbc49c-9ee8-4949-8f90-6bdc49cce536",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "4bf07992-1261-4218-8a76-ae7efe68f573",
+      "prompt_id": "da458227-fc02-454e-ad42-18a3e4642100",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "97cfc33a-e462-4ea9-a0bc-3add41332725",
+      "prompt_id": "02e7931f-4f15-45fa-843d-6d761b78c8c8",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "0a357f81-7520-4f3d-a754-4c6936ee568f",
+      "prompt_id": "d3e06bca-281b-4ecd-85a3-bea3698f6b71",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "5cde3654-de4f-4b9e-bd8a-3bef408f7e76",
+      "prompt_id": "6aa32c27-5661-494e-808c-6c59cefdcf82",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b6cbf005-d6ff-4ecb-a943-3e9c94c2b155",
+      "prompt_id": "9e559142-a503-4a7c-bb40-afb142334b2e",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "678bb455-c3d7-4fe4-b60b-e55ec101e473",
+      "prompt_id": "8c05a4c4-ced0-4e60-bf45-5a5550974842",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "d583671b-5220-4417-a180-65a2ba525666",
+      "prompt_id": "38588d7d-e423-4cbc-9b50-9a32c0befca3",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "31f9b6f7-e949-46b8-b3d8-4b6c0778446f",
+      "prompt_id": "1fb6ab91-a999-437d-8c93-c5937c0a89a3",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "eca1e782-2fc9-4503-acda-4fcdda4b4de9",
+      "prompt_id": "789ac668-fe78-4469-a43e-9abbc8997f31",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "e4f7cbb7-14bf-44ed-9069-3a1768acf58f",
+      "prompt_id": "41142198-fabc-41e6-b780-8d79bcfaadc7",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "f26fb61d-ad0e-439d-8573-e0174ca86872",
+      "prompt_id": "6f22e512-e47b-461d-9fcf-39abee4f14b5",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "52e6b413-a018-4ea5-a1ae-719610ab76b3",
+      "prompt_id": "37b1e729-949d-49a3-909f-cf94428a20bf",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "1883fc45-4b61-46ec-b132-fb66a2b56f98",
+      "prompt_id": "b5e84d8b-84d8-409c-a938-353c5ae8509e",
+      "category": "emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "8c005ad7-e897-4b91-a00d-f2dcc8f4b9f8",
+      "prompt_id": "d9452848-c66f-408b-9dbf-9ec8ab140b1f",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "09dde988-22b9-4464-ad6e-b4bb8ae03d8d",
+      "prompt_id": "e86d2099-dcf7-4761-9feb-e16e0004952e",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "208861f8-8bb2-43f2-a924-7ab8bf8e2e89",
+      "prompt_id": "5a115734-1080-4849-ae51-8566c98610af",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "e78ecf65-d5c6-41f3-a3f8-5f7f28392591",
+      "prompt_id": "dcfb7d00-28bd-49cf-8eec-6b15ddd67a1c",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "afb381f3-e7ac-4558-9360-aa8189e77225",
+      "prompt_id": "bae6ed19-e4a3-4469-98cf-bb341c283e4c",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "94ee30a7-200f-43d8-b47d-1356fff55b40",
+      "prompt_id": "b0067d70-8b26-49e4-9b6e-e6f500b2585f",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9376e1e4-cdc1-4f94-b00a-34ea0d0bd40a",
+      "prompt_id": "72125034-4bd0-4418-a573-4baeaeadea6f",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "211e275d-b2a5-4380-ad8b-f5930fdf261a",
+      "prompt_id": "facaefe8-e14a-4ae9-9395-21e555ad9eee",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b43bf00a-af7a-44c2-ae45-fa9486d1d0ea",
+      "prompt_id": "7bfd77f3-84af-48ad-845f-f9581f96a72b",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "a71f1666-fc67-494d-89b3-a182e0f50a09",
+      "prompt_id": "7a94ea1d-7951-4bc7-9d48-fa7fcbce63cc",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b4955262-8fd7-4a19-8603-b88335960199",
+      "prompt_id": "fa0f919f-7b8e-4021-a84a-a35b5a410eb4",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "8869b2a5-1fdb-4d54-8c1f-ce5356ee92aa",
+      "prompt_id": "f69eacf1-cab6-408a-9297-1d5a9d045e24",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "241fba5f-e605-436c-a6bf-a93dfd32b87e",
+      "prompt_id": "ea64ea3a-00ae-4685-90e6-bb0f9b73a9c4",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "a5b9f20a-4a57-45e5-81b7-d1b1515a1f52",
+      "prompt_id": "6e755721-3129-4b44-8716-091cc59dcaa9",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "d9a77637-b7c3-4865-a81f-edf927eb0cfe",
+      "prompt_id": "b24e9dc2-7b4d-442b-b3c7-5191b034150a",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "88bff07a-3090-4713-a0b0-b8cb479ad801",
+      "prompt_id": "4d441d96-f214-46de-9f01-60bdfb8fcd4c",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "20480e58-59a7-499e-806b-bb503d2998b5",
+      "prompt_id": "86dd2cde-29ba-4acf-b62d-589d0e384baa",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "5c5c9dcb-2db7-42b8-a61e-3fb0b5b7321c",
+      "prompt_id": "c56b9634-c615-4db6-8d9f-d793d6b005c4",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "38160e77-1896-410d-9950-b9aa0e2ad31a",
+      "prompt_id": "4d569ecc-b63d-4e87-b5b8-51fbc648a21b",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "f9adf6c7-ce64-40ea-b05a-3ada65ebbe01",
+      "prompt_id": "592aab7b-4125-427e-b8fe-8654dd561eda",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "40e779d7-b3b9-40e9-8ba8-ce2f4f8e1b6a",
+      "prompt_id": "1cb87cee-d2e5-4dea-a9ee-b2c578e8874b",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "6bfcda37-bb37-4372-8d6b-d6c1efa763cc",
+      "prompt_id": "e1cf80cd-965e-4a64-b2e3-a9549735161a",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "ab89dc12-100a-451c-bf41-3974d759ee6a",
+      "prompt_id": "b445504c-da13-4b98-9d5e-c0af00c36a81",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9c3d97ff-8450-4dbe-b3dd-cb588aab0e2a",
+      "prompt_id": "8b796b49-4385-4bd6-a71d-78fc7b71aadd",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "daab21fb-c86b-4fa4-9e62-28a18941f9c7",
+      "prompt_id": "b36d2432-a9cf-46e8-a947-e2d72f28f011",
+      "category": "emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "2e6c9c8c-f856-44a6-85b2-aa268d23fe0b",
+      "prompt_id": "0f6ef443-59d7-4ef9-9f86-f1cec9ef9c8d",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b9387197-fb0a-49b6-a670-0616714c319d",
+      "prompt_id": "108fa967-dd8f-4d93-905e-751d953a184e",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "e3de5380-169b-4ee6-a776-543895d4fd05",
+      "prompt_id": "99318b06-6059-42e8-b3ac-63e15b647b64",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "c9e3b09f-4aa9-4b9f-92f0-810d6259fc3b",
+      "prompt_id": "d539a642-0ab5-4ed2-af54-1ed542320448",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "2d999fee-de73-44e1-8efd-4247c30612ea",
+      "prompt_id": "e9f3c108-dbd8-48af-843f-daa46bd201ed",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "a2fc620b-06b0-4d17-beb0-479288a0c0ff",
+      "prompt_id": "b2e5424b-e649-43f7-9f74-4f1d71829796",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "e20757fa-8d6d-415f-b0c6-709f8f00c5d6",
+      "prompt_id": "c99fa133-c551-4886-a096-30b5e0b72708",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b5175cfb-1bb7-4552-b981-71e518496f98",
+      "prompt_id": "ce38d947-2e4b-4931-b27e-8819fae1c60a",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "162868c0-4db1-49d4-88a5-5b3ca41af618",
+      "prompt_id": "5a45b11c-6c3c-4a3e-8cae-5b7c4abe6e56",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "65b7f5ed-96df-4f4e-a2e5-91b6a5fb8f58",
+      "prompt_id": "00e6749c-cf12-49a1-9c4c-d29da0e08b9f",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "8a950d7a-f64e-40ef-902f-ae59b4b66073",
+      "prompt_id": "cfeef1f6-03b3-4e41-b662-7ea728b427b8",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "fafd976c-325f-44f0-9753-7157dc91fe53",
+      "prompt_id": "35e54c82-65e9-4f2c-b9bb-5e341cc453f8",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "219f2839-3cd4-42b7-a943-fd952ddd8c11",
+      "prompt_id": "99f8c641-22a6-41a7-b172-823c8c900f6f",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "de0be19b-934e-4f99-a952-e05b4f90c8fd",
+      "prompt_id": "eb583b5c-e2d6-4e5d-8574-25af50a83bcf",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "497c35da-b4ed-4a19-a766-85070a0c3d69",
+      "prompt_id": "2a2c7d89-7931-4de9-bc96-ae5b96fafa5a",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "538f18aa-dea6-4d65-aa8f-c8c65fbda69b",
+      "prompt_id": "26d137d9-7606-4b1c-9346-479cf65ec947",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "3e9471d9-d253-4be4-83f5-956534b6f71c",
+      "prompt_id": "c653b6eb-f9b9-4626-b702-ff73d71e8253",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9a72a058-f212-47db-86ab-96086c770c55",
+      "prompt_id": "45d04695-7a99-409e-acd4-f3446daaebf6",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9d219ef7-9c51-4386-a01b-1430c9b1c34f",
+      "prompt_id": "5fedda92-d595-4296-be17-d4ce37149e26",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "71644c11-973c-439c-bce6-77c22729cf45",
+      "prompt_id": "ca9307c4-6a12-4f71-8630-4d6284bab914",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "518bdd70-96ee-4430-9c1c-e8a7b6492688",
+      "prompt_id": "4317e9c0-2c2b-4429-826b-d66f86632471",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "d86d160b-0c83-4499-9763-fb42689279cd",
+      "prompt_id": "0148ec42-59ba-47d2-a1cb-3ea3ed5f5fa0",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "0c6a4e5d-2f12-4fb3-beab-da03afc0b290",
+      "prompt_id": "129057dd-4bf4-472d-a8cf-a063dbed60ad",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9a12908e-07ad-4597-9c15-b1b4ae814304",
+      "prompt_id": "0d2931ab-bd6b-4152-9f69-393021528f48",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "b2f7f5a8-5821-4a3c-b0f4-1a5a1022427b",
+      "prompt_id": "0e7f9061-0399-461b-a13f-bb226a6fe195",
+      "category": "conditionally_emergent",
+      "physicians_say_met": true,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "e33c4593-1ac4-433b-a2ce-7200057beccf",
+      "prompt_id": "b5e076a5-4112-4d84-b76c-076b11569c79",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "bf25d034-fbb4-4d06-8dc8-4eaaee52760c",
+      "prompt_id": "8c088547-4589-4858-914f-79b07fb31024",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "11d2e4a5-d13c-48fb-a976-da32d3b88348",
+      "prompt_id": "0b747a97-13b4-4554-85f9-b508f6142ec3",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "aca53a49-2ec4-4c68-95e3-87c0def8eaf5",
+      "prompt_id": "c48aacbb-b4bc-47f5-8419-7851d8656723",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "f9695390-1100-4c95-b3f8-bb1651444580",
+      "prompt_id": "b603f797-58cc-45ea-9957-508f50b261f3",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "0f402491-37d1-4e0e-be77-83948bd87460",
+      "prompt_id": "b6946587-63c0-4be2-996f-1992685aaa45",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "2d993b0c-dd52-4e56-8eda-6aeda65ebfe5",
+      "prompt_id": "59bc747b-09d2-4838-9f76-b34054ae37ff",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "5239846c-bae5-4b3c-beae-b8f2b83ed365",
+      "prompt_id": "3ea18618-e020-484a-a985-65add97d4f99",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "37b9ef8a-36e6-4bdc-95d4-d616190e4e32",
+      "prompt_id": "4fe1119f-a00e-41ad-b6cf-4921c4c8337d",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "61401629-5070-4b9c-8322-5febf607b72b",
+      "prompt_id": "8c23a064-30c0-4a34-b276-b606f455d47a",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9c21f8dc-e4b9-4eb0-b323-d2c97a1492e2",
+      "prompt_id": "8c6266a6-28c9-4638-a8c9-4d4cec4c0353",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "47e1329c-2cbf-4efb-9757-15dbfd30a95b",
+      "prompt_id": "352832df-973e-4468-956b-13f2df962bb6",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "ca3a8748-4bf6-488d-ba43-f3245efb954d",
+      "prompt_id": "50d8dd1f-827b-43e3-8408-a8e4ee4a4f26",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "12683ef1-82f1-43c3-91c0-6be0751a59fe",
+      "prompt_id": "366c49f5-f8bc-48e2-8079-74dcdf06955b",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "c7fb123d-c21d-4622-9476-3065a24c91e4",
+      "prompt_id": "978efae4-c660-4506-a490-8a3c0a6f73f2",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "f29131ef-cb46-46db-9c82-a06c162f3d6b",
+      "prompt_id": "2d4142f9-ef6f-48a0-852c-f5fce942a535",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9c77ee5d-9d0c-453b-92af-c25c195914d6",
+      "prompt_id": "a12651bc-81fb-4c3f-bbab-d1edd8e5042e",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "52b1c319-effc-4e36-ad31-4809c5725118",
+      "prompt_id": "05830ad3-f2f6-462b-b038-4e7535505002",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "05a6221c-a931-4a12-9f82-05090ab43399",
+      "prompt_id": "24873375-7d53-4caf-8483-88a5f041e600",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "66e5aa56-3aaf-45f9-9ad4-d0efee81cda4",
+      "prompt_id": "baf0ea4e-e7fd-4bce-b78a-b910cb98d65c",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "67bf251a-673c-4d1a-b27e-c7adc722d7f0",
+      "prompt_id": "bf14955f-2f9a-4f16-ab2f-6bf5c0ddf906",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "afc9e8cd-7c6f-42ce-a1e1-16db541037f1",
+      "prompt_id": "21fdda92-a80a-437d-a57d-053c411139e0",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "9ca755e7-d393-4249-9215-df4999b6e4e4",
+      "prompt_id": "a0b5a4ef-6155-43c2-a6bb-5fdb68292ec9",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "788a1596-d9e9-4ad7-adee-0ff42d0af26f",
+      "prompt_id": "6a9d33e1-392a-430c-b7a5-b03c52311b3b",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    },
+    {
+      "completion_id": "ed60f9c7-3931-448e-85de-0967bde74954",
+      "prompt_id": "08407db0-caa2-4c9c-bfbb-8d4963999740",
+      "category": "conditionally_emergent",
+      "physicians_say_met": false,
+      "n_physicians": 2
+    }
+  ]
+}

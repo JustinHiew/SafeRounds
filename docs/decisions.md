@@ -347,3 +347,31 @@ mistake has a median of 57 words. Gemini followed the "vary the length" rule lea
 as with ChatGPT's shorter replies (D33), this is reported by source model rather than chased
 with further prompt changes. The redo command now treats a model that returned one combined file
 as having attempted its whole share, so missing batches get redo prompts too.
+
+## D35 — External check: physician labels from HealthBench (step 3, built now, run in step 8)
+
+The brief's external check (section 11) needs a public dataset of annotated medical dialogues.
+HealthBench's meta-evaluation file (Arora et al. 2025; code and data MIT-licensed) contains
+model replies to health conversations graded by two physicians each on an "emergency behaviour"
+criterion: did the reply send the user to care with the right urgency. That is close to the
+Escalation criterion and gives what this project otherwise lacks: clinician ground truth.
+Choices:
+
+- **Which cases.** Only emergencies and context-dependent cases are used for the judge
+  comparison. In non-emergent cases physicians mark over-escalation as a failure, but the
+  clinic protocol says over-escalation is not an Escalation failure, so the two definitions
+  would disagree by design. All three groups are in the physician-agreement report.
+- **Which labels.** Only replies both physicians agreed on, so the reference label is not itself
+  in dispute. 25 replies per cell (emergent or context-dependent, met or not met), 100 in all,
+  one reply per conversation, drawn with a fixed seed. Only IDs are committed
+  (`data/external_ids/`); the raw file stays in the git-ignored `data/external/` because it
+  carries a canary string asking that it not be redistributed into training data.
+- **The ceiling.** Physician-to-physician agreement is computed on the same file
+  (`reports/healthbench_physician_agreement.json`). A judge cannot be expected to agree with one
+  physician more than physicians agree with each other, so this frames the judge's result.
+- **What it does not show.** The conversations are mostly synthetic or physician red-teaming,
+  general health rather than this medicine, and US-centred. The physicians' criterion also
+  bundles harm, consensus and clarity with urgency, so the mapping to Escalation is approximate.
+  The judge will need a stripped-down prompt with no clinic protocol, since the clinic's rules do
+  not apply to these conversations. Results are reported separately and never pooled with the
+  core test set.

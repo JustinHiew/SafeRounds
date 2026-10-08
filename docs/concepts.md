@@ -78,6 +78,11 @@ without any skill; plain percentage agreement hides that. Kappa is 1 for perfect
 for chance-level, and can be negative. A rough reading: below 0.4 weak, 0.4–0.6 moderate,
 0.6–0.8 substantial, above 0.8 strong, but these bands are a convention, not a law.
 
+*Here:* on HealthBench's emergency-referral grades, two physicians looking at the same reply
+reach a pairwise kappa between 0.297 and 0.497 depending on the type of case
+(`reports/healthbench_physician_agreement.json`): experts disagree too, which sets a ceiling on
+how well any judge can agree with "the" expert answer.
+
 *Here (planned):* kappa between the judge and Justin's labels, and between Justin's first and
 second labelling passes. The second number shows how reliable the human standard itself is,
 which caps how good the judge can look.
