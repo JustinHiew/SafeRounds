@@ -301,12 +301,15 @@ A test now checks every card against its blueprint's limits.
 ## D31 — Generation prompt v3 after reviewing ChatGPT's output (step 3)
 
 ChatGPT's 83 gen-v2 conversations all passed the import checks, but two realism problems showed
-when they were compared with Claude's. In 9 of 19 "rambling" conversations the patient talked
-about their own message ("I was trying to phrase the question…") instead of their life (Claude:
-0 of 21). And subtle mistakes were often the whole reply: the staff turn carrying a subtle
-mistake had a median of 35 words, against 70 for Claude, so "subtle" cases would have been easy
-to spot and the judge's subtle-mistake recall would have been inflated for a third of the data.
-Every ChatGPT conversation was also exactly 4 turns. Prompt v3 adds three rules: vary the length
+when they were compared with Claude's (figures in `reports/generation_quality_gen_v2.json`).
+Some "rambling" patients talked about their own message ("I was trying to phrase the
+question…") instead of their life: 3 of 18 by the strict pattern now used, against 0 of 21 for
+Claude. (An earlier, broader pattern counted 9, but it also matched normal speech such as "I
+don't want to guess", so it was replaced.) And subtle mistakes were often the whole reply: the
+staff turn carrying a subtle mistake had a median of 35 words, against 70 for Claude, so
+"subtle" cases would have been easy to spot and the judge's subtle-mistake recall would have
+been inflated for a third of the data. Every ChatGPT conversation was also exactly 4 turns
+(`share_with_4_turns` 1.0). Prompt v3 adds three rules: vary the length
 and use 6 or more turns when the detail comes late; long messages are about the person's life,
 never about the message; and a subtle mistake sits inside an otherwise complete, helpful reply,
 in the staff member's own words rather than the scenario's wording. All three models use v3 so
@@ -321,3 +324,14 @@ ChatGPT's gen-v3 output contained a phone number turned into a link by the ChatG
 so the judge could tell who wrote that conversation, and no real clinic chat contains markdown
 links. The importer now treats markdown links, `oai_` and `utm_source=` as leaks. In line with
 D26, an affected conversation is rejected and regenerated, not cleaned up.
+
+## D33 — Result of prompt v3 (step 3)
+
+On gen-v3 (`reports/generation_quality.json`), ChatGPT's conversations average 5.2 turns with
+0.439 at the 4-turn minimum (was 1.0), no rambling patient comments on their own message, and the
+staff turn carrying a subtle mistake has a median of 41 words (was 35). Claude's are 5.86 turns,
+0.217 and 97 words. ChatGPT still writes shorter replies, so its subtle mistakes remain easier to
+spot than Claude's. This is now a property of the generator rather than of the prompt, so it is
+not chased further: results will be broken down by source model, and any gap in subtle-mistake
+recall between sources will be reported as such. ChatGPT returned all 17 batches as one file;
+the importer and redo command accept that.

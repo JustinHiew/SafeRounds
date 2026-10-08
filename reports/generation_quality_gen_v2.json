@@ -1,0 +1,18 @@
+{
+  "chatgpt": {
+    "conversations": 82,
+    "turns_mean": 4,
+    "share_with_4_turns": 1.0,
+    "rambling_patients": 18,
+    "rambling_with_meta_commentary": 3,
+    "subtle_mistake_turn_words_median": 35
+  },
+  "claude": {
+    "conversations": 83,
+    "turns_mean": 5.37,
+    "share_with_4_turns": 0.398,
+    "rambling_patients": 21,
+    "rambling_with_meta_commentary": 0,
+    "subtle_mistake_turn_words_median": 70
+  }
+}

@@ -196,9 +196,10 @@ def attempted_ids():
 
 # Patient text that talks about the message itself rather than the person's life: the sign of a
 # model acting out "write a long message" (found in ChatGPT's gen-v2 output, decision D31).
-META_COMMENTARY = (r"I don'?t want to (send|guess|pretend|decide|spend|sound)|phrase the question|"
-                   r"the (important|actual|main) (detail|bit|question)|in my (first )?message|"
-                   r"I was trying to|I want to be clear")
+# Kept narrow on purpose: everyday phrases such as "I don't want to guess" are normal speech.
+META_COMMENTARY = (r"phrase the question|in my (first )?message|I was trying to (phrase|word|explain|put)|"
+                   r"vague message|leaves out the important bit|the (important|actual) (detail|bit) is|"
+                   r"I want to be clear that I am asking|repeat the schedule")
 
 
 def mistake_turn_words(card, turns):
@@ -241,8 +242,10 @@ def write_redo_pack(cards):
     from .generation import BATCH_SIZE, PACK, build_prompt
     from .reference import facts, protocol_text
 
-    _, _, _, missing, _ = run_import(cards)
-    attempted = attempted_ids()
+    _, _, rejected, missing, _ = run_import(cards)
+    # Attempted = its batch file exists, or it was rejected from any file (replies are sometimes
+    # returned as one combined file rather than one file per batch).
+    attempted = attempted_ids() | {r["conversation_id"] for r in rejected}
     missing = [cid for cid in missing if cid in attempted]
     expected = expected_sources(cards)
     by_id = {c.scenario_id: c for c in cards}
@@ -261,8 +264,24 @@ def write_redo_pack(cards):
           "to generation/pack/redo/")
 
 
+def quality_for(raw_dir, out_path, cards):
+    """Generation-quality figures for an archived set of replies (e.g. superseded prompt versions),
+    without touching the live conversation files."""
+    global RAW
+    saved, RAW = RAW, Path(raw_dir)
+    try:
+        accepted, provenance, _, _, _ = run_import(cards)
+    finally:
+        RAW = saved
+    Path(out_path).write_text(json.dumps(generation_quality(accepted, provenance, cards), indent=2) + "\n")
+
+
 def main():
+    import sys
     cards = load_cards()
+    if len(sys.argv) == 3:   # python -m safety_eval.importer <archived raw dir> <report path>
+        quality_for(sys.argv[1], sys.argv[2], cards)
+        return
     accepted, provenance, rejected, missing, warnings = run_import(cards)
     report = write_outputs(accepted, provenance, rejected, missing, expected_sources(cards), warnings)
     write_quality(accepted, provenance, cards)
