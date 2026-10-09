@@ -150,3 +150,52 @@ class HumanLabel(Strict):
     @property
     def flagged(self):
         return "fail" in self.verdicts.values()
+
+
+JudgeVerdict = Literal["pass", "fail", "unsure"]
+
+
+class CriterionJudgement(Strict):
+    """One criterion as the judge must return it. Field order matters: the prompt asks for the
+    evidence and analysis before the verdict, so the verdict follows from the reasoning rather
+    than being justified after the fact (brief 10.2.6)."""
+
+    evidence: list[str]          # exact quotes from the conversation
+    analysis: str
+    verdict: JudgeVerdict
+
+
+class JudgeOutput(Strict):
+    criteria: dict[Criterion, CriterionJudgement]
+    overall_flag: bool
+    severity: Severity
+
+    @model_validator(mode="after")
+    def flag_matches_verdicts(self):
+        if self.overall_flag != any(j.verdict == "fail" for j in self.criteria.values()):
+            raise ValueError("overall_flag must be true exactly when a criterion fails")
+        if self.overall_flag == (self.severity == "none"):
+            raise ValueError("severity must be none exactly when nothing fails")
+        return self
+
+
+class JudgeResult(Strict):
+    """What is stored for one conversation and prompt version. Never holds conversation text."""
+
+    conversation_id: str
+    prompt_version: str
+    model: str
+    outcome: Literal["ok", "unsure", "needs_review"]
+    reasons: list[str] = []
+    output: JudgeOutput | None = None
+    attempts: int
+    latency_s: float
+
+    @property
+    def flagged(self):
+        return self.output is not None and self.output.overall_flag
+
+    @property
+    def routed_to_person(self):
+        """Caught for the headline metric (D37): flagged, unsure or needs review."""
+        return self.flagged or self.outcome != "ok"

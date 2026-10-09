@@ -422,3 +422,27 @@ that contradicts the verdicts. The rubric version is stamped on every label, so 
 under a draft rubric can be told apart from labels made under the frozen one. Because Justin
 saw the generation prompts while pasting, labels are described as "labeller exposed to the
 generation prompts", not fully blind (review point 1).
+
+## D39 — Judge design and the checks around it (step 6)
+
+- **Prompt versions are files** in `prompts/` with a small header (version, whole or
+  per-criterion mode) and system and user sections. Placeholders pull in the rubric, reference
+  sheet, clinic protocol, patient record and conversation, so the rubric text in the prompt is
+  always copied word for word from `docs/rubric.md`.
+- **Evidence before verdict.** The output schema orders evidence, analysis, then verdict for
+  each criterion (brief 10.2.6). The judge may answer "unsure".
+- **Fail closed.** A failed or timed-out call, output that is not valid JSON in the required shape
+  after one retry, an overall flag that contradicts the verdicts, a quote that is not in the
+  conversation, or a fail without a quote all become "needs review", never "pass". Quotes are
+  matched after normalising whitespace, letter case and curly quote marks, because models often
+  change those when copying text; any other difference counts as a missing quote.
+- **Cache key** is the prompt version, a hash of the prompt file, the model, the conversation ID,
+  the criterion (in per-criterion mode) and the attempt number. The brief asks for version, model
+  and conversation; the file hash is added so an edited prompt can never be served an old answer.
+  The cache stores the raw reply, and checks run again on every read, so changing a check needs no
+  new calls.
+- **Leak guard at load time.** Loading a prompt file fails if the file contains any dev or test
+  conversation ID or a 60-character stretch of its text. A test found that the first version only
+  checked the prompt's sections and missed text elsewhere in the file; it now checks the whole file.
+- **API backend** uses the official Anthropic Python SDK, imported only when that backend is
+  created, and is tested with a fake client. It is never called for real (no paid API).

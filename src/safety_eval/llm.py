@@ -2,7 +2,8 @@
 
 - CliBackend: the Claude Code command line (`claude -p`) on the user's subscription. Used for real.
 - FakeBackend: returns canned text. Used by tests, so they never need model access.
-- An API backend is added in step 6 (written and unit-tested, never called for real).
+- ApiBackend: the Anthropic Python SDK. Written and unit-tested with a fake client, never called
+  for real in this project (the brief allows no paid API use).
 
 Every response records the exact model name the backend reports, not just the alias asked for.
 """
@@ -78,6 +79,33 @@ class CliBackend:
         if names:
             return names[0]
         return self.model
+
+
+class ApiBackend:
+    """Same interface over the official Anthropic SDK. The SDK is imported only when no client is
+    passed in, so tests (and anyone without the package) never need it."""
+
+    def __init__(self, model="claude-opus-5-5", max_tokens=16000, client=None):
+        self.model = model
+        self.max_tokens = max_tokens
+        if client is None:
+            import anthropic   # optional dependency, deliberately not in pyproject.toml
+            client = anthropic.Anthropic()
+        self.client = client
+
+    def complete(self, system, prompt):
+        start = time.monotonic()
+        try:
+            msg = self.client.messages.create(model=self.model, max_tokens=self.max_tokens,
+                                              system=system,
+                                              messages=[{"role": "user", "content": prompt}])
+        except Exception as exc:   # any SDK error is a failed call: the judge fails closed
+            raise ModelCallError(f"API call failed: {exc}") from exc
+        if msg.stop_reason in ("refusal", "max_tokens"):
+            raise ModelCallError(f"API stopped with {msg.stop_reason}")
+        text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+        return ModelResponse(text=text, model=msg.model, latency_s=time.monotonic() - start,
+                             raw={"stop_reason": msg.stop_reason})
 
 
 class FakeBackend:
