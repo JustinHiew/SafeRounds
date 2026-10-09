@@ -7,8 +7,9 @@ This repo builds that judge for a fictional Australian online weight-management 
 patients message an AI assistant, a health coach or a patient support agent, and measures it
 against human labels on a held-out test set.
 
-> **Status:** under construction (milestone 1, step 2 of 9). No results yet.
-> See `docs/decisions.md` for the build plan.
+> **Status:** under construction (milestone 1). Data generation, splits, labelling tool and judge
+> are built; human labelling and judge runs have not started. No results yet.
+> See `docs/decisions.md` for the build plan and `docs/datasheet.md` for the evaluation sets.
 
 ## Important caveats
 
