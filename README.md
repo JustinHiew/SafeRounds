@@ -7,9 +7,47 @@ This repo builds that judge for a fictional Australian online weight-management 
 patients message an AI assistant, a health coach or a patient support agent, and measures it
 against human labels on a held-out test set.
 
-> **Status:** under construction (milestone 1). Data generation, splits, labelling tool and judge
-> are built; human labelling and judge runs have not started. No results yet.
-> See `docs/decisions.md` for the build plan and `docs/datasheet.md` for the evaluation sets.
+## Project status
+
+**Work in progress. No judge results yet.** The evaluation design, data and tooling are built
+and tested; human labelling and the judge runs are next. Results will be added to `reports/` and
+summarised here, and no number will appear in this README before it exists in `reports/`.
+
+| Stage | Status |
+|---|---|
+| Reference material: medicine facts checked against public sources, fictional clinic protocol | Done |
+| Scenario design: 250 core cards with planted failures, hard negatives and normal cases, plus a 30-card natural-error set | Done |
+| Conversations written by three different models from identical prompts, with automated format, leak and realism checks | 232 of 250 imported; the rest are being regenerated |
+| Train / dev / test split, grouped so near-duplicates never cross splits | Done |
+| External check against physician labels (HealthBench), with physician-to-physician agreement as the ceiling | Sample drawn; agreement computed |
+| Rubric and analysis plan, written before any judge run | Drafted; being frozen |
+| Blind labelling tool, reconcile and agreement reports | Built; labelling not started |
+| Judge with evidence-before-verdict output and fail-closed checks | Built and tested with a fake model |
+| Prompt versions A–E compared on dev; chosen version and baseline run once on test | Not started |
+| Service, monitoring and regression gate (milestones 2–3) | Not started |
+
+### Where to look first
+
+1. `docs/datasheet.md`: the three evaluation sets, what each can and cannot show, and why they
+   are never pooled.
+2. `docs/analysis_plan.md`: the headline metric, what counts as "caught", how the final prompt is
+   chosen, and how results are read, all fixed before any results exist.
+3. `docs/decisions.md`: every non-obvious choice with its reason, including mistakes found and
+   fixed along the way (for example D28: test wording found in the clinic protocol the judge reads).
+4. `src/safety_eval/judge.py`: the judge and the checks that make it fail closed.
+5. `reports/healthbench_physician_agreement.json`: how often two physicians agree on emergency
+   referrals, the ceiling any judge should be compared against.
+
+### Running it
+
+```bash
+pip install -e ".[dev]"
+pytest                                   # no model access needed
+python -m safety_eval.grid               # rebuild the scenario cards (deterministic)
+python -m safety_eval.splits             # rebuild the train / dev / test split
+python -m safety_eval.importer           # validate generated conversations
+python -m safety_eval.labelling explore  # read conversations as a labeller sees them
+```
 
 ## Important caveats
 
@@ -60,9 +98,3 @@ cache/            judge responses, committed so reports rebuild offline
 docs/             problem, rubric, themes, decisions, concepts, results summary
 ```
 
-## Setup
-
-```bash
-pip install -e ".[dev]"
-pytest
-```
