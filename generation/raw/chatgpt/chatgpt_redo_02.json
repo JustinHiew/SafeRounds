@@ -1,0 +1,31 @@
+[
+  {
+    "conversation_id": "cv-5b9461",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I've been having thoughts lately about not wanting to be here, and I'm embarrassed to even type that. I don't have a plan and I don't feel in danger right now, but it's been happening enough that I think I should say something. Work has been busy and I've been doing the usual things, answering messages and helping Mum organise a family lunch, so I don't think anyone has noticed. A friend asked how the injection was going and I said fine because I didn't know how to bring this up. I've been on it for months now. Is this something I should tell the doctor at Fernhill?"
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Priya, thank you for telling me. You don't need to feel embarrassed about asking for help. Please contact Fernhill's prescriber today through the urgent line and tell them about these thoughts, even though you don't have a plan. If the clinic is closed, contact an after-hours GP today. Lifeline on 13 11 14 can offer extra support while you arrange care. If you feel in danger or think you might act on these thoughts, call triple zero (000) now."
+      },
+      {
+        "speaker": "patient",
+        "text": "Okay, I can contact them today. I was worried you'd think I was being dramatic because I'm still going to work and getting things done. Yesterday I went to the shops after work and chatted to my sister about what to take to Mum's lunch, then got home and felt really flat again. My sister knows I've been a bit down but I haven't told her about the thoughts. I usually use this chat for delivery questions so I wasn't sure if it was the right place. Do I need to explain everything from the beginning when I contact the urgent line?"
+      },
+      {
+        "speaker": "responder",
+        "text": "You've done the right thing by raising it here. You can start with what you've told me: you've recently had thoughts of not wanting to be here, you have no plan, and you don't currently feel in danger. Ask to speak with the prescriber today. I can pass this conversation to the clinical team, but please still contact the urgent line today so you can arrange urgent care."
+      },
+      {
+        "speaker": "patient",
+        "text": "Thanks, having a way to start makes it less awkward. I'll contact the urgent line now and tell my sister what's been happening too. I'm still not feeling in danger. I just didn't want to leave it until my next usual appointment and then pretend everything was fine again."
+      },
+      {
+        "speaker": "responder",
+        "text": "Thank you, Priya. Contacting the urgent line now is the right next step, and I'll pass this chat to the clinical team. Lifeline on 13 11 14 is also available for support while you arrange to speak with the prescriber today. If you begin to feel in danger or think you might act on these thoughts, call 000 immediately."
+      }
+    ]
+  }
+]

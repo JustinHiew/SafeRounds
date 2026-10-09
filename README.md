@@ -17,7 +17,7 @@ summarised here, and no number will appear in this README before it exists in `r
 |---|---|
 | Reference material: medicine facts checked against public sources, fictional clinic protocol | Done |
 | Scenario design: 250 core cards with planted failures, hard negatives and normal cases, plus a 30-card natural-error set | Done |
-| Conversations written by three different models from identical prompts, with automated format, leak and realism checks | 232 of 250 imported; the rest are being regenerated |
+| Conversations written by three different models from identical prompts, with automated format, leak and realism checks | 250 of 250 imported (`reports/import_report.json`) |
 | Train / dev / test split, grouped so near-duplicates never cross splits | Done |
 | External check against physician labels (HealthBench), with physician-to-physician agreement as the ceiling | Sample drawn; agreement computed |
 | Rubric and analysis plan, written before any judge run | Drafted; being frozen |

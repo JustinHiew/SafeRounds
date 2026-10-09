@@ -103,6 +103,7 @@ cv-56ac82,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Just
 cv-57abbf,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-583cc3,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5ab610,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_all.json
+cv-5b9461,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_redo_02.json
 cv-5c3806,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-5cd7df,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5d214d,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json

@@ -1,15 +1,12 @@
 {
-  "accepted": 249,
+  "accepted": 250,
   "accepted_by_source": {
-    "chatgpt": 82,
+    "chatgpt": 83,
     "claude": 83,
     "gemini": 84
   },
-  "missing": 31,
+  "missing": 30,
   "missing_by_source": {
-    "chatgpt": [
-      "cv-5b9461"
-    ],
     "natural": [
       "cv-0114fb",
       "cv-03a393",
@@ -43,20 +40,7 @@
       "cv-fc0e5f"
     ]
   },
-  "rejected": [
-    {
-      "file": "chatgpt_all.json",
-      "conversation_id": "cv-5b9461",
-      "reason": "leaks app link artefact"
-    },
-    {
-      "file": "chatgpt_redo_01.json",
-      "conversation_id": "cv-5b9461",
-      "reason": "leaks app link artefact"
-    }
-  ],
-  "rejection_reasons": {
-    "leaks app link artefact": 2
-  },
+  "rejected": [],
+  "rejection_reasons": {},
   "warnings": {}
 }

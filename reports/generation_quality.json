@@ -1,9 +1,9 @@
 {
   "chatgpt": {
-    "conversations": 82,
+    "conversations": 83,
     "turns_mean": 5.2,
-    "share_with_4_turns": 0.439,
-    "rambling_patients": 18,
+    "share_with_4_turns": 0.434,
+    "rambling_patients": 19,
     "rambling_with_meta_commentary": 0,
     "subtle_mistake_turn_words_median": 41
   },
