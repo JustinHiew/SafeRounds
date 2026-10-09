@@ -1,0 +1,1 @@
+Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)

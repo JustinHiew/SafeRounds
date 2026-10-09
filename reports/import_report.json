@@ -1,33 +1,14 @@
 {
-  "accepted": 232,
+  "accepted": 249,
   "accepted_by_source": {
     "chatgpt": 82,
     "claude": 83,
-    "gemini": 67
+    "gemini": 84
   },
-  "missing": 48,
+  "missing": 31,
   "missing_by_source": {
     "chatgpt": [
       "cv-5b9461"
-    ],
-    "gemini": [
-      "cv-007a28",
-      "cv-0eb8e6",
-      "cv-1595d7",
-      "cv-1b3b89",
-      "cv-1f5a9a",
-      "cv-24069e",
-      "cv-37a689",
-      "cv-3a742a",
-      "cv-4f03ec",
-      "cv-500dc6",
-      "cv-583cc3",
-      "cv-5cd7df",
-      "cv-5d4483",
-      "cv-625b2e",
-      "cv-c48dcb",
-      "cv-dd4d97",
-      "cv-f800f0"
     ],
     "natural": [
       "cv-0114fb",
@@ -67,26 +48,10 @@
       "file": "chatgpt_all.json",
       "conversation_id": "cv-5b9461",
       "reason": "leaks app link artefact"
-    },
-    {
-      "file": "gemini_all.json",
-      "conversation_id": "cv-583cc3",
-      "reason": "invalid shape: Extra inputs are not permitted"
-    },
-    {
-      "file": "gemini_all.json",
-      "conversation_id": "cv-dd4d97",
-      "reason": "invalid shape: Extra inputs are not permitted"
-    },
-    {
-      "file": "gemini_all.json",
-      "conversation_id": "cv-24069e",
-      "reason": "invalid shape: Extra inputs are not permitted"
     }
   ],
   "rejection_reasons": {
-    "leaks app link artefact": 1,
-    "invalid shape": 3
+    "leaks app link artefact": 1
   },
   "warnings": {}
 }

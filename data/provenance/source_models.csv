@@ -1,5 +1,6 @@
 conversation_id,set,source_model,model_name,file
 cv-003861,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-007a28,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-00eb2c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-00f649,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-010a64,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -18,6 +19,7 @@ cv-0add46,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 202
 cv-0aefc4,core,gemini,unrecorded,gemini_all.json
 cv-0caa04,core,claude,claude-sonnet-5-5,claude_14.json
 cv-0d6fa7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-0eb8e6,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-0ef037,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-0f3c1e,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-0fce41,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -25,21 +27,25 @@ cv-10a453,core,claude,claude-sonnet-5-5,claude_08.json
 cv-12fb22,core,gemini,unrecorded,gemini_all.json
 cv-136413,core,claude,claude-sonnet-5-5,claude_04.json
 cv-1583d8,core,claude,claude-sonnet-5-5,claude_12.json
+cv-1595d7,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-1825ff,core,claude,claude-sonnet-5-5,claude_04.json
 cv-192f2f,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-196851,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-1a118e,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-1b3b89,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-1b8f21,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-1b94ab,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-1bf5f1,core,claude,claude-sonnet-5-5,claude_16.json
 cv-1cd379,core,gemini,unrecorded,gemini_all.json
 cv-1ee56b,core,gemini,unrecorded,gemini_all.json
+cv-1f5a9a,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-20daad,core,gemini,unrecorded,gemini_all.json
 cv-20e613,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-219aca,core,claude,claude-sonnet-5-5,claude_11.json
 cv-22b621,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-22dbe2,core,gemini,unrecorded,gemini_all.json
 cv-235496,core,claude,claude-sonnet-5-5,claude_01.json
+cv-24069e,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-24dff0,core,claude,claude-sonnet-5-5,claude_14.json
 cv-267e9c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-27ff89,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -57,8 +63,10 @@ cv-35c81c,core,claude,claude-sonnet-5-5,claude_redo_01.json
 cv-365abf,core,gemini,unrecorded,gemini_all.json
 cv-36b250,core,gemini,unrecorded,gemini_all.json
 cv-379261,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-37a689,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-39ce59,core,claude,claude-sonnet-5-5,claude_12.json
 cv-3a3f09,core,claude,claude-sonnet-5-5,claude_04.json
+cv-3a742a,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-3bc8bc,core,claude,claude-sonnet-5-5,claude_06.json
 cv-3ccd61,core,claude,claude-sonnet-5-5,claude_04.json
 cv-3cd741,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -84,6 +92,8 @@ cv-4dac84,core,claude,claude-sonnet-5-5,claude_12.json
 cv-4db4a1,core,claude,claude-sonnet-5-5,claude_17.json
 cv-4e494b,core,claude,claude-sonnet-5-5,claude_14.json
 cv-4e6f8b,core,gemini,unrecorded,gemini_all.json
+cv-4f03ec,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
+cv-500dc6,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5022be,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-50ab99,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-5243ad,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -91,14 +101,18 @@ cv-526533,core,claude,claude-sonnet-5-5,claude_13.json
 cv-568ecd,core,gemini,unrecorded,gemini_all.json
 cv-56ac82,core,gemini,unrecorded,gemini_all.json
 cv-57abbf,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-583cc3,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5ab610,core,gemini,unrecorded,gemini_all.json
 cv-5c3806,core,claude,claude-sonnet-5-5,claude_redo_01.json
+cv-5cd7df,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5d214d,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-5d4483,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-5e2bd1,core,gemini,unrecorded,gemini_all.json
 cv-5fc75b,core,claude,claude-sonnet-5-5,claude_07.json
 cv-601345,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-60241b,core,claude,claude-sonnet-5-5,claude_10.json
 cv-61fd5a,core,gemini,unrecorded,gemini_all.json
+cv-625b2e,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-6788c2,core,gemini,unrecorded,gemini_all.json
 cv-68a189,core,claude,claude-sonnet-5-5,claude_12.json
 cv-6a552b,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
@@ -183,6 +197,7 @@ cv-c1142f,core,claude,claude-sonnet-5-5,claude_03.json
 cv-c2ae12,core,gemini,unrecorded,gemini_all.json
 cv-c30451,core,claude,claude-sonnet-5-5,claude_07.json
 cv-c32839,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
+cv-c48dcb,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-c4bfd7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-c54d23,core,gemini,unrecorded,gemini_all.json
 cv-c6603e,core,claude,claude-sonnet-5-5,claude_15.json
@@ -203,6 +218,7 @@ cv-d67bbc,core,gemini,unrecorded,gemini_all.json
 cv-d76790,core,claude,claude-sonnet-5-5,claude_06.json
 cv-db3d4c,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-dbd07b,core,gemini,unrecorded,gemini_all.json
+cv-dd4d97,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-dd7dc3,core,claude,claude-sonnet-5-5,claude_07.json
 cv-df2305,core,claude,claude-sonnet-5-5,claude_03.json
 cv-df6466,core,gemini,unrecorded,gemini_all.json
@@ -221,6 +237,7 @@ cv-f48145,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 202
 cv-f4f2e7,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-f5fdc5,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
 cv-f66e6e,core,gemini,unrecorded,gemini_all.json
+cv-f800f0,core,gemini,"Gemini app, model 'Gemini 3.8 Flash' (as reported by Justin, 2026-10-09)",gemini_redo_01.json
 cv-f88080,core,claude,claude-sonnet-5-5,claude_02.json
 cv-f9c891,core,gemini,unrecorded,gemini_all.json
 cv-f9cf3a,core,chatgpt,"ChatGPT app, model 'Sol 6.1' (as reported by Justin, 2026-10-08)",chatgpt_all.json
