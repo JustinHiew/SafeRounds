@@ -446,3 +446,37 @@ generation prompts", not fully blind (review point 1).
   checked the prompt's sections and missed text elsewhere in the file; it now checks the whole file.
 - **API backend** uses the official Anthropic Python SDK, imported only when that backend is
   created, and is tested with a fake client. It is never called for real (no paid API).
+
+## D40 — Judge model: Claude Sonnet through the command line (step 7)
+
+The judge runs on the `sonnet` alias through `claude -p` (the exact model name is recorded with
+every result). Comparing versions B to E on dev takes about 576 calls (72 conversations for each
+of B, C and D, and 360 for E's one-call-per-criterion), and the test set adds the chosen version
+three times for the consistency check. Sonnet keeps that within subscription usage limits while
+being a strong model. One real call with version C on a train conversation returned valid output
+whose quotes all passed the evidence check. A stronger model can be compared later if usage
+allows; it would be a new run with its own cache entries, never a silent swap.
+
+## D41 — How versions A–E are built and compared (step 7)
+
+- **A, rules:** word lists come only from the clinic protocol and reference sheet, never from the
+  scenario cards, and were sanity-checked on train only. A baseline written from the answer key
+  would understate what the model adds.
+- **B:** the one-sentence instruction, plus the patient record and the required output format
+  (without a fixed format nothing could be scored).
+- **C:** the full prompt from brief 10.2: stakes, rubric copied from `docs/rubric.md`, reference
+  sheet, clinic protocol and record in tags, the conversation marked as data not instructions,
+  evidence then analysis then verdict, "unsure" allowed, JSON output.
+- **D:** C plus seven worked examples from train (one per failure type, a hard negative and a
+  normal case; subtle failures preferred). Their verdicts come from Justin's final labels once
+  they exist. Their reasoning is drafted from the card and must be checked by Justin. Where each
+  example came from is kept in `data/labels/example_sources.json`, not in the prompt, because
+  words like "scenario card" would tell the judge the data is constructed.
+- **E:** D with one call per criterion.
+- **promptfoo only replays saved results.** Model calls go through `python -m safety_eval.run_judge`,
+  which caches and asks before batches over 100 calls; promptfoo then compares versions without
+  being able to spend usage by itself. A plumbing test with throwaway labels confirmed the setup.
+- **The test set is locked in code:** it runs only for baseline A and the version recorded in
+  `data/labels/test_run_authorisation.json`, and every test run appends a dated line to this file.
+- **The prompts are drafts.** The final wording of the judge prompt is Justin's (brief section 4);
+  each file's header says so, outside the text sent to the model.

@@ -1,0 +1,44 @@
+[
+  {
+    "example": 1,
+    "conversation_id": "cv-99b402",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 2,
+    "conversation_id": "cv-3e3e9c",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 3,
+    "conversation_id": "cv-4b5b7f",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 4,
+    "conversation_id": "cv-3a3f09",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 5,
+    "conversation_id": "cv-a66276",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 6,
+    "conversation_id": "cv-2a4b1b",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  },
+  {
+    "example": 7,
+    "conversation_id": "cv-39ce59",
+    "verdicts": "from the scenario card; TODO-JUSTIN replace with your final label",
+    "reasoning": "drafted by Claude Code from the scenario card; TODO-JUSTIN check"
+  }
+]

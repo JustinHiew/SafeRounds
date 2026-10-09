@@ -159,9 +159,11 @@ def quote_problems(output_criteria, conv):
 
 # ------------------------------------------------------------------------- calling
 
-def _call(backend, cache, prompt, conv, text, criterion, attempt):
+def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0):
+    # repeat > 0 is a deliberate re-run of the same call, for the consistency check (brief 11).
     key = cache_key(prompt_version=prompt.version, prompt_sha=prompt.sha, model=backend.model,
-                    conversation_id=conv.conversation_id, criterion=criterion, attempt=attempt)
+                    conversation_id=conv.conversation_id, criterion=criterion, attempt=attempt,
+                    repeat=repeat)
     entry = cache.get(key)
     if entry is None:
         resp = backend.complete(prompt.system, text)
@@ -172,22 +174,22 @@ def _call(backend, cache, prompt, conv, text, criterion, attempt):
     return entry
 
 
-def needed_calls(prompt, conv, backend, cache):
+def needed_calls(prompt, conv, backend, cache, repeat=0):
     """How many first-attempt calls are not cached yet (retries are not known in advance)."""
     crits = CRITERIA if prompt.mode == "per_criterion" else ["all"]
     return sum(cache_key(prompt_version=prompt.version, prompt_sha=prompt.sha, model=backend.model,
-                         conversation_id=conv.conversation_id, criterion=c, attempt=0) not in cache
+                         conversation_id=conv.conversation_id, criterion=c, attempt=0, repeat=repeat) not in cache
                for c in crits)
 
 
-def _judge_once(prompt, conv, backend, cache, criteria, examples):
+def _judge_once(prompt, conv, backend, cache, criteria, examples, repeat=0):
     """(parsed output or None, model, attempts, latency, reasons) for one call with one retry."""
     text = render(prompt, conv, criteria, examples)
     label = "all" if len(criteria) == len(CRITERIA) else criteria[0]
     reasons, latency, model = [], 0.0, backend.model
     for attempt in (0, 1):
         try:
-            entry = _call(backend, cache, prompt, conv, text, label, attempt)
+            entry = _call(backend, cache, prompt, conv, text, label, attempt, repeat)
         except ModelCallError as exc:
             return None, model, attempt + 1, latency, [f"call failed: {exc}"]
         latency += entry["latency_s"]
@@ -199,12 +201,13 @@ def _judge_once(prompt, conv, backend, cache, criteria, examples):
     return None, model, 2, latency, reasons
 
 
-def judge(conv, prompt, backend, cache=None, examples=""):
+def judge(conv, prompt, backend, cache=None, examples="", repeat=0):
     """Judge one conversation. Never raises for model problems: they become needs_review."""
     cache = cache or ResponseCache("judge")
     if prompt.mode == "per_criterion":
-        return _judge_per_criterion(conv, prompt, backend, cache, examples)
-    output, model, attempts, latency, reasons = _judge_once(prompt, conv, backend, cache, list(CRITERIA), examples)
+        return _judge_per_criterion(conv, prompt, backend, cache, examples, repeat)
+    output, model, attempts, latency, reasons = _judge_once(prompt, conv, backend, cache, list(CRITERIA),
+                                                            examples, repeat)
     if output is None:
         return JudgeResult(conversation_id=conv.conversation_id, prompt_version=prompt.version,
                            model=model, outcome="needs_review", reasons=reasons,
@@ -212,10 +215,10 @@ def judge(conv, prompt, backend, cache=None, examples=""):
     return _finish(conv, prompt, model, output, attempts, latency)
 
 
-def _judge_per_criterion(conv, prompt, backend, cache, examples):
+def _judge_per_criterion(conv, prompt, backend, cache, examples, repeat=0):
     merged, severities, reasons, attempts, latency, model = {}, [], [], 0, 0.0, backend.model
     for crit in CRITERIA:
-        out, model, n, lat, why = _judge_once(prompt, conv, backend, cache, [crit], examples)
+        out, model, n, lat, why = _judge_once(prompt, conv, backend, cache, [crit], examples, repeat)
         attempts += n
         latency += lat
         if out is None:

@@ -34,3 +34,25 @@ def pooled_pairwise(label_sets):
         raise ValueError("no item has two or more ratings")
     agree = sum(x == y for x, y in zip(first, second)) / len(first)
     return agree, cohen_kappa(first, second), len(first) // 2
+
+
+def confusion(truth, predicted):
+    """Counts for a yes/no flag: true/false positives and negatives."""
+    tp = sum(t and p for t, p in zip(truth, predicted))
+    fp = sum(p and not t for t, p in zip(truth, predicted))
+    fn = sum(t and not p for t, p in zip(truth, predicted))
+    tn = sum(not t and not p for t, p in zip(truth, predicted))
+    return {"tp": tp, "fp": fp, "fn": fn, "tn": tn}
+
+
+def rate(numerator, denominator):
+    """A share with its counts kept alongside, because the counts are small (analysis plan 1)."""
+    return {"count": f"{numerator}/{denominator}",
+            "rate": round(numerator / denominator, 3) if denominator else None}
+
+
+def recall_precision(truth, predicted):
+    c = confusion(truth, predicted)
+    return {"recall": rate(c["tp"], c["tp"] + c["fn"]),
+            "precision": rate(c["tp"], c["tp"] + c["fp"]),
+            "confusion": c}

@@ -1,0 +1,29 @@
+# Side-by-side comparison of judge prompt versions on the dev split (brief 10.4).
+#
+# Run the judge first (it caches calls and asks before big batches), for example:
+#   python -m safety_eval.run_judge --version A --split dev
+#   python -m safety_eval.run_judge --version C --split dev
+# then:
+#   cd promptfoo && npx promptfoo@0.124.0 eval -c dev_comparison.yaml
+#
+# Providers here replay saved results; promptfoo never calls a model itself.
+description: Judge prompt versions A-E on dev
+prompts:
+  - "{{conversation_id}}"
+providers:
+  - id: file://provider.py
+    label: A (rules)
+    config: {version: A, split: dev, model: rules}
+  - id: file://provider.py
+    label: B (one sentence)
+    config: {version: B, split: dev, model: sonnet}
+  - id: file://provider.py
+    label: C (full prompt)
+    config: {version: C, split: dev, model: sonnet}
+  - id: file://provider.py
+    label: D (C + examples)
+    config: {version: D, split: dev, model: sonnet}
+  - id: file://provider.py
+    label: E (per criterion)
+    config: {version: E, split: dev, model: sonnet}
+tests: file://tests.py:labelled_tests
