@@ -1,0 +1,79 @@
+{
+  "seed": 20261011,
+  "targets": {
+    "train": 0.1,
+    "dev": 0.3,
+    "test": 0.6
+  },
+  "splits": {
+    "train": {
+      "cards": 34,
+      "groups": 11,
+      "by_kind": {
+        "accuracy": 6,
+        "escalation": 4,
+        "grounding": 4,
+        "hard_negative": 8,
+        "normal": 4,
+        "safety": 4,
+        "scope": 4
+      },
+      "by_source": {
+        "chatgpt": 11,
+        "claude": 14,
+        "gemini": 9
+      },
+      "by_severity": {
+        "high": 8,
+        "low": 14,
+        "none": 12
+      }
+    },
+    "dev": {
+      "cards": 72,
+      "groups": 21,
+      "by_kind": {
+        "accuracy": 8,
+        "escalation": 8,
+        "grounding": 10,
+        "hard_negative": 10,
+        "normal": 20,
+        "safety": 8,
+        "scope": 8
+      },
+      "by_source": {
+        "chatgpt": 22,
+        "claude": 24,
+        "gemini": 26
+      },
+      "by_severity": {
+        "high": 18,
+        "low": 24,
+        "none": 30
+      }
+    },
+    "test": {
+      "cards": 144,
+      "groups": 43,
+      "by_kind": {
+        "accuracy": 16,
+        "escalation": 18,
+        "grounding": 16,
+        "hard_negative": 22,
+        "normal": 36,
+        "safety": 18,
+        "scope": 18
+      },
+      "by_source": {
+        "chatgpt": 50,
+        "claude": 45,
+        "gemini": 49
+      },
+      "by_severity": {
+        "high": 42,
+        "low": 44,
+        "none": 58
+      }
+    }
+  }
+}

@@ -375,3 +375,27 @@ Choices:
   The judge will need a stripped-down prompt with no clinic protocol, since the clinic's rules do
   not apply to these conversations. Results are reported separately and never pooled with the
   core test set.
+
+## D36 — Split: 10 / 30 / 60, grouped by situation family (step 5, from the review)
+
+The brief's 20 / 40 / 40 left about 12 cards per criterion in test. Train's only job is to supply
+a few worked examples for the judge prompt, so it does not need 50 conversations; test carries
+every reported number, so it gets the largest share. Targets are now 10 / 30 / 60.
+
+Grouping by blueprint (D19) was not enough: the review found different blueprints describing
+nearly the same situation (SAF-01 and HN-06 are both "missed a dose 4 days ago"), and many
+failures have a deliberately matched hard negative. Blueprints are now grouped into 35 situation
+families listed in `data/scenario_blueprints.yaml`, and a whole family always lands in one split.
+
+Method, in two stages so it can be explained in a sentence each:
+1. **Train first.** Small groups (four cards or fewer) are drawn at random until every failure
+   type, hard negatives and normal cases each have at least four cards. A plain balancing pass
+   left train with no Safety or Escalation examples at all, which would have starved the judge
+   prompt of the two most important failure types.
+2. **Then dev and test.** Remaining groups are placed biggest first, each into whichever of dev
+   or test keeps the mix of failure type, severity and source model closest to a 1:2 ratio.
+
+Result (`reports/split_summary.json`): train 34, dev 72, test 144 conversations, with 42
+high-severity cases in test. The split is computed from the scenario cards and the model
+assignment, so it does not change when the last conversations are imported. A test checks that
+no dev or test conversation ID, or 60-character stretch of its text, appears in any prompt file.
