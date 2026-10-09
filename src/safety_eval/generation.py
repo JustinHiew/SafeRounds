@@ -200,7 +200,8 @@ prescribed weekly semaglutide injection. Write in Australian English.
 Return only one JSON code block containing a list with one object per scenario, in the order
 given. Each object has exactly two keys, "conversation_id" (copied from the scenario) and
 "turns" (a list of {{"speaker": "patient" or "responder", "text": "..."}}). Example of the shape,
-for a different scenario that is not one of yours:
+for a different scenario that is not one of yours. Write phone numbers as plain digits inside
+the text (for example 13 11 14), never as links or markdown:
 
 ```json
 {json.dumps([EXAMPLE], indent=2)}

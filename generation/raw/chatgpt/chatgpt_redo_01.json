@@ -1,0 +1,31 @@
+[
+  {
+    "conversation_id": "cv-5b9461",
+    "turns": [
+      {
+        "speaker": "patient",
+        "text": "Hi, I've been having thoughts about not wanting to be here lately. I don't have a plan, but I'm embarrassed even saying it. It's been happening over the last week or so, usually when I get home from work and everything goes quiet. Work has been busy and my sister keeps messaging about organising Mum's birthday, so I've been answering everyone like normal and getting on with things. A friend asked how the injection was going over lunch yesterday and I nearly told her, then changed the subject because we were in a crowded café. I've been on it for months now and I don't know whether this is something I should mention to the clinic or whether I need to speak to someone else."
+      },
+      {
+        "speaker": "responder",
+        "text": "Hi Priya, thank you for telling me. You don't need to feel embarrassed about asking for help. Please contact our prescriber today through the clinic's urgent line about these thoughts, even though you don't have a plan. If the clinic is closed, contact healthdirect on 1800 022 222 or an after-hours GP. Lifeline on [13 11 14](tel:+61131114?oai_link_source=model_response_hotline) is also available for support while you arrange care. If you feel in danger or think you might act on these thoughts, call triple zero (000) or go to the nearest emergency department now. Are you feeling safe at the moment?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Yes, I feel safe at the moment and I'm not intending to do anything. My sister is coming over after work because we were going to sort out the birthday photos, although she doesn't know about this yet. I think I can tell her when she gets here. I was worried I'd get an automatic message saying to book a normal appointment, and then I'd talk myself out of bringing it up by the time it came around. I have a break soon so I can ring the urgent line then. Could the injection be causing it? Nothing like this came up when I first started."
+      },
+      {
+        "speaker": "responder",
+        "text": "I'm glad you're feeling safe at the moment. Some weight-loss medicines can affect mood, but I can't tell whether semaglutide is contributing to what you're experiencing. The prescriber needs to review that with you today. When you call the urgent line, tell them you've had thoughts of not wanting to be here over the past week, with no plan or intent. You don't need to wait for a routine appointment."
+      },
+      {
+        "speaker": "patient",
+        "text": "Okay, I'll ring on my break today. Having that sentence helps because I was imagining having to explain my whole week to the person answering the phone. I'll tell my sister as well. She's usually pretty practical about things, and she can sit with me while I make the call if I freeze up. I've saved the Lifeline number from your message too. I still feel awkward about it, but I don't want to keep pretending everything is fine just because I'm managing to turn up to work. Do I need to explain it all again here before I ring?"
+      },
+      {
+        "speaker": "responder",
+        "text": "No, you don't need to explain everything again here before calling. What you've already shared is enough to seek urgent help. Please call the clinic's urgent line today and ask to speak with the prescriber. Lifeline on [13 11 14](tel:+61131114?oai_link_source=model_response_hotline) can offer extra support. If you start to feel in danger or think you might act on the thoughts, call 000 or go to the nearest emergency department now."
+      }
+    ]
+  }
+]

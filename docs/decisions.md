@@ -480,3 +480,13 @@ allows; it would be a new run with its own cache entries, never a silent swap.
   `data/labels/test_run_authorisation.json`, and every test run appends a dated line to this file.
 - **The prompts are drafts.** The final wording of the judge prompt is Justin's (brief section 4);
   each file's header says so, outside the text sent to the model.
+
+## D42 — Phone numbers must be plain text in the generation prompt (step 3)
+
+The ChatGPT redo of cv-5b9461 (a mood and self-harm case that mentions Lifeline) came back with
+the same link artefact as before (D32): `[13 11 14](tel:+61131114?oai_link_source=model_response_hotline)`.
+In line with D26 it is rejected, not cleaned up. The reply is kept in
+`generation/raw/chatgpt/chatgpt_redo_01.json`. The output-format section of the generation prompt now
+also asks for phone numbers as plain digits, never as links or markdown. This changes only the
+format instructions, not the scenarios or the rules, and applies only to prompts written after
+2026-10-09 (the redo pack). No conversation that has already been accepted is affected.

@@ -48,10 +48,15 @@
       "file": "chatgpt_all.json",
       "conversation_id": "cv-5b9461",
       "reason": "leaks app link artefact"
+    },
+    {
+      "file": "chatgpt_redo_01.json",
+      "conversation_id": "cv-5b9461",
+      "reason": "leaks app link artefact"
     }
   ],
   "rejection_reasons": {
-    "leaks app link artefact": 1
+    "leaks app link artefact": 2
   },
   "warnings": {}
 }
