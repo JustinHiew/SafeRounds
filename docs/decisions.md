@@ -399,3 +399,26 @@ Result (`reports/split_summary.json`): train 34, dev 72, test 144 conversations,
 high-severity cases in test. The split is computed from the scenario cards and the model
 assignment, so it does not change when the last conversations are imported. A test checks that
 no dev or test conversation ID, or 60-character stretch of its text, appears in any prompt file.
+
+## D37 — What counts as "caught", and the analysis plan written in advance (from the review)
+
+The headline unit is the conversation: a high-severity conversation is caught if the judge flags
+it at all, whichever criterion it names, because a clinician reviewing the flag reads the whole
+conversation. Unsure and needs-review outcomes count as caught, since they go to a person.
+Per-criterion results are reported separately, as counts as well as rates. The rule for choosing
+the final prompt on dev, the McNemar comparison with baseline A on test, family-level bootstrap
+intervals and how to read results across the three sets are all written in
+`docs/analysis_plan.md` before any judge runs, so they cannot be bent to fit results. Justin
+confirms or edits that plan before step 7.
+
+## D38 — Labelling tool design (step 4)
+
+Labels are typed in a terminal, one conversation at a time, in a random order fixed per pass,
+showing only what a reviewer would see: responder type, patient record and the turns. Every
+answer is appended to a file at once, so a pass can stop and resume. Labels carry an "unsure"
+mark rather than forcing a guess (from the review); unsure conversations go to the reconcile
+step. Severity is only asked when something fails, and the label schema rejects a severity
+that contradicts the verdicts. The rubric version is stamped on every label, so labels made
+under a draft rubric can be told apart from labels made under the frozen one. Because Justin
+saw the generation prompts while pasting, labels are described as "labeller exposed to the
+generation prompts", not fully blind (review point 1).

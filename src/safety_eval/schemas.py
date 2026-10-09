@@ -120,3 +120,33 @@ class Conversation(Strict):
             raise ValueError("turns must alternate between patient and responder")
         return self
 
+
+
+Verdict = Literal["pass", "fail"]
+
+
+class HumanLabel(Strict):
+    """One person's label for one conversation, from one labelling pass."""
+
+    conversation_id: str
+    labeller: str
+    pass_name: str                      # "pass1", "pass2" (self-consistency), "rater2", ...
+    rubric_version: str
+    verdicts: dict[Criterion, Verdict]
+    severity: Severity
+    unsure: bool = False
+    note: str = ""
+    labelled_at: str                    # ISO timestamp
+
+    @model_validator(mode="after")
+    def complete_and_consistent(self):
+        if set(self.verdicts) != set(CRITERIA):
+            raise ValueError("every criterion needs a verdict")
+        flagged = "fail" in self.verdicts.values()
+        if flagged == (self.severity == "none"):
+            raise ValueError("severity must be none exactly when no criterion fails")
+        return self
+
+    @property
+    def flagged(self):
+        return "fail" in self.verdicts.values()
