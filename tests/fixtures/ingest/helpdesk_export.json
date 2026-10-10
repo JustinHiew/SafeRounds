@@ -1,0 +1,85 @@
+{
+  "data": {
+    "tickets": [
+      {
+        "ticket_id": "T-1001",
+        "customer": {"name": "Testa Fakename", "age_band": "25-34", "notes": "Prefers text. Email testa.fakename@example.com"},
+        "plan": "low-intensity anxiety support",
+        "sessions": 3,
+        "safety_plan": "no",
+        "assigned": {"kind": "ai", "name": "Botty Fakebot"},
+        "comments": [
+          {"author": {"role": "bot"}, "body": "Hi, I'm the Harbourline assistant. How can I help?"},
+          {"author": {"role": "customer"}, "body": "Hi, I'm Testa Fakename. I can't sleep and my mind races."},
+          {"author": {"role": "customer"}, "body": "My mobile is 0400 000 111 if someone needs to call."},
+          {"author": {"role": "bot"}, "body": "Thanks Testa, that sounds hard. I can't give clinical advice, but I'll flag this for your psychologist."},
+          {"author": {"role": "user"}, "body": "Is there a number I can ring tonight?"},
+          {"author": {"role": "agent"}, "body": "Yes. Lifeline is 13 11 14 and our urgent clinician line is 1800 555 0199. In immediate danger call 000."}
+        ]
+      },
+      {
+        "ticket_id": "T-1002",
+        "customer": {"name": "Unknown Speaker", "age_band": "35-44"},
+        "plan": "peer support",
+        "sessions": 1,
+        "safety_plan": "yes",
+        "assigned": {"kind": "human", "name": "Pat Fakestaff"},
+        "comments": [
+          {"author": {"role": "customer"}, "body": "Hello"},
+          {"author": {"role": "system"}, "body": "Conversation transferred"},
+          {"author": {"role": "agent"}, "body": "Hello, how can I help?"},
+          {"author": {"role": "customer"}, "body": "Just checking in."}
+        ]
+      },
+      {
+        "ticket_id": "T-1003",
+        "customer": {"name": "Short Convo", "age_band": "25-34"},
+        "plan": "peer support",
+        "sessions": 2,
+        "safety_plan": "no",
+        "assigned": {"kind": "human", "name": "Pat Fakestaff"},
+        "comments": [
+          {"author": {"role": "customer"}, "body": "Hi"},
+          {"author": {"role": "agent"}, "body": "Hello"}
+        ]
+      },
+      {
+        "ticket_id": "T-1004",
+        "customer": {"name": "Long Convo", "age_band": "45-54"},
+        "plan": "peer support",
+        "sessions": 5,
+        "safety_plan": "yes",
+        "assigned": {"kind": "human", "name": "Pat Fakestaff"},
+        "comments": [
+          {"author": {"role": "customer"}, "body": "Message 1"},
+          {"author": {"role": "agent"}, "body": "Message 2"},
+          {"author": {"role": "customer"}, "body": "Message 3"},
+          {"author": {"role": "agent"}, "body": "Message 4"},
+          {"author": {"role": "customer"}, "body": "Message 5"},
+          {"author": {"role": "agent"}, "body": "Message 6"},
+          {"author": {"role": "customer"}, "body": "Message 7"},
+          {"author": {"role": "agent"}, "body": "Message 8"},
+          {"author": {"role": "customer"}, "body": "Message 9"},
+          {"author": {"role": "agent"}, "body": "Message 10"},
+          {"author": {"role": "customer"}, "body": "Message 11"},
+          {"author": {"role": "agent"}, "body": "Message 12"}
+        ]
+      },
+      {
+        "ticket_id": "T-1005",
+        "customer": {"name": "Trailing Patient", "age_band": "18-24"},
+        "plan": "peer support",
+        "sessions": 0,
+        "safety_plan": "no",
+        "assigned": {"kind": "human", "name": "Pat Fakestaff"},
+        "comments": [
+          {"author": {"role": "customer"}, "body": "I have a question about my plan."},
+          {"author": {"role": "agent"}, "body": "Sure, what would you like to know?"},
+          {"author": {"role": "customer"}, "body": "Can I change my session day?"},
+          {"author": {"role": "agent"}, "body": "Yes, the intake team can help with that."},
+          {"author": {"role": "customer"}, "body": "Thanks, I will message them."}
+        ]
+      }
+    ]
+  }
+}

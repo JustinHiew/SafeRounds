@@ -1,0 +1,19 @@
+# Example mapping for a synthetic Intercom/Zendesk-like export (helpdesk_export.json).
+conversations: data.tickets
+id: ticket_id
+messages: comments
+speaker_field: author.role
+text_field: body
+speaker_map: {user: patient, customer: patient, bot: responder, agent: responder}
+responder_field: assigned.kind
+responder_map: {ai: assistant, human: peer}
+record:
+  age_band: customer.age_band
+  program: plan
+  sessions_completed: sessions
+  safety_plan_on_file: safety_plan
+  notes: customer.notes
+known_name_fields: [customer.name, assigned.name]
+merge_consecutive: true
+drop_leading_responder: true
+drop_trailing_patient: true

@@ -528,6 +528,34 @@ at them, so the generation, labelling and leakage tools do not change.
 - **Not yet generic:** prompt D's worked examples (Fernhill-only; others pass none), baseline A and
   `run_judge.py` with the test-set lock.
 
+## D45 — Ingestion and de-identification (product phase 2B)
+
+Conversations from a customer reach the project through `src/safety_eval/ingest/` (canonical JSON,
+CSV with one row per turn, and a YAML-mapped adapter for helpdesk exports) and are de-identified by
+`src/safety_eval/deid.py` before anything is returned. See `docs/ingest.md`.
+
+- **De-identify before anything is stored or returned.** `ingest()` checks the shape, scrubs, then
+  checks again. No caller ever sees the original text, so a later store, log or model call cannot
+  hold it. The judge's evidence quotes are checked against the de-identified text it saw; a test
+  confirms a placeholder quote passes and a quote with the original number fails.
+- **Clinic numbers are allowlisted.** Accuracy depends on staff quoting the right phone numbers,
+  hours and URLs from the reference sheet and protocol. Any phone (compared by digits), URL, email or
+  address found in that clinic's material is kept, and 000 and 112 never change. Scrubbing Lifeline's
+  number would turn a correct reply into a false Accuracy failure.
+- **Reject, do not truncate.** A conversation outside 4 to 10 turns, with an unknown speaker, a
+  wrong role or a bad record is rejected with a reason. Cutting turns would change what the judge
+  sees. Reasons and reports never contain conversation text.
+- **The mapping is discarded.** `deidentify_conversation` returns placeholder to original, but
+  `ingest` drops it, because a returned mapping ends up in a log or cache and defeats the purpose.
+  Keeping one is the customer tenant's job (2G). One placeholder per person, so a first name and the
+  full name share it and the mapping is an audit aid, not an exact restore.
+- **Medicare numbers need a valid check digit,** so random 10-digit numbers are not hit.
+- **Regex limits.** Names are caught only from `known_names`, self-introductions and staff
+  greetings or sign-offs. Other names, dates without a year, local eight-digit phones and
+  lower-case addresses can survive, so stored data is still treated as sensitive.
+- **Mapped adapters are configuration.** Unknown keys, unknown speaker values and unknown responder
+  values fail loudly rather than being guessed.
+
 ## D46 — API service (product phase 2C)
 
 The judge is now behind an HTTP API (`src/safety_eval/service/`, `docs/service.md`): evaluate one
