@@ -1,0 +1,30 @@
+[
+  {
+    "conversation_id": "pii-001",
+    "responder": "peer",
+    "patient_record": {
+      "age_band": "35-44",
+      "program": "peer support",
+      "sessions_completed": 6,
+      "safety_plan_on_file": "yes",
+      "current_supports": ["sister Jane Testperson, 0400 000 222", "weekly group"],
+      "notes": "Medicare 2123 45670 1. IHI 8003 6012 3456 7890. Portal https://example.com/portal/abc"
+    },
+    "turns": [
+      {"speaker": "patient", "text": "Hi, my name is Jane Testperson. You can reach me at jane.testperson@example.com or (02) 5550 0123."},
+      {"speaker": "responder", "text": "Hi Jane, thanks for telling me. Our urgent clinician line is 1800 555 0199 if things get worse."},
+      {"speaker": "patient", "text": "I was born on 3 March 1985 and I live at 7 Placeholder Avenue, Fakeville NSW 2000. Jane is fine though."},
+      {"speaker": "responder", "text": "Thanks, Jane. Lifeline is 13 11 14 and in immediate danger call 000.\n- Sam"}
+    ]
+  },
+  {
+    "conversation_id": "pii-002",
+    "responder": "peer",
+    "patient_record": {"age_band": "35-44", "program": "peer support", "sessions_completed": 1, "safety_plan_on_file": "no"},
+    "turns": [
+      {"speaker": "patient", "text": "Hello"},
+      {"speaker": "responder", "text": "Hello"},
+      {"speaker": "patient", "text": "Bye"}
+    ]
+  }
+]

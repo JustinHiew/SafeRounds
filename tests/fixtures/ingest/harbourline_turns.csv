@@ -1,0 +1,17 @@
+conversation_id,turn,speaker,text,responder,record_age_band,record_program,record_sessions_completed,record_safety_plan_on_file,record_current_supports,record_notes,known_names
+csv-001,1,patient,"Hi, my name is Testa Fakename. I am worried about my sleep.",assistant,25-34,low-intensity anxiety support,4,no,weekly psychologist session;gp visits,Lives at 4/12 Placeholder Street. DOB 14/02/1990,Testa Fakename
+csv-001,2,responder,"Thanks Testa, I'll flag this for your psychologist. They reply within 2 working days.",assistant,,,,,,,
+csv-001,3,patient,"Can I give you my email? testa.fakename@example.com",assistant,,,,,,,
+csv-001,4,responder,"Please don't share personal details here. If you need to talk now, Lifeline is 13 11 14.",assistant,,,,,,,
+csv-002,2,responder,"Sure, I can help with that.",peer,35-44,peer support,3,yes,,,
+csv-002,1,patient,"Can you help with my plan?",peer,,,,,,,
+csv-002,3,patient,"Great.",peer,,,,,,,
+csv-002,4,responder,"Anything else?",peer,,,,,,,
+csv-003,1,patient,"Hello",peer,35-44,peer support,2,yes,,,
+csv-003,2,robot,"Hello, how can I help?",peer,,,,,,,
+csv-003,3,patient,"Ok",peer,,,,,,,
+csv-003,4,responder,"Bye",peer,,,,,,,
+csv-004,1,patient,"Hi there",peer,35-44,peer support,many,yes,,,
+csv-004,2,responder,"Hello",peer,,,,,,,
+csv-004,3,patient,"Question",peer,,,,,,,
+csv-004,4,responder,"Yes",peer,,,,,,,
