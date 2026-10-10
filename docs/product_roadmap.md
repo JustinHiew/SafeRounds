@@ -8,6 +8,12 @@ queue, drift monitoring and a regression gate for their AI assistant.
 This file is written so Claude Code can execute it. Tasks marked **[HUMAN]** are Justin's and
 must not be done by Claude Code. Everything else is a code task with acceptance criteria.
 
+**Current stage: pre-customer, pre-revenue.** There are no customers or design partners yet, and
+none are needed to start. The code work (Phase 2) does not depend on customers, and neither the
+Claude for Startups program nor most accelerators require them. What strengthens an application
+at this stage is **evidence of demand** (Phase 3), which comes later and can be gathered without
+selling anything. Never describe interest as customers in any document or application.
+
 ---
 
 ## 0. Rules for Claude Code (read first)
@@ -32,14 +38,15 @@ must not be done by Claude Code. Everything else is a code task with acceptance 
 
 ```
 Week 1-2   [HUMAN] labelling + judge results    |  [CODE] 2A clinic config, 2B ingestion
-Week 2-4   [HUMAN] 10 customer conversations    |  [CODE] 2C API service, 2D review queue
-Week 4-6   [HUMAN] ABN, landing page, adviser   |  [CODE] 2E gate, 2F monitoring, 2G security
-Week 6-8   [HUMAN] first design-partner audit   |  [CODE] 2H deploy, demo clinic, docs
-           [HUMAN] incorporate if needed, apply to Claude for Startups / accelerator
+Week 2-4   [HUMAN] free ABN, one-pager          |  [CODE] 2C API service, 2D review queue
+Week 4-6   [HUMAN] outreach + interviews (Ph 3) |  [CODE] 2E gate, 2F monitoring, 2G security
+Week 6-8   [HUMAN] offer free audits, LOIs      |  [CODE] 2H deploy, demo clinic, docs
+           [HUMAN] apply to Claude for Startups / accelerator (customers not required)
 ```
 
-The two tracks run in parallel. The application is strongest once Phase 1 results and a
-deployed demo both exist.
+The two tracks run in parallel. Outreach is deliberately later: it is easier with results and a
+demo to show. The application needs Phase 1 results and a deployed demo; any evidence of demand
+from Phase 3 is a bonus, not a gate.
 
 ---
 
@@ -173,7 +180,14 @@ green.
 
 ---
 
-## Phase 3: customers **[HUMAN]**
+## Phase 3: evidence of demand (later, no customers needed to start) **[HUMAN]**
+
+Starting point: zero customers. The aim of this phase is not revenue but signals that the problem
+is real, in roughly increasing strength: interview notes, waitlist sign-ups, letters of intent,
+a free audit done for a real team. Any one of these is enough to mention in an application, stated
+honestly (for example "pre-revenue, in conversations with 6 teams, 1 free audit agreed").
+
+LinkedIn outreach messages and the interview script are still to be written.
 
 - List 30 targets: Australian telehealth and weight-management services, mental-health text
   services, pharmacy chat, and companies selling AI patient assistants (often faster buyers than
@@ -186,7 +200,9 @@ green.
   non-clinician labeller" limitation.
 - Pricing hypothesis to test: per-conversation evaluated plus a platform fee; the regression gate
   as a cheaper entry product for AI vendors.
-- Landing page with the one-pager, demo link and a contact form.
+- Landing page with the one-pager, demo link and a waitlist / contact form. Sign-ups from
+  relevant companies count as evidence of demand.
+- Until a design partner exists, use the synthetic demo clinic for every demo and screenshot.
 
 ---
 
@@ -208,8 +224,9 @@ Spend nothing until it is needed.
 | Regulatory check: position as quality assurance and review triage, **not** clinical decision support, to stay outside TGA software-as-a-medical-device rules | One short legal consult | Before marketing claims go public. |
 
 Funding and credits:
-- Apply to **Claude for Startups** once Phase 1 results and the deployed demo exist. Say plainly
-  what credits pay for: validation runs at scale and free audits for design partners.
+- Apply to **Claude for Startups** once Phase 1 results and the deployed demo exist. Customers
+  are not required. Describe the stage honestly ("pre-revenue") and say plainly what credits pay
+  for: validation runs at scale, building the product, and free audits for future design partners.
 - Accelerators: Startmate, Antler, and university incubators. They can provide a partner referral
   for higher credit tiers and often handle incorporation.
 - Also check Anthropic's other programs (for example AI for Science) in case the validation
@@ -228,7 +245,9 @@ Funding and credits:
 - [ ] Monitoring and alerts (2F)
 - [ ] Australian data residency, audit log, retention, security doc (2G)
 - [ ] Deployed, with CI, a demo clinic and a quickstart (2H)
-- [ ] At least one design partner using it on real (de-identified) data (Phase 3)
+- [ ] Evidence of demand: interviews, waitlist, or a letter of intent (Phase 3; not needed to
+      apply, needed before charging anyone)
+- [ ] Later: at least one design partner using it on real (de-identified) data
 - [ ] ABN or company, privacy policy, terms, insurance (Phase 4)
 
 ---
