@@ -490,3 +490,18 @@ In line with D26 it is rejected, not cleaned up. The reply is kept in
 also asks for phone numbers as plain digits, never as links or markdown. This changes only the
 format instructions, not the scenarios or the rules, and applies only to prompts written after
 2026-10-09 (the redo pack). No conversation that has already been accepted is affected.
+
+## D43 — A web page for labelling, alongside the terminal tool (step 5)
+
+Justin works from the Claude app, where the terminal labelling tool cannot take typed answers.
+`python -m safety_eval.label_page` builds a private web page (`labelling/template.html` →
+`labelling/label_desk.html`, rebuilt rather than committed) that shows exactly what the terminal
+tool shows (responder type, patient record, turns) in the same fixed random orders (pass1 and
+explore seeds). It contains no scenario cards, planted mistakes, splits or source models; a test
+checks this. The rubric is hidden in the explore pass, as brief 8.1 asks.
+
+Answers are saved to the page's own store, readable and writable only by its owner (checked with
+a lower access level, which saw nothing). Claude Code exports the store and runs
+`python -m safety_eval.labelling import-web PATH`, which validates every answer as a `HumanLabel`
+and writes `data/labels/labels_pass1.jsonl` and `exploration_notes.md`. The answers are copied as
+they are; Claude Code never fills in or edits a label (brief: "Never fill in a human label").

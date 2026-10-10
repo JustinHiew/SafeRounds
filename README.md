@@ -21,7 +21,7 @@ summarised here, and no number will appear in this README before it exists in `r
 | Train / dev / test split, grouped so near-duplicates never cross splits | Done |
 | External check against physician labels (HealthBench), with physician-to-physician agreement as the ceiling | Sample drawn; agreement computed |
 | Rubric and analysis plan, written before any judge run | Drafted; being frozen |
-| Blind labelling tool, reconcile and agreement reports | Built; labelling not started |
+| Blind labelling tool (terminal and web page), reconcile and agreement reports | Built; labelling not started |
 | Judge with evidence-before-verdict output and fail-closed checks | Built and tested with a fake model |
 | Prompt versions A–E compared on dev; chosen version and baseline run once on test | Not started |
 | Service, monitoring and regression gate (milestones 2–3) | Not started |

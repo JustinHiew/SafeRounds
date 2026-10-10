@@ -1,0 +1,457 @@
+<title>Conversation Label Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500&display=swap">
+<style>
+/* Layout: a chart-review desk. Transcript on the left, a sticky label sheet on the right; stacked on phones. */
+:root {
+  --bg: #f4f6f5;
+  --surface: #ffffff;
+  --sunken: #e9eeec;
+  --line: #d3dcd8;
+  --fg: #17211d;
+  --muted: #5a6a63;
+  --accent: #1d6a57;
+  --accent-ink: #ffffff;
+  --pass: #2f7a4b;
+  --pass-bg: #e3f1e7;
+  --fail: #b23a2e;
+  --fail-bg: #f8e4e1;
+  --warn: #8a5a00;
+  --warn-bg: #fbf0d6;
+  --patient: #eef1f0;
+  --staff: #e2efe9;
+  --shadow: 0 1px 2px rgb(23 33 29 / 0.06), 0 4px 16px rgb(23 33 29 / 0.06);
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif: "IBM Plex Serif", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111614; --surface: #19201d; --sunken: #0d1210; --line: #2c3833; --fg: #e3eae6;
+    --muted: #93a39c; --accent: #5cbf9f; --accent-ink: #0b1411;
+    --pass: #6fcf8f; --pass-bg: #18301f; --fail: #f08a7e; --fail-bg: #3a1c18;
+    --warn: #e8c36a; --warn-bg: #352a10; --patient: #1f2724; --staff: #1a2c25;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111614; --surface: #19201d; --sunken: #0d1210; --line: #2c3833; --fg: #e3eae6;
+  --muted: #93a39c; --accent: #5cbf9f; --accent-ink: #0b1411;
+  --pass: #6fcf8f; --pass-bg: #18301f; --fail: #f08a7e; --fail-bg: #3a1c18;
+  --warn: #e8c36a; --warn-bg: #352a10; --patient: #1f2724; --staff: #1a2c25;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--sans); }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding-block: 10px; padding-inline: 16px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+}
+.brand { font-family: var(--serif); font-weight: 500; font-size: 17px; letter-spacing: 0.01em; }
+.tabs { display: flex; gap: 4px; background: var(--sunken); border-radius: 8px; padding: 3px; }
+.tabs button { border: 0; background: transparent; padding: 5px 12px; border-radius: 6px; font-size: 14px; color: var(--muted); }
+.tabs button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: var(--shadow); font-weight: 500; }
+.progress { display: flex; align-items: center; gap: 10px; flex: 1 1 200px; min-width: 0; }
+.progress .count { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.track { flex: 1; height: 6px; background: var(--sunken); border-radius: 3px; overflow: hidden; min-width: 60px; }
+.fill { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+.ghost { border: 1px solid var(--line); background: var(--surface); border-radius: 7px; padding: 6px 12px; font-size: 14px; }
+.ghost:hover { border-color: var(--accent); }
+
+.banner { margin: 12px 16px 0; padding: 10px 14px; border-radius: 8px; font-size: 14px; background: var(--warn-bg); color: var(--warn); }
+.banner.error { background: var(--fail-bg); color: var(--fail); }
+
+.layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; align-items: start;
+  max-width: 1180px; margin: 0 auto; padding-block: 16px 40px; padding-inline: 16px;
+}
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.conv { min-width: 0; display: grid; gap: 12px; }
+.convhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.convhead .pos { font-weight: 600; }
+.convhead .cid { color: var(--muted); font-size: 13px; }
+.chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; background: var(--sunken); color: var(--muted); }
+.chip.done { background: var(--pass-bg); color: var(--pass); }
+.chip.draft { background: var(--warn-bg); color: var(--warn); }
+
+.record { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; }
+.record .role { font-weight: 600; }
+.record dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px 16px; margin: 0; }
+.record dl div { min-width: 0; }
+.record dt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.record dd { margin: 0; font-family: var(--mono); font-size: 13px; overflow-wrap: anywhere; }
+
+.transcript { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.turn { max-width: 88%; border-radius: 12px; padding: 10px 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.turn .who { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 3px; }
+.turn.patient { background: var(--patient); justify-self: start; border-top-left-radius: 4px; }
+.turn.responder { background: var(--staff); justify-self: end; border-top-right-radius: 4px; }
+
+.sheet {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 70px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  padding: 14px; display: grid; gap: 12px; min-width: 0;
+  max-height: calc(100vh - 86px); overflow-y: auto;
+}
+@media (max-width: 860px) { .sheet { position: static; max-height: none; } }
+.sheet h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 17px; }
+.crit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.crit .name { font-weight: 600; }
+.crit .def { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: var(--surface); padding: 6px 14px; font-size: 14px; min-width: 58px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[data-v="pass"][aria-pressed="true"] { background: var(--pass-bg); color: var(--pass); font-weight: 600; }
+.seg button[data-v="fail"][aria-pressed="true"],
+.seg button[data-v="high"][aria-pressed="true"] { background: var(--fail-bg); color: var(--fail); font-weight: 600; }
+.seg button[data-v="low"][aria-pressed="true"] { background: var(--warn-bg); color: var(--warn); font-weight: 600; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.hint { font-size: 12.5px; color: var(--muted); }
+.check { display: flex; align-items: center; gap: 8px; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+textarea { width: 100%; min-height: 70px; resize: vertical; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--bg); }
+.primary { border: 0; border-radius: 8px; padding: 10px 14px; background: var(--accent); color: var(--accent-ink); font-weight: 600; width: 100%; }
+.primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav .ghost { flex: 1 1 auto; }
+.status { font-size: 13px; color: var(--muted); min-height: 1.4em; }
+.status.error { color: var(--fail); }
+
+.drawer { position: fixed; inset: 0; z-index: 10; display: flex; justify-content: flex-end; background: rgb(0 0 0 / 0.35); }
+.drawer-panel { background: var(--surface); width: min(620px, 100%); height: 100%; display: flex; flex-direction: column; box-shadow: var(--shadow); }
+.drawer-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-block: calc(env(safe-area-inset-top, 0px) + 12px) 12px; padding-inline: 16px; border-bottom: 1px solid var(--line); }
+.drawer-head .tabs { flex: 1 1 auto; }
+.drawer-body { overflow-y: auto; padding-block: 8px 40px; padding-inline: 16px; font-size: 14px; }
+.drawer-body h2 { font-family: var(--serif); font-weight: 500; font-size: 19px; margin: 18px 0 6px; }
+.drawer-body h3 { font-size: 15px; margin: 16px 0 4px; }
+.drawer-body h4 { font-size: 14px; margin: 14px 0 4px; }
+.drawer-body p, .drawer-body li { max-width: 68ch; }
+.drawer-body code { font-family: var(--mono); font-size: 12.5px; background: var(--sunken); padding: 0 4px; border-radius: 4px; }
+.drawer-body a { color: var(--accent); }
+.table-wrap { overflow-x: auto; margin: 8px 0; }
+.drawer-body table { border-collapse: collapse; font-size: 13px; min-width: 100%; }
+.drawer-body th, .drawer-body td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
+.drawer-body th { background: var(--sunken); }
+
+.done-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+
+<header class="bar">
+  <div class="brand">Label desk</div>
+  <div class="tabs" role="group" aria-label="Pass">
+    <button id="tabExplore" type="button" aria-pressed="false">Explore</button>
+    <button id="tabLabel" type="button" aria-pressed="true">Label · pass 1</button>
+  </div>
+  <div class="progress"><span class="count mono" id="progText">0 / 0</span><div class="track"><div class="fill" id="progFill"></div></div></div>
+  <button class="ghost" id="refBtn" type="button">Reference</button>
+</header>
+<div class="banner error" id="dbBanner" hidden></div>
+<div class="banner" id="rubricBanner" hidden></div>
+
+<main class="layout" id="layout">
+  <section class="conv" aria-label="Conversation">
+    <div class="convhead">
+      <span class="pos mono" id="posText"></span>
+      <span class="cid mono" id="cidText"></span>
+      <span class="chip" id="stateChip"></span>
+    </div>
+    <div class="record">
+      <div><span class="hint">Responder</span> <span class="role" id="roleText"></span></div>
+      <dl id="recordList"></dl>
+    </div>
+    <ol class="transcript" id="transcript"></ol>
+  </section>
+
+  <aside class="sheet" aria-label="Your answers">
+    <div id="labelForm">
+      <div style="display:grid;gap:12px">
+        <h2>Judge the staff replies</h2>
+        <div id="critList" style="display:grid;gap:10px"></div>
+        <div id="sevRow" hidden>
+          <div class="row"><span class="name" style="font-weight:600">Severity</span>
+            <div class="seg" id="sevSeg"><button type="button" data-v="low" aria-pressed="false">Low</button><button type="button" data-v="high" aria-pressed="false">High</button></div>
+          </div>
+          <div class="hint">When unsure between low and high, choose high.</div>
+        </div>
+        <label class="check" for="unsureBox"><input type="checkbox" id="unsureBox"> Unsure after reading the rubric</label>
+        <label for="noteBox" class="hint">Note (optional)</label>
+        <textarea id="noteBox" placeholder="Why you chose a verdict, or what made it hard"></textarea>
+        <button class="primary" id="saveBtn" type="button" disabled>Save and next</button>
+      </div>
+    </div>
+    <div id="exploreForm" hidden>
+      <div style="display:grid;gap:12px">
+        <h2>What, if anything, goes wrong here?</h2>
+        <div class="hint">Read without the rubric. Write what you notice in your own words, or leave it blank and move on.</div>
+        <textarea id="exploreBox" style="min-height:140px" placeholder="e.g. tells them to skip a dose; misses that they take insulin"></textarea>
+        <button class="primary" id="exploreSave" type="button" disabled>Save and next</button>
+      </div>
+    </div>
+    <div class="status" id="status" role="status"></div>
+    <div class="nav">
+      <button class="ghost" id="prevBtn" type="button">← Previous</button>
+      <button class="ghost" id="nextBtn" type="button">Next →</button>
+      <button class="ghost" id="todoBtn" type="button">Next unanswered</button>
+    </div>
+  </aside>
+</main>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Reference">
+    <div class="drawer-head">
+      <div class="tabs" role="group" aria-label="Reference document">
+        <button type="button" data-ref="rubric" aria-pressed="true">Rubric</button>
+        <button type="button" data-ref="facts" aria-pressed="false">Medicine facts</button>
+        <button type="button" data-ref="protocol" aria-pressed="false">Clinic protocol</button>
+      </div>
+      <button class="ghost" id="refClose" type="button">Close</button>
+    </div>
+    <div class="drawer-body" id="refBody"></div>
+  </div>
+</div>
+
+<script>
+const D = /*DATA*/null;
+const COLL = { label: "labels_pass1", explore: "explore_notes" };
+const $ = (id) => document.getElementById(id);
+const S = {
+  mode: "label", pos: { label: 0, explore: 0 },
+  labels: {}, notes: {}, drafts: {}, loaded: { label: false, explore: false },
+  db: null, saving: false, ref: "rubric",
+};
+try { const m = localStorage.getItem("labeldesk.mode"); if (m === "explore" || m === "label") S.mode = m; } catch (e) {}
+
+const list = () => (S.mode === "label" ? D.order : D.explore);
+const saved = () => (S.mode === "label" ? S.labels : S.notes);
+const cid = () => list()[S.pos[S.mode]];
+
+/* ---------- conversation ---------- */
+function fmt(v) { return String(v).replace(/_/g, " "); }
+function renderConv() {
+  const id = cid(), c = D.convs[id], r = c.record;
+  $("posText").textContent = `${S.pos[S.mode] + 1} of ${list().length}`;
+  $("cidText").textContent = id;
+  $("roleText").textContent = c.responder;
+  const rows = [
+    ["Age", r.age_band], ["Sex", r.sex], ["Medicine", r.medication], ["Dose step", r.dose_step],
+    ["Weeks on treatment", r.weeks_on_treatment], ["Pregnancy", fmt(r.pregnancy_status)],
+    ["Conditions", r.conditions.join(", ") || "none"], ["Other medicines", r.other_medications.join(", ") || "none"],
+  ];
+  const dl = $("recordList"); dl.replaceChildren();
+  for (const [k, v] of rows) {
+    const d = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
+    dt.textContent = k; dd.textContent = v; d.append(dt, dd); dl.append(d);
+  }
+  const ol = $("transcript"); ol.replaceChildren();
+  for (const [speaker, text] of c.turns) {
+    const li = document.createElement("li"), who = document.createElement("span");
+    li.className = "turn " + speaker;
+    who.className = "who"; who.textContent = speaker === "patient" ? "Patient" : c.responder;
+    li.append(who, document.createTextNode(text));
+    ol.append(li);
+  }
+}
+
+/* ---------- label form ---------- */
+function blankDraft() { return { verdicts: {}, severity: null, unsure: false, note: "", dirty: false }; }
+function draftFor(id) {
+  if (!S.drafts[id] || !S.drafts[id].dirty) {
+    const l = S.labels[id];
+    S.drafts[id] = l ? { verdicts: { ...l.verdicts }, severity: l.severity === "none" ? null : l.severity,
+                         unsure: !!l.unsure, note: l.note || "", dirty: false } : blankDraft();
+  }
+  return S.drafts[id];
+}
+function anyFail(d) { return Object.values(d.verdicts).includes("fail"); }
+function complete(d) {
+  return D.criteria.every((c) => d.verdicts[c.key]) && (!anyFail(d) || d.severity);
+}
+function buildCriteria() {
+  const box = $("critList");
+  for (const c of D.criteria) {
+    const row = document.createElement("div"); row.className = "crit";
+    const name = document.createElement("span"); name.className = "name"; name.textContent = c.name;
+    const seg = document.createElement("div"); seg.className = "seg"; seg.dataset.crit = c.key;
+    seg.setAttribute("role", "group"); seg.setAttribute("aria-label", c.name);
+    for (const v of ["pass", "fail"]) {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.v = v;
+      b.textContent = v === "pass" ? "Pass" : "Fail"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => {
+        const d = draftFor(cid()); d.verdicts[c.key] = v; d.dirty = true;
+        if (!anyFail(d)) d.severity = null;
+        renderForm(false);
+      });
+      seg.append(b);
+    }
+    const def = document.createElement("span"); def.className = "def"; def.textContent = c.definition;
+    row.append(name, seg, def); box.append(row);
+  }
+}
+function renderForm(loadText) {
+  const id = cid(), d = draftFor(id);
+  document.querySelectorAll("#critList .seg").forEach((seg) => {
+    seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(d.verdicts[seg.dataset.crit] === b.dataset.v)));
+  });
+  $("sevRow").hidden = !anyFail(d);
+  $("sevSeg").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(d.severity === b.dataset.v)));
+  $("unsureBox").checked = d.unsure;
+  if (loadText) $("noteBox").value = d.note;
+  $("saveBtn").disabled = !S.db || S.saving || !complete(d);
+  renderChip();
+}
+
+/* ---------- explore form ---------- */
+function renderExplore(loadText) {
+  const id = cid();
+  if (loadText) $("exploreBox").value = S.drafts["x:" + id] ?? (S.notes[id]?.note || "");
+  $("exploreSave").disabled = !S.db || S.saving;
+  renderChip();
+}
+
+/* ---------- shared chrome ---------- */
+function renderChip() {
+  const id = cid(), chip = $("stateChip");
+  const dirty = S.mode === "label" ? S.drafts[id]?.dirty : (S.drafts["x:" + id] !== undefined);
+  if (dirty) { chip.className = "chip draft"; chip.textContent = "Unsaved changes"; }
+  else if (saved()[id]) { chip.className = "chip done"; chip.textContent = S.mode === "label" ? "Labelled" : "Seen"; }
+  else { chip.className = "chip"; chip.textContent = S.mode === "label" ? "Not labelled" : "Not seen"; }
+}
+function renderProgress() {
+  const n = list().filter((id) => saved()[id]).length, total = list().length;
+  $("progText").textContent = `${n} / ${total} ${S.mode === "label" ? "labelled" : "seen"}`;
+  $("progFill").style.width = (100 * n / total) + "%";
+}
+function renderMode() {
+  $("tabLabel").setAttribute("aria-pressed", String(S.mode === "label"));
+  $("tabExplore").setAttribute("aria-pressed", String(S.mode === "explore"));
+  $("labelForm").hidden = S.mode !== "label";
+  $("exploreForm").hidden = S.mode !== "explore";
+  $("rubricBanner").hidden = !(S.mode === "label" && D.rubricVersion === "0");
+  $("rubricBanner").textContent = "The rubric is still the version 0 draft. The plan is to explore first, then freeze the rubric, then label. Labels saved now are recorded against version 0.";
+  document.querySelector('[data-ref="rubric"]').hidden = S.mode === "explore";
+  if (S.mode === "explore" && S.ref === "rubric") S.ref = "facts";
+  renderAll(true);
+}
+function renderAll(loadText) {
+  renderConv(); renderProgress();
+  if (S.mode === "label") renderForm(loadText); else renderExplore(loadText);
+}
+function setStatus(text, error) { const s = $("status"); s.textContent = text; s.className = "status" + (error ? " error" : ""); }
+function go(i) {
+  const n = list().length; S.pos[S.mode] = (i + n) % n; setStatus("");
+  renderAll(true); window.scrollTo({ top: 0, behavior: "instant" });
+}
+function nextUnanswered(from) {
+  const l = list();
+  for (let k = 1; k <= l.length; k++) { const i = (from + k) % l.length; if (!saved()[l[i]]) return i; }
+  return -1;
+}
+
+/* ---------- saving ---------- */
+async function saveLabel() {
+  const id = cid(), d = draftFor(id);
+  if (!complete(d) || !S.db) return;
+  const doc = {
+    conversation_id: id, pass_name: "pass1", rubric_version: D.rubricVersion,
+    verdicts: Object.fromEntries(D.criteria.map((c) => [c.key, d.verdicts[c.key]])),
+    severity: anyFail(d) ? d.severity : "none", unsure: d.unsure, note: $("noteBox").value.trim(),
+    labelled_at: new Date().toISOString().replace(/\.\d{3}Z$/, "+00:00"),
+  };
+  await write(COLL.label, id, doc, () => { delete S.drafts[id]; S.labels[id] = doc; });
+}
+async function saveNote() {
+  const id = cid();
+  const doc = { conversation_id: id, note: $("exploreBox").value.trim(), saved_at: new Date().toISOString() };
+  await write(COLL.explore, id, doc, () => { delete S.drafts["x:" + id]; S.notes[id] = doc; });
+}
+async function write(coll, id, doc, onDone) {
+  S.saving = true; renderAll(false); setStatus("Saving…");
+  try {
+    await S.db.collection(coll).doc(id).set(doc);
+    onDone(); S.saving = false;
+    const next = nextUnanswered(S.pos[S.mode]);
+    if (next < 0) { renderAll(true); setStatus(`Saved ${id}. Every conversation in this pass has an answer.`); return; }
+    go(next); setStatus(`Saved ${id}.`);
+  } catch (e) {
+    S.saving = false; renderAll(false);
+    setStatus(e && e.code === "quota_exceeded" ? "The store is full, so this answer was not saved." :
+              "This answer was not saved. Check your connection and press Save again.", true);
+  }
+}
+
+/* ---------- events ---------- */
+$("unsureBox").addEventListener("change", (e) => { const d = draftFor(cid()); d.unsure = e.target.checked; d.dirty = true; renderForm(false); });
+$("noteBox").addEventListener("input", (e) => { const d = draftFor(cid()); d.note = e.target.value; d.dirty = true; renderChip(); });
+$("sevSeg").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+  const d = draftFor(cid()); d.severity = b.dataset.v; d.dirty = true; renderForm(false);
+}));
+$("exploreBox").addEventListener("input", (e) => { S.drafts["x:" + cid()] = e.target.value; renderChip(); });
+$("saveBtn").addEventListener("click", saveLabel);
+$("exploreSave").addEventListener("click", saveNote);
+$("prevBtn").addEventListener("click", () => go(S.pos[S.mode] - 1));
+$("nextBtn").addEventListener("click", () => go(S.pos[S.mode] + 1));
+$("todoBtn").addEventListener("click", () => { const i = nextUnanswered(S.pos[S.mode]); if (i < 0) setStatus("Nothing left to answer in this pass."); else go(i); });
+for (const [btn, mode] of [["tabLabel", "label"], ["tabExplore", "explore"]]) {
+  $(btn).addEventListener("click", () => {
+    S.mode = mode; try { localStorage.setItem("labeldesk.mode", mode); } catch (e) {}
+    setStatus(""); renderMode();
+  });
+}
+function renderRef() {
+  document.querySelectorAll("[data-ref]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ref === S.ref)));
+  $("refBody").innerHTML = D.ref[S.ref];
+  $("refBody").scrollTop = 0;
+}
+$("refBtn").addEventListener("click", () => { $("drawer").hidden = false; renderRef(); $("refClose").focus(); });
+$("refClose").addEventListener("click", () => { $("drawer").hidden = true; });
+$("drawer").addEventListener("click", (e) => { if (e.target === $("drawer")) $("drawer").hidden = true; });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("drawer").hidden = true; });
+document.querySelectorAll("[data-ref]").forEach((b) => b.addEventListener("click", () => { S.ref = b.dataset.ref; renderRef(); }));
+
+/* ---------- start ---------- */
+buildCriteria();
+renderMode();
+setStatus("Connecting to your saved answers…");
+(async () => {
+  const db = window.claude ? await window.claude.use("db") : null;
+  if (!db) {
+    $("dbBanner").hidden = false;
+    $("dbBanner").textContent = "Saving is not available in this view. Open the page on claude.ai while signed in to save answers.";
+    setStatus(""); renderAll(false); return;
+  }
+  S.db = db;
+  const watch = (mode, coll) => db.collection(coll).limit(1000).onSnapshot((snap) => {
+    const fresh = {};
+    snap.docs.forEach((d) => { fresh[d.id] = d.data(); });
+    if (mode === "label") S.labels = fresh; else S.notes = fresh;
+    if (!S.loaded[mode]) {
+      // First delivery: open each pass at its first conversation without an answer.
+      S.loaded[mode] = true;
+      const ids = mode === "label" ? D.order : D.explore;
+      const i = ids.findIndex((id) => !fresh[id]);
+      S.pos[mode] = i < 0 ? 0 : i;
+      if (S.loaded.label && S.loaded.explore) setStatus("");
+      renderAll(mode === S.mode);
+    } else {
+      renderAll(false);
+    }
+  }, () => {
+    $("dbBanner").hidden = false;
+    $("dbBanner").textContent = "Lost the connection to your saved answers. Reload the page to reconnect.";
+  });
+  watch("label", COLL.label); watch("explore", COLL.explore);
+})();
+</script>

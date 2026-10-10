@@ -11,6 +11,8 @@ Commands:
   python -m safety_eval.labelling label --pass rater2 --labeller NAME --ids FILE
                                                        a second person labels a given list
   python -m safety_eval.labelling label --redo ID      relabel one conversation (after reconcile)
+  python -m safety_eval.labelling import-web PATH      take answers saved on the web labelling page
+                                                       (see safety_eval.label_page)
 """
 
 import argparse
@@ -147,6 +149,47 @@ def explore(convs, n=30, ask_fn=input, out=print):
                 f.write(f"- {conv.conversation_id}: {note}\n")
 
 
+def _records(obj):
+    """Every saved document in an export of the web page's store, whatever the wrapping."""
+    if isinstance(obj, dict):
+        if "conversation_id" in obj:
+            yield obj
+        else:
+            for v in obj.values():
+                yield from _records(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _records(v)
+
+
+def import_web(path, labeller="justin"):
+    """Write labels and exploration notes saved on the web labelling page.
+
+    Labels go through the same HumanLabel validation as the terminal tool and replace any earlier
+    line for the same conversation in pass1; the labeller's answers are copied as they are.
+    Notes left blank (a conversation read and skipped) are not written, as in `explore`.
+    """
+    path = Path(path)
+    files = sorted(path.rglob("*.json")) if path.is_dir() else [path]   # an export folder or one file
+    records = [r for f in files for r in _records(json.loads(f.read_text()))]
+    labels = [r for r in records if "verdicts" in r]
+    notes = [r for r in records if "note" in r and "verdicts" not in r]
+    LABELS.mkdir(parents=True, exist_ok=True)
+    existing = load_labels("pass1")
+    for r in labels:
+        lab = HumanLabel(labeller=labeller, **{k: r[k] for k in ("conversation_id", "pass_name", "rubric_version",
+                                                                   "verdicts", "severity", "unsure", "note", "labelled_at")})
+        existing[lab.conversation_id] = lab
+    if labels:
+        ordered = sorted(existing.values(), key=lambda lab: (lab.labelled_at, lab.conversation_id))
+        labels_path("pass1").write_text("".join(lab.model_dump_json() + "\n" for lab in ordered))
+    written = [n for n in sorted(notes, key=lambda n: n.get("saved_at", "")) if n["note"].strip()]
+    if notes:
+        NOTES.write_text("".join(f"- {n['conversation_id']}: {' '.join(n['note'].split())}\n" for n in written))
+    print(f"{len(labels)} label(s) imported ({len(existing)} in pass1); "
+          f"{len(written)} exploration note(s) of {len(notes)} conversation(s) read")
+
+
 class _Quit(Exception):
     pass
 
@@ -162,12 +205,16 @@ def _quit_aware(ask_fn):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("command", choices=["explore", "label", "relabel"])
+    p.add_argument("command", choices=["explore", "label", "relabel", "import-web"])
+    p.add_argument("file", nargs="?", help="for import-web: the exported answers (JSON)")
     p.add_argument("--pass", dest="pass_name", default="pass1")
     p.add_argument("--labeller", default="justin")
     p.add_argument("--ids", help="file with one conversation ID per line")
     p.add_argument("--redo", help="relabel this one conversation in the given pass")
     a = p.parse_args()
+    if a.command == "import-web":
+        import_web(a.file, a.labeller)
+        return
     convs = load_conversations()
     if a.command == "explore":
         explore(convs)

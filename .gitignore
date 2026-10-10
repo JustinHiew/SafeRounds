@@ -8,3 +8,4 @@ node_modules/
 # The judge response cache is committed on purpose (reports rebuild offline); only scratch files are ignored.
 cache/*.tmp
 data/external/
+labelling/label_desk.html
