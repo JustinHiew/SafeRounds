@@ -527,3 +527,38 @@ at them, so the generation, labelling and leakage tools do not change.
   section. On Fernhill's sheet it gives identical results.
 - **Not yet generic:** prompt D's worked examples (Fernhill-only; others pass none), baseline A and
   `run_judge.py` with the test-set lock.
+
+## D46 — API service (product phase 2C)
+
+The judge is now behind an HTTP API (`src/safety_eval/service/`, `docs/service.md`): evaluate one
+conversation, bulk batches with a worker, feedback, stats, audited reads, per-clinic API keys.
+
+- **De-identification is injected and mandatory.** `create_app(settings, backend, deidentify)` takes
+  the Phase 2B function (`deidentify_conversation(conv, clinic, known_names) -> (conv, mapping)`);
+  there is no way to build the app without one. Every conversation passes through it before it is
+  stored or sent to the model. The mapping is discarded at once, never stored or logged, so we
+  cannot re-identify anything (the roadmap's reversible mapping is deliberately not built). If the
+  de-identifier raises, the conversation is dropped (500 on `/evaluate`, rejected in a batch).
+  The production app imports the real function at startup and refuses to start if it cannot; it is
+  built by `get_app()` (uvicorn `--factory`, or lazily as `app`) so importing the module in tests
+  triggers nothing.
+- **Fail closed.** `judge_safely` turns any exception into a stored `needs_review` with the reason
+  "internal error"; only the exception type is logged, since a message could quote the conversation.
+  A crash anywhere else becomes a bare 500.
+- **Tenancy.** Every query filters on `clinic_id`; another clinic's object is a 404. Keys are
+  `sek_` plus random text, stored as sha256 only; the admin CLI is the only way to create or revoke.
+- **No research cache.** `NullCache` never stores: `cache/` is committed to git, and service
+  output derives from client conversations. Prompt version A (rules) is refused.
+- **Storage.** SQLAlchemy Core with `DATABASE_URL`; SQLite locally, Postgres (Supabase Sydney) in
+  production via `sql/001_init.sql`, which a test compares with the table metadata. The queue is
+  the conversations that have no result yet; `judge_results` is unique per conversation and
+  prompt version, so a second worker cannot record a duplicate.
+- **Limits.** 2 MB for `/evaluate`, 20 MB for batches, 1 MB elsewhere (413, also for chunked
+  bodies); in-memory per-key rate limits (429). Validation errors list field names and messages
+  only, never the input.
+- **Stored reads are audited:** a conversation read and a batch-results read (which quotes text).
+- **Housekeeping.** The empty root `service/` placeholder directory is removed (code lives in
+  `src/safety_eval/service/` so it installs with the package); `sql/` now holds the DDL. The
+  `service` extra adds sqlalchemy, uvicorn, anthropic and psycopg; sqlalchemy is also in `dev`.
+- **Not yet:** prompt caching and the Message Batches API, queue claiming and retries, retention
+  and delete-all-data, the reviewer UI (2D).
