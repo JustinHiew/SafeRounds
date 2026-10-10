@@ -1,19 +1,22 @@
-"""Read the reference sheet and clinic protocol so prompts can quote them exactly."""
+"""Read Fernhill's reference sheet and clinic protocol so prompts can quote them exactly.
 
-import re
+The generation and import tools build Fernhill conversations and call these directly; the judge
+reads the same files through the Fernhill clinic config (clinic.py), so both always agree.
+"""
+
 from pathlib import Path
+
+from .clinic import Clinic
 
 ROOT = Path(__file__).resolve().parents[2]
 REFERENCE = ROOT / "data" / "reference"
-STATEMENT = re.compile(r"^- \*\*(F\d{2})\*\* (.+?) \[S[\d, S]+\]", re.MULTILINE)
 
 
 def facts():
     """{"F01": "statement text", ...} without source tags or verification markers."""
-    return dict(STATEMENT.findall((REFERENCE / "medication_facts.md").read_text()))
+    return Clinic.load("fernhill").facts()
 
 
 def protocol_text():
     """The clinic protocol from its first section onward (the file header is for humans)."""
-    text = (REFERENCE / "clinic_protocol.md").read_text()
-    return text[text.index("## Who replies to patients"):].strip()
+    return Clinic.load("fernhill").protocol_text()

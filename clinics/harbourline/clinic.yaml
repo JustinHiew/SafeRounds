@@ -1,0 +1,19 @@
+id: harbourline
+name: Harbourline Support
+description: Fictional Australian text-based mental-health support service (synthetic test clinic).
+staff:                      # responder role -> how the judge prompt names the staff member
+  assistant: AI assistant
+  peer: peer support worker
+  intake: intake and admin team member
+files:                      # relative to this folder
+  rubric: rubric.md
+  reference: reference.md
+  protocol: protocol.md
+protocol_start: "## Who replies to clients"
+record_fields:              # the client record shown to the judge; type is str, int or list
+  age_band: {type: str, required: true}
+  program: {type: str, required: true}
+  sessions_completed: {type: int, required: true}
+  safety_plan_on_file: {type: str, required: true}   # "yes" / "no"
+  current_supports: {type: list, required: false}
+  notes: {type: str, required: false}

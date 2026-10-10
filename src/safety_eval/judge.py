@@ -22,6 +22,9 @@ Checks around every answer (brief 10.3), all failing closed, never to "pass":
   about something that is not there;
 - a fail or unsure verdict needs at least one quote;
 - any unsure verdict routes the conversation to a person (outcome "unsure").
+
+Everything clinic-specific (rubric, reference sheet, protocol, staff role names) comes from a
+Clinic (clinic.py). Without one, the judge uses Fernhill, exactly as before clinics existed.
 """
 
 import hashlib
@@ -33,16 +36,14 @@ import yaml
 from pydantic import ValidationError
 
 from .cache import ResponseCache, cache_key
+from .clinic import DEFAULT_CLINIC, Clinic
 from .leakage import find_leaks
 from .llm import ModelCallError
-from .reference import facts, protocol_text
 from .schemas import CRITERIA, CriterionJudgement, JudgeOutput, JudgeResult
 
 ROOT = Path(__file__).resolve().parents[2]
 PROMPTS = ROOT / "prompts"
-RUBRIC = ROOT / "docs" / "rubric.md"
-EXAMPLES = ROOT / "prompts" / "examples.md"
-STAFF = {"assistant": "AI assistant", "coach": "health coach", "support": "patient support agent"}
+EXAMPLES = ROOT / "prompts" / "examples.md"   # Fernhill-only worked examples (prompt D)
 
 
 class PromptVersion:
@@ -70,9 +71,13 @@ class PromptVersion:
 
 # ------------------------------------------------------------------------- rendering
 
-def rubric_text(criteria=CRITERIA):
-    """Each criterion's definition and boundary, copied word for word from docs/rubric.md."""
-    text = RUBRIC.read_text()
+def _clinic(clinic):
+    return clinic if clinic is not None else Clinic.load(DEFAULT_CLINIC)
+
+
+def rubric_text(criteria=CRITERIA, clinic=None):
+    """Each criterion's definition and boundary, copied word for word from the clinic's rubric."""
+    text = _clinic(clinic).rubric_markdown()
     parts = []
     for crit in criteria:
         section = re.search(rf"### {crit.title()}\n(.*?)(?=\n### |\Z)", text, re.DOTALL).group(1)
@@ -84,28 +89,30 @@ def rubric_text(criteria=CRITERIA):
     return "\n\n".join(parts) + "\n\nSEVERITY\n" + severity.strip()
 
 
-def render_conversation(conv):
-    staff = STAFF[conv.responder]
+def render_conversation(conv, clinic=None):
+    staff = _clinic(clinic).staff_label(conv.responder)
     lines = [f"Turn {i}, {'Patient' if t.speaker == 'patient' else 'Staff (' + staff + ')'}: {t.text}"
              for i, t in enumerate(conv.turns, 1)]
     return "\n\n".join(lines)
 
 
 def render_record(record):
-    return yaml.safe_dump(record.model_dump(), sort_keys=False).strip()
+    data = record if isinstance(record, dict) else record.model_dump()
+    return yaml.safe_dump(data, sort_keys=False).strip()
 
 
-def render(prompt, conv, criteria=CRITERIA, examples=""):
-    fact_lines = "\n".join(f"{fid}: {text}" for fid, text in facts().items())
+def render(prompt, conv, criteria=CRITERIA, examples="", clinic=None):
+    clinic = _clinic(clinic)
+    fact_lines = "\n".join(f"{fid}: {text}" for fid, text in clinic.facts().items())
     fills = {
-        "RUBRIC": rubric_text(criteria),
+        "RUBRIC": rubric_text(criteria, clinic),
         "REFERENCE_SHEET": fact_lines,
-        "CLINIC_PROTOCOL": protocol_text(),
+        "CLINIC_PROTOCOL": clinic.protocol_text(),
         "PATIENT_RECORD": render_record(conv.patient_record),
-        "CONVERSATION": render_conversation(conv),
+        "CONVERSATION": render_conversation(conv, clinic),
         "EXAMPLES": examples,
         "CRITERIA": ", ".join(criteria),
-        "RESPONDER": STAFF[conv.responder],
+        "RESPONDER": clinic.staff_label(conv.responder),
     }
     text = prompt.template
     for key, value in fills.items():
@@ -159,11 +166,21 @@ def quote_problems(output_criteria, conv):
 
 # ------------------------------------------------------------------------- calling
 
-def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0):
+def _key(prompt, backend, conv, criterion, attempt, repeat, clinic):
     # repeat > 0 is a deliberate re-run of the same call, for the consistency check (brief 11).
-    key = cache_key(prompt_version=prompt.version, prompt_sha=prompt.sha, model=backend.model,
-                    conversation_id=conv.conversation_id, criterion=criterion, attempt=attempt,
-                    repeat=repeat)
+    fields = dict(prompt_version=prompt.version, prompt_sha=prompt.sha, model=backend.model,
+                  conversation_id=conv.conversation_id, criterion=criterion, attempt=attempt,
+                  repeat=repeat)
+    # Fernhill keys stay as they were, so the committed cache still matches. Any other clinic
+    # adds its id (conversation ids can repeat across clinics) and a hash of its files (an
+    # edited protocol must never be served answers judged against the old one).
+    if clinic.id != DEFAULT_CLINIC:
+        fields.update(clinic_id=clinic.id, clinic_sha=clinic.sha)
+    return cache_key(**fields)
+
+
+def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0, clinic=None):
+    key = _key(prompt, backend, conv, criterion, attempt, repeat, _clinic(clinic))
     entry = cache.get(key)
     if entry is None:
         resp = backend.complete(prompt.system, text)
@@ -174,22 +191,21 @@ def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0):
     return entry
 
 
-def needed_calls(prompt, conv, backend, cache, repeat=0):
+def needed_calls(prompt, conv, backend, cache, repeat=0, clinic=None):
     """How many first-attempt calls are not cached yet (retries are not known in advance)."""
     crits = CRITERIA if prompt.mode == "per_criterion" else ["all"]
-    return sum(cache_key(prompt_version=prompt.version, prompt_sha=prompt.sha, model=backend.model,
-                         conversation_id=conv.conversation_id, criterion=c, attempt=0, repeat=repeat) not in cache
-               for c in crits)
+    clinic = _clinic(clinic)
+    return sum(_key(prompt, backend, conv, c, 0, repeat, clinic) not in cache for c in crits)
 
 
-def _judge_once(prompt, conv, backend, cache, criteria, examples, repeat=0):
+def _judge_once(prompt, conv, backend, cache, criteria, examples, repeat=0, clinic=None):
     """(parsed output or None, model, attempts, latency, reasons) for one call with one retry."""
-    text = render(prompt, conv, criteria, examples)
+    text = render(prompt, conv, criteria, examples, clinic)
     label = "all" if len(criteria) == len(CRITERIA) else criteria[0]
     reasons, latency, model = [], 0.0, backend.model
     for attempt in (0, 1):
         try:
-            entry = _call(backend, cache, prompt, conv, text, label, attempt, repeat)
+            entry = _call(backend, cache, prompt, conv, text, label, attempt, repeat, clinic)
         except ModelCallError as exc:
             return None, model, attempt + 1, latency, [f"call failed: {exc}"]
         latency += entry["latency_s"]
@@ -201,13 +217,16 @@ def _judge_once(prompt, conv, backend, cache, criteria, examples, repeat=0):
     return None, model, 2, latency, reasons
 
 
-def judge(conv, prompt, backend, cache=None, examples="", repeat=0):
-    """Judge one conversation. Never raises for model problems: they become needs_review."""
+def judge(conv, prompt, backend, cache=None, examples="", repeat=0, clinic=None):
+    """Judge one conversation. Never raises for model problems: they become needs_review.
+    A clinic config problem (for example an unknown responder role) does raise, before any call."""
     cache = cache or ResponseCache("judge")
+    clinic = _clinic(clinic)
+    clinic.staff_label(conv.responder)
     if prompt.mode == "per_criterion":
-        return _judge_per_criterion(conv, prompt, backend, cache, examples, repeat)
+        return _judge_per_criterion(conv, prompt, backend, cache, examples, repeat, clinic)
     output, model, attempts, latency, reasons = _judge_once(prompt, conv, backend, cache, list(CRITERIA),
-                                                            examples, repeat)
+                                                            examples, repeat, clinic)
     if output is None:
         return JudgeResult(conversation_id=conv.conversation_id, prompt_version=prompt.version,
                            model=model, outcome="needs_review", reasons=reasons,
@@ -215,10 +234,11 @@ def judge(conv, prompt, backend, cache=None, examples="", repeat=0):
     return _finish(conv, prompt, model, output, attempts, latency)
 
 
-def _judge_per_criterion(conv, prompt, backend, cache, examples, repeat=0):
+def _judge_per_criterion(conv, prompt, backend, cache, examples, repeat=0, clinic=None):
     merged, severities, reasons, attempts, latency, model = {}, [], [], 0, 0.0, backend.model
     for crit in CRITERIA:
-        out, model, n, lat, why = _judge_once(prompt, conv, backend, cache, [crit], examples, repeat)
+        out, model, n, lat, why = _judge_once(prompt, conv, backend, cache, [crit], examples, repeat,
+                                              clinic)
         attempts += n
         latency += lat
         if out is None:

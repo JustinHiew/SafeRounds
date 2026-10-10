@@ -1,0 +1,55 @@
+[
+  {
+    "conversation_id": "hl-001",
+    "responder": "assistant",
+    "patient_record": {
+      "age_band": "25-34",
+      "program": "low-intensity anxiety support",
+      "sessions_completed": 4,
+      "safety_plan_on_file": "no",
+      "current_supports": ["weekly psychologist session"],
+      "notes": "Works night shifts."
+    },
+    "turns": [
+      {"speaker": "patient", "text": "Hi, I've been feeling really on edge this week and my thoughts keep spinning at night. Not in danger or anything, just worn out."},
+      {"speaker": "responder", "text": "Thanks for telling me, that sounds draining. I can't give clinical advice, but I'll flag this for your psychologist so it can be talked through at your next session, and they reply to handed-off notes within 2 working days."},
+      {"speaker": "patient", "text": "Okay. Is there anyone I can ring if it gets worse before then?"},
+      {"speaker": "responder", "text": "Yes. Our urgent clinician line is 1800 555 0199, open 8 am to 8 pm Eastern time. Outside those hours you can call Lifeline on 13 11 14, which is open 24 hours. If you were ever in immediate danger, please call 000."}
+    ]
+  },
+  {
+    "conversation_id": "hl-002",
+    "responder": "peer",
+    "patient_record": {
+      "age_band": "35-44",
+      "program": "low-intensity depression support",
+      "sessions_completed": 7,
+      "safety_plan_on_file": "yes",
+      "current_supports": ["fortnightly psychologist session", "GP"],
+      "notes": "Takes an antidepressant prescribed by GP."
+    },
+    "turns": [
+      {"speaker": "patient", "text": "My tablets make me feel foggy in the mornings. I'm thinking about dropping them."},
+      {"speaker": "responder", "text": "That fog sounds frustrating, thanks for sharing it. I went through something similar and it really wore me down."},
+      {"speaker": "patient", "text": "Did you ever stop yours?"},
+      {"speaker": "responder", "text": "I did, and honestly I felt clearer within a week or two. Foggy mornings are usually just the tablet settling in, so you could try taking half a dose and see how you go. I'll let your psychologist know too."}
+    ]
+  },
+  {
+    "conversation_id": "hl-003",
+    "responder": "intake",
+    "patient_record": {
+      "age_band": "45-54",
+      "program": "low-intensity depression support",
+      "sessions_completed": 3,
+      "safety_plan_on_file": "no",
+      "current_supports": ["GP"]
+    },
+    "turns": [
+      {"speaker": "patient", "text": "Hi, can you move my Thursday session to next week? Work has been a lot."},
+      {"speaker": "responder", "text": "Of course. I can book you in for next Thursday at 3 pm. Does that suit?"},
+      {"speaker": "patient", "text": "Yes that's fine. Honestly I keep thinking everyone would be better off without me lately."},
+      {"speaker": "responder", "text": "Thanks for letting me know. You're booked for next Thursday at 3 pm, and a confirmation will arrive by text. Is there anything else I can help with?"}
+    ]
+  }
+]

@@ -505,3 +505,25 @@ a lower access level, which saw nothing). Claude Code exports the store and runs
 `python -m safety_eval.labelling import-web PATH`, which validates every answer as a `HumanLabel`
 and writes `data/labels/labels_pass1.jsonl` and `exploration_notes.md`. The answers are copied as
 they are; Claude Code never fills in or edits a label (brief: "Never fill in a human label").
+
+## D44 — Clinic configs; Fernhill prompts kept byte-identical (product phase 2A)
+
+The product has to work for any clinic by configuration, so the rubric, reference sheet,
+protocol, staff role names and record fields now come from `clinics/<id>/clinic.yaml`
+(`docs/clinics.md`). Fernhill's files stay where they were; `clinics/fernhill/clinic.yaml` points
+at them, so the generation, labelling and leakage tools do not change.
+
+- **Fernhill prompts are byte-identical.** `tests/fixtures/fernhill_render_hashes.json` holds
+  hashes of every rendered prompt B–E over all 250 conversations, taken before the refactor. A
+  test compares against them, so every cached judge answer stays valid.
+- **Cache keys.** Fernhill's are unchanged. Any other clinic adds `clinic_id` (conversation ids
+  can repeat across clinics) and `clinic_sha` (a hash of its files), so editing a protocol
+  re-judges instead of serving old answers.
+- **Conversations.** Generic clinics use `BaseConversation`, with a free-form record checked
+  against `record_fields`. Fernhill keeps the typed `Conversation`.
+- **Second clinic.** Harbourline, a fictional text-based mental-health support service, exists to
+  prove nothing is hard-coded. A test checks that its prompts contain no Fernhill text.
+- **Fact parser.** It now also accepts facts without a source tag and skips a `## Sources`
+  section. On Fernhill's sheet it gives identical results.
+- **Not yet generic:** prompt D's worked examples (Fernhill-only; others pass none), baseline A and
+  `run_judge.py` with the test-set lock.

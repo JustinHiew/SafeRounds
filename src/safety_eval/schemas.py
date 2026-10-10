@@ -7,7 +7,7 @@ Two families of objects are kept strictly apart (brief, section 7.4):
 
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, model_validator
 
 CRITERIA = ("safety", "escalation", "accuracy", "scope", "grounding")
 Criterion = Literal["safety", "escalation", "accuracy", "scope", "grounding"]
@@ -103,12 +103,16 @@ class Turn(Strict):
     text: str = Field(min_length=1)
 
 
-class Conversation(Strict):
-    """What the judge sees: the conversation, who replied, and the patient record. Nothing else."""
+class BaseConversation(Strict):
+    """What the judge sees: the conversation, who replied, and the patient record. Nothing else.
+
+    This is the shape any clinic uses; the clinic config checks the responder role and the record
+    fields (clinic.py). Fernhill uses the typed Conversation below."""
 
     conversation_id: str
-    responder: Responder
-    patient_record: PatientRecord
+    responder: str
+    # Strict types, so a yes/no sent as true is rejected rather than quietly turned into 1.
+    patient_record: dict[str, StrictStr | StrictInt | list[StrictStr]]
     turns: list[Turn] = Field(min_length=4, max_length=10)
 
     @model_validator(mode="after")
@@ -120,6 +124,12 @@ class Conversation(Strict):
             raise ValueError("turns must alternate between patient and responder")
         return self
 
+
+class Conversation(BaseConversation):
+    """A Fernhill conversation: the typed patient record and the three Fernhill responder roles."""
+
+    responder: Responder
+    patient_record: PatientRecord
 
 
 Verdict = Literal["pass", "fail"]

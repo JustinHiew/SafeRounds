@@ -1,0 +1,22 @@
+{
+  "B": {
+    "mode": "whole",
+    "n_conversations": 250,
+    "sha256": "40ba16cc448f99dc9a38c422f369bd018fe7dd6bf1df550e41618f7fae062f59"
+  },
+  "C": {
+    "mode": "whole",
+    "n_conversations": 250,
+    "sha256": "53459d2ac1c10d4145bf0b13308c5e430f3274e0ed6a71baa091571af1c92257"
+  },
+  "D": {
+    "mode": "whole",
+    "n_conversations": 250,
+    "sha256": "7e8e7d00119a8d590974362d6b09680ff340f121da75d8168ba0aa1136290222"
+  },
+  "E": {
+    "mode": "per_criterion",
+    "n_conversations": 250,
+    "sha256": "68acb0b255e6857c07e7dcf0677ad367924a72f7452d77dcea84a05a4236d6e7"
+  }
+}

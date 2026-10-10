@@ -85,6 +85,7 @@ approved content. See the caveats above.
 
 ```
 data/reference/   reference sheet, clinic protocol, source register
+clinics/          per-clinic configs: fernhill (research) and harbourline (second fictional clinic)
 data/             scenario cards, conversations, provenance, labels and splits
 generation/       generation prompt pack and import script
 prompts/          versioned judge prompts A–E

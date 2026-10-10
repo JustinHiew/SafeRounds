@@ -1,0 +1,15 @@
+# The research clinic. Its files stay where the research harness has always read them, so the
+# generation, labelling and leakage tools are unchanged; this config only points at them.
+id: fernhill
+name: Fernhill Weight Health
+description: Fictional Australian online weight-management clinic (synthetic research data).
+staff:
+  assistant: AI assistant
+  coach: health coach
+  support: patient support agent
+files:
+  rubric: ../../docs/rubric.md
+  reference: ../../data/reference/medication_facts.md
+  protocol: ../../data/reference/clinic_protocol.md
+protocol_start: "## Who replies to patients"
+record_schema: fernhill     # the typed PatientRecord in schemas.py
