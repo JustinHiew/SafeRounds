@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeRounds data handling</title>
+<meta name="description" content="How SafeRounds handles conversation data during a pilot audit: what is sent to Anthropic, what is kept, for how long, who can see it, and how it is deleted.">
+<link rel="canonical" href="https://saferounds.dev/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&display=swap">
+<style>
+:root {
+  --paper: #f5f6f2; --sheet: #ffffff; --line: #dfe4dc;
+  --ink: #16201b; --muted: #56645d; --pen: #1f3c88; --pen-soft: #e5eaf8;
+  --amber: #a14a06; --amber-soft: #fdf0e1;
+  --font: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0e1311; --sheet: #151c19; --line: #232d29;
+  --ink: #e6ece7; --muted: #a0aea7; --pen: #9db3f3; --pen-soft: #1d2846;
+  --amber: #f0b36a; --amber-soft: #33240f; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --paper: #0e1311; --sheet: #151c19; --line: #232d29;
+  --ink: #e6ece7; --muted: #a0aea7; --pen: #9db3f3; --pen-soft: #1d2846;
+  --amber: #f0b36a; --amber-soft: #33240f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16.5px/1.6 var(--font); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 24px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; } }
+a { color: var(--pen); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 4px; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+.back { font-size: 15px; }
+h1 { font-size: clamp(30px, 4.5vw, 42px); line-height: 1.15; margin: 28px 0 12px; text-wrap: balance; }
+h2 { font-size: 20px; margin: 36px 0 10px; }
+p, ul { margin: 0 0 12px; }
+ul { padding-left: 22px; }
+li { margin-bottom: 6px; }
+.lede { font-size: 19px; color: var(--muted); }
+.updated { font-size: 14.5px; color: var(--muted); }
+.note { background: var(--amber-soft); border-left: 4px solid var(--amber); padding: 14px 16px; border-radius: 6px; margin: 24px 0; }
+.card { background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 4px 22px 14px; margin-top: 20px; }
+.foot { border-top: 1px solid var(--line); margin-top: 48px; padding-block: 24px 40px; font-size: 14.5px; color: var(--muted); }
+.foot p { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./">
+      <svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="var(--pen)"/>
+        <path d="M9 12h11M9 17h8M9 22h5" stroke="var(--sheet)" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+        <path d="M18 21.5l3 3 6-7" fill="none" stroke="var(--sheet)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      SafeRounds
+    </a>
+    <a class="back" href="./">← Back to the main page</a>
+  </header>
+
+  <main>
+    <h1>How pilot data is handled</h1>
+    <p class="lede">This page describes what happens today, during free pilot audits run directly with each design partner. It is not a description of a future hosted service.</p>
+    <p class="updated">Last updated 11 October 2026.</p>
+
+    <div class="note">
+      <p><strong>Please don't email patient conversations.</strong> Before any data is shared we agree in writing the scope of the audit, how transcripts are de-identified, and a secure way to transfer them.</p>
+    </div>
+
+    <h2>1. Before anything is shared</h2>
+    <ul>
+      <li>You de-identify transcripts before sending them: names, contact details, dates of birth, addresses, Medicare and other record numbers, and anything else that could identify a person.</li>
+      <li>We agree the number of conversations, the time period they cover, the protocol they are checked against, and when the audit ends.</li>
+      <li>We agree a transfer method. Email is not one of them.</li>
+    </ul>
+
+    <h2>2. The automatic de-identification pass and its limits</h2>
+    <p>SafeRounds runs its own de-identification pass on every conversation before it is stored or sent for review. It replaces common identifier patterns such as phone numbers, email addresses, dates, and record numbers.</p>
+    <p>It is pattern-based and can miss things, in particular:</p>
+    <ul>
+      <li>names, nicknames, and family members mentioned in free text;</li>
+      <li>unusual identifiers, misspellings, and numbers written out in words;</li>
+      <li>details that identify someone only in combination, such as a rare condition plus a suburb plus an occupation.</li>
+    </ul>
+    <p>It is a second safety net, not a replacement for your own de-identification.</p>
+
+    <h2>3. What is sent to Anthropic</h2>
+    <p>The review is done by Claude, a model made by Anthropic, through Anthropic's commercial API. For each conversation the following is sent:</p>
+    <ul>
+      <li>the de-identified conversation text;</li>
+      <li>the relevant parts of your clinical protocol;</li>
+      <li>any de-identified record text you supply for context.</li>
+    </ul>
+    <p>Anthropic may process this data outside Australia. Under Anthropic's commercial terms, API inputs and outputs are not used to train its models. Anthropic keeps API data for a limited period for safety and abuse monitoring under its own retention policy; see <a href="https://www.anthropic.com/legal/commercial-terms">Anthropic's commercial terms</a> and <a href="https://privacy.anthropic.com/">privacy centre</a> for current details.</p>
+
+    <h2>4. What SafeRounds keeps, and for how long</h2>
+    <ul>
+      <li><strong>Kept:</strong> the de-identified conversations, the review results with their quoted evidence, reviewer decisions, and an audit record of who opened each conversation and when.</li>
+      <li><strong>Not kept:</strong> anything you have not sent for the agreed audit. Original, identified transcripts are never requested.</li>
+      <li><strong>How long:</strong> only for the agreed audit. Everything is deleted at the end of the audit, or earlier whenever you ask.</li>
+      <li><strong>Where:</strong> during pilots, data is held only on systems the founder controls, and the storage arrangement is agreed with you before the audit starts. Hosting in Sydney is planned before any ongoing service and is not in place yet.</li>
+    </ul>
+
+    <h2>5. Who can see it</h2>
+    <ul>
+      <li>Only the founder, Justin Hiew, and the people you nominate from your own organisation.</li>
+      <li>Each time a conversation is opened in the review queue, the access is recorded in an audit log, which you can ask to see.</li>
+      <li>Nothing is shared with anyone else, used for marketing, or used to build public examples. The examples on this website are synthetic.</li>
+    </ul>
+
+    <h2>6. Deletion</h2>
+    <p>Email <a href="mailto:justin@saferounds.dev?subject=SafeRounds%20deletion%20request">justin@saferounds.dev</a> at any time to have your data deleted. Deletion covers the stored conversations, results, and reviewer notes, and is confirmed in writing. The audit log records the deletion itself. Copies held by Anthropic under its own retention policy expire on Anthropic's schedule.</p>
+
+    <h2>7. What SafeRounds is not</h2>
+    <p>SafeRounds is a retrospective review and quality-assurance tool. It does not see conversations as they happen, does not change or block replies, and is not medical advice or clinical decision support. Clinical responsibility stays with your service.</p>
+
+    <div class="card">
+      <h2>Questions</h2>
+      <p>Email <a href="mailto:justin@saferounds.dev">justin@saferounds.dev</a>. If something on this page is unclear or doesn't fit your organisation's requirements, raise it before the pilot starts and we'll work it out together.</p>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <p>SafeRounds is the trading name of Justin Hiew, sole trader, Australia.</p>
+    <p>If you need support now, call Lifeline on 13 11 14. In an emergency, call 000.</p>
+  </footer>
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SafeRounds</title>
-<meta name="description" content="SafeRounds checks every reply your patient-facing AI and support staff send against your own clinical protocol, shows the exact words behind every verdict, and sends anything it cannot clear to a person.">
+<meta name="description" content="SafeRounds reviews past patient-support conversations against your own clinical protocol, quotes the exact words behind each finding, and sends anything it is unsure about to a person. Working prototype, seeking Australian design partners.">
 <link rel="canonical" href="https://saferounds.dev/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,6 +72,9 @@ p { margin: 0; }
 .hero h1 { font-size: var(--t-xxl); line-height: 1.04; letter-spacing: -.03em; font-weight: 700; }
 .hero p { font-size: var(--t-l); color: var(--muted); max-width: 60ch; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.hero .when { font-size: var(--t-m); color: var(--ink); max-width: 64ch; border-left: 3px solid var(--pen); padding-left: 12px; }
+.stage { display: inline-flex; align-items: center; gap: 9px; font-size: var(--t-s); font-weight: 700; color: var(--amber); background: var(--amber-soft); border-radius: 999px; padding: 6px 14px; justify-self: start; }
+.dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
 
 /* ---------------------------------------------------------------- demo */
 .demo { padding-bottom: 72px; }
@@ -132,7 +135,9 @@ p { margin: 0; }
 .row .name { font-weight: 700; }
 .verdict { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-s); font-weight: 700; }
 .verdict.fail { color: var(--flag); } .verdict.pass { color: var(--pass); }
-.row .why { grid-column: 1 / -1; font-size: var(--t-s); line-height: 1.5; color: var(--ink); background: var(--flag-soft); border-radius: 8px; padding: 9px 12px; }
+.row .why { grid-column: 1 / -1; font-size: var(--t-s); line-height: 1.5; color: var(--ink); background: var(--flag-soft); border-radius: 8px; padding: 9px 12px; display: grid; gap: 8px; }
+.rule { border-left: 3px solid var(--pen); padding-left: 10px; color: var(--muted); }
+.rule b { display: block; color: var(--pen); font-size: 13px; }
 .outcome { border-radius: 10px; padding: 14px 16px; display: grid; gap: 2px; }
 .outcome b { font-size: var(--t-l); display: flex; align-items: center; gap: 10px; }
 .outcome span { font-size: var(--t-s); }
@@ -165,6 +170,9 @@ p { margin: 0; }
   .step .num { top: 0; left: -52px; }
 }
 .after { color: var(--muted); max-width: 70ch; }
+.status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.status-col { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+.status-col ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted); font-size: var(--t-s); }
 
 .ledger-wrap { overflow-x: auto; background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; }
 .ledger { width: 100%; border-collapse: collapse; min-width: 600px; }
@@ -185,6 +193,12 @@ p { margin: 0; }
 .points b { font-size: var(--t-m); }
 .points span { color: var(--muted); font-size: var(--t-s); }
 
+.founder { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 820px) { .founder { grid-template-columns: 1fr; } }
+.founder > p { color: var(--muted); font-size: var(--t-l); max-width: 60ch; }
+.facts { margin: 0; display: grid; gap: 12px; background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.facts dt { font-size: var(--t-s); font-weight: 700; color: var(--muted); }
+.facts dd { margin: 0; }
 .closing { padding-block: 72px; border-top: 1px solid var(--rule); display: grid; gap: 16px; justify-items: start; }
 .closing > * { max-width: 760px; }
 .closing h2 { font-size: var(--t-xl); line-height: 1.15; letter-spacing: -.02em; }
@@ -209,25 +223,27 @@ p { margin: 0; }
       SafeRounds
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#how">How it works</a><a href="#evidence">Evidence</a><a href="#data">Patient data</a>
-      <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20audit">Request an audit</a>
+      <a href="#how">How it works</a><a href="#evidence">Evidence</a><a href="#data">Data</a><a href="#founder">About</a>
+      <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a pilot</a>
     </nav>
   </header>
 
   <section class="hero" aria-labelledby="hero-title">
-    <p class="eyebrow">Safety review for patient-facing chat</p>
-    <h1 id="hero-title">Every reply to a patient, checked against your own protocol.</h1>
-    <p>SafeRounds reviews the chats your AI assistant and support staff have with patients. It flags replies that put people at risk, shows the exact words behind each flag, and sends them to a person.</p>
+    <p class="eyebrow">Retrospective safety audits for patient-facing chat</p>
+    <h1 id="hero-title">Find risky replies in patient conversations.</h1>
+    <p>SafeRounds uses Claude to review past patient-facing chats against your service's protocols. It highlights potential safety issues, missed escalations and advice outside staff roles, with supporting quotes for your team to review.</p>
+    <p class="when">It reviews conversations after they have happened. It does not sit between your service and patients, and it does not check or block replies before they are sent.</p>
     <div class="cta">
-      <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20audit">Request a free audit</a>
-      <a class="btn ghost" href="#demo">See it review a chat ↓</a>
+      <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a free pilot audit</a>
+      <a class="btn ghost" href="#demo">Explore the sample reviews ↓</a>
     </div>
+    <p class="stage"><span class="dot-live" aria-hidden="true"></span>Working prototype · Seeking Australian design partners</p>
   </section>
 
   <section class="demo" id="demo" aria-label="Demo">
     <div class="card">
       <div class="card-head">
-        <span class="label">Try a conversation:</span>
+        <span class="label">Explore three sample reviews:</span>
         <div class="tabs" role="tablist" aria-label="Choose a conversation" id="tabs"></div>
         <button class="replay" type="button" id="replay" aria-label="Replay the review animation">↻ Replay</button>
       </div>
@@ -248,7 +264,7 @@ p { margin: 0; }
         </div>
       </div>
     </div>
-    <p class="demo-note">Synthetic conversations from Harbourline Support, a fictional service. The verdicts come from a real run of SafeRounds on Claude, with its explanations shortened.</p>
+    <p class="demo-note">Prerecorded results, not live. Synthetic conversations from Harbourline Support, a fictional service, reviewed in a real run of SafeRounds on Claude Sonnet 5.5 on 11 October 2026. Explanations are shortened; protocol excerpts are quoted from Harbourline's sample protocol.</p>
   </section>
 
   <section class="sec" id="checks" aria-labelledby="checks-title">
@@ -273,11 +289,16 @@ p { margin: 0; }
     </div>
     <div class="timeline" id="timeline">
       <div class="rail" id="tl-rail" aria-hidden="true"></div>
-      <div class="step"><span class="num">1</span><h3>Send your chats</h3><p>Through the API, or as a CSV or helpdesk export. Names, phone numbers, emails, Medicare numbers and addresses are removed before anything is stored or reviewed.</p></div>
-      <div class="step"><span class="num">2</span><h3>Each reply is reviewed</h3><p>Claude reads the chat with your protocol and the patient's record, and quotes the exact words behind each verdict. Anything it can't verify goes to a person. Nothing passes by default.</p></div>
-      <div class="step"><span class="num">3</span><h3>People decide</h3><p>Your reviewers confirm or overturn each flag. Their corrections become test cases, so the review keeps improving for your service.</p></div>
+      <div class="step"><span class="num">1</span><h3>Agree scope, then share past chats</h3><p>We agree which conversations, how they are de-identified and how they are transferred. Transcripts come as a CSV or helpdesk export. An automatic pass also removes names, phone numbers, emails, Medicare numbers and addresses it can recognise.</p></div>
+      <div class="step"><span class="num">2</span><h3>Each staff reply is reviewed</h3><p>Claude reads the conversation with your protocol and the patient's record, and quotes the exact words behind each verdict. A conversation is marked "needs review" instead of passing if the model call fails, its answer can't be read, or a quote isn't found in the chat or record. Any check Claude marks "unsure" also goes to a person.</p></div>
+      <div class="step"><span class="num">3</span><h3>Your team decides</h3><p>Your reviewers confirm or overturn each flag. SafeRounds suggests; people make the call.</p></div>
     </div>
-    <p class="after">Once running, SafeRounds alerts you when flag rates drift, and blocks any prompt or model change that catches fewer serious problems.</p>
+    <div class="status-grid">
+      <div class="status-col"><p class="status-title"><span class="st done"><i></i>In the prototype today</span></p>
+        <ul><li>Review of transcripts against a service's own protocol, with quoted evidence</li><li>De-identification pass before storage and review</li><li>Review queue where reviewers confirm or overturn flags</li><li>Audit record each time a conversation is opened</li><li>Spend limit on model usage</li></ul></div>
+      <div class="status-col"><p class="status-title"><span class="st prog"><i></i>Built but not yet running for any service</span></p>
+        <ul><li>Alerts when flag rates drift from a service's usual pattern</li><li>A check that blocks prompt or model changes that catch fewer serious problems</li><li>Turning reviewer corrections into test cases</li><li>A hosted service: pilots are run directly with each partner for now</li></ul></div>
+    </div>
   </section>
 
   <section class="sec" id="evidence" aria-labelledby="evidence-title">
@@ -289,38 +310,54 @@ p { margin: 0; }
       <table class="ledger" id="ledger">
         <thead><tr><th scope="col">What</th><th scope="col">Result</th><th scope="col">Status</th></tr></thead>
         <tbody>
-          <tr><td>First run on the real Claude API</td><td>16 of 16 verdicts matched the planted answers, across 3 synthetic conversations.</td><td><span class="st done"><i></i>Done</span></td></tr>
-          <tr><td>Cost per conversation</td><td>About US$0.015 each, or US$0.007 when reviewed in bulk.</td><td><span class="st done"><i></i>Measured</span></td></tr>
-          <tr><td>Labelled validation</td><td>250 conversations with planted failures and tricky near-misses, scored against human labels and against how often two physicians agree.</td><td><span class="st prog"><i id="pulse"></i>In progress</span></td></tr>
-          <tr><td>Design partners</td><td>None yet. Looking for two or three Australian services to try a free audit.</td><td><span class="st open"><i></i>Open</span></td></tr>
+          <tr><td>Initial smoke test</td><td>16 expected verdicts matched across three synthetic conversations. This shows the pipeline works end to end. It says little about performance on unfamiliar cases.</td><td><span class="st done"><i></i>Done</span></td></tr>
+          <tr><td>Cost per conversation</td><td>About US$0.015 each, or US$0.007 through the batch API. Measured on Claude Sonnet 5.5 on 11 October 2026, for four-message conversations: about 4,400 input tokens (mostly the cached protocol) and 850–1,700 output tokens.</td><td><span class="st done"><i></i>Measured</span></td></tr>
+          <tr><td>Independent validation</td><td>Will measure missed serious issues, false alarms, and disagreement with human reviewers on a labelled set of conversations. Physician agreement is compared using a public benchmark (HealthBench). No physicians are directly involved yet.</td><td><span class="st prog"><i id="pulse"></i>In progress</span></td></tr>
+          <tr><td>Design partners</td><td>None yet. Looking for two or three Australian services for a free pilot audit.</td><td><span class="st open"><i></i>Open</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="caveat">These are early results on synthetic data. SafeRounds is a working prototype by a solo founder, not yet a validated product. Validation results will be posted here.</p>
+    <p class="caveat">Initial smoke test only. Independent validation is in progress, and its results will be posted here.</p>
   </section>
 
   <section class="sec" id="data" aria-labelledby="data-title">
     <div class="sec-head">
       <p class="eyebrow">Patient data</p>
-      <h2 id="data-title">Built for patient conversations from the start.</h2>
+      <h2 id="data-title">Where pilot data goes, today.</h2>
+      <p>The details are agreed with each partner before any transcripts are shared. <a href="privacy.html">Read how data is handled</a>.</p>
     </div>
     <ul class="points">
-      <li><b>De-identified first</b><span>Personal details are removed before a chat is stored or reviewed.</span></li>
-      <li><b>Hosted in Australia</b><span>The service and database are being set up in Sydney. Reviews run on Anthropic's API.</span></li>
-      <li><b>Every read logged</b><span>Viewing a chat writes an audit record. Logs never contain chat text.</span></li>
-      <li><b>Not clinical advice</b><span>SafeRounds flags chats for human review. It doesn't diagnose, treat or replace a crisis service.</span></li>
+      <li><b>De-identify before sharing</b><span>We ask partners to de-identify transcripts first. Our automatic pass catches common identifiers but can miss names and unusual details, so it is a second line of defence, not the only one.</span></li>
+      <li><b>Model processing</b><span>Each de-identified conversation, with your protocol, is sent to Anthropic's API for review. That processing may happen outside Australia.</span></li>
+      <li><b>Storage</b><span>Pilot data is stored only for the agreed audit and deleted at the end of it, or sooner on request. Australian hosting (Sydney) is planned before any ongoing service.</span></li>
+      <li><b>Not clinical advice</b><span>SafeRounds flags past conversations for human review. It doesn't diagnose, treat or replace a crisis service.</span></li>
     </ul>
   </section>
 
+  <section class="sec" id="founder" aria-labelledby="founder-title">
+    <div class="sec-head">
+      <p class="eyebrow">Who's building it</p>
+      <h2 id="founder-title">Justin Hiew, founder.</h2>
+    </div>
+    <div class="founder">
+      <p>SafeRounds grew out of an evaluation project I built to measure how reliably an AI judge flags unsafe, inaccurate or out-of-scope replies in patient-support conversations, and where it fails. That work showed the review step was useful on its own, so I'm turning it into a pilot service for Australian digital-health teams.</p>
+      <dl class="facts">
+        <div><dt>Business</dt><dd>SafeRounds is the trading name of Justin Hiew, sole trader, Australia</dd></div>
+        <div><dt>Stage</dt><dd>Working prototype, founded 2026, pre-revenue</dd></div>
+        <div><dt>Contact</dt><dd>justin@saferounds.dev</dd></div>
+      </dl>
+    </div>
+  </section>
+
   <section class="closing" aria-labelledby="close-title">
-    <h2 id="close-title">See what SafeRounds finds in your chats.</h2>
-    <p>Send 20 de-identified transcripts and your protocol. You'll get back every flagged reply, with the evidence, at no cost.</p>
-    <div class="cta"><a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20audit">Request a free audit</a></div>
+    <h2 id="close-title">Discuss a free pilot audit.</h2>
+    <p>Start with a short conversation about your service and protocol. We'll agree the scope, how transcripts are de-identified, and a secure way to transfer them before anything is shared. Please don't email patient conversations.</p>
+    <div class="cta"><a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a free pilot audit</a></div>
     <p class="muted">Or email justin@saferounds.dev</p>
   </section>
 
   <footer class="foot">
-    <p>Made by Justin Hiew in Australia. Built on Claude by Anthropic.</p>
+    <p>SafeRounds is the trading name of Justin Hiew, sole trader, Australia. Built on Claude by Anthropic. <a href="privacy.html">Data handling</a></p>
     <p>Every conversation on this page is synthetic. SafeRounds is a review and quality-assurance tool. It is not medical advice or clinical decision support.</p>
     <p class="crisis">If you need support now, call Lifeline on 13 11 14. In an emergency, call 000.</p>
   </footer>
@@ -354,6 +391,10 @@ p { margin: 0; }
         safety: "Treats a disclosure of suicidal thoughts as a passing remark and leaves the patient to cope alone.",
         escalation: "The protocol lists this as an urgent red flag. The reply gives no urgent line, no Lifeline and no handoff."
       },
+      rules: {
+        safety: "Intake team members “must still act on a red flag even when the message is mainly about a booking”.",
+        escalation: "Urgent red flags include “I keep thinking everyone would be better off without me”. Correct direction: “Contact the urgent clinician line on 1800 555 0199 today”, in the same reply."
+      },
       outcome: ["Sent to a reviewer", "High severity · 2 of 5 checks failed"]
     },
     {
@@ -374,6 +415,10 @@ p { margin: 0; }
       reasons: {
         safety: "Advises halving a prescribed antidepressant, and presents stopping as a good outcome.",
         scope: "Peer workers must not advise on changing medicine or call a symptom harmless. That belongs with the patient's doctor."
+      },
+      rules: {
+        safety: "No responder may say “that the client should stop, skip, halve or add medicine”.",
+        scope: "Peer support workers must not “advise on starting, changing or stopping medicine”. For medicine questions, say “I can't advise on that, but your doctor or psychologist can”."
       },
       outcome: ["Sent to a reviewer", "High severity · 2 of 5 checks failed"]
     },
@@ -498,7 +543,12 @@ p { margin: 0; }
       verdict.appendChild(icon(v === "fail" ? "flag" : "tick", 16));
       verdict.appendChild(document.createTextNode(v === "fail" ? "Fail" : "Pass"));
       row.appendChild(verdict);
-      if (v === "fail") row.appendChild(el("p", "why", c.reasons[k]));
+      if (v === "fail") {
+        var why = el("div", "why");
+        why.appendChild(el("p", null, c.reasons[k]));
+        if (c.rules && c.rules[k]) { var r = el("p", "rule"); r.appendChild(el("b", null, "Relevant protocol")); r.appendChild(document.createTextNode(c.rules[k])); why.appendChild(r); }
+        row.appendChild(why);
+      }
       rows.appendChild(row);
     });
 
