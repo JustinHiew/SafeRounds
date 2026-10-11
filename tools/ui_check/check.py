@@ -115,7 +115,7 @@ with sync_playwright() as p:
     page.goto(BASE + "/ui/dashboard"); page.wait_for_selector("#trend svg.spark")
     check(page.locator("#trend svg.spark path.line").count() >= 1, "dashboard draws sparklines (inline SVG)")
     check(page.locator("#daily tr").count() == 29, f"dashboard daily table has a header and 28 days ({page.locator('#daily tr').count()})")
-    check(page.inner_text("#tiles").find("Evaluated") != -1 and page.inner_text("#alerts").strip() != "", "dashboard shows today's tiles and the alerts box")
+    check(page.inner_text("#tiles").lower().find("evaluated") != -1 and page.inner_text("#alerts").strip() != "", "dashboard shows today's tiles and the alerts box")
     check("spend" not in page.inner_text("body").lower().replace("spend limit", "") and "usd" not in page.inner_text("body").lower(), "dashboard shows no spend or cost")
     page.screenshot(path=f"{OUT}/8-dashboard.png", full_page=True)
     dm = b.new_context(viewport={"width": 390, "height": 844}, storage_state=state, is_mobile=True, has_touch=True).new_page()
