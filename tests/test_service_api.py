@@ -218,7 +218,7 @@ def test_openapi_docs_render(svc):
 
 
 def test_sql_file_matches_the_sqlalchemy_tables():
-    sql = (Path(__file__).resolve().parents[1] / "sql" / "001_init.sql").read_text()
+    sql = "\n".join(f.read_text() for f in sorted((Path(__file__).resolve().parents[1] / "sql").glob("*.sql")))
     sql = re.sub(r"--[^\n]*", "", sql)
     in_sql = {}
     for name, body in re.findall(r"create table (\w+) \((.*?)\n\);", sql, re.DOTALL | re.IGNORECASE):

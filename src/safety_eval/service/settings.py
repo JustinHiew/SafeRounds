@@ -21,6 +21,8 @@ class Settings:
     max_batch_items: int = 1000
     worker_batch_size: int = 10
     worker_poll_seconds: float = 5.0
+    session_secret: str = ""               # signs reviewer-UI sessions; empty = the UI is not served
+    cookie_secure: bool = True             # set UI_COOKIE_SECURE=0 only for local http
 
     @classmethod
     def from_env(cls, env=os.environ):
@@ -33,9 +35,21 @@ class Settings:
                 evaluate_per_minute=int(env.get("RATE_LIMIT_EVALUATE_PER_MIN", d.evaluate_per_minute)),
                 batches_per_minute=int(env.get("RATE_LIMIT_BATCHES_PER_MIN", d.batches_per_minute)),
                 worker_poll_seconds=float(env.get("WORKER_POLL_SECONDS", d.worker_poll_seconds)),
+                session_secret=env.get("SESSION_SECRET", d.session_secret),
+                cookie_secure=env.get("UI_COOKIE_SECURE", "1").strip().lower() not in ("0", "false", "no"),
             )
         except ValueError as exc:
             raise StartupError(f"bad numeric setting in the environment: {exc}") from exc
+
+
+MIN_SESSION_SECRET = 32
+
+
+def require_session_secret(settings):
+    """The reviewer UI signs its sessions with this; production must not start without a real one."""
+    if len(settings.session_secret) < MIN_SESSION_SECRET:
+        raise StartupError(f"cannot start: SESSION_SECRET must be set to at least {MIN_SESSION_SECRET} "
+                           "random characters (e.g. `python -c 'import secrets; print(secrets.token_urlsafe(48))'`)")
 
 
 def production_deidentifier():

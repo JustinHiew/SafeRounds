@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign in - Review queue</title>
+<style>
+:root {
+  --bg: #f4f6f5; --surface: #ffffff; --sunken: #e9eeec; --line: #d3dcd8; --fg: #17211d; --muted: #5a6a63;
+  --accent: #1d6a57; --accent-ink: #ffffff; --fail: #b23a2e; --fail-bg: #f8e4e1;
+  --shadow: 0 1px 2px rgb(23 33 29 / 0.06), 0 4px 16px rgb(23 33 29 / 0.06);
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111614; --surface: #19201d; --sunken: #0d1210; --line: #2c3833; --fg: #e3eae6; --muted: #93a39c;
+    --accent: #5cbf9f; --accent-ink: #0b1411; --fail: #f08a7e; --fail-bg: #3a1c18; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--sans); min-height: 100vh;
+       display: grid; place-items: center; padding: 16px; }
+main { width: min(380px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+       box-shadow: var(--shadow); padding: 22px; display: grid; gap: 14px; }
+h1 { margin: 0; font-size: 20px; font-weight: 600; }
+label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+input { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px; width: 100%; }
+button { font: inherit; border: 0; border-radius: 8px; padding: 11px 14px; background: var(--accent); color: var(--accent-ink); font-weight: 600; cursor: pointer; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.error { background: var(--fail-bg); color: var(--fail); border-radius: 8px; padding: 8px 10px; font-size: 14px; }
+.hint { font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Review queue</h1>
+  <form id="form" style="display:grid;gap:14px" autocomplete="on">
+    <label>Clinic <input id="clinic" name="clinic" autocomplete="organization" required></label>
+    <label>Email <input id="email" name="email" type="email" autocomplete="username" required></label>
+    <label>Password <input id="password" name="password" type="password" autocomplete="current-password" required></label>
+    <div class="error" id="error" role="alert" hidden></div>
+    <button id="go" type="submit">Sign in</button>
+  </form>
+  <div class="hint">Sessions last 8 hours. Ask your administrator if you need an account.</div>
+</main>
+<script>
+(function () {
+  "use strict";
+  var form = document.getElementById("form"), err = document.getElementById("error"), go = document.getElementById("go");
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    err.hidden = true;
+    go.disabled = true;
+    fetch("/ui/login", {
+      method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        clinic: document.getElementById("clinic").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      })
+    }).then(function (r) {
+      if (r.ok) { window.location.href = "/ui"; return; }
+      err.textContent = r.status === 429 ? "Too many attempts. Wait a minute and try again."
+                                         : "Sign in failed. Check the clinic, email and password.";
+      err.hidden = false;
+      go.disabled = false;
+    }).catch(function () {
+      err.textContent = "Could not reach the server.";
+      err.hidden = false;
+      go.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
