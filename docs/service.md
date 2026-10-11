@@ -30,6 +30,7 @@ builds the same app on first use. Importing the module builds nothing, so tests 
 |---|---|---|
 | `DATABASE_URL` | `sqlite:///./service.db` | SQLAlchemy URL. Production: Postgres (`postgresql+psycopg://...`, Supabase Sydney) |
 | `JUDGE_ANTHROPIC_API_KEY` or `ANTHROPIC_API_KEY` | none, required | the model API key; the first name wins. In a Claude Code cloud session use `JUDGE_ANTHROPIC_API_KEY`, because `ANTHROPIC_API_KEY` is reserved for Claude Code itself there |
+| `JUDGE_ANTHROPIC_BASE_URL` | `https://api.anthropic.com` | API endpoint; `ANTHROPIC_BASE_URL` is deliberately ignored, because Claude Code sessions set it for their own traffic |
 | `SPEND_LIMIT_USD` | none, required | total Claude API spend allowed, all clinics together (below) |
 | `MODEL` | `claude-sonnet-5-5` | model for `ApiBackend` |
 | `PROMPT_VERSION` | `C` | default prompt version; version A (rules) is refused |

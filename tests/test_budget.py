@@ -191,3 +191,14 @@ def test_the_service_key_can_have_its_own_name():
     assert api_key({"JUDGE_ANTHROPIC_API_KEY": "a", "ANTHROPIC_API_KEY": "b"}) == "a"
     assert api_key({"ANTHROPIC_API_KEY": "b"}) == "b"
     assert api_key({}) is None
+
+
+def test_the_service_ignores_claude_codes_base_url(monkeypatch):
+    seen = {}
+    monkeypatch.setitem(__import__("sys").modules, "anthropic",
+                        SimpleNamespace(Anthropic=lambda **kw: seen.update(kw) or FakeAnthropic()))
+    s = Settings.from_env({"SPEND_LIMIT_USD": "5"})
+    production_backend(s, env={"JUDGE_ANTHROPIC_API_KEY": "k", "ANTHROPIC_BASE_URL": "https://elsewhere.example"})
+    assert seen == {"api_key": "k", "base_url": "https://api.anthropic.com"}
+    production_backend(s, env={"JUDGE_ANTHROPIC_API_KEY": "k", "JUDGE_ANTHROPIC_BASE_URL": "https://gw.example"})
+    assert seen["base_url"] == "https://gw.example"

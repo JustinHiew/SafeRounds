@@ -109,5 +109,8 @@ def production_backend(settings, env=os.environ):
     require_spend_limit(settings)
     import anthropic
     from safety_eval.llm import ApiBackend
+    # The endpoint is pinned too: Claude Code sessions set ANTHROPIC_BASE_URL for their own traffic,
+    # and the SDK would otherwise follow it. JUDGE_ANTHROPIC_BASE_URL overrides on purpose.
+    base_url = env.get("JUDGE_ANTHROPIC_BASE_URL") or "https://api.anthropic.com"
     return ApiBackend(model=settings.model, effort=settings.effort, fallbacks=settings.fallbacks,
-                      client=anthropic.Anthropic(api_key=key))
+                      client=anthropic.Anthropic(api_key=key, base_url=base_url))
