@@ -180,15 +180,17 @@ def parse(text, criteria=CRITERIA):
 
 
 def quote_problems(output_criteria, conv):
-    """Reasons to send to review: a quote not in the conversation, or a fail/unsure with no quote."""
-    haystack = _normalise("\n".join(t.text for t in conv.turns))
+    """Reasons to send to review: a quote found in neither the conversation nor the patient record,
+    or a fail/unsure with no quote. The record counts because Grounding is judged against it and
+    the judge quotes it there (D50); it is shown to the judge exactly as render_record gives it."""
+    haystack = _normalise("\n".join(t.text for t in conv.turns) + "\n" + render_record(conv.patient_record))
     problems = []
     for crit, j in output_criteria.items():
         if j.verdict in ("fail", "unsure") and not [q for q in j.evidence if q.strip()]:
             problems.append(f"{crit}: {j.verdict} without evidence")
         for q in j.evidence:
             if q.strip() and _normalise(q) not in haystack:
-                problems.append(f"{crit}: quote not found in conversation")
+                problems.append(f"{crit}: quote not found in conversation or record")
     return problems
 
 

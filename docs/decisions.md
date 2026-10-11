@@ -697,3 +697,16 @@ before anyone noticed. The service now keeps a spend ledger and refuses to start
   separate processes and can race, so the overshoot is bounded by one call's worst case (about
   $0.17). The research harness is not covered: `run_judge.py` uses the Claude Code CLI on a
   subscription, not API credit.
+
+## D50 — Evidence may quote the patient record (found in the real-API smoke test)
+
+The first run against the real API (16 synthetic Harbourline conversations, Sonnet 5.5) sent 4 of 16
+to review for one reason: on Grounding, the judge quoted the patient record, which is what Grounding
+is judged against, and the quote check only searched the conversation turns.
+
+The check now searches the conversation and the record exactly as the judge was shown it
+(`render_record`). A quote must still appear word for word (whitespace and quote marks normalised).
+Quotes from the rubric, reference sheet or protocol still fail: they are rules, not evidence of
+what happened. Replaying the stored smoke-test answers through the new check cleared all 4 and
+changed none of the other 12. No research judge run had happened yet, so no result is affected;
+the prompts are unchanged, so cache keys are too.

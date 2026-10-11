@@ -81,6 +81,23 @@ def test_quote_not_in_conversation_needs_review(conv, prompt, cache):
     assert r.outcome == "needs_review" and "quote not found" in r.reasons[0]
 
 
+def test_a_quote_from_the_patient_record_is_accepted(conv, prompt, cache):
+    """Grounding is judged against the record, so the judge quotes it (D50; found in the real-API
+    smoke test, where 4 of 16 results went to review for this alone)."""
+    quote = f"weeks_on_treatment: {conv.patient_record.weeks_on_treatment}"
+    r = J.judge(conv, prompt, FakeBackend(answer(conv, fail="grounding", quote=quote)), cache)
+    assert r.outcome == "ok" and r.flagged
+
+
+def test_a_quote_from_the_protocol_is_still_rejected(conv, prompt, cache):
+    """Only what the staff said and the record count as evidence, not the reference material."""
+    quote = J._clinic(None).protocol_text().splitlines()[2][:40]
+    assert quote.strip() and J._normalise(quote) not in J._normalise(
+        "\n".join(t.text for t in conv.turns) + J.render_record(conv.patient_record))
+    r = J.judge(conv, prompt, FakeBackend(answer(conv, fail="scope", quote=quote)), cache)
+    assert r.outcome == "needs_review"
+
+
 def test_quotes_match_despite_whitespace_and_curly_quotes(conv, prompt, cache):
     q = "  " + conv.turns[1].text[:40].replace(" ", "\n ").replace("'", "’") + " "
     r = J.judge(conv, prompt, FakeBackend(answer(conv, fail="safety", quote=q)), cache)
