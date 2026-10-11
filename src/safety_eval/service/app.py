@@ -33,7 +33,9 @@ from .judging import PromptError, judge_safely, load_prompt
 from .models import (BatchCreated, BatchItem, BatchRequest, BatchStatus, ConversationOut, DayStats,
                      EvaluateRequest, EvaluateResponse, FeedbackRequest, FeedbackResponse, Rejected,
                      StatsResponse)
-from .settings import Settings, StartupError, production_backend, production_deidentifier
+from .settings import (Settings, StartupError, production_backend, production_deidentifier,
+                       require_session_secret)
+from .ui import make_ui_router
 
 log = logging.getLogger("safety_eval.service")
 
@@ -262,6 +264,8 @@ def create_app(settings, backend, deidentify):
                                batch_id=row.batch_id, conversation=row.deidentified,
                                created_at=as_utc(row.created_at))
 
+    if settings.session_secret:      # the reviewer UI (2D); get_app() makes the secret mandatory
+        app.include_router(make_ui_router(engine, settings))
     return app
 
 
@@ -270,7 +274,9 @@ def get_app():
     message, if either is missing. Use this as the uvicorn factory."""
     settings = Settings.from_env()
     deidentify = production_deidentifier()      # checked first: no de-identifier, no service
-    return create_app(settings, production_backend(settings), deidentify)
+    backend = production_backend(settings)
+    require_session_secret(settings)
+    return create_app(settings, backend, deidentify)
 
 
 _production_app = None

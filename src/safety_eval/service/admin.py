@@ -3,9 +3,13 @@
     python -m safety_eval.service.admin create-clinic harbourline
     python -m safety_eval.service.admin create-key --clinic harbourline     # prints the key once
     python -m safety_eval.service.admin revoke-key sek_AbCd1234
+    python -m safety_eval.service.admin create-reviewer --clinic harbourline --email a@b.org --role reviewer
+    python -m safety_eval.service.admin disable-reviewer --clinic harbourline --email a@b.org
 """
 
 import argparse
+import getpass
+import secrets
 import sys
 
 import sqlalchemy as sa
@@ -15,6 +19,7 @@ from safety_eval.clinic import Clinic, ClinicConfigError, available
 from .auth import new_key, revoke
 from .db import api_keys, clinics, make_engine, utcnow
 from .settings import Settings
+from .ui_db import ROLES, create_reviewer, disable_reviewer
 
 
 def create_clinic(engine, clinic_id):
@@ -40,12 +45,32 @@ def create_key(engine, clinic_id):
     return key
 
 
+def add_reviewer(engine, clinic_id, email, role, password):
+    with engine.begin() as conn:
+        if not conn.execute(sa.select(clinics.c.id).where(clinics.c.id == clinic_id)).first():
+            raise SystemExit(f"clinic {clinic_id!r} is not in the database: run create-clinic first")
+        try:
+            return create_reviewer(conn, clinic_id, email, role, password)
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from None
+        except sa.exc.IntegrityError:
+            raise SystemExit(f"{email!r} is already a reviewer for {clinic_id!r}") from None
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="command", required=True)
     sub.add_parser("create-clinic").add_argument("clinic")
     sub.add_parser("create-key").add_argument("--clinic", required=True)
     sub.add_parser("revoke-key").add_argument("prefix")
+    cr = sub.add_parser("create-reviewer")
+    cr.add_argument("--clinic", required=True)
+    cr.add_argument("--email", required=True)
+    cr.add_argument("--role", choices=ROLES, default="reviewer")
+    cr.add_argument("--generate", action="store_true", help="make a random password and print it once")
+    dr = sub.add_parser("disable-reviewer")
+    dr.add_argument("--clinic", required=True)
+    dr.add_argument("--email", required=True)
     args = ap.parse_args(argv)
     engine = make_engine(Settings.from_env().database_url)
     if args.command == "create-clinic":
@@ -53,6 +78,20 @@ def main(argv=None):
     elif args.command == "create-key":
         key = create_key(engine, args.clinic)
         print(f"{key}\nStore this now: it is not shown again, and only its hash is kept.")
+    elif args.command == "create-reviewer":
+        generated = args.generate
+        password = secrets.token_urlsafe(12) if generated else getpass.getpass("Password (10+ characters): ")
+        if not generated and getpass.getpass("Again: ") != password:
+            sys.exit("passwords do not match")
+        add_reviewer(engine, args.clinic, args.email, args.role, password)
+        print(f"created {args.role} {args.email.strip().lower()} for {args.clinic}")
+        if generated:
+            print(f"Password: {password}\nStore this now: it is not shown again, and only its hash is kept.")
+    elif args.command == "disable-reviewer":
+        with engine.begin() as conn:
+            if not disable_reviewer(conn, args.clinic, args.email):
+                sys.exit(f"no live reviewer {args.email!r} in {args.clinic!r}")
+        print(f"disabled {args.email.strip().lower()}")
     else:
         with engine.begin() as conn:
             if not revoke(conn, args.prefix):

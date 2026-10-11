@@ -628,3 +628,44 @@ the price, asynchronous). Details and settings are in `docs/service.md`.
 - **Not verified against the real API.** No key was available; request shapes follow the SDK
   reference and are tested with fake clients. First real run should check `cache_read_tokens`,
   the served model on a fallback, and one small batch end to end.
+
+## D48 — Reviewer queue (product phase 2D)
+
+A web page on the same service (`/ui`, `docs/review_queue.md`) where a clinic's reviewers confirm or
+overturn the judge's verdicts on results that need a look. Code is in `service/ui.py`, `ui_db.py` and
+`static/`; `app.py` only mounts the router.
+
+- **Cookie sessions without new dependencies.** A session is an HMAC-SHA256-signed cookie
+  (`reviewer_id.expiry.session_id`), 8 hours, `HttpOnly`, `SameSite=Strict`, `Secure` (switchable
+  off for local http). No session table: the reviewer row is re-read on every request, so disabling
+  a reviewer is immediate. The cost is that signing out cannot revoke a stolen copy before expiry;
+  rotating `SESSION_SECRET` does. The secret is mandatory in production (`get_app()` refuses to
+  start) and, when unset, the UI is simply not mounted, so the 2C tests and API-only deployments are
+  unchanged.
+- **CSRF** by header: writes need `X-CSRF-Token` = HMAC(secret, session id), read by the page from a
+  script-readable cookie. With `SameSite=Strict` and JSON-only bodies this is belt and braces.
+  Login takes JSON, not a form, so no multipart dependency is added.
+- **Passwords with scrypt** from `hashlib` (salted, `n=2^14`), constant-time verify. Login errors are
+  identical for unknown clinic, unknown email, wrong password and disabled account, and an unknown
+  email still pays one scrypt. Accounts are made only through the admin CLI (like API keys), with a
+  per-IP-and-email in-memory rate limit on login.
+- **Reviewers are separate from API keys.** Their table `reviewers` (`sql/003_reviewers.sql`) shares
+  the SQLAlchemy `metadata`; the SQL-vs-metadata test now covers every `sql/*.sql` file. Audit rows
+  reuse `audit_log` with the actor `reviewer:<id>` in `api_key_prefix`, so no 2C schema changed.
+- **Reviewed means a confirm or overturn exists** for the result (any criterion, or the whole
+  result). Comments do not count. A result is in the queue if its outcome is `needs_review` or
+  `unsure`, or the judge flagged it. Feedback uses the existing `feedback` table, reviewer = the
+  session's email, never a value the client sends. Overturn must name a criterion and only flips
+  pass or fail: an unsure verdict has no single opposite, so it can be confirmed or commented on.
+- **The export never touches `data/labels/`.** Candidate eval cases (admin only, download only) are
+  overturned results with the de-identified conversation, the judge's verdicts and the corrected
+  verdicts, marked `source: "reviewer_feedback"`. Human labels come from blind labelling; reviewer
+  feedback is given while looking at the judge's answer, so mixing them would contaminate the
+  ground truth. A person promotes candidates deliberately. The latest confirm/overturn on a
+  criterion wins, so a reviewer can undo an overturn.
+- **Static, dependency-free page.** One HTML file with inline script and style, no CDN, no build
+  step, text inserted only with `textContent`. A Content-Security-Policy pins the inline blocks by
+  hash and allows only same-origin requests; tests grep for `innerHTML` and external URLs.
+- **Not yet:** server-side session revocation, reviewer self-service (password change, sign-up),
+  a shared (multi-process) login rate limit, assignment of items to reviewers or locking against two
+  people reviewing the same item, and promoting export lines into labels automatically.

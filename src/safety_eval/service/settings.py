@@ -34,6 +34,8 @@ class Settings:
     effort: str | None = None              # output_config.effort, sent only when set
     fallbacks: bool = True                 # server-side refusal fallback on the synchronous path
     use_batch_api: bool = False            # worker submits service batches to the Message Batches API
+    session_secret: str = ""               # signs reviewer-UI sessions; empty = the UI is not served
+    cookie_secure: bool = True             # set UI_COOKIE_SECURE=0 only for local http
 
     @classmethod
     def from_env(cls, env=os.environ):
@@ -49,9 +51,21 @@ class Settings:
                 effort=env.get("EFFORT") or None,
                 fallbacks=_flag(env.get("FALLBACKS"), d.fallbacks),
                 use_batch_api=_flag(env.get("USE_BATCH_API"), d.use_batch_api),
+                session_secret=env.get("SESSION_SECRET", d.session_secret),
+                cookie_secure=env.get("UI_COOKIE_SECURE", "1").strip().lower() not in ("0", "false", "no"),
             )
         except ValueError as exc:
             raise StartupError(f"bad numeric setting in the environment: {exc}") from exc
+
+
+MIN_SESSION_SECRET = 32
+
+
+def require_session_secret(settings):
+    """The reviewer UI signs its sessions with this; production must not start without a real one."""
+    if len(settings.session_secret) < MIN_SESSION_SECRET:
+        raise StartupError(f"cannot start: SESSION_SECRET must be set to at least {MIN_SESSION_SECRET} "
+                           "random characters (e.g. `python -c 'import secrets; print(secrets.token_urlsafe(48))'`)")
 
 
 def production_deidentifier():
