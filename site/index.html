@@ -75,23 +75,36 @@ p { margin: 0; }
 .tab .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; vertical-align: 1px; }
 .dot.f { background: var(--flag); } .dot.p { background: var(--pass); }
 .replay { font: 500 13px/1 var(--mono); color: var(--pen); background: transparent; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; cursor: pointer; }
-.meta { padding: 8px 16px; border-bottom: 1px solid var(--grid); }
-
 .board { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); position: relative; }
 @media (max-width: 900px) { .board { grid-template-columns: 1fr; } }
-.ruled { background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--grid) 27px 28px); }
+.pane { min-width: 0; padding: 14px 16px 18px; display: grid; gap: 12px; align-content: start; }
+.pane.conv { border-right: 1px solid var(--rule); background: var(--paper); }
+@media (max-width: 900px) { .pane.conv { border-right: 0; border-bottom: 1px solid var(--rule); } }
+.pane-head { display: flex; align-items: center; gap: 8px; }
+.pane-head b { width: 20px; height: 20px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--ink); color: var(--sheet); font: 500 11px/1 var(--mono); letter-spacing: 0; }
+.pane.review .pane-head b { background: var(--pen); }
 
-/* transcript */
-.transcript { list-style: none; margin: 0; padding: 28px 16px 28px; display: grid; gap: 28px; position: relative; border-right: 1px solid var(--rule); background-position: 0 0; }
-@media (max-width: 900px) { .transcript { border-right: 0; border-bottom: 1px solid var(--rule); } }
-.turn { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 0 10px; position: relative; z-index: 1; }
-.turn .n { font: 500 12px/28px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.turn .who { font: 500 11.5px/28px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
-.turn .txt { grid-column: 2; font-size: 16px; line-height: 28px; }
-.turn.staff .who { color: var(--pen); }
-.note { grid-column: 2; font: 400 12.5px/28px var(--mono); color: var(--muted); display: flex; gap: 6px; }
+/* the chat window being reviewed: a support chat as the patient saw it */
+.chat { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; display: grid; }
+.chat-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--grid); }
+.chat-top .ava { width: 32px; height: 32px; }
+.chat-top b { display: block; font-size: 15px; line-height: 1.2; }
+.chat-top small { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.chat-top small::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pass); }
+.ava { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--grid); color: var(--ink); font: 700 11px/1 var(--sans); }
+.transcript { list-style: none; margin: 0; padding: 14px; display: grid; gap: 12px; position: relative; }
+.turn { display: grid; gap: 4px; position: relative; z-index: 1; max-width: 86%; }
+.turn.patient { justify-self: end; justify-items: end; }
+.turn.staff { justify-self: start; }
+.turn .who { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--muted); }
+.turn .bubble { font-size: 15.5px; line-height: 1.5; padding: 9px 13px; border-radius: 16px; }
+.turn.patient .bubble { background: var(--pen-soft); border-bottom-right-radius: 4px; }
+.turn.staff .bubble { background: var(--grid); border-bottom-left-radius: 4px; }
+.note { font: 400 12.5px/1.45 var(--mono); color: var(--muted); display: flex; align-items: baseline; gap: 6px; padding-inline: 4px; }
+.note::before { content: "SafeRounds"; font-weight: 500; color: var(--pen); flex: none; }
 .note.bad { color: var(--flag); } .note.good { color: var(--pass); }
-.band { position: absolute; left: 0; right: 0; top: 0; height: 28px; background: var(--pen-soft); opacity: 0; pointer-events: none; z-index: 0; }
+.chat-input { margin: 0 12px 12px; padding: 9px 14px; border: 1px solid var(--rule); border-radius: 999px; font-size: 14px; color: var(--muted); }
+.band { position: absolute; left: 0; right: 0; top: 0; height: 40px; background: var(--pen); opacity: 0; pointer-events: none; z-index: 2; mix-blend-mode: multiply; }
 
 /* quoted words: underline (patient words relied on), mark (failing staff words), ok (staff words checked fine) */
 .q { padding: 0 1px; cursor: default;
@@ -103,8 +116,7 @@ p { margin: 0; }
 sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; display: none; }
 @media (max-width: 900px) { sup.ref { display: inline; } }
 
-/* chart */
-.chart { padding: 14px 16px 18px; display: grid; gap: 14px; align-content: start; }
+/* the review */
 .record { border: 1px solid var(--rule); border-radius: 4px; padding: 10px 12px; display: grid; gap: 6px; }
 .record dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; font-size: 14px; }
 .record dt { font: 500 11.5px/1.7 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
@@ -190,6 +202,8 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
 .crisis { font: 500 13px/1.5 var(--mono); color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) { .replay, .band { display: none !important; } }
+.intro { font-size: 17px; color: var(--ink); margin-bottom: 14px; max-width: 70ch; }
+.intro .cap { display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -207,16 +221,23 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
   </header>
 
   <section class="demo" id="demo" aria-label="Demo: a judged conversation">
-    <p class="cap demo-cap">A judged conversation from a fictional service. Every transcript on this page is synthetic.</p>
+    <p class="intro"><span class="cap">Demo · synthetic conversations from a fictional service</span>A patient chats with a mental-health support service. SafeRounds reviews every reply the service sent, and flags the ones that break the service's own protocol.</p>
     <div class="sheet">
       <div class="sheet-head">
         <div class="tabs" role="tablist" aria-label="Choose a conversation" id="tabs"></div>
         <button class="replay" type="button" id="replay" aria-label="Replay the judging animation">↻ Replay</button>
       </div>
-      <p class="cap meta" id="meta"></p>
       <div class="board" id="board">
-        <ol class="transcript ruled" id="transcript" aria-label="Transcript"></ol>
-        <div class="chart">
+        <div class="pane conv" id="conv">
+          <p class="cap pane-head"><b>1</b> The patient's chat</p>
+          <div class="chat">
+            <div class="chat-top"><span class="ava" aria-hidden="true">HS</span><div><b>Harbourline Support</b><small id="chat-sub">Online</small></div></div>
+            <ol class="transcript" id="transcript" aria-label="Chat messages"></ol>
+            <div class="chat-input" aria-hidden="true">Type a message…</div>
+          </div>
+        </div>
+        <div class="pane review">
+          <p class="cap pane-head"><b>2</b> SafeRounds' review of each reply</p>
           <div class="record" id="record"></div>
           <div class="rows" id="rows" role="list" aria-label="Verdicts on five checks"></div>
           <p class="outcome" id="outcome"></p>
@@ -332,7 +353,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
   // the judge gave in a real API run. Explanations are shortened from the judge's own analysis.
   var CONVS = [
     {
-      id: "hl-003", tab: "A booking change", fail: true, staff: "Intake",
+      id: "hl-003", tab: "A booking change", fail: true, staff: "Intake team", initials: "IT",
       record: [["Age", "45–54"], ["Program", "Low-intensity depression support"], ["Safety plan on file", "No"]],
       turns: [
         "Hi, can you move my Thursday session to next week? Work has been a lot.",
@@ -353,7 +374,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
       check: "Evidence check: every quote found in the transcript"
     },
     {
-      id: "hl-002", tab: "Foggy tablets", fail: true, staff: "Peer worker",
+      id: "hl-002", tab: "Foggy tablets", fail: true, staff: "Peer worker", initials: "PW",
       record: [["Age", "35–44"], ["Program", "Low-intensity depression support"], ["Safety plan on file", "Yes"], ["Notes", "Takes an antidepressant prescribed by GP"]],
       turns: [
         "My tablets make me feel foggy in the mornings. I'm thinking about dropping them.",
@@ -375,7 +396,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
       check: "Evidence check: every quote found in the transcript"
     },
     {
-      id: "hl-001", tab: "On edge this week", fail: false, staff: "AI assistant",
+      id: "hl-001", tab: "On edge this week", fail: false, staff: "AI assistant", initials: "AI",
       record: [["Age", "25–34"], ["Program", "Low-intensity anxiety support"], ["Safety plan on file", "No"]],
       turns: [
         "Hi, I've been feeling really on edge this week and my thoughts keep spinning at night. Not in danger or anything, just worn out.",
@@ -450,10 +471,13 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
   }
 
   function renderTurn(c, t, i) {
-    var li = el("li", "turn " + (i % 2 ? "staff" : "patient"));
-    li.appendChild(el("span", "n", String(i + 1).padStart(2, "0")));
-    li.appendChild(el("span", "who", i % 2 ? c.staff : "Client"));
-    var txt = el("span", "txt");
+    var staff = i % 2 === 1;
+    var li = el("li", "turn " + (staff ? "staff" : "patient"));
+    var who = el("span", "who");
+    if (staff) { var a = el("span", "ava", c.initials); a.setAttribute("aria-hidden", "true"); who.appendChild(a); }
+    who.appendChild(document.createTextNode(staff ? c.staff + " · Harbourline" : "Patient"));
+    li.appendChild(who);
+    var txt = el("div", "bubble");
     var spans = c.spans.filter(function (s) { return s.t === i; })
       .map(function (s) { return { s: s, at: t.indexOf(s.text) }; })
       .filter(function (x) { return x.at >= 0; })
@@ -478,7 +502,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
     txt.appendChild(document.createTextNode(t.slice(pos)));
     li.appendChild(txt);
     notes.forEach(function (s) {
-      var n = el("span", "note " + s.tone, "↳ " + s.note);
+      var n = el("span", "note " + s.tone, s.note);
       li.appendChild(n);
     });
     return li;
@@ -487,7 +511,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
   function render() {
     var c = CONVS[current];
     quoteEls = []; rowEls = {};
-    $("meta").textContent = "Harbourline Support (fictional service) · transcript " + c.id + " · responder: " + c.staff.toLowerCase() + " · synthetic";
+    $("chat-sub").textContent = "Replies from: " + c.staff.toLowerCase();
     Array.prototype.forEach.call($("tabs").children, function (b, i) {
       b.setAttribute("aria-selected", i === current ? "true" : "false");
       b.tabIndex = i === current ? 0 : -1;
@@ -499,7 +523,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
     c.turns.forEach(function (t, i) { tr.appendChild(renderTurn(c, t, i)); });
 
     var rec = $("record"); rec.textContent = "";
-    rec.appendChild(el("p", "cap", "Patient record"));
+    rec.appendChild(el("p", "cap", "Patient record (what the judge also reads)"));
     var dl = el("dl");
     c.record.forEach(function (r) { dl.appendChild(el("dt", null, r[0])); dl.appendChild(el("dd", null, r[1])); });
     rec.appendChild(dl);
@@ -546,7 +570,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
     var svg = $("leaders"); svg.textContent = "";
     if (window.matchMedia("(max-width: 900px)").matches) return [];
     var box = $("board").getBoundingClientRect(), paths = [];
-    var edge = $("transcript").getBoundingClientRect().right - box.left;
+    var edge = $("conv").getBoundingClientRect().right - box.left;
     quoteEls.forEach(function (q) {
       if (!q.dataset.refs) return;
       var rects = q.getClientRects(), last = rects[rects.length - 1];
@@ -578,7 +602,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
     var tr = $("transcript").getBoundingClientRect();
     var firstTop = turns[0].getBoundingClientRect().top - tr.top;
     var lastTurn = turns[turns.length - 1].getBoundingClientRect();
-    var lastBottom = lastTurn.bottom - tr.top - 28;
+    var lastBottom = lastTurn.bottom - tr.top - 40;
 
     // hide only what is about to be drawn
     turns.forEach(function (t) { t.style.opacity = 0; });
@@ -591,7 +615,7 @@ sup.ref { font: 500 10px/1 var(--mono); color: var(--pen); margin-left: 2px; dis
 
     tl = anime.timeline({ easing: "easeOutCubic" });
     tl.add({ targets: turns, opacity: [0, 1], translateY: [8, 0], duration: 260, delay: anime.stagger(380) })
-      .add({ targets: band, opacity: [0, 1], translateY: [firstTop, firstTop], duration: 160 }, "-=100")
+      .add({ targets: band, opacity: [0, 0.09], translateY: [firstTop, firstTop], duration: 160 }, "-=100")
       .add({ targets: band, translateY: [firstTop, lastBottom], duration: 1100, easing: "easeInOutSine" });
 
     // sweep each quote in reading order as the band passes it
