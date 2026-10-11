@@ -710,3 +710,43 @@ Quotes from the rubric, reference sheet or protocol still fail: they are rules, 
 what happened. Replaying the stored smoke-test answers through the new check cleared all 4 and
 changed none of the other 12. No research judge run had happened yet, so no result is affected;
 the prompts are unchanged, so cache keys are too.
+
+
+## D52 — Monitoring and alerts (product phase 2F)
+
+Daily metrics per clinic, alert rules, a webhook and a dashboard page (`docs/monitoring.md`). Code is
+`service/monitoring.py`, `monitor.py`, `static/dashboard.html`; `ui.py` gains `/ui/dashboard` and
+`/ui/api/metrics`.
+
+- **Computed in Python over one clinic's rows, not in SQL.** The metrics need JSON fields (verdicts,
+  reasons, latency) and percentiles, which differ between SQLite and Postgres. Reading the clinic's
+  window and aggregating in Python gives one implementation that the tests exercise on SQLite and
+  that behaves identically on Postgres. The cost is memory for a big window; fine at pilot volume.
+  `sql/monitoring/*.sql` are the equivalent set-based views for when it is not, written but **not
+  yet run on a real Postgres**.
+- **Numbers and codes only.** Needs-review reasons are mapped to a fixed set of codes by pattern and
+  the text is dropped (it can quote a model error). The webhook body is built from an allow-list of
+  keys. A test plants a phrase in every text column and checks it never appears in an alert.
+- **A spike needs three things:** more than 2 standard deviations from the trailing 28-day mean
+  (at least 7 days of history), an absolute shift of at least 10 rate points, and at least 20
+  evaluations today. The floor is there because a flat history has a standard deviation near zero.
+  A drop fires as well as a rise: a flag rate that falls to nothing is more likely a broken judge
+  than a safer service. Ceilings are fixed: needs-review above 15% today; overturn rate above 30%
+  over 7 days with at least 10 reviewed. All are environment settings.
+- **Overturn rate is by result day** (overturned / reviewed, among results created that day), so it
+  needs no extra table and is stable per day, but a recent day's rate changes as reviews arrive.
+- **Dedupe in a table, not a file.** `alert_state` (`sql/005_monitoring.sql`, the one new table) holds
+  last-sent per clinic and code; an alert is quiet for 24 hours, forgotten once it clears, and a
+  failed POST records nothing so the next run retries. Nothing is ever sent unless `--notify` is
+  given and `ALERT_WEBHOOK_URL` is set. The sender is injected, so tests send nothing.
+- **Spend stays with the operator.** The spend alert is global (against `SPEND_LIMIT_USD`) and goes
+  only to the operator's webhook and CLI. The clinic dashboard and `/ui/api/metrics` leave out spend
+  and per-clinic cost; `monitor report` gives the operator the estimated cost. Cost is list price
+  from the token columns, so an upper bound (no batch discount).
+- **Dashboard is admin-only** (a reviewer gets 403) and shows only the admin's own clinic. It follows
+  the existing page rules (hash-pinned CSP, no external requests, no inline attributes, `textContent`),
+  draws sparklines as inline SVG from script, and keeps the SVG namespace out of the source (read from
+  a probe element) so the no-URL test still holds.
+- **Not yet:** email delivery, per-clinic alert recipients, per-clinic thresholds, alert history,
+  acknowledging an alert, a Postgres run of the views, and a browser run of the new check in
+  `tools/ui_check/check.py` (added, not executed here).

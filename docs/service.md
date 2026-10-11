@@ -42,7 +42,7 @@ builds the same app on first use. Importing the module builds nothing, so tests 
 | `USE_BATCH_API` | `false` | the worker sends service batches to the Message Batches API (below) |
 
 SQLite tables are created automatically. For Postgres, run every file in `sql/` in order
-(`001_init.sql` to `004_spend_ledger.sql`); a test applies every file in `sql/` in order and checks the result
+(`001_init.sql` to `005_monitoring.sql`; the read-only views in `sql/monitoring/` are optional, see `docs/monitoring.md`); a test applies every file in `sql/` in order and checks the result
 against the SQLAlchemy tables.
 
 ## Authentication and admin

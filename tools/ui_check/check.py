@@ -111,6 +111,24 @@ with sync_playwright() as p:
     dp.locator("button.item").first.click(); dp.wait_for_timeout(400)
     dp.screenshot(path=f"{OUT}/6-dark-detail.png", full_page=True)
 
+    # dashboard (2F, admin): sparklines drawn by JS, no spend, phone width, dark mode
+    page.goto(BASE + "/ui/dashboard"); page.wait_for_selector("#trend svg.spark")
+    check(page.locator("#trend svg.spark path.line").count() >= 1, "dashboard draws sparklines (inline SVG)")
+    check(page.locator("#daily tr").count() == 29, f"dashboard daily table has a header and 28 days ({page.locator('#daily tr').count()})")
+    check(page.inner_text("#tiles").find("Evaluated") != -1 and page.inner_text("#alerts").strip() != "", "dashboard shows today's tiles and the alerts box")
+    check("spend" not in page.inner_text("body").lower().replace("spend limit", "") and "usd" not in page.inner_text("body").lower(), "dashboard shows no spend or cost")
+    page.screenshot(path=f"{OUT}/8-dashboard.png", full_page=True)
+    dm = b.new_context(viewport={"width": 390, "height": 844}, storage_state=state, is_mobile=True, has_touch=True).new_page()
+    dm.goto(BASE + "/ui/dashboard"); dm.wait_for_selector("#trend svg.spark")
+    sw = dm.evaluate("document.documentElement.scrollWidth")
+    check(sw <= 390, f"dashboard: no horizontal page scroll at 390px (scrollWidth={sw})")
+    dm.screenshot(path=f"{OUT}/9-dashboard-phone.png", full_page=True)
+    dd = b.new_context(viewport={"width": 1280, "height": 860}, storage_state=state, color_scheme="dark").new_page()
+    dd.goto(BASE + "/ui/dashboard"); dd.wait_for_selector("#trend svg.spark")
+    bg = dd.evaluate("getComputedStyle(document.body).backgroundColor")
+    check(bg != "rgb(244, 246, 245)", f"dashboard dark mode applies the dark tokens (body background {bg})")
+    dd.screenshot(path=f"{OUT}/10-dashboard-dark.png", full_page=True)
+
     # logout
     page.click("#logout"); page.wait_for_timeout(500)
     page.goto(BASE + "/ui"); check("/ui/login" in page.url, "after logout /ui goes back to login")

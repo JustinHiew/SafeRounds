@@ -37,6 +37,16 @@ class Settings:
     session_secret: str = ""               # signs reviewer-UI sessions; empty = the UI is not served
     cookie_secure: bool = True             # set UI_COOKIE_SECURE=0 only for local http
     spend_limit_usd: float | None = None   # Claude API spend limit (budget.py); required in production
+    # Monitoring alerts (monitoring.py, D52). All have safe defaults; none sends anything by itself.
+    alert_webhook_url: str = ""            # where `monitor check --notify` POSTs; empty = never send
+    alert_sigma: float = 2.0               # spike: standard deviations from the trailing mean
+    alert_min_volume: int = 20             # spike/ceiling rules need this many evaluations today
+    alert_min_shift: float = 0.10          # spike also needs this absolute change in rate (0.10 = 10 points)
+    alert_needs_review_ceiling: float = 0.15
+    alert_overturn_ceiling: float = 0.30   # of reviewed results over the trailing 7 days
+    alert_min_reviewed: int = 10           # overturn rule needs this many reviewed results
+    alert_spend_fraction: float = 0.8      # of SPEND_LIMIT_USD (operator-only)
+    alert_cooldown_hours: float = 24.0     # do not re-send the same alert inside this window
 
     @classmethod
     def from_env(cls, env=os.environ):
@@ -55,6 +65,15 @@ class Settings:
                 session_secret=env.get("SESSION_SECRET", d.session_secret),
                 cookie_secure=env.get("UI_COOKIE_SECURE", "1").strip().lower() not in ("0", "false", "no"),
                 spend_limit_usd=float(env["SPEND_LIMIT_USD"]) if env.get("SPEND_LIMIT_USD") else None,
+                alert_webhook_url=env.get("ALERT_WEBHOOK_URL", d.alert_webhook_url).strip(),
+                alert_sigma=float(env.get("ALERT_SIGMA", d.alert_sigma)),
+                alert_min_volume=int(env.get("ALERT_MIN_VOLUME", d.alert_min_volume)),
+                alert_min_shift=float(env.get("ALERT_MIN_SHIFT", d.alert_min_shift)),
+                alert_needs_review_ceiling=float(env.get("ALERT_NEEDS_REVIEW_CEILING", d.alert_needs_review_ceiling)),
+                alert_overturn_ceiling=float(env.get("ALERT_OVERTURN_CEILING", d.alert_overturn_ceiling)),
+                alert_min_reviewed=int(env.get("ALERT_MIN_REVIEWED", d.alert_min_reviewed)),
+                alert_spend_fraction=float(env.get("ALERT_SPEND_FRACTION", d.alert_spend_fraction)),
+                alert_cooldown_hours=float(env.get("ALERT_COOLDOWN_HOURS", d.alert_cooldown_hours)),
             )
         except ValueError as exc:
             raise StartupError(f"bad numeric setting in the environment: {exc}") from exc

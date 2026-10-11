@@ -135,6 +135,18 @@ spend_ledger = sa.Table(
 )
 
 
+alert_state = sa.Table(
+    # When each alert was last sent (monitoring.py, D52), so the same alert is not sent on every
+    # run. scope is a clinic id, or "global" for operator-only alerts. Numbers and codes only.
+    "alert_state", metadata,
+    sa.Column("scope", sa.Text, nullable=False),
+    sa.Column("code", sa.Text, nullable=False),
+    sa.Column("last_sent_at", Time, nullable=False),
+    sa.Column("last_value", sa.Float),
+    sa.PrimaryKeyConstraint("scope", "code", name="alert_state_pk"),
+)
+
+
 def make_engine(url):
     engine = sa.create_engine(url, pool_pre_ping=True)
     if url.startswith("sqlite"):
