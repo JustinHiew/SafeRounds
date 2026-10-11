@@ -24,7 +24,12 @@ class ModelResponse:
 
 
 class ModelCallError(RuntimeError):
-    """Timeout, crash or error result. Callers treat this as 'needs human review', never as a pass."""
+    """Timeout, crash or error result. Callers treat this as 'needs human review', never as a pass.
+    When the API billed the call anyway (a refusal), `usage` and `model` say what it cost."""
+
+    def __init__(self, message="", usage=None, model=None):
+        super().__init__(message)
+        self.usage, self.model = usage, model
 
 
 # Flags checked against `claude --help` (Claude Code 2.1.293); see docs/decisions.md D6.
@@ -156,7 +161,9 @@ class ApiBackend:
         except Exception as exc:   # any SDK error is a failed call: the judge fails closed
             raise ModelCallError(f"API call failed: {exc}") from exc
         if msg.stop_reason in ("refusal", "max_tokens"):
-            raise ModelCallError(f"API stopped with {msg.stop_reason}")
+            # Billed even though unusable: the counts go with the error for the spend ledger.
+            raise ModelCallError(f"API stopped with {msg.stop_reason}", usage=message_usage(msg),
+                                 model=msg.model)
         return ModelResponse(text=message_text(msg), model=msg.model,
                              latency_s=time.monotonic() - start,
                              raw={"stop_reason": msg.stop_reason, "usage": message_usage(msg)})
