@@ -421,7 +421,7 @@ p { margin: 0; }
     </div>
     <figure class="shot">
       <img src="review-queue.webp" width="1600" height="1000" loading="lazy" alt="The SafeRounds review queue: a list of flagged synthetic conversations on the left; on the right, the conversation with the quoted words highlighted, the Safety check marked fail with Claude's explanation, and Confirm and Overturn buttons.">
-      <figcaption>The review queue in the prototype, running locally on 11 October 2026. It shows Claude's actual verdicts on the synthetic Harbourline conversations from the smoke test.</figcaption>
+      <figcaption>The review queue in the prototype, running locally on 11 October 2026. It shows Claude's actual verdicts on the synthetic Harbourline conversations.</figcaption>
     </figure>
     <div class="sub"><h3>What works today</h3><p class="caveat"><b>Working</b>: used end to end in the sample run. <b>Built</b>: written and tested, not yet used in a run.</p></div>
     <div class="ledger-wrap">
@@ -466,14 +466,13 @@ p { margin: 0; }
       <table class="ledger" id="ledger">
         <thead><tr><th scope="col" class="label">What</th><th scope="col" class="label">Result</th><th scope="col" class="label">Status</th></tr></thead>
         <tbody>
-          <tr><td>Initial smoke test</td><td>Claude's verdicts matched the expected result in all 16 runs over three synthetic conversations, run live and through the batch API. Four runs were also sent for review by a quote check that was too strict; it has since been fixed. This shows the pipeline works end to end. It says little about unfamiliar cases.</td><td><span class="chip p">Done</span></td></tr>
           <tr><td>Cost per conversation</td><td>About US$0.015 (roughly 2 Australian cents) each, or US$0.007 through the batch API. Measured on Claude Sonnet 5.5 on 11 October 2026, for four-message conversations: about 4,400 input tokens (mostly the cached protocol) and 850–1,700 output tokens.</td><td><span class="chip p">Done</span></td></tr>
           <tr><td>Held-out validation</td><td>Will measure missed serious issues, false alarms and disagreement with human labels on 250 synthetic conversations written by three different models, with a locked test split. The ceiling it is compared to is how often two physicians agree with each other on emergency-referral cases in HealthBench, a public dataset. No clinicians have reviewed SafeRounds' output yet.</td><td><span class="chip y" id="pulse">In progress</span></td></tr>
           <tr><td>Design partners</td><td>Looking for the first two or three Australian services. Pilots are free.</td><td><span class="chip o">Not yet</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="caveat">Initial smoke test only. Validation results will be posted here once the labelled set is complete.</p>
+    <p class="caveat">Validation results will be posted here once the labelled set is complete.</p>
     <div class="sub"><h3>Updates</h3></div>
     <ol class="log" reversed>
       <li><time datetime="2026-10-11">11 Oct 2026</time><span>First run on Claude Sonnet 5.5. Review queue, spend limit and saferounds.dev live.</span></li>

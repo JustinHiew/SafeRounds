@@ -38,9 +38,8 @@ patients, and it does not check or block replies before they are sent.
 
 Not measured yet, and no number will appear here before it exists in `reports/`.
 
-- **Smoke test:** three synthetic conversations, run end to end on Claude Sonnet 5.5, matched all
-  16 expected verdicts at about US$0.015 per conversation (US$0.007 with the batch API). This shows
-  the pipeline works. It says little about unfamiliar cases.
+- **Cost:** about US$0.015 per four-message conversation on Claude Sonnet 5.5 (US$0.007 with the
+  batch API), measured on 11 October 2026.
 - **Validation in progress:** 250 synthetic conversations, written by three different models, with
   planted failures, hard negatives and normal cases, split so near-duplicates never cross train,
   dev and test. Prompt versions are compared on dev and the chosen one runs once on the locked test
