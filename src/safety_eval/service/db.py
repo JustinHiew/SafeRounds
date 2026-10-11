@@ -115,6 +115,26 @@ def as_utc(dt):
     return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt.astimezone(timezone.utc)
 
 
+spend_ledger = sa.Table(
+    # One row per Claude API call or Message Batches submission (budget.py, D49). Numbers only,
+    # never text. Not per clinic: the limit is the operator's API credit.
+    "spend_ledger", metadata,
+    sa.Column("id", sa.Integer, primary_key=True),
+    sa.Column("created_at", Time, nullable=False),
+    sa.Column("settled_at", Time),
+    sa.Column("kind", sa.Text, nullable=False),          # call | batch
+    sa.Column("model", sa.Text, nullable=False),
+    sa.Column("ref", sa.Text),                           # Anthropic batch id for kind=batch
+    sa.Column("usd", sa.Float, nullable=False),          # the reservation until settled, then the real cost
+    sa.Column("settled", sa.Boolean, nullable=False),
+    sa.Column("input_tokens", sa.Integer),
+    sa.Column("output_tokens", sa.Integer),
+    sa.Column("cache_creation_input_tokens", sa.Integer),
+    sa.Column("cache_read_input_tokens", sa.Integer),
+    sa.CheckConstraint("kind in ('call', 'batch')", name="spend_ledger_kind_check"),
+)
+
+
 def make_engine(url):
     engine = sa.create_engine(url, pool_pre_ping=True)
     if url.startswith("sqlite"):

@@ -669,3 +669,31 @@ overturn the judge's verdicts on results that need a look. Code is in `service/u
 - **Not yet:** server-side session revocation, reviewer self-service (password change, sign-up),
   a shared (multi-process) login rate limit, assignment of items to reviewers or locking against two
   people reviewing the same item, and promoting export lines into labels automatically.
+
+## D49 — Spend limit on Claude API calls (product)
+
+The operator has a fixed amount of API credit, and a batch upload or a bug in a loop could spend it
+before anyone noticed. The service now keeps a spend ledger and refuses to start without
+`SPEND_LIMIT_USD`.
+
+- **Reserve the worst case, then settle to the real cost.** Checking spend after a call cannot
+  stop the call that crosses the limit. Each call reserves its worst case first (prompt length at a
+  conservative 3 characters per token, all output tokens allowed) and is settled from the reported
+  token counts. The worst case is about 15 to 30 times the usual cost, so the limit is never
+  passed, at the price of refusing work slightly early.
+- **Refuse new work rather than recording it as judged.** Over the limit, `/v1/evaluate` and new
+  batches get 503 and queued conversations wait. A "needs review" result would look like a judgement
+  that was never made.
+- **Batches in budget-sized chunks.** A whole batch reserved at worst case would rarely fit a small
+  limit, so the worker sends what fits, settles it, and sends the next chunk. A failed batch
+  submission now stays queued instead of being judged live (it was live before, D47): live costs
+  twice as much, and waiting is not unsafe.
+- **Unknown spend stays counted.** A timeout, or a worker that dies after submitting a batch, keeps
+  its reservation until the operator checks the bill and releases it. Over-counting is the safe
+  direction.
+- **Spend is the operator's business.** It is global across clinics and shown by an admin command,
+  not over the API a clinic's key can reach.
+- **Known limit.** Check-and-reserve is locked within a process. The API and the worker are
+  separate processes and can race, so the overshoot is bounded by one call's worst case (about
+  $0.17). The research harness is not covered: `run_judge.py` uses the Claude Code CLI on a
+  subscription, not API credit.

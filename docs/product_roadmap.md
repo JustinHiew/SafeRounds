@@ -41,7 +41,10 @@ selling anything. Never describe interest as customers in any document or applic
 | 2A Clinic configs | Done: Fernhill prompts byte-identical, second clinic Harbourline | D44 |
 | 2B Ingestion and de-identification | Done: JSON, CSV and mapped helpdesk exports; regex de-id with clinic-number allowlist | D45 |
 | 2C API service | Done: SQLite tested, Postgres DDL written but not yet run; wired to the real de-identifier | D46 |
-| 2D–2H | Not started | |
+| Prompt caching, refusal fallbacks, Message Batches API | Done: tested with fake clients only, not yet against the real API | D47 |
+| 2D Reviewer queue | Done: API-tested; page not yet clicked through in a real browser | D48 |
+| Spend limit | Done: SPEND_LIMIT_USD required; worst-case reserve, settle to real cost | D49 |
+| 2E–2H | Not started | |
 
 ## Critical path (fastest route, about 6–8 weeks)
 

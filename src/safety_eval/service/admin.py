@@ -3,6 +3,8 @@
     python -m safety_eval.service.admin create-clinic harbourline
     python -m safety_eval.service.admin create-key --clinic harbourline     # prints the key once
     python -m safety_eval.service.admin revoke-key sek_AbCd1234
+    python -m safety_eval.service.admin spend                    # Claude API spend against SPEND_LIMIT_USD
+    python -m safety_eval.service.admin release-reservations     # after checking the real bill
     python -m safety_eval.service.admin create-reviewer --clinic harbourline --email a@b.org --role reviewer
     python -m safety_eval.service.admin disable-reviewer --clinic harbourline --email a@b.org
 """
@@ -57,6 +59,14 @@ def add_reviewer(engine, clinic_id, email, role, password):
             raise SystemExit(f"{email!r} is already a reviewer for {clinic_id!r}") from None
 
 
+def print_spend(engine, limit):
+    """Spend is the operator's business, not a clinic's, so it is shown here and not over the API."""
+    from .budget import Budget
+    s = Budget(engine, limit or float("inf")).summary()
+    print(f"limit {s['limit_usd']:.2f} USD: settled {s['settled_usd']:.2f}, reserved {s['reserved_usd']:.2f} "
+          f"({s['open_reservations']} open), remaining {s['remaining_usd']:.2f}")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="command", required=True)
@@ -71,9 +81,18 @@ def main(argv=None):
     dr = sub.add_parser("disable-reviewer")
     dr.add_argument("--clinic", required=True)
     dr.add_argument("--email", required=True)
+    sub.add_parser("spend")
+    sub.add_parser("release-reservations")
     args = ap.parse_args(argv)
-    engine = make_engine(Settings.from_env().database_url)
-    if args.command == "create-clinic":
+    settings = Settings.from_env()
+    engine = make_engine(settings.database_url)
+    if args.command == "spend":
+        print_spend(engine, settings.spend_limit_usd)
+    elif args.command == "release-reservations":
+        from .budget import Budget
+        n = Budget(engine, float("inf")).release_open()
+        print(f"released {n} open reservation(s); check the Anthropic Console bill first")
+    elif args.command == "create-clinic":
         print(f"created clinic {create_clinic(engine, args.clinic)}")
     elif args.command == "create-key":
         key = create_key(engine, args.clinic)

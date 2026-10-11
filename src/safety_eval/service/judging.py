@@ -6,7 +6,7 @@ import re
 import yaml
 
 from safety_eval.clinic import Clinic
-from safety_eval.judge import PROMPTS, PromptVersion, judge
+from safety_eval.judge import PROMPTS, PromptVersion, judge, planned_calls
 from safety_eval.schemas import BaseConversation, JudgeResult
 
 log = logging.getLogger("safety_eval.service")
@@ -82,3 +82,13 @@ def judge_safely(stored, clinic_id, prompt_version, backend, usage=None):
         return JudgeResult(conversation_id=str(stored.get("conversation_id", "unknown")),
                            prompt_version=prompt_version, model=getattr(backend, "model", "unknown"),
                            outcome="needs_review", reasons=["internal error"], attempts=0, latency_s=0.0)
+
+
+def worst_case_usd(stored, clinic_id, prompt_version, backend, batch=False, retries=True):
+    """Most a conversation's judging could cost (budget.py): its planned calls, each with one retry
+    unless retries=False (a batch request is one attempt; a retry goes live and is reserved then)."""
+    from .budget import conversation_worst_case
+    conv = BaseConversation.model_validate(stored)
+    calls = planned_calls(load_prompt(prompt_version), conv, clinic=Clinic.load(clinic_id))
+    usd = conversation_worst_case(backend.model, calls, getattr(backend, "max_tokens", 16000), batch)
+    return usd if retries else usd / 2

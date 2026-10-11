@@ -29,12 +29,13 @@ from . import auth as auth_mod
 from .db import (as_utc, batches, conversations, feedback, insert_conversation, insert_result,
                  judge_results, make_engine, new_batch_id, utcnow, write_audit)
 from .guard import Guard, RateLimiter
-from .judging import PromptError, judge_safely, load_prompt
+from .judging import PromptError, judge_safely, load_prompt, worst_case_usd
 from .models import (BatchCreated, BatchItem, BatchRequest, BatchStatus, ConversationOut, DayStats,
                      EvaluateRequest, EvaluateResponse, FeedbackRequest, FeedbackResponse, Rejected,
                      StatsResponse)
 from .settings import (Settings, StartupError, production_backend, production_deidentifier,
                        require_session_secret)
+from .budget import Budget, BudgetedBackend
 from .ui import make_ui_router
 
 log = logging.getLogger("safety_eval.service")
@@ -77,12 +78,22 @@ def create_app(settings, backend, deidentify):
         raise StartupError("a de-identifier is required")
     load_prompt(settings.prompt_version)      # fail at startup, not on the first request
     engine = make_engine(settings.database_url)
+    budget = Budget(engine, settings.spend_limit_usd) if settings.spend_limit_usd else None
+    if budget is not None and not isinstance(backend, BudgetedBackend):
+        backend = BudgetedBackend(backend, budget)     # every model call is reserved and costed
     limiter = RateLimiter()
     app = FastAPI(title="Conversation safety API", version="1")
     app.add_middleware(Guard, default_limit=settings.max_other_bytes, limits=[
         (("POST", "/v1/evaluate"), settings.max_evaluate_bytes),
         (("POST", "/v1/batches"), settings.max_batch_bytes)])
     app.state.engine = engine
+    app.state.budget = budget
+
+    def check_budget(usd):
+        """Refuse new work up front when the spend limit could be passed (D49)."""
+        if budget is not None and not budget.has_room(usd):
+            raise HTTPException(503, "evaluation is paused: the service's API spend limit has been reached",
+                                headers={"Retry-After": "3600"})
 
     @app.exception_handler(RequestValidationError)
     async def bad_request(request, exc):
@@ -139,6 +150,8 @@ def create_app(settings, backend, deidentify):
         clean, reasons = intake(who.clinic, body.conversation, body.known_names, deidentify)
         if reasons:
             raise HTTPException(422, reasons)
+        if budget is not None:
+            check_budget(worst_case_usd(clean.model_dump(), who.clinic_id, version, backend))
         with engine.begin() as conn:
             pk = insert_conversation(conn, who.clinic_id, clean)
         usage = {}
@@ -166,6 +179,11 @@ def create_app(settings, backend, deidentify):
                 continue
             seen.add(clean.conversation_id)
             accepted.append(clean)
+        if budget is not None and accepted:
+            # Only refuse when there is no room for even one conversation; the worker sends the
+            # rest as the budget allows and leaves the remainder queued.
+            check_budget(worst_case_usd(accepted[0].model_dump(), who.clinic_id, version, backend,
+                                        batch=settings.use_batch_api, retries=not settings.use_batch_api))
         batch_id, status = new_batch_id(), ("queued" if accepted else "done")
         with engine.begin() as conn:
             conn.execute(batches.insert().values(

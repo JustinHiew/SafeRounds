@@ -10,6 +10,7 @@ with the clinic's own rubric, reference sheet and protocol (`docs/clinics.md`).
 ```bash
 pip install -e '.[service]'          # sqlalchemy, uvicorn, anthropic, psycopg
 export ANTHROPIC_API_KEY=...         # without it the service refuses to start
+export SPEND_LIMIT_USD=20            # nor without a spend limit (below)
 python -m safety_eval.service.admin create-clinic harbourline
 python -m safety_eval.service.admin create-key --clinic harbourline     # prints the key once
 uvicorn safety_eval.service.app:get_app --factory --port 8000           # the API; docs at /docs
@@ -29,6 +30,7 @@ builds the same app on first use. Importing the module builds nothing, so tests 
 |---|---|---|
 | `DATABASE_URL` | `sqlite:///./service.db` | SQLAlchemy URL. Production: Postgres (`postgresql+psycopg://...`, Supabase Sydney) |
 | `ANTHROPIC_API_KEY` | none, required | the model API key |
+| `SPEND_LIMIT_USD` | none, required | total Claude API spend allowed, all clinics together (below) |
 | `MODEL` | `claude-sonnet-5-5` | model for `ApiBackend` |
 | `PROMPT_VERSION` | `C` | default prompt version; version A (rules) is refused |
 | `RATE_LIMIT_EVALUATE_PER_MIN` | 60 | per API key |
@@ -38,8 +40,8 @@ builds the same app on first use. Importing the module builds nothing, so tests 
 | `FALLBACKS` | `true` | server-side refusal fallback on the synchronous path (below) |
 | `USE_BATCH_API` | `false` | the worker sends service batches to the Message Batches API (below) |
 
-SQLite tables are created automatically. For Postgres, run `sql/001_init.sql` then
-`sql/002_usage_and_batches.sql`; a test applies every file in `sql/` in order and checks the result
+SQLite tables are created automatically. For Postgres, run every file in `sql/` in order
+(`001_init.sql` to `004_spend_ledger.sql`); a test applies every file in `sql/` in order and checks the result
 against the SQLAlchemy tables.
 
 ## Authentication and admin
@@ -173,6 +175,33 @@ conversations are submitted again.
 **Token usage.** `judge_results` has nullable `input_tokens`, `output_tokens`, `cache_read_tokens`
 and `cache_write_tokens`: numbers summed over the calls behind that result, for cost reporting.
 They are NULL when the backend reports none. Text is never stored.
+
+## Spend limit (D49)
+
+The service never sends a Claude API call that could take total spend past `SPEND_LIMIT_USD`, and
+will not start without one.
+
+- **Before** each call, its worst case is reserved: the prompt at 3 characters per token at the
+  full input rate, plus every allowed output token. About $0.34 per conversation on Sonnet 5.5 with
+  prompt C (one retry included), $0.08 per conversation in a batch. **After** the call, the
+  reservation is replaced by the real cost from the reported token counts, typically a cent or two.
+- When the next conversation does not fit, `/v1/evaluate` returns **503** ("spend limit
+  reached"), new batches are refused with 503, and queued conversations stay queued. Nothing is
+  marked as judged.
+- In batch mode the worker sends as many conversations as fit at worst case, settles that chunk at
+  its real cost when it ends, then sends the next. A failed submission stays queued (it is not
+  judged live at twice the price).
+- A refusal is billed and costed; an HTTP error response is not billed and settles to zero; a
+  timeout keeps its reservation, because the real cost is unknown.
+- A warning is logged at 80%.
+- Spend is the operator's, not a clinic's, so it is shown on the server only:
+  `python -m safety_eval.service.admin spend`. After checking the Anthropic Console bill,
+  `admin release-reservations` clears reservations that were never settled.
+
+Set a spend limit in the Anthropic Console as well: this guard covers the service, not other
+uses of the same key. The rates in `budget.PRICES` are October 2026 list prices; check them
+when Anthropic changes pricing, and add a model there before using it (startup refuses an
+unpriced model).
 
 ## Not done yet
 

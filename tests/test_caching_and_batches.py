@@ -197,6 +197,9 @@ def test_settings_and_production_backend(monkeypatch):
         Settings.from_env({"USE_BATCH_API": "maybe"})
     monkeypatch.setitem(__import__("sys").modules, "anthropic",
                         SimpleNamespace(Anthropic=lambda: FakeAnthropic()))
+    with pytest.raises(StartupError, match="SPEND_LIMIT_USD"):     # no paid calls without a cap (D49)
+        production_backend(d, env={"ANTHROPIC_API_KEY": "x"})
+    d = Settings.from_env({"SPEND_LIMIT_USD": "20"})
     b = production_backend(d, env={"ANTHROPIC_API_KEY": "x"})
     assert b.fallbacks and b.effort is None and b.model == "claude-sonnet-5-5"
 
@@ -433,15 +436,17 @@ def test_per_criterion_prompts_batch_one_request_per_criterion(make_service, hl_
     assert results_of(svc, batch)["results"][0]["result"]["outcome"] == "ok" and not client.calls
 
 
-def test_submit_failure_falls_back_to_live_judging(make_service, hl_data):
+def test_submit_failure_leaves_the_batch_queued_for_the_next_pass(make_service, hl_data):
+    """Not judged live at full price (D49): the next pass submits it again."""
     client = FakeAnthropic()
     client.fail_create = True
     svc = make_service(backend=api_backend(client))
     batch = submit(svc, [hl_data[0]])
     process_batch_api(svc.engine, svc.backend)
-    body = results_of(svc, batch)
-    assert body["status"] == "done" and body["results"][0]["result"]["outcome"] == "ok"
-    assert batch_status(svc, batch)[1] is None and len(client.calls) == 1
+    assert results_of(svc, batch)["status"] == "queued" and len(client.calls) == 0
+    client.fail_create = False
+    process_batch_api(svc.engine, svc.backend)
+    assert batch_status(svc, batch)[1] is not None
 
 
 def test_batch_mode_logs_never_contain_text(make_service, hl_data, caplog):

@@ -36,6 +36,7 @@ class Settings:
     use_batch_api: bool = False            # worker submits service batches to the Message Batches API
     session_secret: str = ""               # signs reviewer-UI sessions; empty = the UI is not served
     cookie_secure: bool = True             # set UI_COOKIE_SECURE=0 only for local http
+    spend_limit_usd: float | None = None   # Claude API spend limit (budget.py); required in production
 
     @classmethod
     def from_env(cls, env=os.environ):
@@ -53,6 +54,7 @@ class Settings:
                 use_batch_api=_flag(env.get("USE_BATCH_API"), d.use_batch_api),
                 session_secret=env.get("SESSION_SECRET", d.session_secret),
                 cookie_secure=env.get("UI_COOKIE_SECURE", "1").strip().lower() not in ("0", "false", "no"),
+                spend_limit_usd=float(env["SPEND_LIMIT_USD"]) if env.get("SPEND_LIMIT_USD") else None,
             )
         except ValueError as exc:
             raise StartupError(f"bad numeric setting in the environment: {exc}") from exc
@@ -79,8 +81,20 @@ def production_deidentifier():
     return deidentify_conversation
 
 
+def require_spend_limit(settings):
+    """Production never calls the paid API without a limit, and never with a model it cannot price."""
+    from .budget import check_model
+    if settings.spend_limit_usd is None or settings.spend_limit_usd <= 0:
+        raise StartupError("cannot start: set SPEND_LIMIT_USD (US dollars) so API spend is capped")
+    try:
+        check_model(settings.model)
+    except ValueError as exc:
+        raise StartupError(f"cannot start: {exc}") from exc
+
+
 def production_backend(settings, env=os.environ):
     if not env.get("ANTHROPIC_API_KEY"):
         raise StartupError("cannot start: ANTHROPIC_API_KEY is not set")
+    require_spend_limit(settings)
     from safety_eval.llm import ApiBackend
     return ApiBackend(model=settings.model, effort=settings.effort, fallbacks=settings.fallbacks)
