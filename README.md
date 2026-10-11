@@ -113,4 +113,4 @@ tests/                    pytest suite
 ## Contact
 
 Justin Hiew, founder: [justin@saferounds.dev](mailto:justin@saferounds.dev).
-SafeRounds is a project by Justin Hiew, Australia.
+SafeRounds is the trading name of Justin Hiew, sole trader, Australia.
