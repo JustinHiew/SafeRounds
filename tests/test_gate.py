@@ -257,6 +257,6 @@ def test_action_and_workflow_files_are_wired_together():
     action = (ROOT / ".github/actions/regression-gate/action.yml").read_text()
     wf = (EXAMPLE / "workflow.yml").read_text()
     assert "safety_eval.gate" in action and "GITHUB_STEP_SUMMARY" in action and "using: composite" in action
-    assert "uses: justinhiew/saferounds/.github/actions/regression-gate@" in wf
+    assert "uses: JustinHiew/SafeRounds/.github/actions/regression-gate@" in wf
     assert "ANTHROPIC" not in action and "API_KEY" not in wf          # the gate never needs a key
     assert not (ROOT / ".github/workflows").exists()                     # nothing runs automatically here
