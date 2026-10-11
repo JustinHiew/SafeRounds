@@ -1,101 +1,116 @@
-# Conversation safety eval harness
+# SafeRounds
 
-Can an automated LLM judge reliably flag patient-support conversations that are unsafe,
-inaccurate, out of scope, ungrounded or missing an escalation, and where does it fail?
+**Retrospective safety audits for patient-facing chat.** [saferounds.dev](https://saferounds.dev)
 
-This repo builds that judge for a fictional Australian online weight-management clinic, where
-patients message an AI assistant, a health coach or a patient support agent, and measures it
-against human labels on a held-out test set.
+SafeRounds uses Claude to review past conversations between patients and a health service's AI
+assistant or support staff. Each staff reply is checked against the service's own protocol and the
+patient's record, and every finding comes with the exact words behind it, so a person can confirm
+or overturn it in minutes. Anything the model is unsure about, or any answer it cannot back with a
+quote, goes to a person instead of passing.
 
-## Project status
+It reviews conversations after they have happened. It does not sit between a service and its
+patients, and it does not check or block replies before they are sent.
 
-**Work in progress. No judge results yet.** The evaluation design, data and tooling are built
-and tested; human labelling and the judge runs are next. Results will be added to `reports/` and
-summarised here, and no number will appear in this README before it exists in `reports/`.
+> Working prototype, seeking Australian design partners for free pilot audits.
+> All data in this repository is synthetic. SafeRounds is a quality-assurance tool, not medical
+> advice or clinical decision support.
 
-| Stage | Status |
-|---|---|
-| Reference material: medicine facts checked against public sources, fictional clinic protocol | Done |
-| Scenario design: 250 core cards with planted failures, hard negatives and normal cases, plus a 30-card natural-error set | Done |
-| Conversations written by three different models from identical prompts, with automated format, leak and realism checks | 250 of 250 imported (`reports/import_report.json`) |
-| Train / dev / test split, grouped so near-duplicates never cross splits | Done |
-| External check against physician labels (HealthBench), with physician-to-physician agreement as the ceiling | Sample drawn; agreement computed |
-| Rubric and analysis plan, written before any judge run | Drafted; being frozen |
-| Blind labelling tool (terminal and web page), reconcile and agreement reports | Built; labelling not started |
-| Judge with evidence-before-verdict output and fail-closed checks | Built and tested with a fake model |
-| Prompt versions A–E compared on dev; chosen version and baseline run once on test | Not started |
-| Service, monitoring and regression gate (milestones 2–3) | Not started |
+## Features
 
-### Where to look first
+| Feature | What it does | Status |
+|---|---|---|
+| Protocol-based review | Five checks per reply (Safety, Escalation, Accuracy, Scope, Grounding), each judged against the service's own protocol, reference sheet and patient record | Working |
+| Quoted evidence | Every verdict cites the reply and the rule it broke; a quote that is not found in the conversation or record sends the result to a person | Working |
+| Fails closed | A failed model call, an unreadable answer or an "unsure" check becomes `needs_review`, never a pass | Working |
+| De-identification | Names, contact details, dates and record numbers replaced before anything is stored or sent for review | Working |
+| Import | CSV, JSON or a mapped helpdesk export, validated against the service's config, with a rejection report | Working |
+| Review queue | Web app where reviewers confirm or overturn each flag, with an audit record every time a conversation is opened | Working |
+| API service | `POST /v1/evaluate` and batch jobs, per-service API keys, strict tenant isolation | Working |
+| Spend limit | Worst-case cost reserved before each model call, so total spend never passes the set limit | Working |
+| Cost controls | Prompt caching of the protocol, and the Message Batches API for large audits at half price | Working |
+| Monitoring and alerts | Daily flag rates per service, alerts when they drift, an admin dashboard | Built, not yet running for a service |
+| Regression gate | GitHub Action that blocks a prompt or model change if it catches fewer serious problems | Built, not yet running for a service |
+| Corrections into test cases | Flags that reviewers overturn are exported as test cases for the regression gate | Built, not yet running for a service |
+| Hosted service in Sydney | Managed deployment with Australian data residency | Planned |
+| Independent validation | Measured miss rate, false alarms and reviewer disagreement on a labelled set | In progress |
 
-1. `docs/datasheet.md`: the three evaluation sets, what each can and cannot show, and why they
-   are never pooled.
-2. `docs/analysis_plan.md`: the headline metric, what counts as "caught", how the final prompt is
-   chosen, and how results are read, all fixed before any results exist.
-3. `docs/decisions.md`: every non-obvious choice with its reason, including mistakes found and
-   fixed along the way (for example D28: test wording found in the clinic protocol the judge reads).
-4. `src/safety_eval/judge.py`: the judge and the checks that make it fail closed.
-5. `reports/healthbench_physician_agreement.json`: how often two physicians agree on emergency
-   referrals, the ceiling any judge should be compared against.
+## How well does it work?
 
-### Running it
+Not measured yet, and no number will appear here before it exists in `reports/`.
+
+- **Smoke test:** three synthetic conversations, run end to end on Claude Sonnet 5.5, matched all
+  16 expected verdicts at about US$0.015 per conversation (US$0.007 with the batch API). This shows
+  the pipeline works. It says little about unfamiliar cases.
+- **Validation in progress:** 250 synthetic conversations, written by three different models, with
+  planted failures, hard negatives and normal cases, split so near-duplicates never cross train,
+  dev and test. Prompt versions are compared on dev and the chosen one runs once on the locked test
+  set. The headline metric is recall on high-severity cases, fixed in
+  [`docs/analysis_plan.md`](docs/analysis_plan.md) before any result exists.
+- **Physician ceiling:** agreement between two physicians on emergency referrals in the public
+  HealthBench set ([`reports/healthbench_physician_agreement.json`](reports/healthbench_physician_agreement.json))
+  is the ceiling any judge is compared against.
+
+## Run it
 
 ```bash
 pip install -e ".[dev]"
-pytest                                   # no model access needed
-python -m safety_eval.grid               # rebuild the scenario cards (deterministic)
-python -m safety_eval.splits             # rebuild the train / dev / test split
-python -m safety_eval.importer           # validate generated conversations
-python -m safety_eval.labelling explore  # read conversations as a labeller sees them
+pytest                                    # 400+ tests, no model access needed
 ```
 
-## Important caveats
+The service, with a real model:
 
-- **Not medical advice.** Nothing in this repo is medical advice or a clinical guideline.
-- **All data is synthetic.** Every conversation and patient record is invented. The clinic,
-  Fernhill Weight Health, does not exist.
-- **Labels come from one non-clinician.** The human standard the judge is measured against
-  was produced by one person without clinical training.
-- **Results on real conversations would likely be worse.** Real patients and staff write in
-  ways a synthetic set does not capture.
-- The judge is not safe to use on real patients, and this repo makes no claim that it is.
+```bash
+pip install -e ".[service]"
+export JUDGE_ANTHROPIC_API_KEY=...         # or ANTHROPIC_API_KEY
+export SPEND_LIMIT_USD=20                 # required: the service will not start without it
+python -m safety_eval.service.admin create-clinic harbourline
+python -m safety_eval.service.admin create-key --clinic harbourline
+uvicorn safety_eval.service.app:get_app --factory --port 8000
+```
 
-## Mapping to a production eval layer
+See [`docs/service.md`](docs/service.md) for every setting.
 
-The project is a small, offline version of the evaluation and monitoring layer a digital
-health clinic needs for patient-facing conversations. Each piece has a production counterpart:
+## Documentation
 
-| In this repo | In production |
+| Topic | Doc |
 |---|---|
-| Five criteria and a frozen, versioned rubric | A shared definition of "what good looks like", agreed with clinicians, coaches and support leads |
-| Reference sheet, clinic protocol and patient record given to the judge | The judge reads the clinic's approved content and the patient's record, so it can check replies against real context |
-| Human labels, self-consistency check, held-out test set | A labelled eval set with a known ceiling on how reliable the human standard is |
-| Prompt versions A–E compared on a dev set | Changes to the judge are chosen on evidence, not intuition |
-| Recall on high-severity cases as the headline, with intervals | Thresholds set from the cost of a missed harm versus a false alarm |
-| "Unsure" and "needs review" routed to a person, failures fail closed | The judge never silently passes something it could not assess |
-| `POST /evaluate`, SQLite log, SQL monitoring queries with alert bands *(milestones 2–3)* | A service that flags risky conversations for review and alerts when rates drift |
-| promptfoo regression gate *(milestone 2)* | No prompt or model change ships if safety recall drops |
-| `POST /feedback` and a review queue *(milestone 3)* | Reviewer decisions feed back as candidate eval cases and guardrail updates |
+| API service, settings, authentication | [`docs/service.md`](docs/service.md) |
+| Per-service configuration (protocol, rubric, record fields) | [`docs/clinics.md`](docs/clinics.md) |
+| Import and de-identification | [`docs/ingest.md`](docs/ingest.md) |
+| Review queue | [`docs/review_queue.md`](docs/review_queue.md) |
+| Monitoring and alerts | [`docs/monitoring.md`](docs/monitoring.md) |
+| Regression gate | [`docs/regression_gate.md`](docs/regression_gate.md) |
+| The five checks | [`docs/rubric.md`](docs/rubric.md) |
+| Evaluation data and what it can show | [`docs/datasheet.md`](docs/datasheet.md) |
+| Every design decision, with its reason | [`docs/decisions.md`](docs/decisions.md) |
 
-What does not carry over: the conversations are synthetic, the labels come from one
-non-clinician, and the reference material is a short public summary rather than a clinic's
-approved content. See the caveats above.
+## Limits
+
+- **Synthetic data only.** Both services in this repo, Fernhill Weight Health and Harbourline
+  Support, are fictional, and every conversation and patient record is invented.
+- **Results on real conversations would likely be worse.** Real patients and staff write in ways
+  a synthetic set does not capture.
+- **Evaluation labels come from one non-clinician** until clinical reviewers are involved.
+- **Automatic de-identification is pattern-based** and can miss names and unusual details. Pilot
+  partners de-identify transcripts before sharing them; see [saferounds.dev/privacy](https://saferounds.dev/privacy).
 
 ## Layout
 
 ```
-data/reference/   reference sheet, clinic protocol, source register
-clinics/          per-clinic configs: fernhill (research) and harbourline (second fictional clinic)
-data/             scenario cards, conversations, provenance, labels and splits
-generation/       generation prompt pack and import script
-prompts/          versioned judge prompts A–E
-src/safety_eval/  model backends, cache, judge, checks, labelling tool, evaluation
-service/          FastAPI app and SQLite log (milestone 2)
-sql/              monitoring queries (milestone 3)
-promptfoo/        dev comparison and regression configs
-tests/            pytest suite
-reports/          generated metrics and error tables
-cache/            judge responses, committed so reports rebuild offline
-docs/             problem, rubric, themes, decisions, concepts, results summary
+src/safety_eval/          judge, checks, de-identification, import, regression gate
+src/safety_eval/service/  API, worker, spend limit, review queue, monitoring
+clinics/                  per-service configs: fernhill and harbourline
+prompts/                  versioned judge prompts
+data/                     synthetic conversations, reference material, splits
+sql/                      Postgres migrations and monitoring views
+examples/                 regression-gate workflow for a customer's repo
+tools/                    smoke test and UI checks
+site/                     saferounds.dev
+docs/                     design docs and decision log
+tests/                    pytest suite
 ```
 
+## Contact
+
+Justin Hiew, founder: [justin@saferounds.dev](mailto:justin@saferounds.dev).
+SafeRounds is the trading name of Justin Hiew, sole trader, Australia.

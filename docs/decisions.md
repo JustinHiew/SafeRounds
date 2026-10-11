@@ -739,7 +739,8 @@ example workflow with synthetic fixtures (`examples/regression-gate/`) wire it i
   is not counted as high. They are read here and never copied into `data/labels/`.
 - **Conversations are listed by id only**, and the outputs hold no text. Nothing calls a model; the
   Action needs no API key, and the example workflow leaves producing the candidate run to the
-  customer. No workflow runs automatically in this repository. `--split test` is refused, so the
+  customer. No workflow runs the gate in this repository; the only workflow (`tests.yml`) runs
+  the test suite, which uses fake model clients and no key. `--split test` is refused, so the
   gate cannot become a way round the test-set lock.
 - **Not yet**: a paired significance test, bootstrap by situation family, comparison across more than
   two runs, posting the markdown as a PR comment (it goes to the job summary), and generating the

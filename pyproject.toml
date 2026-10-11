@@ -1,7 +1,7 @@
 [project]
 name = "safety-eval"
 version = "0.1.0"
-description = "Evaluation harness for an LLM judge of patient-support conversations (synthetic data)"
+description = "SafeRounds: retrospective safety audits for patient-facing chat (synthetic data only)"
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.6",

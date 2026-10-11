@@ -259,4 +259,7 @@ def test_action_and_workflow_files_are_wired_together():
     assert "safety_eval.gate" in action and "GITHUB_STEP_SUMMARY" in action and "using: composite" in action
     assert "uses: JustinHiew/SafeRounds/.github/actions/regression-gate@" in wf
     assert "ANTHROPIC" not in action and "API_KEY" not in wf          # the gate never needs a key
-    assert not (ROOT / ".github/workflows").exists()                     # nothing runs automatically here
+    for own in (ROOT / ".github/workflows").glob("*.y*ml"):              # CI runs the tests only:
+        text = own.read_text()                                           # never the gate, never a key
+        assert "regression-gate" not in text and "safety_eval.gate" not in text
+        assert "secrets." not in text and "API_KEY" not in text
