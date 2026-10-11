@@ -315,7 +315,7 @@ kbd { font-family: var(--mono); font-size: 12px; background: var(--sunken); bord
     if (d.reasons.length) root.appendChild(el("div", "card hint", "Judge notes: " + d.reasons.join("; ")));
 
     var rec = el("div", "card record");
-    rec.appendChild(el("div", "", "Responder: " + d.conversation.responder));
+    rec.appendChild(el("div", "", "Responder: " + (d.responder_label || d.conversation.responder)));
     var dl = el("dl");
     Object.keys(d.conversation.patient_record || {}).forEach(function (k) {
       var v = d.conversation.patient_record[k], row = el("div");
@@ -329,7 +329,7 @@ kbd { font-family: var(--mono); font-size: 12px; background: var(--sunken); bord
     var quotes = quotesOf(d), ol = el("ol", "transcript");
     d.conversation.turns.forEach(function (t) {
       var li = el("li", "turn " + t.speaker);
-      li.appendChild(el("span", "who", t.speaker));
+      li.appendChild(el("span", "who", t.speaker === "patient" ? "patient" : (d.responder_label || "staff")));
       var span = el("span");
       renderText(span, t.text, quotes, focusName);
       li.appendChild(span);

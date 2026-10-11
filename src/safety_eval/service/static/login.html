@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Sign in - Review queue</title>
 <style>
+#form { display: grid; gap: 14px; }
 :root {
   --bg: #f4f6f5; --surface: #ffffff; --sunken: #e9eeec; --line: #d3dcd8; --fg: #17211d; --muted: #5a6a63;
   --accent: #1d6a57; --accent-ink: #ffffff; --fail: #b23a2e; --fail-bg: #f8e4e1;
@@ -37,7 +38,7 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 <body>
 <main>
   <h1>Review queue</h1>
-  <form id="form" style="display:grid;gap:14px" autocomplete="on">
+  <form id="form" autocomplete="on">
     <label>Clinic <input id="clinic" name="clinic" autocomplete="organization" required></label>
     <label>Email <input id="email" name="email" type="email" autocomplete="username" required></label>
     <label>Password <input id="password" name="password" type="password" autocomplete="current-password" required></label>

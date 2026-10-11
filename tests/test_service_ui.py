@@ -481,6 +481,13 @@ def test_static_pages_never_put_data_into_innerhtml():
         assert "textContent" in text
 
 
+def test_static_pages_have_no_inline_style_or_handler_attributes():
+    """The CSP allows only the page's own <style> and <script> blocks by hash, so a style="" or
+    onclick="" attribute is silently blocked in the browser (found by a real-browser check)."""
+    for p in page_files():
+        assert not re.search(r"\sstyle\s*=|\son[a-z]+\s*=", p.read_text(), re.IGNORECASE), p.name
+
+
 def test_pages_are_served_with_a_locked_down_csp(usvc, rev):
     for r in (rev.get("/ui"), TestClient(usvc.app).get("/ui/login")):
         csp = r.headers["content-security-policy"]

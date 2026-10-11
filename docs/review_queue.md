@@ -116,3 +116,12 @@ labelling and reconcile steps. Exports are audited.
   same-origin requests, `no-store`, no framing. The pages load nothing external and write data into
   the page only with `textContent`; a test greps for `innerHTML` and external URLs.
 - Nothing logs conversation text, notes or passwords.
+
+## Checking it in a real browser
+
+`tools/ui_check/` runs the page in Chromium against a local demo (a fake model, so no API spend):
+sign-in, the queue, highlights, confirm and overturn, keyboard shortcuts, export, phone width (390 px),
+dark mode, sign-out, and no console or CSP errors. Its first run found two problems the API tests
+could not see: the login form's inline `style` attribute was blocked by the page's own CSP (now in
+the stylesheet, and a test forbids inline `style`/`on*` attributes), and the detail view showed
+the role id instead of the clinic's name for the role. Usage is in the docstring of `check.py`.

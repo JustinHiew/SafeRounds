@@ -25,6 +25,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from pydantic import BaseModel, ConfigDict, Field
 
+from safety_eval.clinic import Clinic
 from safety_eval.schemas import CRITERIA, Criterion
 
 from .db import as_utc, conversations, feedback, judge_results, utcnow, write_audit
@@ -321,8 +322,13 @@ def make_ui_router(engine, settings):
             write_audit(conn, who.clinic_id, who.audit_prefix, "ui_read_result", result_id)
         crits = _criteria(row.result)
         output = row.result.get("output") or {}
+        responder = (row.deidentified or {}).get("responder", "")
+        try:     # the clinic's own name for the role, e.g. "peer support worker"
+            responder_label = Clinic.load(who.clinic_id).staff.get(responder, responder)
+        except Exception:
+            responder_label = responder
         return {
-            "result_id": row.pk, "conversation_id": row.conversation_id,
+            "result_id": row.pk, "conversation_id": row.conversation_id, "responder_label": responder_label,
             "conversation": row.deidentified, "outcome": row.outcome, "flagged": bool(row.flagged),
             "severity": row.severity, "reasons": row.result.get("reasons") or [],
             "prompt_version": row.prompt_version, "model": row.model,
