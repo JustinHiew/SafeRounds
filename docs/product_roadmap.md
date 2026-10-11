@@ -41,11 +41,13 @@ selling anything. Never describe interest as customers in any document or applic
 | 2A Clinic configs | Done: Fernhill prompts byte-identical, second clinic Harbourline | D44 |
 | 2B Ingestion and de-identification | Done: JSON, CSV and mapped helpdesk exports; regex de-id with clinic-number allowlist | D45 |
 | 2C API service | Done: SQLite tested, Postgres DDL written but not yet run; wired to the real de-identifier | D46 |
-| Prompt caching, refusal fallbacks, Message Batches API | Done: tested with fake clients only, not yet against the real API | D47 |
-| 2D Reviewer queue | Done: API-tested; page not yet clicked through in a real browser | D48 |
+| Prompt caching, refusal fallbacks, Message Batches API | Done: confirmed in the real-API smoke test (cache read on every call after the first, batch completed) | D47 |
+| 2D Reviewer queue | Done: API-tested and checked in a real browser (`tools/ui_check`) | D48 |
 | Spend limit | Done: SPEND_LIMIT_USD required; worst-case reserve, settle to real cost | D49 |
+| Real-API smoke test | Done: 16 synthetic conversations for $0.20; about $0.015 per conversation, $0.007 in a batch; found the record-quote false alarms | D50 |
 | 2E Regression gate | Done: `safety_eval.gate` CLI, composite GitHub Action, example workflow failing on a worse candidate; compares saved runs only | D51 |
-| 2F–2H | In progress / not started | |
+| 2F Monitoring | Done: daily metrics, alert bands, de-duplicated webhook, admin dashboard; Postgres views written, not yet run | D52 |
+| 2G–2H | Not started | |
 
 ## Critical path (fastest route, about 6–8 weeks)
 

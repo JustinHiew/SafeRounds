@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dashboard</title>
+<style>
+:root {
+  --bg: #f4f6f5; --surface: #ffffff; --sunken: #e9eeec; --line: #d3dcd8; --fg: #17211d; --muted: #5a6a63;
+  --accent: #1d6a57; --accent-ink: #ffffff; --pass: #2f7a4b; --pass-bg: #e3f1e7; --fail: #b23a2e; --fail-bg: #f8e4e1;
+  --warn: #8a5a00; --warn-bg: #fbf0d6; --patient: #eef1f0; --staff: #e2efe9; --mark: #ffe58a; --mark-focus: #ffc94d;
+  --shadow: 0 1px 2px rgb(23 33 29 / 0.06), 0 4px 16px rgb(23 33 29 / 0.06);
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111614; --surface: #19201d; --sunken: #0d1210; --line: #2c3833; --fg: #e3eae6; --muted: #93a39c;
+    --accent: #5cbf9f; --accent-ink: #0b1411; --pass: #6fcf8f; --pass-bg: #18301f; --fail: #f08a7e; --fail-bg: #3a1c18;
+    --warn: #e8c36a; --warn-bg: #352a10; --patient: #1f2724; --staff: #1a2c25; --mark: #6b5a12; --mark-focus: #94791a;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25); color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--sans); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-size: 12.5px; }
+.hint { font-size: 12.5px; color: var(--muted); }
+.bar { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line);
+       padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.brand { font-weight: 600; font-size: 17px; }
+.ghost { border: 1px solid var(--line); background: var(--surface); border-radius: 7px; padding: 6px 12px; font-size: 14px; text-decoration: none; color: inherit; display: inline-block; }
+.ghost:hover { border-color: var(--accent); }
+.spacer { flex: 1 1 auto; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 16px 16px 60px; display: grid; gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+h2 { margin: 0; font-size: 16px; }
+.empty { color: var(--muted); }
+.status { min-height: 1.4em; font-size: 13px; color: var(--muted); }
+.status.error { color: var(--fail); }
+.chip { font-size: 12px; padding: 1px 9px; border-radius: 999px; background: var(--sunken); color: var(--muted); white-space: nowrap; }
+.chip.bad { background: var(--fail-bg); color: var(--fail); }
+.chip.good { background: var(--pass-bg); color: var(--pass); }
+.alert { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; border-left: 4px solid var(--fail); background: var(--fail-bg); border-radius: 6px; padding: 8px 12px; }
+.alert .what { font-weight: 600; }
+.alert .nums { font-family: var(--mono); font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.tile { background: var(--sunken); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; }
+.tile .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.tile .num { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; }
+.spark { display: block; width: 120px; height: 28px; margin-left: auto; }
+.spark .line { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.spark .dot { fill: var(--accent); }
+.spark .base { stroke: var(--line); stroke-width: 1; }
+@media (max-width: 600px) {
+  .wrap { padding: 12px 12px 60px; }
+  .card { padding: 12px; }
+  th, td { padding: 6px 6px; }
+  .spark { width: 84px; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">Dashboard</div>
+  <a class="ghost" href="/ui">Review queue</a>
+  <span class="spacer"></span>
+  <span class="hint mono" id="who"></span>
+  <button class="ghost" id="logout" type="button">Sign out</button>
+</header>
+
+<svg id="svgns" width="0" height="0" aria-hidden="true" focusable="false"></svg>
+
+<main class="wrap">
+  <div class="status" id="status" role="status"></div>
+
+  <section class="card" aria-labelledby="hAlerts">
+    <h2 id="hAlerts">Alerts</h2>
+    <div id="alerts"><span class="empty">Loading.</span></div>
+    <div class="hint" id="alertNote"></div>
+  </section>
+
+  <section class="card" aria-labelledby="hToday">
+    <h2 id="hToday">Today (UTC)</h2>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="card" aria-labelledby="hTrend">
+    <h2 id="hTrend">Trends, last <span id="daysN">28</span> days</h2>
+    <div class="scroll"><table id="trend"></table></div>
+    <div class="hint">Each line is one metric per day, scaled to its own range; the dot is today. Rates are over the day's evaluations. Days with no data leave a gap.</div>
+  </section>
+
+  <section class="card" aria-labelledby="hReasons">
+    <h2 id="hReasons">Why results went to review</h2>
+    <div class="scroll"><table id="reasons"></table></div>
+    <div class="empty" id="noReasons" hidden>No results went to review in this period.</div>
+  </section>
+
+  <section class="card" aria-labelledby="hDaily">
+    <h2 id="hDaily">Daily numbers</h2>
+    <div class="scroll"><table id="daily"></table></div>
+    <div class="hint">Overturned: of the results a reviewer confirmed or overturned, the share overturned, by the day the result was created. Latency is seconds across the model calls for one conversation.</div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var SVGNS = $("svgns").namespaceURI;      // the SVG namespace, read from the parser-made probe element
+  var CRITERIA = ["safety", "escalation", "accuracy", "scope", "grounding"];
+  var REASONS = {
+    quote_not_found: "Quote not found", missing_evidence: "Verdict without evidence", call_failed: "Model call failed",
+    spend_limit: "Spend limit", malformed_output: "Malformed output", inconsistent_output: "Inconsistent output",
+    internal_error: "Internal error", other: "Other"
+  };
+  var ALERTS = {
+    flag_rate_shift: "Flag rate moved", unsure_rate_shift: "Unsure rate moved",
+    needs_review_rate_shift: "Needs-review rate moved", needs_review_rate_high: "Needs-review rate above ceiling",
+    overturn_rate_high: "Reviewers are overturning many verdicts"
+  };
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = String(text);
+    return n;
+  }
+  function svg(tag, attrs) {
+    var n = document.createElementNS(SVGNS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    return n;
+  }
+  function cookie(name) {
+    var parts = document.cookie.split("; ");
+    for (var i = 0; i < parts.length; i++) {
+      var kv = parts[i].split("=");
+      if (kv[0] === name) return decodeURIComponent(kv.slice(1).join("="));
+    }
+    return "";
+  }
+  function api(method, path) {
+    var headers = {};
+    if (method !== "GET") { headers["X-CSRF-Token"] = cookie("se_csrf"); headers["Content-Type"] = "application/json"; }
+    return fetch(path, { method: method, credentials: "same-origin", headers: headers,
+                         body: method === "GET" ? undefined : "{}" }).then(function (r) {
+      if (r.status === 401) { window.location.href = "/ui/login"; throw new Error("signed out"); }
+      if (!r.ok) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          throw new Error(typeof j.detail === "string" ? j.detail : "request failed (" + r.status + ")");
+        });
+      }
+      return r.json();
+    });
+  }
+  function say(text, isError) {
+    var s = $("status");
+    s.textContent = text || "";
+    s.className = "status" + (isError ? " error" : "");
+  }
+
+  function pct(v) { return v === null || v === undefined ? "-" : (v * 100).toFixed(1) + "%"; }
+  function sec(v) { return v === null || v === undefined ? "-" : v.toFixed(2) + " s"; }
+  function num(v) { return v === null || v === undefined ? "-" : String(v); }
+
+  // A sparkline: one path per run of days that have a value, scaled to the series' own range.
+  function spark(values, label) {
+    var W = 120, H = 28, P = 3;
+    var s = svg("svg", { "class": "spark", viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": label });
+    var title = svg("title");
+    title.textContent = label;
+    s.appendChild(title);
+    var have = values.filter(function (v) { return v !== null && v !== undefined; });
+    if (!have.length) { return s; }
+    var lo = Math.min.apply(null, have), hi = Math.max.apply(null, have);
+    if (hi === lo) { lo -= 0.5; hi += 0.5; }
+    var n = values.length;
+    function x(i) { return n === 1 ? W / 2 : P + (W - 2 * P) * i / (n - 1); }
+    function y(v) { return H - P - (H - 2 * P) * (v - lo) / (hi - lo); }
+    s.appendChild(svg("line", { "class": "base", x1: 0, x2: W, y1: H - 1, y2: H - 1 }));
+    var d = "", pen = false, last = -1;
+    values.forEach(function (v, i) {
+      if (v === null || v === undefined) { pen = false; return; }
+      d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1) + " ";
+      pen = true; last = i;
+    });
+    s.appendChild(svg("path", { "class": "line", d: d.trim() }));
+    s.appendChild(svg("circle", { "class": "dot", cx: x(last).toFixed(1), cy: y(values[last]).toFixed(1), r: 2.4 }));
+    return s;
+  }
+
+  function row(table, cells, header) {
+    var tr = el("tr");
+    cells.forEach(function (c) {
+      var td = el(header ? "th" : "td");
+      if (c && c.nodeType) td.appendChild(c); else td.textContent = c === null || c === undefined ? "" : String(c);
+      if (header) td.setAttribute("scope", "col");
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  }
+
+  function alertView(a) {
+    var box = el("div", "alert");
+    var title = a.code.indexOf("criterion_flag_rate_shift:") === 0
+      ? "Flag rate moved on " + a.code.split(":")[1] : (ALERTS[a.code] || a.code);
+    box.appendChild(el("span", "what", title));
+    if (a.direction) box.appendChild(el("span", "chip bad", a.direction));
+    var bits = [];
+    if (a.value !== undefined) bits.push("value " + pct(a.value));
+    if (a.baseline_mean !== undefined) bits.push("28-day mean " + pct(a.baseline_mean));
+    if (a.ceiling !== undefined) bits.push("ceiling " + pct(a.ceiling));
+    if (a.n !== undefined) bits.push("n " + a.n);
+    box.appendChild(el("span", "nums", bits.join("  ")));
+    return box;
+  }
+
+  function render(data) {
+    var daily = data.daily, today = daily[daily.length - 1];
+    $("daysN").textContent = data.days;
+    var box = $("alerts");
+    box.textContent = "";
+    if (!data.alerts.length) box.appendChild(el("span", "chip good", "No active alerts"));
+    data.alerts.forEach(function (a) { box.appendChild(alertView(a)); });
+    var t = data.thresholds;
+    $("alertNote").textContent = "Rules: a rate more than " + t.sigma + " standard deviations from its 28-day mean (and at least " +
+      pct(t.min_shift) + " away), with " + t.min_volume + " or more evaluations today; needs-review above " +
+      pct(t.needs_review_ceiling) + "; overturn rate above " + pct(t.overturn_ceiling) + " over 7 days with " +
+      t.min_reviewed + " or more reviewed.";
+
+    var tiles = $("tiles");
+    tiles.textContent = "";
+    [["Evaluated", num(today.evaluated)], ["Flag rate", pct(today.flag_rate)], ["Unsure rate", pct(today.unsure_rate)],
+     ["Needs review", pct(today.needs_review_rate)], ["Overturn rate", pct(today.overturn_rate)],
+     ["Median latency", sec(today.latency_median_s)]].forEach(function (p) {
+      var tile = el("div", "tile");
+      tile.appendChild(el("span", "label", p[0]));
+      tile.appendChild(el("span", "num", p[1]));
+      tiles.appendChild(tile);
+    });
+
+    var trend = $("trend");
+    trend.textContent = "";
+    row(trend, ["Metric", "Today", "Trend"], true);
+    function series(label, get, fmt) {
+      var vals = daily.map(get);
+      row(trend, [label, fmt(vals[vals.length - 1]), spark(vals, label + " per day")]);
+    }
+    series("Evaluated", function (d) { return d.evaluated; }, num);
+    series("Flagged", function (d) { return d.flag_rate; }, pct);
+    CRITERIA.forEach(function (c) {
+      series("Flagged: " + c, function (d) { return d.criterion_flag_rate[c]; }, pct);
+    });
+    series("Unsure", function (d) { return d.unsure_rate; }, pct);
+    series("Needs review", function (d) { return d.needs_review_rate; }, pct);
+    series("Overturned", function (d) { return d.overturn_rate; }, pct);
+    series("Latency median", function (d) { return d.latency_median_s; }, sec);
+    series("Latency p95", function (d) { return d.latency_p95_s; }, sec);
+    series("Tokens in + out", function (d) { return d.input_tokens + d.output_tokens; }, num);
+
+    var rs = $("reasons"), codes = {};
+    rs.textContent = "";
+    daily.forEach(function (d) { Object.keys(d.review_reasons).forEach(function (c) { codes[c] = true; }); });
+    var names = Object.keys(codes).sort();
+    $("noReasons").hidden = names.length > 0;
+    if (names.length) {
+      row(rs, ["Reason", "Total", "Trend"], true);
+      names.forEach(function (c) {
+        var vals = daily.map(function (d) { return d.review_reasons[c] || 0; });
+        var total = vals.reduce(function (a, b) { return a + b; }, 0);
+        row(rs, [REASONS[c] || c, total, spark(vals, (REASONS[c] || c) + " per day")]);
+      });
+    }
+
+    var dt = $("daily");
+    dt.textContent = "";
+    row(dt, ["Date", "Evaluated", "Flagged", "Unsure", "Needs review", "Overturned", "Median s", "p95 s"], true);
+    daily.slice().reverse().forEach(function (d) {
+      row(dt, [d.date, d.evaluated, pct(d.flag_rate), pct(d.unsure_rate), pct(d.needs_review_rate),
+               pct(d.overturn_rate), d.latency_median_s === null ? "-" : d.latency_median_s.toFixed(2),
+               d.latency_p95_s === null ? "-" : d.latency_p95_s.toFixed(2)]);
+    });
+  }
+
+  $("logout").addEventListener("click", function () {
+    api("POST", "/ui/logout").then(function () { window.location.href = "/ui/login"; })
+      .catch(function () { window.location.href = "/ui/login"; });
+  });
+
+  api("GET", "/ui/api/me").then(function (me) {
+    $("who").textContent = me.email + " (" + me.role + ") @ " + me.clinic;
+    return api("GET", "/ui/api/metrics?days=28");
+  }).then(render).catch(function (e) { say(e.message, true); $("alerts").textContent = ""; });
+})();
+</script>
+</body>
+</html>

@@ -119,6 +119,7 @@ kbd { font-family: var(--mono); font-size: 12px; background: var(--sunken); bord
   </label>
   <span class="spacer"></span>
   <span class="hint mono" id="who"></span>
+  <a class="ghost" id="dashLink" href="/ui/dashboard" hidden>Dashboard</a>
   <a class="ghost" id="exportLink" href="/ui/api/export/candidates.jsonl" hidden>Export overturned</a>
   <button class="ghost" id="logout" type="button">Sign out</button>
 </header>
@@ -447,6 +448,7 @@ kbd { font-family: var(--mono); font-size: 12px; background: var(--sunken); bord
   api("GET", "/ui/api/me").then(function (me) {
     $("who").textContent = me.email + " (" + me.role + ") @ " + me.clinic;
     $("exportLink").hidden = me.role !== "admin";
+    $("dashLink").hidden = me.role !== "admin";
     var keys = el("div", "keys");
     keys.textContent = "Keys: j next, k previous, n/p next/previous criterion, c confirm all, o overturn focused criterion.";
     $("detail").appendChild(keys);

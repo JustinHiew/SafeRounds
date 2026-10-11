@@ -7,6 +7,7 @@
   page reads it from the non-HttpOnly `se_csrf` cookie.
 - Every query filters on the reviewer's clinic_id; another clinic's id is a 404.
 - Content reads are audited (audit_log, api_key_prefix = "reviewer:<id>").
+- The dashboard and /ui/api/metrics (2F) are admin-only and show the clinic's own numbers; never spend.
 - Nothing here logs conversation text, notes or passwords.
 """
 
@@ -28,6 +29,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from safety_eval.clinic import Clinic
 from safety_eval.schemas import CRITERIA, Criterion
 
+from . import monitoring
 from .db import as_utc, conversations, feedback, judge_results, utcnow, write_audit
 from .guard import RateLimiter
 from .ui_db import DUMMY_HASH, normalise_email, reviewers, verify_password
@@ -228,6 +230,13 @@ def make_ui_router(engine, settings):
             return RedirectResponse("/ui/login", status_code=303)
         return _page("review.html")
 
+    @router.get("/ui/dashboard", include_in_schema=False)
+    def dashboard_page(request: Request):
+        if not signed_in(request):
+            return RedirectResponse("/ui/login", status_code=303)
+        admin_only(current(request))      # a reviewer gets 403, not the page
+        return _page("dashboard.html")
+
     # ---- session
 
     @router.post("/ui/login")
@@ -360,6 +369,21 @@ def make_ui_router(engine, settings):
             reviewed = bool(conn.execute(sa.select(feedback.c.pk).where(
                 feedback.c.result_pk == result_id, feedback.c.action.in_(("confirm", "overturn")))).first())
         return {"feedback_id": pk, "reviewed": reviewed}
+
+    # ---- dashboard (2F): this clinic's own numbers; spend is global and never shown here
+
+    @router.get("/ui/api/metrics")
+    def metrics(days: int = Query(28, ge=1, le=90), who: Who = Depends(admin_only)):
+        daily = monitoring.clinic_daily(engine, who.clinic_id, days)
+        for d in daily:
+            d.pop("est_cost_usd")         # what a clinic costs the operator is the operator's business
+        return {"clinic": who.clinic_id, "days": days, "daily": daily,
+                "alerts": monitoring.clinic_alerts(engine, who.clinic_id, settings),
+                "thresholds": {"sigma": settings.alert_sigma, "min_volume": settings.alert_min_volume,
+                               "min_shift": settings.alert_min_shift,
+                               "needs_review_ceiling": settings.alert_needs_review_ceiling,
+                               "overturn_ceiling": settings.alert_overturn_ceiling,
+                               "min_reviewed": settings.alert_min_reviewed}}
 
     # ---- export
 
