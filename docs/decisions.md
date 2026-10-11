@@ -710,3 +710,37 @@ Quotes from the rubric, reference sheet or protocol still fail: they are rules, 
 what happened. Replaying the stored smoke-test answers through the new check cleared all 4 and
 changed none of the other 12. No research judge run had happened yet, so no result is affected;
 the prompts are unchanged, so cache keys are too.
+
+
+## D51 — Regression gate (product phase 2E)
+
+A file-only check (`safety_eval/gate.py`, `docs/regression_gate.md`) that compares a baseline and a
+candidate judge run against human labels and exits non-zero when a prompt or model change catches
+fewer high-severity cases. A composite GitHub Action (`.github/actions/regression-gate/`) and an
+example workflow with synthetic fixtures (`examples/regression-gate/`) wire it into a customer's CI.
+
+- **Headline and "caught" are unchanged**: recall on high-severity labelled cases, caught = flagged,
+  unsure or needs_review (D37). Overall recall, false-alarm rate (human-unflagged cases sent to a
+  person), needs_review rate and per-criterion recall are reported beside it, each with its count and
+  a 95% Wilson interval (added to `metrics.py`; the analysis plan's family bootstrap needs family ids
+  a customer's labels do not have).
+- **Fail rules**: candidate recall < baseline - margin (default 0.02, equal passes), below
+  `--min-recall`, or needs_review rate up by more than 0.05 (configurable). The rules compare point
+  estimates, not intervals: a significance test on a dozen cases would almost never fail, which
+  defeats a safety gate. The cost is false alarms on small sets; the report warns below 20
+  high-severity cases and prints the intervals so the reader can judge.
+- **Bad input is exit 2, never a pass**: empty or invalid files, duplicate ids, mixed label kinds,
+  empty overlap, no high-severity case, and runs that cover different labelled conversations
+  (`--allow-partial` opts in to the intersection). A candidate that silently dropped hard cases must
+  not look better.
+- **Two label formats, one per file.** `HumanLabel` JSONL is the proper ground truth. Reviewer-feedback
+  exports (D48) are accepted because customers will have little else, but they hold only overturned
+  results, so recall on them is a regression test of past mistakes, not an estimate; a null severity
+  is not counted as high. They are read here and never copied into `data/labels/`.
+- **Conversations are listed by id only**, and the outputs hold no text. Nothing calls a model; the
+  Action needs no API key, and the example workflow leaves producing the candidate run to the
+  customer. No workflow runs automatically in this repository. `--split test` is refused, so the
+  gate cannot become a way round the test-set lock.
+- **Not yet**: a paired significance test, bootstrap by situation family, comparison across more than
+  two runs, posting the markdown as a PR comment (it goes to the job summary), and generating the
+  candidate run inside the Action.

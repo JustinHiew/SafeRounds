@@ -1,0 +1,41 @@
+# Example for a customer's own repository: block a prompt or model change that makes the safety
+# judge catch fewer high-severity cases. Copy to .github/workflows/judge-regression.yml.
+#
+# What you keep in your repo:
+#   judge/baseline.jsonl   saved judge results for the CURRENT prompt/model on your eval set
+#                          (commit it; refresh it when you deliberately accept a new baseline)
+#   judge/labels.jsonl     your human labels for that eval set (or a reviewer-feedback export)
+# What the PR produces:
+#   judge/candidate.jsonl  results for the changed prompt/model on the SAME conversations,
+#                          produced by your own step below (the gate itself never calls a model
+#                          and needs no API key).
+#
+# The files in this folder (baseline.jsonl, candidate_worse.jsonl, labels.jsonl) are synthetic
+# and show a candidate that misses three high-severity cases, so this gate fails on it.
+name: Judge regression gate
+on:
+  pull_request:
+    paths: ["prompts/**", "judge/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Your step: judge the eval set with the changed prompt/model and write judge/candidate.jsonl.
+      # Replace this with however you run your judge (the API key, if any, lives in YOUR secrets).
+      # - run: python -m safety_eval.run_judge --version C --split dev --yes
+      # - run: cp data/judge_runs/C__dev__sonnet__r0.jsonl judge/candidate.jsonl
+
+      - uses: JustinHiew/Conversation-safety/.github/actions/regression-gate@main   # pin a tag or SHA in real use
+        with:
+          baseline: judge/baseline.jsonl
+          candidate: judge/candidate.jsonl
+          labels: judge/labels.jsonl
+          margin: "0.02"          # allowed drop in high-severity recall
+          min-recall: "0.90"      # optional floor
+          max-needs-review-increase: "0.05"

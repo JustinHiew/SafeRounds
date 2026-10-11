@@ -44,7 +44,8 @@ selling anything. Never describe interest as customers in any document or applic
 | Prompt caching, refusal fallbacks, Message Batches API | Done: tested with fake clients only, not yet against the real API | D47 |
 | 2D Reviewer queue | Done: API-tested; page not yet clicked through in a real browser | D48 |
 | Spend limit | Done: SPEND_LIMIT_USD required; worst-case reserve, settle to real cost | D49 |
-| 2E–2H | Not started | |
+| 2E Regression gate | Done: `safety_eval.gate` CLI, composite GitHub Action, example workflow failing on a worse candidate; compares saved runs only | D51 |
+| 2F–2H | In progress / not started | |
 
 ## Critical path (fastest route, about 6–8 weeks)
 

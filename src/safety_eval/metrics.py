@@ -51,6 +51,19 @@ def rate(numerator, denominator):
             "rate": round(numerator / denominator, 3) if denominator else None}
 
 
+def wilson(successes, n, z=1.96):
+    """Wilson score interval for a share (default 95%). Returns (low, high), or (None, None) when n is 0.
+
+    Unlike the plain normal interval it behaves at 0/n and n/n and with the small counts used here."""
+    if n <= 0:
+        return None, None
+    p = successes / n
+    denom = 1 + z * z / n
+    centre = (p + z * z / (2 * n)) / denom
+    half = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5) / denom
+    return max(0.0, centre - half), min(1.0, centre + half)
+
+
 def recall_precision(truth, predicted):
     c = confusion(truth, predicted)
     return {"recall": rate(c["tp"], c["tp"] + c["fn"]),
