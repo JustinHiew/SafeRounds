@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SafeRounds</title>
+<meta name="description" content="SafeRounds checks every reply your patient-facing AI and support staff send against your own clinical protocol, and sends anything risky to a person with the exact words that raised the flag.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap">
+<style>
+/* Layout: a ward round sheet. A narrow left margin carries chart-style labels, the content sits to its right; it stacks on phones. */
+:root {
+  --paper: #f5f7f8; --sheet: #ffffff; --ink: #142029; --muted: #52616d; --rule: #d6dee4;
+  --pen: #2443a6; --pen-soft: #e6ebfa;
+  --flag: #b3261e; --flag-soft: #fbe7e5; --amber: #9a5a06; --amber-soft: #fbefdc; --pass: #1d6e47; --pass-soft: #e2f2e9;
+  --mark: #ffe08a;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f151a; --sheet: #161f26; --ink: #e5ecf1; --muted: #9aabb8; --rule: #283640;
+  --pen: #9db2ff; --pen-soft: #1c2647;
+  --flag: #ff9488; --flag-soft: #3a1714; --amber: #f2b766; --amber-soft: #36260d; --pass: #7fd8a8; --pass-soft: #12301f;
+  --mark: #6e5a14; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --paper: #0f151a; --sheet: #161f26; --ink: #e5ecf1; --muted: #9aabb8; --rule: #283640;
+  --pen: #9db2ff; --pen-soft: #1c2647;
+  --flag: #ff9488; --flag-soft: #3a1714; --amber: #f2b766; --amber-soft: #36260d; --pass: #7fd8a8; --pass-soft: #12301f;
+  --mark: #6e5a14; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+a { color: var(--pen); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mono { font-family: var(--mono); }
+.label { font: 500 11.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* header */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; padding-block: 22px; border-bottom: 1px solid var(--rule); }
+.mark { font: 600 22px/1 var(--display); letter-spacing: -.01em; }
+.mark span { color: var(--pen); }
+.stage { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font: 500 12px/1 var(--mono); padding: 6px 10px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); background: var(--sheet); }
+
+/* sections as rows of a round sheet */
+.row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 28px; padding-block: 56px; border-bottom: 1px solid var(--rule); }
+.row > .label { padding-top: 8px; }
+@media (max-width: 760px) { .row { grid-template-columns: 1fr; gap: 14px; padding-block: 40px; } .row > .label { padding-top: 0; } }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 44px; align-items: start; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+.hero h1 { font: 500 clamp(36px, 5.4vw, 58px)/1.04 var(--display); letter-spacing: -.02em; }
+.hero h1 em { color: var(--pen); }
+.lede { margin-top: 20px; font-size: 18px; color: var(--muted); max-width: 34em; }
+.cta { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--body); padding: 13px 18px; border-radius: 8px; text-decoration: none; border: 1px solid var(--pen); }
+.btn.primary { background: var(--pen); color: var(--sheet); }
+.btn.ghost { background: transparent; color: var(--pen); cursor: pointer; }
+.addr { font: 500 14px/1 var(--mono); color: var(--muted); user-select: all; }
+
+/* the example round sheet */
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 0 var(--rule), 0 18px 40px -28px rgba(20, 32, 41, .45); }
+.sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; padding: 12px 16px; border-bottom: 1px solid var(--rule); }
+.turns { list-style: none; margin: 0; padding: 16px; display: grid; gap: 10px; }
+.turn { max-width: 92%; padding: 10px 13px; border-radius: 10px; font-size: 14.5px; line-height: 1.5; }
+.turn .who { display: block; margin-bottom: 3px; }
+.turn.pt { background: var(--paper); justify-self: start; border-top-left-radius: 3px; }
+.turn.st { background: var(--pen-soft); justify-self: end; border-top-right-radius: 3px; }
+mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 2px; }
+.verdicts { border-top: 1px solid var(--rule); padding: 14px 16px 16px; display: grid; gap: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 12px/1 var(--mono); padding: 5px 9px; border-radius: 999px; }
+.chip.fail { background: var(--flag-soft); color: var(--flag); }
+.chip.pass { background: var(--pass-soft); color: var(--pass); }
+.why { font-size: 14px; color: var(--muted); }
+.why b { color: var(--ink); font-weight: 600; }
+.routed { display: flex; align-items: center; gap: 8px; font: 500 13px/1.3 var(--mono); color: var(--flag); }
+.routed::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--flag); flex: none; }
+
+/* body copy */
+.h2 { font: 500 clamp(26px, 3.4vw, 34px)/1.15 var(--display); letter-spacing: -.01em; max-width: 24em; }
+.prose { margin-top: 14px; color: var(--muted); max-width: 40em; }
+
+/* criteria: chart rows */
+.criteria { margin-top: 24px; display: grid; border-top: 1px solid var(--rule); }
+.crit { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--rule); }
+.crit h3 { font: 600 16px/1.4 var(--body); }
+.crit p { color: var(--muted); }
+@media (max-width: 560px) { .crit { grid-template-columns: 1fr; gap: 2px; } }
+
+/* steps: a real sequence */
+.steps { margin: 24px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: step; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+.steps li { counter-increment: step; background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+.steps li::before { content: counter(step); font: 500 13px/1 var(--mono); color: var(--pen); }
+.steps h3 { font: 600 17px/1.35 var(--body); }
+.steps p { color: var(--muted); font-size: 15px; }
+
+/* evidence */
+.figures { margin-top: 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .figures { grid-template-columns: 1fr; } }
+.fig { border-top: 2px solid var(--ink); padding-top: 12px; display: grid; gap: 6px; }
+.fig .n { font: 500 36px/1.05 var(--display); font-variant-numeric: tabular-nums; }
+.fig p { color: var(--muted); font-size: 14.5px; }
+.note { margin-top: 22px; padding: 14px 16px; border-radius: 10px; background: var(--amber-soft); color: var(--ink); font-size: 14.5px; max-width: 46em; }
+.note b { color: var(--amber); }
+
+/* lists */
+.ticks { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; max-width: 44em; }
+.ticks li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; color: var(--muted); }
+.ticks li::before { content: ""; width: 10px; height: 10px; margin-top: 8px; border: 2px solid var(--pen); border-radius: 2px; }
+.ticks b { color: var(--ink); font-weight: 600; }
+
+/* footer */
+.foot { padding-block: 40px 56px; display: grid; gap: 14px; color: var(--muted); font-size: 14px; }
+.foot .who { color: var(--ink); font-size: 16px; }
+.toast { min-height: 1.2em; font: 500 13px/1.2 var(--mono); color: var(--pass); }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .12s ease; } .btn:active { transform: translateY(1px); } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">Safe<span>Rounds</span></div>
+    <div class="stage">
+      <span class="pill">Early access</span>
+      <span class="pill">Built in Australia</span>
+      <span class="pill">Pre-revenue</span>
+    </div>
+  </header>
+
+  <section class="row" aria-labelledby="hero-title">
+    <div class="label">Round 01 · Overview</div>
+    <div class="hero">
+      <div>
+        <h1 id="hero-title">Safety rounds for your <em>patient-facing</em> AI.</h1>
+        <p class="lede">SafeRounds reads the conversations your AI assistant, coaches and support staff have with patients. It checks every reply against your own clinical protocol and sends anything risky to a person, with the exact words that raised the flag.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:justin@justinhiew.dev?subject=SafeRounds%20early%20access">Ask about early access</a>
+          <button class="btn ghost" type="button" id="copy">Copy email</button>
+          <span class="addr" id="addr">justin@justinhiew.dev</span>
+        </div>
+        <p class="toast" id="toast" role="status"></p>
+      </div>
+
+      <figure class="sheet" aria-label="Example: a flagged conversation">
+        <div class="sheet-head">
+          <span class="label">Round sheet · synthetic example</span>
+          <span class="label">Peer support · text</span>
+        </div>
+        <ol class="turns">
+          <li class="turn pt"><span class="who label">Client</span>My tablets make me feel foggy in the mornings. I'm thinking about dropping them.</li>
+          <li class="turn st"><span class="who label">Peer worker</span>That fog sounds frustrating, thanks for sharing it. I went through something similar and it really wore me down.</li>
+          <li class="turn pt"><span class="who label">Client</span>Did you ever stop yours?</li>
+          <li class="turn st"><span class="who label">Peer worker</span>I did, and honestly I felt clearer within a week or two. Foggy mornings are usually just the tablet settling in, so <mark>you could try taking half a dose and see how you go</mark>. I'll let your psychologist know too.</li>
+        </ol>
+        <div class="verdicts">
+          <div class="chips">
+            <span class="chip fail">Safety · fail</span>
+            <span class="chip fail">Scope · fail</span>
+            <span class="chip pass">Escalation · pass</span>
+            <span class="chip pass">Accuracy · pass</span>
+            <span class="chip pass">Grounding · pass</span>
+          </div>
+          <p class="why"><b>Why:</b> a peer worker suggested changing a prescribed dose. The service protocol says medicine questions go to the client's own doctor.</p>
+          <p class="routed">Severity high · sent to a reviewer</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="checks-title">
+    <div class="label">Round 02 · What it checks</div>
+    <div>
+      <h2 class="h2" id="checks-title">Five checks on every staff reply, judged against your protocol.</h2>
+      <p class="prose">Each clinic brings its own protocol, reference facts and patient-record fields. The checks read those, so the judge holds your replies to your rules, not to a generic idea of "safe".</p>
+      <div class="criteria">
+        <div class="crit"><h3>Safety</h3><p>Advice that could cause harm if the patient followed it, such as changing a dose without the prescriber or dismissing a warning symptom.</p></div>
+        <div class="crit"><h3>Escalation</h3><p>A red flag the reply doesn't send to the right place, plainly and in that reply: emergency, same-day or routine, as your protocol defines them.</p></div>
+        <div class="crit"><h3>Accuracy</h3><p>Anything that contradicts your reference sheet, including your own phone numbers and service hours.</p></div>
+        <div class="crit"><h3>Scope</h3><p>Staff working beyond their role: support agents giving clinical advice, AI assistants diagnosing, coaches changing treatment.</p></div>
+        <div class="crit"><h3>Grounding</h3><p>Replies that contradict or ignore the patient's record, or invent details about them.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="how-title">
+    <div class="label">Round 03 · How it works</div>
+    <div>
+      <h2 class="h2" id="how-title">From transcript to reviewer in three steps.</h2>
+      <ol class="steps">
+        <li>
+          <h3>Send conversations</h3>
+          <p>Through the API, or as a CSV or helpdesk export. Names, phone numbers, emails, Medicare numbers and addresses are removed before anything is stored or judged. Your clinic's own numbers stay, so the judge can check them.</p>
+        </li>
+        <li>
+          <h3>Every reply is judged</h3>
+          <p>Claude reads the conversation with your protocol and the patient record, and quotes the exact words behind every verdict. A quote that isn't in the conversation or record, or any answer it can't check, goes to a person. Nothing passes by default.</p>
+        </li>
+        <li>
+          <h3>People make the call</h3>
+          <p>Reviewers confirm or overturn each flag in a review queue. Their corrections become test cases, monitoring alerts you when rates drift, and a regression gate blocks prompt or model changes that catch fewer high-severity problems.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="evidence-title">
+    <div class="label">Round 04 · Evidence so far</div>
+    <div>
+      <h2 class="h2" id="evidence-title">Working end to end on the real Claude API.</h2>
+      <div class="figures">
+        <div class="fig"><span class="n">16 of 16</span><p>verdicts matched the planted answers: every planted failure flagged, every clean conversation passed (16 runs over 3 synthetic conversations).</p></div>
+        <div class="fig"><span class="n mono">US$0.015</span><p>per conversation judged one at a time, with prompt caching.</p></div>
+        <div class="fig"><span class="n mono">US$0.007</span><p>per conversation through the batch API, for audits and backfills.</p></div>
+      </div>
+      <p class="note"><b>Still to come:</b> these are early, synthetic results. A 250-conversation labelled test set, with planted failures and hard negatives, is being scored now against human labels, alongside how often two physicians agree with each other. Results will be published here when they exist.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="data-title">
+    <div class="label">Round 05 · Health data</div>
+    <div>
+      <h2 class="h2" id="data-title">Built for patient conversations from the start.</h2>
+      <ul class="ticks">
+        <li><span><b>De-identified first.</b> Personal details are removed before a conversation is stored or sent to a model.</span></li>
+        <li><span><b>Australian hosting.</b> Deployment in Sydney is being set up now.</span></li>
+        <li><span><b>Every read is logged.</b> Viewing a conversation writes an audit record. Logs and alerts carry numbers and ids, never conversation text.</span></li>
+        <li><span><b>Each clinic sees only its own data.</b> Access is scoped per clinic on every request.</span></li>
+        <li><span><b>Quality assurance, not clinical advice.</b> SafeRounds triages conversations for human review. It doesn't diagnose or treat.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="claude-title">
+    <div class="label">Round 06 · Built with</div>
+    <div>
+      <h2 class="h2" id="claude-title">Claude does the reading. People keep the final say.</h2>
+      <p class="prose">The judge runs on Claude through the Anthropic API, with prompt caching for each clinic's protocol and the batch API for large audits. It writes its evidence and reasoning before its verdict, and a spend limit stops it before it can overrun its budget.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p class="who">Made by Justin Hiew, Australia. Looking for digital-health teams to try it on de-identified transcripts.</p>
+    <p>Email <span class="mono addr">justin@justinhiew.dev</span></p>
+    <p>All conversations shown are synthetic. SafeRounds is a review and quality-assurance tool. It is not medical advice or clinical decision support.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy"), toast = document.getElementById("toast"), addr = document.getElementById("addr");
+  function say(text) { toast.textContent = text; setTimeout(function () { toast.textContent = ""; }, 2500); }
+  btn.addEventListener("click", function () {
+    var text = addr.textContent.trim();
+    var fallback = function () {
+      var range = document.createRange(); range.selectNodeContents(addr);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      say("Selected. Press copy to keep it.");
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { say("Copied " + text); }, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
