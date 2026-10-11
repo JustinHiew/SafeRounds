@@ -32,7 +32,7 @@ jobs:
       # - run: cp data/judge_runs/C__dev__sonnet__r0.jsonl judge/candidate.jsonl
 
       # Pin a release tag or commit SHA; the Action is not on the default branch until this work is merged.
-      - uses: justinhiew/conversation-safety/.github/actions/regression-gate@REPLACE_WITH_TAG_OR_SHA
+      - uses: justinhiew/saferounds/.github/actions/regression-gate@REPLACE_WITH_TAG_OR_SHA
         with:
           baseline: judge/baseline.jsonl
           candidate: judge/candidate.jsonl
