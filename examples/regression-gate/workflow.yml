@@ -31,7 +31,8 @@ jobs:
       # - run: python -m safety_eval.run_judge --version C --split dev --yes
       # - run: cp data/judge_runs/C__dev__sonnet__r0.jsonl judge/candidate.jsonl
 
-      - uses: JustinHiew/Conversation-safety/.github/actions/regression-gate@main   # pin a tag or SHA in real use
+      # Pin a release tag or commit SHA; the Action is not on the default branch until this work is merged.
+      - uses: justinhiew/conversation-safety/.github/actions/regression-gate@REPLACE_WITH_TAG_OR_SHA
         with:
           baseline: judge/baseline.jsonl
           candidate: judge/candidate.jsonl
