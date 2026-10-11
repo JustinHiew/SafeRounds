@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saferounds.dev/sitemap.xml
