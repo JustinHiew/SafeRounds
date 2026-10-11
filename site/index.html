@@ -83,7 +83,8 @@ p { margin: 0; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
 .hero .when { font-size: var(--t-m); color: var(--ink); max-width: 64ch; border-left: 3px solid var(--pen); padding-left: 12px; }
 .stage { display: inline-flex; align-items: center; gap: 9px; font-size: var(--t-s); font-weight: 700; color: var(--amber); background: var(--amber-soft); border-radius: 999px; padding: 6px 14px; justify-self: start; }
-.dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+.dot-live { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+@media (max-width: 640px) { .stage { border-radius: 12px; align-items: flex-start; padding: 8px 14px; } .stage .dot-live { margin-top: 7px; } }
 
 /* ---------------------------------------------------------------- demo */
 .demo { padding-bottom: 72px; }
@@ -92,6 +93,7 @@ p { margin: 0; }
 .card-head .label { font-size: var(--t-s); color: var(--muted); }
 .tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
 .tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 640px) { .tabs { flex-wrap: wrap; } }
 .tab { flex: none; font: 500 var(--t-s)/1 var(--font); padding: 10px 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .tab[aria-selected="true"] { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
 .tab .dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -179,9 +181,8 @@ p { margin: 0; }
   .step .num { top: 0; left: -52px; }
 }
 .after { color: var(--muted); max-width: 70ch; }
-.status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
-.status-col { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; }
-.status-col ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted); font-size: var(--t-s); }
+.feat-title { font-size: var(--t-l); margin: 8px 0 14px; }
+.feat-key { margin-top: 12px; font-size: var(--t-s); }
 
 .ledger-wrap { overflow-x: auto; background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; }
 .ledger { width: 100%; border-collapse: collapse; min-width: 600px; }
@@ -196,6 +197,14 @@ p { margin: 0; }
 .st.prog { background: var(--amber-soft); color: var(--amber); } .st.prog i { background: var(--amber); }
 .st.open { background: var(--paper); color: var(--muted); } .st.open i { border: 2px solid var(--muted); }
 .caveat { color: var(--muted); max-width: 70ch; }
+@media (max-width: 640px) {
+  .ledger { min-width: 0; }
+  .ledger thead { display: none; }
+  .ledger tr { display: grid; gap: 6px; padding: 16px; border-bottom: 1px solid var(--line); }
+  .ledger tr:last-child { border-bottom: 0; }
+  .ledger td { display: block; padding: 0; border: 0; width: auto !important; }
+  .ledger td:last-child { order: -1; justify-self: start; }
+}
 
 .points { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
 .points li { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 6px; }
@@ -302,12 +311,24 @@ p { margin: 0; }
       <div class="step"><span class="num">2</span><h3>Each staff reply is reviewed</h3><p>Claude reads the conversation with your protocol and the patient's record, and quotes the exact words behind each verdict. A conversation is marked "needs review" instead of passing if the model call fails, its answer can't be read, or a quote isn't found in the chat or record. Any check Claude marks "unsure" also goes to a person.</p></div>
       <div class="step"><span class="num">3</span><h3>Your team decides</h3><p>Your reviewers confirm or overturn each flag. SafeRounds suggests; people make the call.</p></div>
     </div>
-    <div class="status-grid">
-      <div class="status-col"><p class="status-title"><span class="st done"><i></i>In the prototype today</span></p>
-        <ul><li>Review of transcripts against a service's own protocol, with quoted evidence</li><li>De-identification pass before storage and review</li><li>Review queue where reviewers confirm or overturn flags</li><li>Audit record each time a conversation is opened</li><li>Spend limit on model usage</li></ul></div>
-      <div class="status-col"><p class="status-title"><span class="st prog"><i></i>Built but not yet running for any service</span></p>
-        <ul><li>Alerts when flag rates drift from a service's usual pattern</li><li>A check that blocks prompt or model changes that catch fewer serious problems</li><li>Turning reviewer corrections into test cases</li><li>A hosted service: pilots are run directly with each partner for now</li></ul></div>
+    <h3 class="feat-title">What works today</h3>
+    <div class="ledger-wrap">
+      <table class="ledger" aria-label="Features and their status">
+        <thead><tr><th scope="col">Feature</th><th scope="col">What it does</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Protocol-based review</td><td>Five checks per reply, judged against the service's own protocol and the patient's record, with quoted evidence.</td><td><span class="st done"><i></i>Working</span></td></tr>
+          <tr><td>Fails closed</td><td>A failed call, an unreadable answer, a quote that can't be found or an "unsure" check goes to a person, never a pass.</td><td><span class="st done"><i></i>Working</span></td></tr>
+          <tr><td>De-identification</td><td>Names, contact details, dates and record numbers replaced before anything is stored or reviewed.</td><td><span class="st done"><i></i>Working</span></td></tr>
+          <tr><td>Review queue</td><td>Reviewers confirm or overturn each flag. Every time a conversation is opened, it is recorded.</td><td><span class="st done"><i></i>Working</span></td></tr>
+          <tr><td>Spend limit</td><td>Model usage is capped, so an audit can never cost more than agreed.</td><td><span class="st done"><i></i>Working</span></td></tr>
+          <tr><td>Drift alerts</td><td>Alerts when a service's flag rates move away from their usual pattern.</td><td><span class="st prog"><i></i>Built</span></td></tr>
+          <tr><td>Regression check</td><td>Blocks a prompt or model change that would catch fewer serious problems.</td><td><span class="st prog"><i></i>Built</span></td></tr>
+          <tr><td>Corrections into tests</td><td>Flags that reviewers overturn become test cases for the regression check.</td><td><span class="st prog"><i></i>Built</span></td></tr>
+          <tr><td>Hosted service in Sydney</td><td>A managed deployment with Australian data residency. Pilots run directly with each partner for now.</td><td><span class="st open"><i></i>Planned</span></td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="caveat feat-key"><b>Built</b> means written and tested, but not yet running for any service.</p>
   </section>
 
   <section class="sec" id="evidence" aria-labelledby="evidence-title">
