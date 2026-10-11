@@ -195,6 +195,7 @@ def test_production_app_fails_without_an_api_key(monkeypatch):
     fake_deid.deidentify_conversation = lambda conv, clinic, known_names=(): (conv, {})
     monkeypatch.setitem(sys.modules, "safety_eval.deid", fake_deid)
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.delenv("JUDGE_ANTHROPIC_API_KEY", raising=False)
     with pytest.raises(StartupError, match="ANTHROPIC_API_KEY"):
         production_backend(Settings())
     with pytest.raises(StartupError, match="ANTHROPIC_API_KEY"):

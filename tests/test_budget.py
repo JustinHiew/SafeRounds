@@ -169,7 +169,7 @@ def test_new_batches_are_refused_when_there_is_no_room_for_one_conversation(make
 # ------------------------------------------------------------------ startup and admin
 
 def test_production_needs_a_spend_limit_and_a_priced_model(monkeypatch):
-    monkeypatch.setitem(__import__("sys").modules, "anthropic", SimpleNamespace(Anthropic=FakeAnthropic))
+    monkeypatch.setitem(__import__("sys").modules, "anthropic", SimpleNamespace(Anthropic=lambda **kw: FakeAnthropic()))
     env = {"ANTHROPIC_API_KEY": "x"}
     with pytest.raises(StartupError, match="SPEND_LIMIT_USD"):
         production_backend(Settings.from_env({}), env=env)
@@ -183,3 +183,11 @@ def test_admin_spend_report(engine, capsys):
     admin.print_spend(engine, 20.0)
     out = capsys.readouterr().out
     assert "limit 20.00" in out and "reserved 0.50" in out and "remaining 19.50" in out
+
+
+def test_the_service_key_can_have_its_own_name():
+    """In a Claude Code cloud session ANTHROPIC_API_KEY belongs to Claude Code itself."""
+    from safety_eval.service.settings import api_key
+    assert api_key({"JUDGE_ANTHROPIC_API_KEY": "a", "ANTHROPIC_API_KEY": "b"}) == "a"
+    assert api_key({"ANTHROPIC_API_KEY": "b"}) == "b"
+    assert api_key({}) is None

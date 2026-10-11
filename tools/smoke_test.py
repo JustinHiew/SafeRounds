@@ -1,6 +1,8 @@
 """Smoke test against the real Claude API, inside the spend limit. Synthetic Harbourline data only.
 
-    ANTHROPIC_API_KEY=... SPEND_LIMIT_USD=5 PYTHONPATH=src python tools/smoke_test.py [--sync N] [--batch N]
+    JUDGE_ANTHROPIC_API_KEY=... SPEND_LIMIT_USD=5 PYTHONPATH=src python tools/smoke_test.py [--sync N] [--batch N]
+
+(ANTHROPIC_API_KEY also works outside a Claude Code cloud session, where that name is reserved.)
 
 Steps, each stopping the run if it fails, so a broken setup costs almost nothing:
   1. auth check: one tiny request (max_tokens 16) through the same ApiBackend the service uses,

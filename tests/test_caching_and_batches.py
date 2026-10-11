@@ -196,7 +196,7 @@ def test_settings_and_production_backend(monkeypatch):
     with pytest.raises(StartupError):
         Settings.from_env({"USE_BATCH_API": "maybe"})
     monkeypatch.setitem(__import__("sys").modules, "anthropic",
-                        SimpleNamespace(Anthropic=lambda: FakeAnthropic()))
+                        SimpleNamespace(Anthropic=lambda **kw: FakeAnthropic()))
     with pytest.raises(StartupError, match="SPEND_LIMIT_USD"):     # no paid calls without a cap (D49)
         production_backend(d, env={"ANTHROPIC_API_KEY": "x"})
     d = Settings.from_env({"SPEND_LIMIT_USD": "20"})

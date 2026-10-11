@@ -92,9 +92,22 @@ def require_spend_limit(settings):
         raise StartupError(f"cannot start: {exc}") from exc
 
 
+# JUDGE_ANTHROPIC_API_KEY is checked first: in a Claude Code cloud session, ANTHROPIC_API_KEY is
+# reserved for Claude Code's own sign-in and is not passed to commands, so the service's key
+# needs a name of its own there. Anywhere else, ANTHROPIC_API_KEY works as usual.
+API_KEY_VARS = ("JUDGE_ANTHROPIC_API_KEY", "ANTHROPIC_API_KEY")
+
+
+def api_key(env=os.environ):
+    return next((env[v] for v in API_KEY_VARS if env.get(v)), None)
+
+
 def production_backend(settings, env=os.environ):
-    if not env.get("ANTHROPIC_API_KEY"):
-        raise StartupError("cannot start: ANTHROPIC_API_KEY is not set")
+    key = api_key(env)
+    if not key:
+        raise StartupError(f"cannot start: set {' or '.join(API_KEY_VARS)}")
     require_spend_limit(settings)
+    import anthropic
     from safety_eval.llm import ApiBackend
-    return ApiBackend(model=settings.model, effort=settings.effort, fallbacks=settings.fallbacks)
+    return ApiBackend(model=settings.model, effort=settings.effort, fallbacks=settings.fallbacks,
+                      client=anthropic.Anthropic(api_key=key))
