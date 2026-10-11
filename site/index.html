@@ -39,6 +39,7 @@
   --obs: #f3c33c; --mark: rgba(243, 195, 60, .55); --obs-soft: #fdf3d6; --obs-ink: #7a5300;
   --pass: #1d6b45; --pass-soft: #e0f1e7;
   --bubble: #e9efed;
+  --paper-minor: rgba(13, 94, 86, .055); --paper-major: rgba(13, 94, 86, .1);
   --f-display: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
   --f-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -51,7 +52,7 @@
   --flag: #f1948c; --flag-soft: #3a1614;
   --obs: #e8b93a; --mark: rgba(214, 167, 40, .45); --obs-soft: #33280c; --obs-ink: #f1cd6e;
   --pass: #7fd3a5; --pass-soft: #12301f;
-  --bubble: #1a2926; color-scheme: dark;
+  --bubble: #1a2926; --paper-minor: rgba(108, 199, 184, .045); --paper-major: rgba(108, 199, 184, .085); color-scheme: dark;
 } }
 :root[data-theme="dark"] {
   --ward: #0b1513; --sheet: #111e1b; --line: #1f2f2b; --rule: #2d413c; --grid: transparent;
@@ -60,11 +61,20 @@
   --flag: #f1948c; --flag-soft: #3a1614;
   --obs: #e8b93a; --mark: rgba(214, 167, 40, .45); --obs-soft: #33280c; --obs-ink: #f1cd6e;
   --pass: #7fd3a5; --pass-soft: #12301f;
-  --bubble: #1a2926; color-scheme: dark;
+  --bubble: #1a2926; --paper-minor: rgba(108, 199, 184, .045); --paper-major: rgba(108, 199, 184, .085); color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--ward); color: var(--ink); font: 400 var(--t-m)/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+body { margin: 0; position: relative; background: var(--ward); color: var(--ink); font: 400 var(--t-m)/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+/* chart paper behind the top of the page: minor squares, a firmer line every fifth, fading out */
+body::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 980px; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(var(--paper-major) 1px, transparent 1px), linear-gradient(90deg, var(--paper-major) 1px, transparent 1px),
+    linear-gradient(var(--paper-minor) 1px, transparent 1px), linear-gradient(90deg, var(--paper-minor) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px; background-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.75) 45%, transparent 100%); }
+@media (max-width: 600px) { body::before { height: 760px; } }
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 28px; }
 @media (max-width: 600px) { .wrap { padding-inline: 16px; } }
 a { color: var(--scrub); text-underline-offset: 3px; }
