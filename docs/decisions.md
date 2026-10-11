@@ -590,3 +590,41 @@ conversation, bulk batches with a worker, feedback, stats, audited reads, per-cl
   `service` extra adds sqlalchemy, uvicorn, anthropic and psycopg; sqlalchemy is also in `dev`.
 - **Not yet:** prompt caching and the Message Batches API, queue claiming and retries, retention
   and delete-all-data, the reviewer UI (2D).
+
+## D47 — Prompt caching and the Message Batches API
+
+The service's `ApiBackend` now caches the stable part of every prompt, retries declined requests
+server-side, and the worker can send a service batch to Anthropic's Message Batches API (about half
+the price, asynchronous). Details and settings are in `docs/service.md`.
+
+- **Split point.** `judge.render_parts()` cuts the *template* at the first per-conversation
+  placeholder (`{{PATIENT_RECORD}}`, `{{CONVERSATION}}`, `{{RESPONDER}}`, or `{{CRITERIA}}`, which
+  varies per criterion in per-criterion mode) and fills each side, so `stable + rest == render()`.
+  This is asserted in code and tested for prompts B to E. `render()` is unchanged and the Fernhill
+  hash test and cache keys are untouched; caching only changes how the same text is cut into API
+  blocks (system block, stable prefix with a breakpoint, the rest). The backend interface gains
+  `complete(system, prompt, cache_prefix=None)`; CLI and fake backends ignore it. Prefixes under the
+  model's minimum (512 tokens on Sonnet 5.5) silently do not cache, which the recorded
+  `cache_read`/`cache_write` counts make visible.
+- **Replay reuses the judge's checks.** A batch answer is not parsed by new code. `ReplayBackend`
+  returns it to the normal `judge()` for that exact prompt (keyed by sha256 of system and prompt),
+  once. Everything else, including the judge's retry after malformed output and any errored,
+  canceled, expired, refused or `max_tokens` item, goes to the live backend. So parsing, quote
+  checks and fail-closed behaviour are one code path for both modes, and the worst case for a bad
+  batch is the live price, never a pass. Prompts are re-rendered when results arrive rather than
+  stored, so no conversation text is kept beyond the existing de-identified rows.
+- **Fallbacks on the synchronous path only.** `fallbacks: "default"` (beta
+  `server-side-fallback-2026-07-01`, via `client.beta.messages.create`) is rejected on the Batches
+  API, so batch requests omit it; a refused batch item is retried live, where it applies. The model
+  that answered is recorded, so a fallback is visible, and a refusal from the whole chain is still
+  `needs_review`. A setting (`FALLBACKS`, default on), skipped for Haiku.
+- **Resumable batch mode.** `batches.anthropic_batch_id` and "conversations with no result" are the
+  whole state; a restarted worker polls and collects. `USE_BATCH_API` defaults to off, so the
+  synchronous worker and its tests are unchanged. A crash between creating the Anthropic batch and
+  saving its id orphans a paid batch; accepted for now.
+- **Usage numbers are stored, never text.** `judge_results` gets nullable token columns
+  (`sql/002_usage_and_batches.sql`); the SQL test now applies every `sql/*.sql` in order. Logs carry
+  ids, counts and exception type names only.
+- **Not verified against the real API.** No key was available; request shapes follow the SDK
+  reference and are tested with fake clients. First real run should check `cache_read_tokens`,
+  the served model on a fallback, and one small batch end to end.

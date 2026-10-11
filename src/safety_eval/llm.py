@@ -48,7 +48,8 @@ class CliBackend:
     def command(self, system):
         return ["claude", *CLI_FLAGS, "--model", self.model, "--system-prompt", system]
 
-    def complete(self, system, prompt):
+    def complete(self, system, prompt, cache_prefix=None):
+        # cache_prefix is an API prompt-caching hint; the command line has no use for it.
         start = time.monotonic()
         # A fresh empty directory per call: even if a tool slipped through, there is nothing to read.
         with tempfile.TemporaryDirectory(prefix="judge-") as empty_dir:
@@ -81,31 +82,84 @@ class CliBackend:
         return self.model
 
 
+FALLBACK_BETA = "server-side-fallback-2026-07-01"   # the `fallbacks: "default"` scalar form
+USAGE_FIELDS = ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
+
+
+def build_params(model, max_tokens, system, prompt, cache_prefix=None, effort=None):
+    """Request parameters shared by ApiBackend and the Batches API, so both send the same thing.
+
+    The text the model receives is exactly `system` and `prompt`. Prompt caching only changes how
+    it is cut into blocks: `system` is one block and the user message is the stable prefix then the
+    rest, each cacheable up to a breakpoint (caching is a prefix match over system then messages)."""
+    if cache_prefix and not prompt.startswith(cache_prefix):
+        raise ValueError("prompt must start with cache_prefix")
+    system_blocks = [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}]
+    if cache_prefix and cache_prefix != prompt:
+        content = [{"type": "text", "text": cache_prefix, "cache_control": {"type": "ephemeral"}},
+                   {"type": "text", "text": prompt[len(cache_prefix):]}]
+    elif cache_prefix:      # nothing varies: the whole prompt is the prefix (empty blocks are rejected)
+        content = [{"type": "text", "text": prompt, "cache_control": {"type": "ephemeral"}}]
+    else:
+        content = [{"type": "text", "text": prompt}]
+    params = dict(model=model, max_tokens=max_tokens, system=system_blocks,
+                  messages=[{"role": "user", "content": content}])
+    if effort:
+        params["output_config"] = {"effort": effort}
+    return params
+
+
+def message_text(msg):
+    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+
+
+def message_usage(msg):
+    """Token counts only (numbers, never text)."""
+    usage = getattr(msg, "usage", None)
+    return {f: int(getattr(usage, f, 0) or 0) for f in USAGE_FIELDS}
+
+
 class ApiBackend:
     """Same interface over the official Anthropic SDK. The SDK is imported only when no client is
-    passed in, so tests (and anyone without the package) never need it."""
+    passed in, so tests (and anyone without the package) never need it.
 
-    def __init__(self, model="claude-opus-5-5", max_tokens=16000, client=None):
+    Prompt caching: `system` and the stable `cache_prefix` of the prompt carry ephemeral
+    cache_control, so repeated calls pay the cheap cache-read rate for them. `fallbacks=True` adds
+    the server-side refusal fallback (`fallbacks: "default"`, beta header FALLBACK_BETA, sent with
+    client.beta.messages.create); the served model is msg.model, so a fallback shows in the result.
+    A final stop_reason of refusal still raises, so it fails closed. Not for Haiku 5.5, which has
+    no server-side fallback."""
+
+    def __init__(self, model="claude-opus-5-5", max_tokens=16000, client=None, effort=None,
+                 fallbacks=False):
         self.model = model
         self.max_tokens = max_tokens
+        self.effort = effort
+        self.fallbacks = fallbacks and "haiku" not in model
         if client is None:
             import anthropic   # optional dependency, deliberately not in pyproject.toml
             client = anthropic.Anthropic()
         self.client = client
 
-    def complete(self, system, prompt):
+    def params(self, system, prompt, cache_prefix=None):
+        return build_params(self.model, self.max_tokens, system, prompt, cache_prefix, self.effort)
+
+    def complete(self, system, prompt, cache_prefix=None):
         start = time.monotonic()
         try:
-            msg = self.client.messages.create(model=self.model, max_tokens=self.max_tokens,
-                                              system=system,
-                                              messages=[{"role": "user", "content": prompt}])
+            params = self.params(system, prompt, cache_prefix)
+            if self.fallbacks:
+                msg = self.client.beta.messages.create(betas=[FALLBACK_BETA], fallbacks="default",
+                                                       **params)
+            else:
+                msg = self.client.messages.create(**params)
         except Exception as exc:   # any SDK error is a failed call: the judge fails closed
             raise ModelCallError(f"API call failed: {exc}") from exc
         if msg.stop_reason in ("refusal", "max_tokens"):
             raise ModelCallError(f"API stopped with {msg.stop_reason}")
-        text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-        return ModelResponse(text=text, model=msg.model, latency_s=time.monotonic() - start,
-                             raw={"stop_reason": msg.stop_reason})
+        return ModelResponse(text=message_text(msg), model=msg.model,
+                             latency_s=time.monotonic() - start,
+                             raw={"stop_reason": msg.stop_reason, "usage": message_usage(msg)})
 
 
 class FakeBackend:
@@ -115,9 +169,11 @@ class FakeBackend:
         self.replies = list(replies) if isinstance(replies, (list, tuple)) else [replies]
         self.model = model
         self.calls = []
+        self.prefixes = []   # the cache_prefix of each call, parallel to calls
 
-    def complete(self, system, prompt):
+    def complete(self, system, prompt, cache_prefix=None):
         self.calls.append((system, prompt))
+        self.prefixes.append(cache_prefix)
         reply = self.replies.pop(0) if len(self.replies) > 1 else self.replies[0]
         if isinstance(reply, Exception):
             raise reply

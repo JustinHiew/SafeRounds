@@ -52,10 +52,27 @@ def load_prompt(version):
     return _prompts[version]
 
 
-def judge_safely(stored, clinic_id, prompt_version, backend):
+class UsageBackend:
+    """Wraps a backend and adds up the token counts it reports (numbers only) into `usage`."""
+
+    def __init__(self, backend, usage):
+        self.backend, self.usage, self.model = backend, usage, getattr(backend, "model", "unknown")
+
+    def complete(self, system, prompt, cache_prefix=None):
+        resp = self.backend.complete(system, prompt, cache_prefix=cache_prefix)
+        for field, n in ((resp.raw or {}).get("usage") or {}).items():
+            if isinstance(n, int):
+                self.usage[field] = self.usage.get(field, 0) + n
+        return resp
+
+
+def judge_safely(stored, clinic_id, prompt_version, backend, usage=None):
     """Judge a stored (de-identified) conversation. Anything unexpected becomes needs_review with
     the reason "internal error": never an exception, never pass. Only the exception's type is
-    logged, because its message could quote the conversation."""
+    logged, because its message could quote the conversation. If `usage` (a dict) is passed, token
+    counts from the model calls are added to it."""
+    if usage is not None:
+        backend = UsageBackend(backend, usage)
     try:
         conv = BaseConversation.model_validate(stored)
         return judge(conv, load_prompt(prompt_version), backend, cache=NullCache(),

@@ -43,6 +43,7 @@ batches = sa.Table(
     sa.Column("n_rejected", sa.Integer, nullable=False),
     sa.Column("created_at", Time, nullable=False),
     sa.Column("finished_at", Time),
+    sa.Column("anthropic_batch_id", sa.Text),                # set once submitted to the Message Batches API
     sa.CheckConstraint("status in ('queued', 'running', 'done')", name="batches_status_check"),
 )
 
@@ -70,6 +71,11 @@ judge_results = sa.Table(
     sa.Column("severity", sa.Text),
     sa.Column("result", Json, nullable=False),               # the JudgeResult
     sa.Column("created_at", Time, nullable=False),
+    # Token counts for the model calls behind this result (numbers only). NULL when not recorded.
+    sa.Column("input_tokens", sa.Integer),
+    sa.Column("output_tokens", sa.Integer),
+    sa.Column("cache_read_tokens", sa.Integer),
+    sa.Column("cache_write_tokens", sa.Integer),
     # Also stops two workers from both recording a result for the same conversation.
     sa.UniqueConstraint("conversation_pk", "prompt_version"),
     sa.CheckConstraint("outcome in ('ok', 'unsure', 'needs_review')", name="judge_results_outcome_check"),
@@ -128,14 +134,23 @@ def insert_conversation(conn, clinic_id, conv, batch_id=None):
     )).inserted_primary_key[0]
 
 
-def insert_result(conn, clinic_id, conversation_pk, result):
-    """Store a JudgeResult; returns its pk."""
+def usage_columns(usage):
+    """judge_results columns from a usage dict ({} or None when nothing was recorded)."""
+    if not usage:
+        return {}
+    return dict(input_tokens=usage.get("input_tokens", 0), output_tokens=usage.get("output_tokens", 0),
+                cache_read_tokens=usage.get("cache_read_input_tokens", 0),
+                cache_write_tokens=usage.get("cache_creation_input_tokens", 0))
+
+
+def insert_result(conn, clinic_id, conversation_pk, result, usage=None):
+    """Store a JudgeResult; returns its pk. `usage` is summed token counts, never text."""
     output = result.output
     return conn.execute(judge_results.insert().values(
         clinic_id=clinic_id, conversation_pk=conversation_pk, prompt_version=result.prompt_version,
         model=result.model, outcome=result.outcome, flagged=result.flagged,
         severity=output.severity if output else None,
-        result=json.loads(result.model_dump_json()), created_at=utcnow(),
+        result=json.loads(result.model_dump_json()), created_at=utcnow(), **usage_columns(usage),
     )).inserted_primary_key[0]
 
 

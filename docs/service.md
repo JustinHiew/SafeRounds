@@ -33,10 +33,14 @@ builds the same app on first use. Importing the module builds nothing, so tests 
 | `PROMPT_VERSION` | `C` | default prompt version; version A (rules) is refused |
 | `RATE_LIMIT_EVALUATE_PER_MIN` | 60 | per API key |
 | `RATE_LIMIT_BATCHES_PER_MIN` | 6 | batch submissions per API key |
-| `WORKER_POLL_SECONDS` | 5 | worker sleep when the queue is empty |
+| `WORKER_POLL_SECONDS` | 5 | worker sleep when the queue is empty (or while waiting on Anthropic) |
+| `EFFORT` | unset | `output_config.effort` (`low` to `max`), sent only when set |
+| `FALLBACKS` | `true` | server-side refusal fallback on the synchronous path (below) |
+| `USE_BATCH_API` | `false` | the worker sends service batches to the Message Batches API (below) |
 
-SQLite tables are created automatically. For Postgres, run `sql/001_init.sql` once; a test keeps
-it in step with the SQLAlchemy tables.
+SQLite tables are created automatically. For Postgres, run `sql/001_init.sql` then
+`sql/002_usage_and_batches.sql`; a test applies every file in `sql/` in order and checks the result
+against the SQLAlchemy tables.
 
 ## Authentication and admin
 
@@ -111,7 +115,7 @@ writes an `audit_log` row. Reading batch results, which quote the conversation, 
 ## What is stored
 
 Tables: clinics, api_keys, batches, conversations, judge_results, feedback, audit_log
-(`sql/001_init.sql`). **Only de-identified conversations are stored.** Each conversation passes
+(`sql/001_init.sql`, `sql/002_usage_and_batches.sql`). **Only de-identified conversations are stored.** Each conversation passes
 through the de-identifier before it is stored or sent to the model. The de-identifier returns a
 placeholder-to-original mapping; the service throws it away immediately, so it is never stored
 and never logged. (The roadmap's reversible mapping in the customer's tenant store is not built:
@@ -121,14 +125,59 @@ Evidence quotes in results come from the de-identified text the judge saw.
 Logs carry ids, counts and outcomes only: never conversation text, record values, model output
 or exception messages (only exception type names). A test captures logs through the evaluate,
 batch and failure flows to check this. The service does not use the research response cache
-(`cache/`, which is committed to the repo); every call goes to the model.
+(`cache/`, which is committed to the repo); every call goes to the model (Anthropic's prompt caching, above, is what saves cost).
+
+## Prompt caching, refusal fallbacks and batch mode (D47)
+
+**Prompt caching (always on for `ApiBackend`).** Each call sends the system prompt as one text
+block and the user message as two: the *stable prefix* (the prompt template up to the first
+per-conversation placeholder: rubric, reference sheet, protocol, instructions) and the rest
+(record, conversation). The system block and the prefix carry `cache_control: ephemeral`, so
+repeated calls read them from Anthropic's cache. The text the model sees is unchanged. Prefixes
+shorter than the model's minimum (512 tokens on Sonnet 5.5) silently do not cache. Check it works
+in production: `cache_read_tokens` on `judge_results` should be large after the first call in
+any five-minute window (the default TTL; a quiet service pays the write premium again).
+Cost: a cache read costs about a tenth of fresh input, a cache write about 1.25 times.
+
+**Refusal fallbacks (`FALLBACKS`, default on).** The synchronous path sends the request with
+`client.beta.messages.create(betas=["server-side-fallback-2026-07-01"], fallbacks="default")`, so
+a declined request (for example the `cyber` category) is re-run server-side on the model Anthropic
+recommends. The model that answered is recorded in the result (`model`), so a fallback is visible.
+If the whole chain still refuses, or the model stops at `max_tokens`, the call fails and the
+conversation is `needs_review`. Turn it off with `FALLBACKS=false`; it is skipped automatically for
+Haiku models, which have no server-side fallback.
+
+**Message Batches API (`USE_BATCH_API=true`, default off).** About half the price of synchronous
+calls, but asynchronous (usually under an hour, at most 24). With it on, the worker does this on each
+pass, and keeps all state in the database so a restart loses nothing:
+
+1. For a service batch with no `anthropic_batch_id`, it renders every conversation's first-attempt
+   prompts (one per conversation, or five for a per-criterion prompt), submits them as one Anthropic
+   batch (`custom_id` is `c<conversation pk>-<criterion or all>`), and stores the id on the
+   `batches` row. The batch status stays `running`.
+2. For a batch with an id, it polls. When Anthropic reports `ended`, it collects the results (keyed by
+   `custom_id`, any order) and judges each conversation with the normal `judge()` through a
+   `ReplayBackend`: the batch answer is used for that exact prompt, so parsing, the quote checks and
+   fail-closed handling are the same code as the synchronous path. The judge's one retry after a
+   malformed answer, and any item that was errored, canceled, expired, refused, or `max_tokens`,
+   gets a live call instead (so the usual price, and fallbacks if on). A live failure is `needs_review`.
+3. A batch whose submission is refused by the API is judged live instead, so it still finishes.
+
+`python -m safety_eval.service.worker --once` makes one pass in this mode and exits; run it again
+(or keep the worker running) to collect. Batch requests carry the same cached blocks as live ones, but
+cache hits inside a batch are best effort. The `fallbacks` parameter is rejected on the Batches API,
+so it is never sent there. Limits: a worker that dies between creating the Anthropic batch and
+writing its id to the database leaves an orphan batch (paid for, never collected) and the
+conversations are submitted again.
+
+**Token usage.** `judge_results` has nullable `input_tokens`, `output_tokens`, `cache_read_tokens`
+and `cache_write_tokens`: numbers summed over the calls behind that result, for cost reporting.
+They are NULL when the backend reports none. Text is never stored.
 
 ## Not done yet
 
-- **Anthropic prompt caching** on the stable prefix (system prompt, rubric, protocol, reference)
-  and the **Message Batches API** for `/v1/batches` (about half the cost). Today batches are
-  judged one call at a time by the worker, and `ApiBackend` makes no retries beyond the judge's
-  one malformed-output retry; any failure is `needs_review`.
+- **Retries.** `ApiBackend` makes no retries beyond the SDK's own and the judge's one
+  malformed-output retry; any failure is `needs_review`.
 - **Queue hardening.** The queue is "conversations with no result yet", for one worker. Claiming
   rows (`FOR UPDATE SKIP LOCKED`), retries with backoff and stuck-batch recovery come later.
 - **Rate limiting is in memory**, per process.

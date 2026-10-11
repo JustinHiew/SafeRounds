@@ -217,14 +217,18 @@ def test_openapi_docs_render(svc):
     assert svc.client.get("/docs").status_code == 200
 
 
-def test_sql_file_matches_the_sqlalchemy_tables():
-    sql = (Path(__file__).resolve().parents[1] / "sql" / "001_init.sql").read_text()
-    sql = re.sub(r"--[^\n]*", "", sql)
+def test_sql_files_match_the_sqlalchemy_tables():
+    """All sql/*.sql files applied in order (create table, then add column) give the metadata."""
+    files = sorted((Path(__file__).resolve().parents[1] / "sql").glob("*.sql"))
+    assert [f.name for f in files][:2] == ["001_init.sql", "002_usage_and_batches.sql"]
+    sql = "\n".join(re.sub(r"--[^\n]*", "", f.read_text()) for f in files)
     in_sql = {}
     for name, body in re.findall(r"create table (\w+) \((.*?)\n\);", sql, re.DOTALL | re.IGNORECASE):
         cols = [line.split()[0] for line in body.strip().splitlines()
                 if line.strip() and line.split()[0] not in ("unique", "constraint")]
         in_sql[name] = cols
+    for name, col in re.findall(r"alter table (\w+) add column (\w+)", sql, re.IGNORECASE):
+        in_sql[name].append(col)
     assert in_sql.keys() == metadata.tables.keys()
     for name, table in metadata.tables.items():
         assert in_sql[name] == [c.name for c in table.columns], name

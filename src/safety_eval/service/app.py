@@ -139,9 +139,10 @@ def create_app(settings, backend, deidentify):
             raise HTTPException(422, reasons)
         with engine.begin() as conn:
             pk = insert_conversation(conn, who.clinic_id, clean)
-        result = judge_safely(clean.model_dump(), who.clinic_id, version, backend)
+        usage = {}
+        result = judge_safely(clean.model_dump(), who.clinic_id, version, backend, usage)
         with engine.begin() as conn:
-            result_id = insert_result(conn, who.clinic_id, pk, result)
+            result_id = insert_result(conn, who.clinic_id, pk, result, usage)
         log.info("evaluated clinic=%s result=%s outcome=%s", who.clinic_id, result_id, result.outcome)
         return EvaluateResponse(result_id=result_id, conversation_pk=pk, result=result)
 

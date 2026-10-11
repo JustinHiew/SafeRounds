@@ -101,10 +101,14 @@ def render_record(record):
     return yaml.safe_dump(data, sort_keys=False).strip()
 
 
-def render(prompt, conv, criteria=CRITERIA, examples="", clinic=None):
-    clinic = _clinic(clinic)
+# Placeholders whose value differs between conversations (or, for CRITERIA, between criteria in
+# per-criterion mode). Everything in a template before the first of these is the same for every call.
+VARYING = ("PATIENT_RECORD", "CONVERSATION", "RESPONDER", "CRITERIA")
+
+
+def _fills(conv, criteria, examples, clinic):
     fact_lines = "\n".join(f"{fid}: {text}" for fid, text in clinic.facts().items())
-    fills = {
+    return {
         "RUBRIC": rubric_text(criteria, clinic),
         "REFERENCE_SHEET": fact_lines,
         "CLINIC_PROTOCOL": clinic.protocol_text(),
@@ -114,13 +118,37 @@ def render(prompt, conv, criteria=CRITERIA, examples="", clinic=None):
         "CRITERIA": ", ".join(criteria),
         "RESPONDER": clinic.staff_label(conv.responder),
     }
-    text = prompt.template
+
+
+def _fill(template, fills):
+    text = template
     for key, value in fills.items():
         text = text.replace("{{" + key + "}}", value)
     left = re.findall(r"\{\{[A-Z_]+\}\}", text)
     if left:
         raise ValueError(f"unfilled placeholders: {left}")
     return text
+
+
+def render(prompt, conv, criteria=CRITERIA, examples="", clinic=None):
+    return _fill(prompt.template, _fills(conv, criteria, examples, _clinic(clinic)))
+
+
+def render_parts(prompt, conv, criteria=CRITERIA, examples="", clinic=None):
+    """(stable, rest) with stable + rest == render(...) exactly. `stable` is the template up to the
+    first per-conversation placeholder, filled in; it is the same for every conversation (and every
+    call of the same criterion set), so the API can cache it. Splitting the template rather than
+    the output leaves render() untouched, so Fernhill prompts and cache keys stay byte-identical."""
+    clinic = _clinic(clinic)
+    fills = _fills(conv, criteria, examples, clinic)
+    template = prompt.template
+    cuts = [i for i in (template.find("{{" + k + "}}") for k in VARYING) if i != -1]
+    cut = min(cuts) if cuts else len(template)
+    stable, rest = _fill(template[:cut], fills), _fill(template[cut:], fills)
+    whole = _fill(template, fills)
+    if stable + rest != whole:
+        raise AssertionError("render_parts does not reassemble to render()")
+    return stable, rest
 
 
 # ------------------------------------------------------------------------- checking
@@ -179,16 +207,29 @@ def _key(prompt, backend, conv, criterion, attempt, repeat, clinic):
     return cache_key(**fields)
 
 
-def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0, clinic=None):
+def _call(backend, cache, prompt, conv, text, criterion, attempt, repeat=0, clinic=None,
+          cache_prefix=None):
     key = _key(prompt, backend, conv, criterion, attempt, repeat, _clinic(clinic))
     entry = cache.get(key)
     if entry is None:
-        resp = backend.complete(prompt.system, text)
+        resp = backend.complete(prompt.system, text, cache_prefix=cache_prefix)
         entry = {"conversation_id": conv.conversation_id, "prompt_version": prompt.version,
                  "criterion": criterion, "attempt": attempt, "model": resp.model,
                  "latency_s": round(resp.latency_s, 3), "text": resp.text}
         cache.put(key, entry)
     return entry
+
+
+def planned_calls(prompt, conv, examples="", clinic=None):
+    """The first-attempt calls judge() will make for this conversation, as (label, system, text,
+    cache_prefix). The service uses it to submit them as one Anthropic batch; retries are not known."""
+    groups = [[c] for c in CRITERIA] if prompt.mode == "per_criterion" else [list(CRITERIA)]
+    calls = []
+    for criteria in groups:
+        stable, rest = render_parts(prompt, conv, criteria, examples, clinic)
+        calls.append(("all" if len(criteria) == len(CRITERIA) else criteria[0], prompt.system,
+                      stable + rest, stable or None))
+    return calls
 
 
 def needed_calls(prompt, conv, backend, cache, repeat=0, clinic=None):
@@ -200,12 +241,14 @@ def needed_calls(prompt, conv, backend, cache, repeat=0, clinic=None):
 
 def _judge_once(prompt, conv, backend, cache, criteria, examples, repeat=0, clinic=None):
     """(parsed output or None, model, attempts, latency, reasons) for one call with one retry."""
-    text = render(prompt, conv, criteria, examples, clinic)
+    stable, rest = render_parts(prompt, conv, criteria, examples, clinic)
+    text = stable + rest
     label = "all" if len(criteria) == len(CRITERIA) else criteria[0]
     reasons, latency, model = [], 0.0, backend.model
     for attempt in (0, 1):
         try:
-            entry = _call(backend, cache, prompt, conv, text, label, attempt, repeat, clinic)
+            entry = _call(backend, cache, prompt, conv, text, label, attempt, repeat, clinic,
+                          cache_prefix=stable or None)
         except ModelCallError as exc:
             return None, model, attempt + 1, latency, [f"call failed: {exc}"]
         latency += entry["latency_s"]
