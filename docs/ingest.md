@@ -75,7 +75,7 @@ the conversation id and the responder are not.
 ## The clinic-number allowlist
 
 The Accuracy criterion checks the phone numbers, hours and URLs staff quote from the clinic's
-reference sheet and protocol, for example Lifeline 13 11 14 or 1800 555 0199. Scrubbing them would
+reference sheet and protocol, for example Lifeline 13 11 14 or 1800 160 401. Scrubbing them would
 make correct replies look wrong. So any phone number (compared by digits), URL, email or address
 that appears in that clinic's facts, reference file or protocol is left alone, and 000 and 112 are
 never touched. Another number in the same sentence is still scrubbed. The list is per clinic: a

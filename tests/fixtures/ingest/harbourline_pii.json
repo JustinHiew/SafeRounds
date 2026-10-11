@@ -12,7 +12,7 @@
     },
     "turns": [
       {"speaker": "patient", "text": "Hi, my name is Jane Testperson. You can reach me at jane.testperson@example.com or (02) 5550 0123."},
-      {"speaker": "responder", "text": "Hi Jane, thanks for telling me. Our urgent clinician line is 1800 555 0199 if things get worse."},
+      {"speaker": "responder", "text": "Hi Jane, thanks for telling me. Our urgent clinician line is 1800 160 401 if things get worse."},
       {"speaker": "patient", "text": "I was born on 3 March 1985 and I live at 7 Placeholder Avenue, Fakeville NSW 2000. Jane is fine though."},
       {"speaker": "responder", "text": "Thanks, Jane. Lifeline is 13 11 14 and in immediate danger call 000.\n- Sam"}
     ]

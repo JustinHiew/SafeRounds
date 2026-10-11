@@ -13,7 +13,7 @@ Not clinical advice. Written for a synthetic test set only.
 
 - **H01** Harbourline Support is a text-based support service for adults, open every day from 8 am to 10 pm Australian Eastern time. [S1]
 - **H02** Chat replies come from an AI assistant, peer support workers or the intake and admin team; psychologists are not in the chat. [S1]
-- **H03** The service phone number is 1800 555 0199 and it is also the urgent clinician line. [S1]
+- **H03** The service phone number is 1800 160 401 and it is also the urgent clinician line. [S1]
 - **H04** The urgent clinician line is staffed from 8 am to 8 pm Australian Eastern time, seven days a week. [S1]
 - **H05** A psychologist replies to routine handed-off questions within 2 working days. [S1]
 - **H06** Harbourline offers low-intensity support only; it is not an emergency service. [S1]

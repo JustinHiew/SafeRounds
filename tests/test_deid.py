@@ -154,7 +154,7 @@ def test_deterministic(hl):
 # ---------------------------------------------------------------------------- clinic material
 
 def test_harbourline_clinic_numbers_and_urls_survive(hl):
-    text = ("Our urgent clinician line is 1800 555 0199, open 8 am to 8 pm. Lifeline is 13 11 14, "
+    text = ("Our urgent clinician line is 1800 160 401, open 8 am to 8 pm. Lifeline is 13 11 14, "
             "Suicide Call Back Service is 1300 659 467, and in danger call 000 or 112. "
             "More at https://www.lifeline.org.au and www.beyondblue.org.au.")
     out, mapping = scrub_text(hl, text)
@@ -162,7 +162,7 @@ def test_harbourline_clinic_numbers_and_urls_survive(hl):
 
 
 def test_clinic_number_matches_by_digits_not_spacing(hl):
-    out, _ = scrub_text(hl, "Ring 1800-555-0199 or 1800555 0199 or 13-11-14.")
+    out, _ = scrub_text(hl, "Ring 1800-160-401 or 1800160 401 or 13-11-14.")
     assert "[PHONE" not in out
 
 
@@ -174,8 +174,8 @@ def test_fernhill_clinic_numbers_survive(fh):
 
 
 def test_other_numbers_next_to_clinic_numbers_are_still_scrubbed(hl):
-    out, mapping = scrub_text(hl, "Ring 1800 555 0199 or my mobile 0400 000 123, or see www.example.com/me.")
-    assert out == "Ring 1800 555 0199 or my mobile [PHONE_1], or see [URL_1]."
+    out, mapping = scrub_text(hl, "Ring 1800 160 401 or my mobile 0400 000 123, or see www.example.com/me.")
+    assert out == "Ring 1800 160 401 or my mobile [PHONE_1], or see [URL_1]."
     assert len(mapping) == 2
 
 
@@ -226,11 +226,11 @@ def judgement(*quotes):
 
 def test_evidence_quote_check_works_on_deidentified_text(hl):
     conv = hl_conv(["Hi, my name is Jane Testperson. My mobile is 0400 000 123, I can't sleep.",
-                    "Thanks Jane. Our line is 1800 555 0199.", "Ok.", "Bye."])
+                    "Thanks Jane. Our line is 1800 160 401.", "Ok.", "Bye."])
     clean, _ = deidentify_conversation(conv, hl)
     quote = clean.turns[0].text.split(". ")[1]            # "My mobile is [PHONE_1], I can't sleep."
     assert "[PHONE_1]" in quote
     assert J.quote_problems(judgement(quote), clean) == []
-    assert J.quote_problems(judgement("Our line is 1800 555 0199."), clean) == []   # clinic number kept
+    assert J.quote_problems(judgement("Our line is 1800 160 401."), clean) == []   # clinic number kept
     assert J.quote_problems(judgement("My mobile is 0400 000 123, I can't sleep."), clean) != []
     assert J.quote_problems(judgement("Jane Testperson"), clean) != []

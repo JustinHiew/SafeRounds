@@ -3,17 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SafeRounds</title>
+<title>SafeRounds: safety audits for patient-facing chat</title>
 <meta name="description" content="SafeRounds reviews past patient-support conversations against your own clinical protocol, quotes the exact words behind each finding, and sends anything it is unsure about to a person. Working prototype, seeking Australian design partners.">
 <link rel="canonical" href="https://saferounds.dev/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0d5e56">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SafeRounds">
 <meta property="og:title" content="SafeRounds: find risky replies in patient conversations">
-<meta property="og:description" content="SafeRounds reviews past patient-support conversations against your own clinical protocol and sends anything it is unsure about to a person. Working prototype, seeking Australian design partners.">
+<meta property="og:description" content="Retrospective safety audits for patient-facing chat, checked against your own clinical protocol. Working prototype, seeking Australian design partners.">
 <meta property="og:url" content="https://saferounds.dev/">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "SafeRounds", "url": "https://saferounds.dev/", "logo": "https://saferounds.dev/favicon.svg", "email": "justin@saferounds.dev", "foundingDate": "2026", "description": "Retrospective safety audits for patient-facing chat.", "areaServed": "AU", "founder": {"@type": "Person", "name": "Justin Hiew", "sameAs": ["https://github.com/JustinHiew"]}}</script>
+<meta property="og:image" content="https://saferounds.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SafeRounds: find risky replies in patient conversations">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://saferounds.dev/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "SafeRounds", "url": "https://saferounds.dev/", "logo": "https://saferounds.dev/logo-512.png", "email": "justin@saferounds.dev", "foundingDate": "2026-10", "description": "Retrospective safety audits for patient-facing chat.", "areaServed": "AU", "sameAs": ["https://github.com/JustinHiew/SafeRounds"], "founder": {"@type": "Person", "name": "Justin Hiew", "sameAs": ["https://github.com/JustinHiew"]}}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,10 +42,10 @@
   --f-display: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
   --f-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --t-xs: 12.5px; --t-s: 14.5px; --t-m: 17px; --t-l: 19.5px; --t-xl: clamp(28px, 3.3vw, 38px); --t-xxl: clamp(40px, 5.6vw, 66px);
+  --t-xs: 13px; --t-s: 14.5px; --t-m: 17px; --t-l: 19.5px; --t-xl: clamp(28px, 3.3vw, 38px); --t-xxl: clamp(40px, 5.6vw, 66px);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --ward: #0b1513; --sheet: #111e1b; --line: #1f2f2b; --rule: #2d413c; --grid: rgba(120, 210, 195, .05);
+  --ward: #0b1513; --sheet: #111e1b; --line: #1f2f2b; --rule: #2d413c; --grid: transparent;
   --ink: #e3eeeb; --muted: #9db2ac;
   --scrub: #6cc7b8; --scrub-ink: #062420; --scrub-soft: #143530;
   --flag: #f1948c; --flag-soft: #3a1614;
@@ -46,7 +54,7 @@
   --bubble: #1a2926; color-scheme: dark;
 } }
 :root[data-theme="dark"] {
-  --ward: #0b1513; --sheet: #111e1b; --line: #1f2f2b; --rule: #2d413c; --grid: rgba(120, 210, 195, .05);
+  --ward: #0b1513; --sheet: #111e1b; --line: #1f2f2b; --rule: #2d413c; --grid: transparent;
   --ink: #e3eeeb; --muted: #9db2ac;
   --scrub: #6cc7b8; --scrub-ink: #062420; --scrub-soft: #143530;
   --flag: #f1948c; --flag-soft: #3a1614;
@@ -65,6 +73,8 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 p { margin: 0; }
 .label { font: 500 var(--t-xs)/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .muted { color: var(--muted); }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--scrub); color: var(--scrub-ink); padding: 10px 14px; border-radius: 4px; z-index: 10; }
+.skip:focus { top: 12px; }
 
 /* ---------------------------------------------------------------- header */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px 28px; padding-block: 22px; }
@@ -75,27 +85,27 @@ p { margin: 0; }
 .nav a:hover { color: var(--ink); }
 @media (max-width: 760px) { .nav a:not(.btn) { display: none; } .brand { font-size: 23px; } .brand svg { width: 28px; height: 28px; } }
 
-.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 var(--t-m)/1 var(--f-body); padding: 14px 20px; border-radius: 6px; text-decoration: none; background: var(--scrub); color: var(--scrub-ink); border: 1px solid var(--scrub); }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 var(--t-m)/1 var(--f-body); padding: 14px 20px; min-height: 46px; border-radius: 6px; text-decoration: none; background: var(--scrub); color: var(--scrub-ink); border: 1px solid var(--scrub); }
 .btn:hover { filter: brightness(1.08); }
 .btn.ghost { background: transparent; color: var(--scrub); }
 .btn:active { transform: translateY(1px); }
-.nav a.btn { padding: 10px 15px; font-size: var(--t-s); color: var(--scrub-ink); }
+.nav a.btn { padding: 10px 15px; min-height: 44px; font-size: var(--t-s); color: var(--scrub-ink); }
 
 /* ---------------------------------------------------------------- hero */
 .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 44px 56px; }
-@media (max-width: 960px) { .hero { grid-template-columns: 1fr; gap: 0; padding-block: 28px 40px; } .round { display: none; } }
+@media (max-width: 960px) { .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 28px 40px; } }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero h1 { font: 600 var(--t-xxl)/1.02 var(--f-display); letter-spacing: -.02em; }
-.hero h1 em { font-style: italic; font-weight: 500; color: var(--scrub); }
 .hero .lede { font-size: var(--t-l); color: var(--muted); max-width: 56ch; }
 .hero .when { font-size: var(--t-m); max-width: 58ch; padding-left: 14px; border-left: 2px solid var(--scrub); }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.cta .mail { font-size: var(--t-s); color: var(--muted); }
 .stage { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font: 500 var(--t-xs)/1.5 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
 .stage i { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 50%; background: var(--obs); box-shadow: 0 0 0 3px var(--obs-soft); }
 
 /* the round sheet: today's list, as a ward round would see it */
 .round { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 24px 50px -36px rgba(16, 35, 32, .5); min-width: 0; }
-.round-head { display: flex; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 2px solid var(--ink); }
+.round-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 14px 18px; border-bottom: 2px solid var(--ink); }
 .round-head b { font: 600 var(--t-l)/1.2 var(--f-display); }
 .round ol { list-style: none; margin: 0; padding: 0; }
 .round li + li { border-top: 1px solid var(--line); }
@@ -107,6 +117,7 @@ p { margin: 0; }
 .round .s { grid-column: 2; font-size: var(--t-s); color: var(--muted); }
 .round .chip { grid-row: 1 / span 2; grid-column: 3; }
 .round-foot { display: flex; justify-content: space-between; gap: 12px; padding: 12px 18px; border-top: 1px solid var(--rule); background: var(--ward); }
+@media (max-width: 600px) { .round button { padding: 12px 14px; gap: 2px 10px; } .round .s { display: none; } .round-head, .round-foot { padding-inline: 14px; } }
 
 .chip { display: inline-flex; align-items: center; gap: 6px; font: 500 var(--t-xs)/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; padding: 6px 9px; border-radius: 3px; white-space: nowrap; }
 .chip.f { background: var(--flag-soft); color: var(--flag); }
@@ -116,41 +127,43 @@ p { margin: 0; }
 
 /* ---------------------------------------------------------------- demo */
 .demo { padding-bottom: 80px; }
+.content-note { margin-bottom: 12px; font-size: var(--t-s); color: var(--muted); }
 .card { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; box-shadow: 0 30px 60px -44px rgba(16, 35, 32, .55); }
 .card-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 18px; border-bottom: 1px solid var(--rule); }
+.card-head h2 { margin-right: 4px; }
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; max-width: 100%; }
-.tab { flex: none; font: 500 var(--t-s)/1 var(--f-body); padding: 9px 13px; border-radius: 4px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.tab { flex: none; font: 500 var(--t-s)/1 var(--f-body); padding: 0 14px; min-height: 44px; border-radius: 4px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .tab:hover { border-color: var(--scrub); }
 .tab[aria-selected="true"] { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
 .tab .dot { width: 8px; height: 8px; border-radius: 50%; }
 .dot.f { background: var(--flag); } .dot.p { background: var(--pass); }
-.replay { margin-left: auto; font: 500 var(--t-xs)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--scrub); background: transparent; border: 0; padding: 8px 4px; cursor: pointer; }
+.replay { margin-left: auto; min-height: 44px; font: 500 var(--t-xs)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--scrub); background: transparent; border: 0; padding: 0 6px; cursor: pointer; }
 
 .board { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.board:focus-visible { outline-offset: -3px; }
 @media (max-width: 920px) { .board { grid-template-columns: 1fr; } }
 .pane { min-width: 0; padding: 22px; display: grid; gap: 14px; align-content: start; }
-.pane.conv { background: var(--ward); border-right: 1px solid var(--rule); }
+.pane.conv { background: var(--ward); border-right: 1px solid var(--rule); grid-template-rows: auto 1fr; align-content: stretch; }
 .pane.review { background-color: var(--sheet); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; }
 @media (max-width: 920px) { .pane.conv { border-right: 0; border-bottom: 1px solid var(--rule); } .pane { padding: 16px; } }
 .pane-title { display: flex; align-items: baseline; gap: 10px; font: 600 var(--t-l)/1.2 var(--f-display); }
 .pane-title .num { font: 500 var(--t-xs)/1 var(--f-mono); color: var(--muted); }
 
 /* the chat as the patient saw it */
-.chat { background: var(--sheet); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.chat { background: var(--sheet); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
 .chat-top { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
 .chat-top b { display: block; font-size: var(--t-m); line-height: 1.25; }
 .chat-top small { display: flex; align-items: center; gap: 6px; font-size: var(--t-s); color: var(--muted); }
 .chat-top small::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--pass); }
 .ava { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--bubble); color: var(--ink); font: 500 11px/1 var(--f-mono); }
 .chat-top .ava { width: 38px; height: 38px; font-size: 12px; background: var(--scrub-soft); color: var(--scrub); }
-.transcript { list-style: none; margin: 0; padding: 16px; display: grid; gap: 14px; position: relative; }
+.transcript { flex: 1; list-style: none; margin: 0; padding: 16px; display: grid; gap: 14px; align-content: start; position: relative; }
 .turn { display: grid; gap: 6px; max-width: 86%; position: relative; z-index: 1; }
 .turn.patient { justify-self: end; justify-items: end; }
 .turn .who { display: flex; align-items: center; gap: 8px; font-size: var(--t-s); color: var(--muted); }
 .bubble { font-size: var(--t-m); line-height: 1.5; padding: 10px 14px; border-radius: 16px; }
 .turn.patient .bubble { background: var(--scrub-soft); border-bottom-right-radius: 4px; }
 .turn.staff .bubble { background: var(--bubble); border-bottom-left-radius: 4px; }
-.chat-input { margin: 0 14px 14px; padding: 11px 16px; border: 1px solid var(--rule); border-radius: 999px; font-size: var(--t-s); color: var(--muted); }
 .band { position: absolute; left: 0; right: 0; top: 0; height: 44px; background: var(--scrub); opacity: 0; pointer-events: none; z-index: 2; border-radius: 6px; }
 
 /* SafeRounds' marks on the chat */
@@ -176,17 +189,19 @@ p { margin: 0; }
 .verdict.fail { color: var(--flag); } .verdict.pass { color: var(--pass); }
 .row .why { grid-column: 1 / -1; font-size: var(--t-s); line-height: 1.5; color: var(--ink); background: var(--flag-soft); border-radius: 3px; padding: 10px 12px; margin-right: 2px; display: grid; gap: 8px; }
 .rule { border-left: 2px solid var(--scrub); padding-left: 10px; color: var(--muted); }
-.rule b { display: block; color: var(--scrub); font: 500 11.5px/1.6 var(--f-mono); letter-spacing: .07em; text-transform: uppercase; }
+.rule b { display: block; color: var(--scrub); font: 500 12px/1.6 var(--f-mono); letter-spacing: .07em; text-transform: uppercase; }
 .outcome { border-radius: 3px; padding: 14px 16px; display: grid; gap: 3px; }
 .outcome b { font: 600 var(--t-l)/1.2 var(--f-display); display: flex; align-items: center; gap: 10px; }
 .outcome span { font-size: var(--t-s); }
 .outcome.f { background: var(--flag); color: var(--sheet); }
 .outcome.p { background: var(--pass-soft); color: var(--pass); }
+@media (max-width: 920px) { .pane.review .pane-title { order: -3; } .casemeta { order: -2; } .outcome { order: -1; } }
 .signoff { display: grid; gap: 10px; padding-top: 4px; }
 .signoff .boxes { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: var(--t-s); }
 .signoff .box { display: inline-flex; align-items: center; gap: 8px; }
 .signoff .box::before { content: ""; width: 15px; height: 15px; border: 1.5px solid var(--rule); border-radius: 2px; background: var(--sheet); }
-.signoff .sig { border-bottom: 1px dashed var(--rule); height: 26px; }
+.signoff .sig { display: flex; justify-content: space-between; gap: 12px; padding-top: 22px; border-bottom: 1px solid var(--rule); }
+.signoff .sig + .label { margin-top: -4px; }
 .demo-note { margin-top: 14px; font-size: var(--t-s); color: var(--muted); max-width: 82ch; }
 
 /* ---------------------------------------------------------------- sections */
@@ -198,17 +213,22 @@ p { margin: 0; }
 .sec-head p { font-size: var(--t-l); color: var(--muted); max-width: 62ch; }
 .sec-head .label { font-size: var(--t-xs); color: var(--scrub); }
 
+/* the problem, said plainly */
+.problem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.problem h2 { font: 600 var(--t-xl)/1.12 var(--f-display); letter-spacing: -.015em; }
+.problem .body { display: grid; gap: 14px; font-size: var(--t-l); color: var(--muted); }
+.problem .body strong { color: var(--ink); font-weight: 700; }
+@media (max-width: 820px) { .problem { grid-template-columns: 1fr; gap: 18px; } }
+
 /* five checks: a ruled list, like the criteria page of a protocol */
 .checks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
 .check { display: grid; gap: 8px; align-content: start; padding: 18px 20px 4px 0; }
 .check + .check { padding-left: 20px; border-left: 1px solid var(--line); }
-.check .label { color: var(--scrub); }
 .check h3 { font: 600 var(--t-l)/1.2 var(--f-display); }
 .check p { font-size: var(--t-s); color: var(--muted); }
 @media (max-width: 960px) {
   .checks { grid-template-columns: 1fr; }
   .check, .check + .check { grid-template-columns: 9rem minmax(0, 1fr); padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--line); gap: 2px 18px; }
-  .check .label { grid-column: 1 / -1; }
 }
 @media (max-width: 520px) { .check, .check + .check { grid-template-columns: 1fr; } }
 
@@ -225,6 +245,11 @@ p { margin: 0; }
 }
 .sub { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-top: 10px; }
 .sub h3 { font: 600 var(--t-l)/1.2 var(--f-display); }
+
+/* a real screenshot of the prototype */
+.shot { margin: 0; display: grid; gap: 10px; }
+.shot img { display: block; width: 100%; max-width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 30px 60px -44px rgba(16, 35, 32, .55); }
+.shot figcaption { font-size: var(--t-s); color: var(--muted); max-width: 82ch; }
 
 /* ledgers: features and evidence */
 .ledger-wrap { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
@@ -244,16 +269,26 @@ p { margin: 0; }
   .ledger td:last-child { order: -1; justify-self: start; }
 }
 
-/* data: a ruled two-column list */
+/* ruled two-column lists: the pilot, the data */
 .points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
 .points li { display: grid; gap: 6px; align-content: start; padding-block: 18px; border-bottom: 1px solid var(--line); }
 .points b { font: 600 var(--t-l)/1.25 var(--f-display); }
 .points span { color: var(--muted); }
 @media (max-width: 760px) { .points { grid-template-columns: 1fr; } }
+.gov { max-width: 78ch; padding: 16px 18px; background: var(--sheet); border: 1px solid var(--rule); border-left: 3px solid var(--scrub); border-radius: 3px; color: var(--muted); }
+.gov b { color: var(--ink); }
+
+/* updates log */
+.log { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); max-width: 820px; }
+.log li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 4px 20px; padding-block: 13px; border-bottom: 1px solid var(--line); }
+.log time { font: 500 var(--t-xs)/1.9 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 520px) { .log li { grid-template-columns: 1fr; } }
 
 .founder { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: start; }
 @media (max-width: 820px) { .founder { grid-template-columns: 1fr; gap: 24px; } }
-.founder > p { font-size: var(--t-l); color: var(--muted); max-width: 58ch; }
+.founder-copy { display: grid; gap: 16px; }
+.founder-copy h2 { font: 600 var(--t-xl)/1.12 var(--f-display); letter-spacing: -.015em; }
+.founder-copy p { font-size: var(--t-l); color: var(--muted); max-width: 58ch; }
 .facts { margin: 0; display: grid; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; }
 .facts div { display: grid; gap: 3px; padding: 13px 18px; }
 .facts div + div { border-top: 1px solid var(--line); }
@@ -261,23 +296,25 @@ p { margin: 0; }
 
 .closing { margin-block: 8px 72px; padding: 44px; border-radius: 4px; background: var(--scrub); color: var(--scrub-ink); display: grid; grid-template-columns: minmax(0, 1.5fr) auto; gap: 24px 48px; align-items: end; }
 .closing h2 { font: 600 var(--t-xl)/1.12 var(--f-display); letter-spacing: -.015em; margin-top: 8px; }
-.closing p { margin-top: 12px; max-width: 60ch; opacity: .88; }
-.closing .label { color: inherit; opacity: .75; }
+.closing p { margin-top: 12px; max-width: 60ch; opacity: .9; }
+.closing ul { margin: 12px 0 0; padding-left: 20px; opacity: .9; }
+.closing .label { color: inherit; opacity: .8; }
 .closing .btn { background: var(--scrub-ink); color: var(--scrub); border-color: var(--scrub-ink); }
-.closing .alt { margin-top: 10px; font-size: var(--t-s); opacity: .8; }
+.closing .alt { margin-top: 10px; font-size: var(--t-s); }
 @media (max-width: 820px) { .closing { grid-template-columns: 1fr; padding: 28px 22px; } }
 
 .foot { border-top: 1px solid var(--rule); padding-block: 28px 52px; display: grid; gap: 8px; font-size: var(--t-s); color: var(--muted); }
-.foot .crisis { color: var(--ink); font-weight: 700; }
+.foot .crisis { color: var(--ink); font: 600 var(--t-m)/1.4 var(--f-display); }
 
-@media (prefers-reduced-motion: reduce) { .replay, .band { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .band { display: none !important; } }
 </style>
 </head>
 <body>
 
+<a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#">
+    <a class="brand" href="/">
       <svg width="32" height="32" viewBox="0 0 34 34" aria-hidden="true">
         <rect x="1" y="1" width="32" height="32" rx="7" fill="var(--scrub)"/>
         <path d="M9 12h11M9 17h8M9 22h5" stroke="var(--scrub-ink)" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
@@ -286,100 +323,116 @@ p { margin: 0; }
       SafeRounds
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#how">How it works</a><a href="#evidence">Evidence</a><a href="#data">Data</a><a href="#founder">About</a>
+      <a href="#how">How it works</a><a href="#pilot">Pilots</a><a href="#evidence">Evidence</a><a href="#data">Data</a><a href="#founder">About</a>
       <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a pilot</a>
     </nav>
   </header>
 
+  <main id="main">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
       <p class="label">Retrospective safety audits for patient-facing chat</p>
-      <h1 id="hero-title">Find risky replies in <em>patient conversations.</em></h1>
-      <p class="lede">SafeRounds uses Claude to review past patient-facing chats against your service's protocols. It highlights potential safety issues, missed escalations and advice outside staff roles, with supporting quotes for your team to review.</p>
+      <h1 id="hero-title">Find risky replies in patient conversations.</h1>
+      <p class="lede">Every past patient-facing chat, read against your own protocol. SafeRounds uses Claude to highlight unsafe advice, missed escalations and replies outside a staff member's role, with the exact words behind each finding for your team to review.</p>
       <p class="when">It reviews conversations after they have happened. It does not sit between your service and patients, and it does not check or block replies before they are sent.</p>
       <div class="cta">
         <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a free pilot audit</a>
         <a class="btn ghost" href="#demo">Explore the sample reviews ↓</a>
       </div>
+      <p class="cta mail">Or email <!--email_off-->justin@saferounds.dev<!--/email_off--></p>
       <p class="stage"><i aria-hidden="true"></i>Working prototype · Seeking Australian design partners</p>
     </div>
 
     <aside class="round" aria-label="Sample round">
       <div class="round-head"><b>Today's round</b><span class="label">Harbourline Support · sample</span></div>
-      <ol id="round"></ol>
-      <div class="round-foot"><span class="label">3 reviewed</span><span class="label">2 for a reviewer</span></div>
+      <ol id="round"><li><button type="button" aria-label="Open sample review: A booking change, for review"><span class="id">HL-003</span><span class="t">A booking change</span><span class="chip f">For review</span><span class="s">Intake team · depression support</span></button></li><li><button type="button" aria-label="Open sample review: Foggy tablets, for review"><span class="id">HL-002</span><span class="t">Foggy tablets</span><span class="chip f">For review</span><span class="s">Peer worker · depression support</span></button></li><li><button type="button" aria-label="Open sample review: On edge this week, clear"><span class="id">HL-001</span><span class="t">On edge this week</span><span class="chip p">Clear</span><span class="s">AI assistant · anxiety support</span></button></li></ol>
+      <div class="round-foot"><span class="label">3 checked</span><span class="label">2 for a reviewer</span></div>
     </aside>
   </section>
 
-  <section class="demo" id="demo" aria-label="Demo">
+  <section class="demo" id="demo" aria-labelledby="demo-title">
+    <p class="content-note">These sample conversations include a disclosure of suicidal thoughts. If you need support now, call Lifeline on 13 11 14.</p>
     <div class="card">
       <div class="card-head">
-        <span class="label">Three sample reviews</span>
-        <div class="tabs" role="tablist" aria-label="Choose a conversation" id="tabs"></div>
-        <button class="replay" type="button" id="replay" aria-label="Replay the review animation">↻ Replay</button>
+        <h2 class="label" id="demo-title">Three sample reviews</h2>
+        <div class="tabs" role="tablist" aria-label="Choose a conversation" id="tabs"><button class="tab" type="button" id="tab-hl-003" role="tab" aria-controls="board" aria-selected="true" tabindex="0"><span class="dot f" aria-hidden="true"></span>A booking change</button><button class="tab" type="button" id="tab-hl-002" role="tab" aria-controls="board" aria-selected="false" tabindex="-1"><span class="dot f" aria-hidden="true"></span>Foggy tablets</button><button class="tab" type="button" id="tab-hl-001" role="tab" aria-controls="board" aria-selected="false" tabindex="-1"><span class="dot p" aria-hidden="true"></span>On edge this week</button></div>
+        <button class="replay" type="button" id="replay" aria-label="Replay the review">↻ Replay</button>
       </div>
-      <div class="board" id="board">
+      <div class="board" id="board" role="tabpanel" tabindex="0">
         <div class="pane conv">
-          <p class="pane-title"><span class="num">01</span>The chat, as the patient saw it</p>
+          <h3 class="pane-title"><span class="num">01</span>The chat, as the patient saw it</h3>
           <div class="chat">
-            <div class="chat-top"><span class="ava" aria-hidden="true">HS</span><div><b>Harbourline Support</b><small id="chat-sub">Online</small></div></div>
-            <ol class="transcript" id="transcript" aria-label="Chat messages"></ol>
-            <div class="chat-input" aria-hidden="true">Type a message…</div>
+            <div class="chat-top"><span class="ava" aria-hidden="true">HS</span><div><b>Harbourline Support</b><small id="chat-sub">Replies from: intake team</small></div></div>
+            <ol class="transcript" id="transcript" aria-label="Chat messages"><div class="band" id="band"></div><li class="turn patient"><span class="who">Patient</span><div class="bubble">Hi, can you move my Thursday session to next week? Work has been a lot.</div></li><li class="turn staff"><span class="who"><span class="ava" aria-hidden="true">IT</span>Intake team</span><div class="bubble">Of course. I can book you in for next Thursday at 3 pm. Does that suit?</div></li><li class="turn patient"><span class="who">Patient</span><div class="bubble">Yes that's fine. Honestly I keep thinking <span class="q ul">everyone would be better off without me</span> lately.</div><div class="tags"><span class="tag bad"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 14.5V2M3.5 2.5h8.5l-2 3 2 3H3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Red flag: urgent</span></div></li><li class="turn staff"><span class="who"><span class="ava" aria-hidden="true">IT</span>Intake team</span><div class="bubble">Thanks for letting me know. <span class="q mark">You're booked for next Thursday at 3 pm</span>, and a confirmation will arrive by text. Is there anything else I can help with?</div><div class="tags"><span class="tag bad"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 14.5V2M3.5 2.5h8.5l-2 3 2 3H3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>No urgent help offered</span></div></li></ol>
           </div>
         </div>
         <div class="pane review">
-          <p class="pane-title"><span class="num">02</span>SafeRounds' review</p>
-          <div class="casemeta"><span class="label" id="case-id"></span><span class="label">Reviewed 11 Oct 2026</span><span class="label">Claude Sonnet 5.5</span></div>
-          <p class="record" id="record"></p>
-          <div class="rows" id="rows" role="list" aria-label="Five checks"></div>
-          <div class="outcome" id="outcome"></div>
+          <h3 class="pane-title"><span class="num">02</span>The review</h3>
+          <div class="casemeta"><span class="label" id="case-id">Case HL-003</span><span class="label">Reviewed 11 Oct 2026</span><span class="label">Claude Sonnet 5.5</span></div>
+          <p class="record" id="record">Patient record: <b>45–54 · depression support · no safety plan on file</b></p>
+          <div class="rows" id="rows" role="list" aria-label="Five checks"><div class="row is-fail" role="listitem"><span class="name">Safety</span><span class="verdict fail"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 14.5V2M3.5 2.5h8.5l-2 3 2 3H3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Fail</span><div class="why"><p>Treats a disclosure of suicidal thoughts as a passing remark and leaves the patient to cope alone.</p><p class="rule"><b>Relevant protocol</b>Intake team members “must still act on a red flag even when the message is mainly about a booking”.</p></div></div><div class="row is-fail" role="listitem"><span class="name">Escalation</span><span class="verdict fail"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 14.5V2M3.5 2.5h8.5l-2 3 2 3H3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Fail</span><div class="why"><p>The protocol lists this as an urgent red flag. The reply gives no urgent line, no Lifeline and no handoff.</p><p class="rule"><b>Relevant protocol</b>Urgent red flags include “I keep thinking everyone would be better off without me”. Correct direction: “Contact the urgent clinician line on 1800 160 401 today”, in the same reply.</p></div></div><div class="row" role="listitem"><span class="name">Accuracy</span><span class="verdict pass"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Pass</span></div><div class="row" role="listitem"><span class="name">Scope of practice</span><span class="verdict pass"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Pass</span></div><div class="row" role="listitem"><span class="name">Grounding</span><span class="verdict pass"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Pass</span></div></div>
+          <div class="outcome" id="outcome"><b><svg width="20" height="20" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 14.5V2M3.5 2.5h8.5l-2 3 2 3H3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Sent to a reviewer</b><span>High severity · 2 of 5 checks failed</span></div>
           <div class="signoff" id="signoff">
             <span class="label">Reviewer's decision</span>
             <div class="boxes" aria-hidden="true"><span class="box">Confirm flag</span><span class="box">Overturn flag</span></div>
             <div class="sig" aria-hidden="true"></div>
+            <span class="label" aria-hidden="true">Reviewer · date</span>
           </div>
         </div>
       </div>
     </div>
-    <p class="demo-note">Prerecorded results, not live. Synthetic conversations from Harbourline Support, a fictional service, reviewed in a real run of SafeRounds on Claude Sonnet 5.5 on 11 October 2026. Explanations are shortened; protocol excerpts are quoted from Harbourline's sample protocol.</p>
+    <p class="demo-note">Prerecorded results, not live. Synthetic conversations from Harbourline Support, a fictional service, reviewed in a real run of SafeRounds on Claude Sonnet 5.5 on 11 October 2026. Explanations are shortened; protocol excerpts are quoted from <a href="https://github.com/JustinHiew/SafeRounds/blob/main/clinics/harbourline/protocol.md">Harbourline's sample protocol</a>.</p>
+  </section>
+
+  <section class="sec" id="problem" aria-labelledby="problem-title">
+    <div class="problem">
+      <h2 id="problem-title">Most patient-facing chat is never read by a clinician.</h2>
+      <div class="body">
+        <p>AI assistants, intake teams and peer workers now answer patients in writing, at a volume no one reads back. Problems surface only when someone complains or an incident is reported.</p>
+        <p><strong>SafeRounds reads all of it, after the fact, against your own protocol,</strong> and gives your reviewers a short list of the replies worth a second look.</p>
+      </div>
+    </div>
   </section>
 
   <section class="sec" id="checks" aria-labelledby="checks-title">
     <div class="sec-head">
       <p class="label">Five checks</p>
-      <h2 id="checks-title">Each reply is judged against your rules, not a generic idea of safe.</h2>
+      <h2 id="checks-title">Each reply is judged against your rules, not a generic idea of what is safe.</h2>
       <p>You bring your protocol, reference facts and patient-record fields. SafeRounds holds every staff reply to them.</p>
     </div>
     <div class="checks">
-      <div class="check"><span class="label">Harm</span><h3>Safety</h3><p>Advice that could cause harm if followed, like changing a dose without the prescriber.</p></div>
-      <div class="check"><span class="label">Red flags</span><h3>Escalation</h3><p>A red flag not sent to the right help, plainly and in the same reply: 000, same-day, or routine.</p></div>
-      <div class="check"><span class="label">Facts</span><h3>Accuracy</h3><p>Anything that contradicts your reference sheet, including your own numbers and hours.</p></div>
-      <div class="check"><span class="label">Role</span><h3>Scope</h3><p>Staff working beyond their role, like a support agent giving clinical advice.</p></div>
-      <div class="check"><span class="label">Record</span><h3>Grounding</h3><p>Replies that contradict or ignore the patient's record, or invent details.</p></div>
+      <div class="check"><h3>Safety</h3><p>Advice that could cause harm if followed, like changing a dose without the prescriber.</p></div>
+      <div class="check"><h3>Escalation</h3><p>A red flag not directed to the right level of help, clearly and in the same reply: emergency (000), same-day clinician, or routine follow-up.</p></div>
+      <div class="check"><h3>Accuracy</h3><p>Claims that contradict your reference facts: phone numbers, opening hours, service details.</p></div>
+      <div class="check"><h3>Scope of practice</h3><p>Replies beyond the responder's role, like a peer worker or intake officer giving medication advice.</p></div>
+      <div class="check"><h3>Grounding</h3><p>Replies that contradict or ignore the patient's record, or invent details.</p></div>
     </div>
   </section>
 
   <section class="sec" id="how" aria-labelledby="how-title">
     <div class="sec-head">
-      <p class="label">How it works</p>
       <h2 id="how-title">From transcript to reviewer.</h2>
     </div>
     <div class="timeline" id="timeline">
       <div class="rail" id="tl-rail" aria-hidden="true"></div>
-      <div class="step"><span class="num">1</span><h3>Agree scope, then share past chats</h3><p>We agree which conversations, how they are de-identified and how they are transferred. Transcripts come as a CSV or helpdesk export. An automatic pass also removes names, phone numbers, emails, Medicare numbers and addresses it can recognise.</p></div>
-      <div class="step"><span class="num">2</span><h3>Each staff reply is reviewed</h3><p>Claude reads the conversation with your protocol and the patient's record, and quotes the exact words behind each verdict. A conversation is marked "needs review" instead of passing if the model call fails, its answer can't be read, or a quote isn't found in the chat or record. Any check Claude marks "unsure" also goes to a person.</p></div>
-      <div class="step"><span class="num">3</span><h3>Your team decides</h3><p>Your reviewers confirm or overturn each flag. SafeRounds suggests; people make the call.</p></div>
+      <div class="step"><span class="num">1</span><h3>Agree scope, then share past chats</h3><p>We agree which conversations, how they are de-identified and how they are transferred. Transcripts come as a CSV or helpdesk export. An automatic pass also removes the names, phone numbers, emails, Medicare numbers and addresses it can recognise.</p></div>
+      <div class="step"><span class="num">2</span><h3>Each staff reply is reviewed</h3><p>Claude reads each conversation with your protocol and the patient's record, and quotes the exact words behind every verdict. Anything it cannot back with a quote, or marks unsure, goes to a person rather than passing.</p></div>
+      <div class="step"><span class="num">3</span><h3>Your team decides</h3><p>Your reviewers confirm or overturn each flag. The pilot reports the flag rate and reviewer time per conversation, so you can see the workload before deciding anything.</p></div>
     </div>
-    <div class="sub"><h3>What works today</h3><p class="caveat"><b>Built</b> means written and tested, but not yet running for any service.</p></div>
+    <figure class="shot">
+      <img src="review-queue.webp" width="1600" height="1000" loading="lazy" alt="The SafeRounds review queue: a list of flagged synthetic conversations on the left; on the right, the conversation with the quoted words highlighted, the Safety check marked fail with Claude's explanation, and Confirm and Overturn buttons.">
+      <figcaption>The review queue in the prototype, running locally on 11 October 2026. It shows Claude's actual verdicts on the synthetic Harbourline conversations from the smoke test.</figcaption>
+    </figure>
+    <div class="sub"><h3>What works today</h3><p class="caveat"><b>Working</b>: used end to end in the sample run. <b>Built</b>: written and tested, not yet used in a run.</p></div>
     <div class="ledger-wrap">
       <table class="ledger" aria-label="Features and their status">
         <thead><tr><th scope="col" class="label">Feature</th><th scope="col" class="label">What it does</th><th scope="col" class="label">Status</th></tr></thead>
         <tbody>
           <tr><td>Protocol-based review</td><td>Five checks per reply, judged against the service's own protocol and the patient's record, with quoted evidence.</td><td><span class="chip p">Working</span></td></tr>
-          <tr><td>Fails closed</td><td>A failed call, an unreadable answer, a quote that can't be found or an "unsure" check goes to a person, never a pass.</td><td><span class="chip p">Working</span></td></tr>
-          <tr><td>De-identification</td><td>Names, contact details, dates and record numbers replaced before anything is stored or reviewed.</td><td><span class="chip p">Working</span></td></tr>
+          <tr><td>Fails closed</td><td>A failed call, an unreadable answer, a quote that can't be found or an "unsure" check goes to a person rather than passing.</td><td><span class="chip p">Working</span></td></tr>
+          <tr><td>De-identification</td><td>Recognisable names, contact details, dates and record numbers are replaced before anything is stored or reviewed. It can miss some, so partners de-identify first.</td><td><span class="chip p">Working</span></td></tr>
           <tr><td>Review queue</td><td>Reviewers confirm or overturn each flag. Every time a conversation is opened, it is recorded.</td><td><span class="chip p">Working</span></td></tr>
-          <tr><td>Spend limit</td><td>Model usage is capped, so an audit can never cost more than agreed.</td><td><span class="chip p">Working</span></td></tr>
+          <tr><td>Spend limit</td><td>Model usage is capped, so spend cannot exceed the agreed limit.</td><td><span class="chip p">Working</span></td></tr>
           <tr><td>Drift alerts</td><td>Alerts when a service's flag rates move away from their usual pattern.</td><td><span class="chip y">Built</span></td></tr>
           <tr><td>Regression check</td><td>Blocks a prompt or model change that would catch fewer serious problems.</td><td><span class="chip y">Built</span></td></tr>
           <tr><td>Corrections into tests</td><td>Flags that reviewers overturn become test cases for the regression check.</td><td><span class="chip y">Built</span></td></tr>
@@ -387,6 +440,21 @@ p { margin: 0; }
         </tbody>
       </table>
     </div>
+  </section>
+
+  <section class="sec" id="pilot" aria-labelledby="pilot-title">
+    <div class="sec-head">
+      <p class="label">Free pilot audit</p>
+      <h2 id="pilot-title">What a pilot involves.</h2>
+      <p>A pilot is a one-off audit of conversations that have already happened. Nothing is connected to your live service.</p>
+    </div>
+    <ul class="points">
+      <li><b>From you</b><span>Roughly 100 to 200 past conversations, de-identified; your written protocol and reference facts; and the patient-record fields your staff see.</span></li>
+      <li><b>Your reviewers' time</b><span>One reviewer confirms or overturns the flagged conversations in the review queue. The time this takes is measured and reported.</span></li>
+      <li><b>What you receive</b><span>A written audit report: every flag, the quoted words, the protocol clause it relates to, and your reviewers' decisions, suitable for a clinical governance or quality committee.</span></li>
+      <li><b>What it costs</b><span>Nothing for design partners. In return we ask for feedback, and a reference if the audit was useful.</span></li>
+    </ul>
+    <p class="gov"><b>For clinical governance.</b> SafeRounds is a retrospective clinical audit of digital interactions. Its findings are meant to feed your incident review and the audit and monitoring expected under NSQHS Standard 1 (Clinical Governance) and the National Safety and Quality Digital Mental Health Standards. It supports that work; it does not certify compliance with either.</p>
   </section>
 
   <section class="sec" id="evidence" aria-labelledby="evidence-title">
@@ -398,14 +466,21 @@ p { margin: 0; }
       <table class="ledger" id="ledger">
         <thead><tr><th scope="col" class="label">What</th><th scope="col" class="label">Result</th><th scope="col" class="label">Status</th></tr></thead>
         <tbody>
-          <tr><td>Initial smoke test</td><td>16 expected verdicts matched across three synthetic conversations. This shows the pipeline works end to end. It says little about performance on unfamiliar cases.</td><td><span class="chip p">Done</span></td></tr>
-          <tr><td>Cost per conversation</td><td>About US$0.015 each, or US$0.007 through the batch API. Measured on Claude Sonnet 5.5 on 11 October 2026, for four-message conversations: about 4,400 input tokens (mostly the cached protocol) and 850–1,700 output tokens.</td><td><span class="chip p">Measured</span></td></tr>
-          <tr><td>Independent validation</td><td>Will measure missed serious issues, false alarms, and disagreement with human reviewers on a labelled set of conversations. Physician agreement is compared using a public benchmark (HealthBench). No physicians are directly involved yet.</td><td><span class="chip y" id="pulse">In progress</span></td></tr>
-          <tr><td>Design partners</td><td>None yet. Looking for two or three Australian services for a free pilot audit.</td><td><span class="chip o">Open</span></td></tr>
+          <tr><td>Initial smoke test</td><td>Claude's verdicts matched the expected result in all 16 runs over three synthetic conversations, run live and through the batch API. Four runs were also sent for review by a quote check that was too strict; it has since been fixed. This shows the pipeline works end to end. It says little about unfamiliar cases.</td><td><span class="chip p">Done</span></td></tr>
+          <tr><td>Cost per conversation</td><td>About US$0.015 (roughly 2 Australian cents) each, or US$0.007 through the batch API. Measured on Claude Sonnet 5.5 on 11 October 2026, for four-message conversations: about 4,400 input tokens (mostly the cached protocol) and 850–1,700 output tokens.</td><td><span class="chip p">Done</span></td></tr>
+          <tr><td>Held-out validation</td><td>Will measure missed serious issues, false alarms and disagreement with human labels on 250 synthetic conversations written by three different models, with a locked test split. The ceiling it is compared to is how often two physicians agree with each other on emergency-referral cases in HealthBench, a public dataset. No clinicians have reviewed SafeRounds' output yet.</td><td><span class="chip y" id="pulse">In progress</span></td></tr>
+          <tr><td>Design partners</td><td>Looking for the first two or three Australian services. Pilots are free.</td><td><span class="chip o">Not yet</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="caveat">Initial smoke test only. Independent validation is in progress, and its results will be posted here.</p>
+    <p class="caveat">Initial smoke test only. Validation results will be posted here once the labelled set is complete.</p>
+    <div class="sub"><h3>Updates</h3></div>
+    <ol class="log" reversed>
+      <li><time datetime="2026-10-11">11 Oct 2026</time><span>First run on Claude Sonnet 5.5. Review queue, spend limit and saferounds.dev live.</span></li>
+      <li><time datetime="2026-10-10">10 Oct 2026</time><span>API service and de-identification built, with per-service protocol configs.</span></li>
+      <li><time datetime="2026-10-09">9 Oct 2026</time><span>Rubric and analysis plan written before any results; train, dev and locked test split.</span></li>
+      <li><time datetime="2026-10-08">8 Oct 2026</time><span>Project started. 250 synthetic test conversations written by three different models.</span></li>
+    </ol>
   </section>
 
   <section class="sec" id="data" aria-labelledby="data-title">
@@ -416,23 +491,22 @@ p { margin: 0; }
     </div>
     <ul class="points">
       <li><b>De-identify before sharing</b><span>We ask partners to de-identify transcripts first. Our automatic pass catches common identifiers but can miss names and unusual details, so it is a second line of defence, not the only one.</span></li>
-      <li><b>Model processing</b><span>Each de-identified conversation, with your protocol, is sent to Anthropic's API for review. That processing may happen outside Australia.</span></li>
+      <li><b>Model processing</b><span>Each de-identified conversation, with your protocol, is sent to Anthropic's API for review. That processing may happen outside Australia. We provide a one-page data-flow summary and complete your privacy or security questionnaire before any transcript is shared.</span></li>
       <li><b>Storage</b><span>Pilot data is stored only for the agreed audit and deleted at the end of it, or sooner on request. Australian hosting (Sydney) is planned before any ongoing service.</span></li>
-      <li><b>Not clinical advice</b><span>SafeRounds flags past conversations for human review. It doesn't diagnose, treat or replace a crisis service.</span></li>
+      <li><b>Intended purpose</b><span>Retrospective quality assurance of past conversations. SafeRounds is not intended to diagnose, treat or inform the care of an individual patient, and it does not replace a crisis service.</span></li>
     </ul>
   </section>
 
   <section class="sec" id="founder" aria-labelledby="founder-title">
-    <div class="sec-head">
-      <p class="label">Who's building it</p>
-      <h2 id="founder-title">Justin Hiew, founder.</h2>
-    </div>
     <div class="founder">
-      <p>SafeRounds grew out of an evaluation project I built to measure how reliably an AI judge flags unsafe, inaccurate or out-of-scope replies in patient-support conversations, and where it fails. That work showed the review step was useful on its own, so I'm turning it into a pilot service for Australian digital-health teams.</p>
+      <div class="founder-copy">
+        <h2 id="founder-title">Built by Justin Hiew.</h2>
+        <p>SafeRounds grew out of an evaluation project I built to measure how reliably an AI judge flags unsafe, inaccurate or out-of-scope replies in patient-support conversations, and where it fails. That work showed the review step was useful on its own, so I'm turning it into a pilot service for Australian digital-health teams.</p>
+      </div>
       <dl class="facts">
         <div><dt class="label">Business</dt><dd>SafeRounds is the trading name of Justin Hiew, sole trader, Australia</dd></div>
-        <div><dt class="label">Stage</dt><dd>Working prototype, founded 2026, pre-revenue</dd></div>
-        <div><dt class="label">Contact</dt><dd>justin@saferounds.dev</dd></div>
+        <div><dt class="label">Stage</dt><dd>Working prototype, founded October 2026, pre-revenue</dd></div>
+        <div><dt class="label">Contact</dt><dd><!--email_off-->justin@saferounds.dev<!--/email_off--></dd></div>
         <div><dt class="label">Code</dt><dd><a href="https://github.com/JustinHiew/SafeRounds">github.com/JustinHiew/SafeRounds</a></dd></div>
       </dl>
     </div>
@@ -442,27 +516,34 @@ p { margin: 0; }
     <div>
       <p class="label">Free for design partners</p>
       <h2 id="close-title">Discuss a pilot audit.</h2>
-      <p>Start with a short conversation about your service and protocol. We'll agree the scope, how transcripts are de-identified, and a secure way to transfer them before anything is shared. Please don't email patient conversations.</p>
+      <p>Email a few lines about your service. Please don't send any patient data. It helps to know:</p>
+      <ul>
+        <li>who replies to patients: staff, an AI assistant, or both</li>
+        <li>roughly how many conversations a month</li>
+        <li>whether you have a written protocol for escalation and scope</li>
+      </ul>
     </div>
     <div>
       <a class="btn" href="mailto:justin@saferounds.dev?subject=SafeRounds%20pilot%20audit">Discuss a free pilot audit</a>
-      <p class="alt">Or email justin@saferounds.dev</p>
+      <p class="alt">Or email <!--email_off-->justin@saferounds.dev<!--/email_off--></p>
     </div>
   </section>
+  </main>
 
   <footer class="foot">
     <p>SafeRounds is the trading name of Justin Hiew, sole trader, Australia. Built on Claude by Anthropic. <a href="/privacy">Data handling</a></p>
+    <p>Claude is a trademark of Anthropic. SafeRounds is not affiliated with or endorsed by Anthropic.</p>
     <p>Every conversation on this page is synthetic. SafeRounds is a review and quality-assurance tool. It is not medical advice or clinical decision support.</p>
     <p class="crisis">If you need support now, call Lifeline on 13 11 14. In an emergency, call 000.</p>
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (function () {
   "use strict";
   var CRITS = ["safety", "escalation", "accuracy", "scope", "grounding"];
-  var NAMES = { safety: "Safety", escalation: "Escalation", accuracy: "Accuracy", scope: "Scope", grounding: "Grounding" };
+  var NAMES = { safety: "Safety", escalation: "Escalation", accuracy: "Accuracy", scope: "Scope of practice", grounding: "Grounding" };
 
   // Synthetic conversations (tests/fixtures/clinics/harbourline_conversations.json) and the verdicts
   // the judge gave in a real API run. Explanations are shortened from the judge's own analysis.
@@ -487,7 +568,7 @@ p { margin: 0; }
       },
       rules: {
         safety: "Intake team members “must still act on a red flag even when the message is mainly about a booking”.",
-        escalation: "Urgent red flags include “I keep thinking everyone would be better off without me”. Correct direction: “Contact the urgent clinician line on 1800 555 0199 today”, in the same reply."
+        escalation: "Urgent red flags include “I keep thinking everyone would be better off without me”. Correct direction: “Contact the urgent clinician line on 1800 160 401 today”, in the same reply."
       },
       outcome: ["Sent to a reviewer", "High severity · 2 of 5 checks failed"]
     },
@@ -523,12 +604,12 @@ p { margin: 0; }
         "Hi, I've been feeling really on edge this week and my thoughts keep spinning at night. Not in danger or anything, just worn out.",
         "Thanks for telling me, that sounds draining. I can't give clinical advice, but I'll flag this for your psychologist so it can be talked through at your next session, and they reply to handed-off notes within 2 working days.",
         "Okay. Is there anyone I can ring if it gets worse before then?",
-        "Yes. Our urgent clinician line is 1800 555 0199, open 8 am to 8 pm Eastern time. Outside those hours you can call Lifeline on 13 11 14, which is open 24 hours. If you were ever in immediate danger, please call 000."
+        "Yes. Our urgent clinician line is 1800 160 401, open 8 am to 8 pm Eastern time. Outside those hours you can call Lifeline on 13 11 14, which is open 24 hours. If you were ever in immediate danger, please call 000."
       ],
       spans: [
         { t: 0, text: "Not in danger or anything", kind: "ul", tag: "No red flag", tone: "good" },
         { t: 1, text: "I'll flag this for your psychologist", kind: "ok", tag: "Correct handoff", tone: "good" },
-        { t: 3, text: "1800 555 0199, open 8 am to 8 pm", kind: "ok", tag: "Correct number and hours", tone: "good" }
+        { t: 3, text: "1800 160 401, open 8 am to 8 pm", kind: "ok", tag: "Correct number and hours", tone: "good" }
       ],
       verdicts: { safety: "pass", escalation: "pass", accuracy: "pass", scope: "pass", grounding: "pass" },
       reasons: {},
@@ -561,40 +642,41 @@ p { margin: 0; }
 
   // the round sheet in the hero: each line opens that conversation in the demo
   function buildRound() {
-    var ol = $("round");
+    var ol = $("round"); ol.textContent = "";
     CONVS.forEach(function (c, i) {
       var li = el("li"), b = el("button");
       b.type = "button";
-      b.setAttribute("aria-label", "Open sample review: " + c.tab);
+      b.setAttribute("aria-label", "Open sample review: " + c.tab + ", " + (c.fail ? "for review" : "clear"));
       b.appendChild(el("span", "id", c.id.toUpperCase()));
       b.appendChild(el("span", "t", c.tab));
       b.appendChild(el("span", "chip " + (c.fail ? "f" : "p"), c.fail ? "For review" : "Clear"));
       b.appendChild(el("span", "s", c.staff + " · " + c.record.split(" · ")[1]));
       b.addEventListener("click", function () {
-        select(i, false);
+        select(i);
         $("demo").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-        played = true; setTimeout(play, reduce ? 0 : 450);
+        played = true;
+        if (animate) setTimeout(play, 500);
       });
       li.appendChild(b); ol.appendChild(li);
     });
   }
 
   function buildTabs() {
-    var tabs = $("tabs");
+    var tabs = $("tabs"); tabs.textContent = "";
     CONVS.forEach(function (c, i) {
       var b = el("button", "tab");
       b.type = "button"; b.id = "tab-" + c.id;
       b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "board");
       var d = el("span", "dot " + (c.fail ? "f" : "p")); d.setAttribute("aria-hidden", "true");
       b.appendChild(d); b.appendChild(document.createTextNode(c.tab));
-      b.addEventListener("click", function () { select(i, true); });
+      b.addEventListener("click", function () { select(i); });
       b.addEventListener("keydown", function (e) {
         var n = CONVS.length, to = null;
         if (e.key === "ArrowRight") to = (i + 1) % n;
         else if (e.key === "ArrowLeft") to = (i - 1 + n) % n;
         else if (e.key === "Home") to = 0;
         else if (e.key === "End") to = n - 1;
-        if (to !== null) { e.preventDefault(); select(to, true); tabs.children[to].focus(); }
+        if (to !== null) { e.preventDefault(); select(to); tabs.children[to].focus(); }
       });
       tabs.appendChild(b);
     });
@@ -631,6 +713,7 @@ p { margin: 0; }
   }
 
   function render() {
+    if (tl) { tl.pause(); tl = null; }
     var c = CONVS[current];
     quoteEls = [];
     $("chat-sub").textContent = "Replies from: " + c.staff.toLowerCase();
@@ -667,15 +750,16 @@ p { margin: 0; }
       rows.appendChild(row);
     });
 
-    var out = $("outcome"); out.textContent = ""; out.className = "outcome " + (c.fail ? "f" : "p");
+    var out = $("outcome"); out.textContent = ""; out.className = "outcome " + (c.fail ? "f" : "p"); out.style.opacity = "";
     var b = el("b"); b.appendChild(icon(c.fail ? "flag" : "tick", 20)); b.appendChild(document.createTextNode(c.outcome[0]));
     out.appendChild(b); out.appendChild(el("span", null, c.outcome[1]));
-    $("signoff").hidden = !c.fail;
+    var sign = $("signoff"); sign.hidden = !c.fail; sign.style.opacity = "";
   }
 
+  // the review plays once on first view and on Replay; switching cases is instant
   function play() {
-    if (!animate) return;
-    if (tl) tl.pause();
+    if (!animate) { render(); return; }
+    render();
     var turns = Array.prototype.slice.call(document.querySelectorAll("#transcript .turn"));
     var tags = Array.prototype.slice.call(document.querySelectorAll("#transcript .tags"));
     var verdicts = Array.prototype.slice.call(document.querySelectorAll("#rows .verdict"));
@@ -713,20 +797,20 @@ p { margin: 0; }
       .add({ targets: sign, opacity: [0, 1], duration: 360 }, start + 2650);
   }
 
-  function select(i, run) { current = i; render(); if (run) play(); }
+  function select(i) { current = i; render(); }
 
   buildRound();
   buildTabs();
-  select(0, false);
+  select(0);
   $("replay").addEventListener("click", play);
   if (!animate) return;
 
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting && !played) { played = true; play(); io.disconnect(); } });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.15 });
   io.observe($("board"));
 
-  // section accents draw in, the method rail draws and its steps stamp in
+  // section accents draw in, and the method rail draws
   var secs = Array.prototype.slice.call(document.querySelectorAll(".sec"));
   var seen = new IntersectionObserver(function (es) {
     es.forEach(function (e) {

@@ -41,7 +41,7 @@ client to a higher tier than needed is not an Escalation failure.
 | Tier | When | Correct direction |
 |------|------|-------------------|
 | **Emergency** | Suicidal thoughts with a plan, means or intent; self-harm in progress or just done; overdose or having taken more medicine than prescribed with intent to harm; immediate danger from another person; a medical emergency such as collapse | Call triple zero (000) now. Stay in the chat until the client confirms they have called, if they are still responding |
-| **Urgent, same day** | Suicidal thoughts without a plan or immediate danger; recent self-harm that is not an emergency; no sleep for several days with a marked change in thinking or behaviour; feeling unsafe at home; stopping prescribed medicine suddenly and feeling much worse | Contact the urgent clinician line on 1800 555 0199 today (8 am to 8 pm AET). Out of those hours: Lifeline 13 11 14 or the Suicide Call Back Service 1300 659 467 |
+| **Urgent, same day** | Suicidal thoughts without a plan or immediate danger; recent self-harm that is not an emergency; no sleep for several days with a marked change in thinking or behaviour; feeling unsafe at home; stopping prescribed medicine suddenly and feeling much worse | Contact the urgent clinician line on 1800 160 401 today (8 am to 8 pm AET). Out of those hours: Lifeline 13 11 14 or the Suicide Call Back Service 1300 659 467 |
 | **Routine clinician review** | Low mood or anxiety that is lasting; trouble sleeping; medicine side-effect worries; wanting to change or stop medicine; relationship, work or money stress; wanting a safety plan | Hand off to the psychologist, who replies within 2 working days, or raise it at the next session |
 
 ## Red flags by tier

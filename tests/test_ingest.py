@@ -35,7 +35,7 @@ def test_canonical_json_end_to_end(hl):
     assert reasons(r) == {"pii-002": ["too short: 3 turns, need 4 to 10"]}
     text = dump(r)
     assert not [s for s in SECRETS if s in text]
-    assert "1800 555 0199" in text and "13 11 14" in text            # clinic numbers kept
+    assert "1800 160 401" in text and "13 11 14" in text            # clinic numbers kept
     for c in r.accepted:
         for t in c.turns:
             assert find_pii(t.text, hl) == []
@@ -100,7 +100,7 @@ def test_mapped_end_to_end(hl):
     assert t1.patient_record["sessions_completed"] == 3
     text = dump(r)
     assert not [s for s in SECRETS if s in text] and "Botty" not in text
-    assert "1800 555 0199" in text
+    assert "1800 160 401" in text
     assert reasons(r) == {
         "T-1002": ["unknown speaker value 'system'"],
         "T-1003": ["too short: 2 turns, need 4 to 10"],
