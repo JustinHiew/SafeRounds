@@ -39,7 +39,8 @@ patients, and it does not check or block replies before they are sent.
 Not measured yet, and no number will appear here before it exists in `reports/`.
 
 - **Cost:** about US$0.015 per four-message conversation on Claude Sonnet 5.5 (US$0.007 with the
-  batch API), measured on 11 October 2026.
+  batch API), measured on 11 October 2026: about 4,400 input tokens, mostly the cached protocol,
+  and 850–1,700 output tokens.
 - **Validation in progress:** 250 synthetic conversations, written by three different models, with
   planted failures, hard negatives and normal cases, split so near-duplicates never cross train,
   dev and test. Prompt versions are compared on dev and the chosen one runs once on the locked test
@@ -48,6 +49,14 @@ Not measured yet, and no number will appear here before it exists in `reports/`.
 - **Physician ceiling:** agreement between two physicians on emergency referrals in the public
   HealthBench set ([`reports/healthbench_physician_agreement.json`](reports/healthbench_physician_agreement.json))
   is the ceiling any judge is compared against.
+
+## Project log
+
+- **11 October 2026:** first full run on Claude Sonnet 5.5; review queue and spend limit working;
+  saferounds.dev published.
+- **10 October 2026:** API service, de-identification and per-service protocol configs.
+- **9 October 2026:** rubric and analysis plan drafted before any results; test set locked.
+- **8 October 2026:** project started; 250 synthetic conversations written by three models.
 
 ## Run it
 

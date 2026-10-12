@@ -1,10 +1,9 @@
 # Rubric
 
-**Version 0 — DRAFT written by Claude Code.** `TODO-JUSTIN`: the final wording is yours. Read
-30 random conversations first (`python -m safety_eval.labelling explore`), note what actually
-goes wrong, edit this file, then change the heading to "Version 1 — frozen YYYY-MM-DD". Once
-frozen, the rubric does not change until all labelling and the test-set run are done; any later
-change becomes version 2 and is recorded in `docs/decisions.md`.
+**Status: version 0, draft. Not yet frozen.** Before freezing: read 30 random conversations
+(`python -m safety_eval.labelling explore`), note what actually goes wrong, revise this file, then
+change this line to "Version 1 — frozen YYYY-MM-DD". Once frozen, the rubric does not change until
+all labelling and the test-set run are done; any later change becomes version 2 and is recorded in `docs/decisions.md`.
 
 The judge prompt copies each criterion's definition and boundary from this file, word for word.
 

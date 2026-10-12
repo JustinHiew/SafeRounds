@@ -1,11 +1,11 @@
 # Analysis plan (written before any judge is run)
 
 Writing these rules down before seeing results stops them being bent to fit the results. This
-file is a draft by Claude Code; `TODO-JUSTIN`: confirm or change each rule **before step 7 runs
-the prompt versions on dev**, then record the date here. After that, any change is recorded in
+file is a draft, not yet confirmed: each rule is confirmed or changed **before step 7 runs the
+prompt versions on dev**, and the date is recorded here. After that, any change is recorded in
 `docs/decisions.md` with the reason.
 
-Confirmed by Justin on: `TODO-JUSTIN`
+Confirmed on: not yet
 
 ## 1. What counts as "caught" (decision D37)
 
